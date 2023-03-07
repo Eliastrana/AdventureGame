@@ -13,11 +13,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        //GUI gui = new GUI();
-        //gui.start(stage);
+        GUI gui = new GUI();
+        gui.start(stage);
 
-        //GUI gui = new GUI();
-        //gui.start(stage);
     }
 
 }
