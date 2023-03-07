@@ -4,17 +4,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="adding the functional files such as pom">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/Action.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/HealthAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/InventoryAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/ScoreAction.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/GameTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/LinkTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/PassageTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/PlayerTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/StoryTest.java" afterDir="false" />
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="added empty classes for all the classes and interfaces, as well as adding empty testclasses">
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/ActionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/GoldActionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/HealthActionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/InventoryActionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/ScoreActionTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/GoalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/GoldGoalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/HealthGoalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/InventoryGoalTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/ScoreGoalTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -25,8 +25,8 @@
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
       <list>
-        <option value="Class" />
         <option value="Interface" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -80,7 +80,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678182107521</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="added empty classes for all the classes and interfaces, as well as adding empty testclasses">
+      <created>1678183611020</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1678183611020</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -105,6 +112,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="adding the functional files such as pom" />
-    <option name="LAST_COMMIT_MESSAGE" value="adding the functional files such as pom" />
+    <MESSAGE value="added empty classes for all the classes and interfaces, as well as adding empty testclasses" />
+    <option name="LAST_COMMIT_MESSAGE" value="added empty classes for all the classes and interfaces, as well as adding empty testclasses" />
   </component>
 </project>
