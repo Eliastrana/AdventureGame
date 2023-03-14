@@ -1,11 +1,13 @@
 package edu.ntnu.idatt2001;
 
 
+import edu.ntnu.idatt2001.fileHandling.StoryFileManager;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -202,8 +204,30 @@ public class GUI extends Application {
         VBox inventory = new VBox(currentInventory, inventoryValue);
         inventory.setAlignment(Pos.CENTER);
 
+        TextArea textArea = new TextArea();
+        textArea.setPrefSize(200, 200);
 
-        HBox topInfo = new HBox(characterName, health, gold, score, inventory);
+        Button testingSaving = new Button("Load story");
+        testingSaving.setOnAction(event -> {
+            // Import the StoryFileManager class and create a new instance of it.
+            StoryFileManager storyFileManager = new StoryFileManager();
+
+            String fileContent = storyFileManager.toString();
+            textArea.setText(fileContent);
+        });
+
+
+//        Button testingSaving = new Button("Save");
+//        testingSaving.setOnAction(event -> {
+//
+//            //import the StoryFileManager class and create a new instance of it. Then call the loadfile method
+//            StoryFileManager storyFileManager = new StoryFileManager();
+//            storyFileManager.loadFromFile("/Users/eliastrana/Documents/Systemutvikling/Programmering2/Adventuregame/src/main/resources/pathExamples/test2");
+//            textArea.setText(storyFileManager.toString());
+//
+//        });
+
+        HBox topInfo = new HBox(characterName, health, gold, score, inventory,textArea, testingSaving);
         topInfo.setAlignment(Pos.TOP_CENTER);
         topInfo.setSpacing(20);
 

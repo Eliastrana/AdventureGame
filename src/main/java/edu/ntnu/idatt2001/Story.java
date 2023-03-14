@@ -2,6 +2,7 @@ package edu.ntnu.idatt2001;
 
 import java.util.Collection;
 import java.util.IdentityHashMap;
+import java.util.List;
 import java.util.Map;
 
 public class Story {
@@ -12,7 +13,7 @@ public class Story {
 
     private Passage openingPassage;
 
-    public Story(String title, Passage openingPassage) {
+    public Story(String title, Passage openingPassage, List<Passage> passages) { //SJEKK HER OM VI BURDE SLETTE LIST<PASSAGE> PASSAGES
         if (title == null || title.isEmpty()) throw new IllegalArgumentException("Title cannot be empty");
         if (openingPassage == null) throw new IllegalArgumentException("Opening passage cannot be null");
         this.title = title;
