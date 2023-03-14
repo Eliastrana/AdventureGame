@@ -1,8 +1,7 @@
 package edu.ntnu.idatt2001;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 public class Passage {
@@ -12,7 +11,7 @@ public class Passage {
     private ArrayList links = new ArrayList<>();
 
 
-    public Passage(String title, String content) {
+    public Passage(String title, String content, List<Link> links) {
         if (title == null || title.isEmpty()) throw new IllegalArgumentException("Title cannot be empty");
         if (content == null || content.isEmpty()) throw new IllegalArgumentException("Content cannot be empty");
 
