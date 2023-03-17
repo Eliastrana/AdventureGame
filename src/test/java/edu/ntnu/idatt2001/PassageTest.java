@@ -6,15 +6,14 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-class PassageTest {
 
   @Nested
   @DisplayName("Constructor Test")
-  class ConstructorTest {
+  class PassageConstructorTest {
 
     @Test
     @DisplayName("Test valid constructor")
-    void constructorTest() {
+    void validConstructorTest() {
       Passage passage = new Passage("Title", "Content");
       assertEquals("Title", passage.getTitle());
       assertEquals("Content", passage.getContent());
@@ -46,7 +45,7 @@ class PassageTest {
   }
   @Nested
   @DisplayName("Getters Test")
-  class GettersTest {
+  class PassageGettersTest {
 
     @Test
     @DisplayName("Test getTitle")
@@ -72,7 +71,7 @@ class PassageTest {
 
   @Nested
   @DisplayName("Adders Test")
-  class AddersTest {
+  class PassageAddersTest {
 
     @Test
     @DisplayName("Test valid addLink")
@@ -92,7 +91,7 @@ class PassageTest {
 
   @Nested
   @DisplayName("Boolean Test")
-  class BooleanTest {
+  class PassageBooleanTest {
 
     @Test
     @DisplayName("Test hasLink")
@@ -102,7 +101,7 @@ class PassageTest {
       passage.addLink(new Link("testText","testReference" ));
       assertTrue(passage.hasLink());
     }
-  }
+
 
 
   @Test
@@ -112,10 +111,5 @@ class PassageTest {
   @Test
   void testHashCode() {
   }
-
-
-  @Test
-  void testToString() {
   }
-}
 

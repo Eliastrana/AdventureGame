@@ -3,12 +3,24 @@ package edu.ntnu.idatt2001;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * A class that represents a player in a text adventure game.
+ * A player has a name, health, score, gold, and inventory.
+ */
 public class Player {
     private String name;
     private int health;
     private int score;
     private int gold;
-    private ArrayList<String> inventory = new ArrayList<>();
+    private ArrayList<String> inventory;
+
+    /**
+     * Creates a new player with the given name, health, score, and gold.
+     * @param name String name
+     * @param health int health
+     * @param score int score
+     * @param gold int gold
+     */
 
     public Player(String name, int health, int score, int gold) {
         if (name == null || name.isEmpty()) {
@@ -28,6 +40,7 @@ public class Player {
         this.health = health;
         this.score = score;
         this.gold = gold;
+        this.inventory = new ArrayList<>();
     }
 
     public String getName() {

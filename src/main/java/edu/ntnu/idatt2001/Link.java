@@ -6,13 +6,21 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-
+/**
+ * A class that represents a link in a text adventure game.
+ * A link has a text, a reference to another passage, and a list of actions.
+ */
 public class Link {
     private String text;
     private String reference;
-    private ArrayList<Action> actions = new ArrayList<>();
+    private ArrayList<Action> actions;
 
 
+    /**
+     * Creates a new link with the given text and reference.
+     * @param text String text with a description of the link
+     * @param reference String reference
+     */
     public Link(String text, String reference) {
         if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException("Text cannot be empty");
@@ -22,22 +30,39 @@ public class Link {
         }
         this.text = text;
         this.reference = reference;
+        this.actions = new ArrayList<>();
     }
+
+    /**
+     * Returns the text of the link.
+     * @return String text
+     */
 
     public String getReference() {
-
         return reference;
     }
+    /**
+     * Returns the reference of the link.
+     * @return String reference
+     */
 
     public String getText() {
 
         return text;
     }
+    /**
+     * Returns the actions of the link.
+     * @return List actions
+     */
 
     public List<Action> getActions() {
 
         return actions;
     }
+    /**
+     * Adds an action to the link.
+     * @param action actions
+     */
 
     public void addAction(Action action) {
         if (action == null) {
