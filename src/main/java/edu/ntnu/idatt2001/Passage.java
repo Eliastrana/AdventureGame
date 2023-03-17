@@ -1,8 +1,7 @@
 package edu.ntnu.idatt2001;
 
-import java.awt.*;
 import java.util.ArrayList;
-import java.util.LinkedList;
+import java.util.List;
 import java.util.Objects;
 
 /**
