@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001;
 
 
-import edu.ntnu.idatt2001.fileHandling.StoryFileManager;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -209,11 +208,11 @@ public class GUI extends Application {
 
         Button testingSaving = new Button("Load story");
         testingSaving.setOnAction(event -> {
-            // Import the StoryFileManager class and create a new instance of it.
-            StoryFileManager storyFileManager = new StoryFileManager();
-
-            String fileContent = storyFileManager.toString();
-            textArea.setText(fileContent);
+//            // Import the StoryFileManager class and create a new instance of it.
+//            StoryFileManager storyFileManager = new StoryFileManager();
+//
+//            String fileContent = storyFileManager.toString();
+//            textArea.setText(fileContent);
         });
 
 

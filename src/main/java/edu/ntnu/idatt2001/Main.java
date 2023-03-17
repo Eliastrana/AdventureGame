@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001;
 
 
-import edu.ntnu.idatt2001.fileHandling.AlternativeGUI;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
@@ -14,8 +13,7 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        AlternativeGUI gui = new AlternativeGUI();
-        //GUI gui = new GUI();
+        GUI gui = new GUI();
         gui.start(stage);
 
     }

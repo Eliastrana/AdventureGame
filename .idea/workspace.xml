@@ -4,15 +4,20 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="fixed file reading and opening, but not saving">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/AlternativeGUI.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/StoryFileManager.java" afterDir="false" />
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Tried adding a new gui and reading file method">
+      <change afterPath="$PROJECT_DIR$/example.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileDashboard.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileRead.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileWrite.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testStory.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileDashboardTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileReadTest.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileWriteTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Story.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileHandler.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileHandlerGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/AlternativeGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/StoryFileManager.java" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -27,6 +32,7 @@
       <list>
         <option value="Interface" />
         <option value="Class" />
+        <option value="JUnit5 Test Class" />
       </list>
     </option>
   </component>
@@ -56,27 +62,37 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;ASKED_ADD_EXTERNAL_FILES&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "ASKED_ADD_EXTERNAL_FILES": "true",
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrary": "JUnit5",
+    "com.intellij.testIntegration.createTest.CreateTestDialog.defaultLibrarySuperClass.JUnit5": "",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
-  <component name="RunManager">
-    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.Main" />
+}]]></component>
+  <component name="RecentsManager">
+    <key name="CreateTestDialog.Recents.Supers">
+      <recent name="" />
+    </key>
+    <key name="CreateTestDialog.RecentsKey">
+      <recent name="edu.ntnu.idatt2001.fileHandling" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Application.FileDashboard">
+    <configuration name="FileDashboard" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.FileDashboard" />
       <module name="trollspill" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ntnu.idatt2001.*" />
+          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -84,9 +100,76 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="FileDashboardTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trollspill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.ntnu.idatt2001.fileHandling" />
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.FileDashboardTest" />
+      <option name="TEST_OBJECT" value="class" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileDashboardTest.testRead" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trollspill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.ntnu.idatt2001.fileHandling" />
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.FileDashboardTest" />
+      <option name="METHOD_NAME" value="testRead" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileDashboardTest.testWrite" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trollspill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.ntnu.idatt2001.fileHandling" />
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.FileDashboardTest" />
+      <option name="METHOD_NAME" value="testWrite" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="FileWriteTest.testFilePath" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="trollspill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="edu.ntnu.idatt2001.fileHandling" />
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.FileWriteTest" />
+      <option name="METHOD_NAME" value="testFilePath" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="Application.Main" />
+        <item itemvalue="Application.FileDashboard" />
+        <item itemvalue="JUnit.FileDashboardTest" />
+        <item itemvalue="JUnit.FileDashboardTest.testRead" />
+        <item itemvalue="JUnit.FileDashboardTest.testWrite" />
+        <item itemvalue="JUnit.FileWriteTest.testFilePath" />
       </list>
     </recent_temporary>
   </component>
@@ -102,7 +185,8 @@
       <workItem from="1678181739359" duration="585000" />
       <workItem from="1678187658904" duration="465000" />
       <workItem from="1678795238310" duration="8100000" />
-      <workItem from="1678820147739" duration="3944000" />
+      <workItem from="1678820147739" duration="4515000" />
+      <workItem from="1679057477182" duration="7566000" />
     </task>
     <task id="LOCAL-00001" summary="adding the functional files such as pom">
       <created>1678182107521</created>
@@ -139,7 +223,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678807379912</updated>
     </task>
-    <option name="localTasksCounter" value="6" />
+    <task id="LOCAL-00006" summary="Tried adding a new gui and reading file method">
+      <created>1678826792637</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1678826792637</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -180,6 +271,18 @@
     <MESSAGE value="filled in the testclasses that are within action and goals" />
     <MESSAGE value="filled all the classes except for the GUI class. completed the communication within the backend of the project" />
     <MESSAGE value="fixed file reading and opening, but not saving" />
-    <option name="LAST_COMMIT_MESSAGE" value="fixed file reading and opening, but not saving" />
+    <MESSAGE value="Tried adding a new gui and reading file method" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tried adding a new gui and reading file method" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="java-line">
+          <url>file://$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileReadTest.java</url>
+          <line>30</line>
+          <option name="timeStamp" value="5" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
