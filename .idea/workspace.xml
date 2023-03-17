@@ -4,21 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Tried adding a new gui and reading file method">
-      <change afterPath="$PROJECT_DIR$/example.paths" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileDashboard.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileRead.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileWrite.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/resources/testStory.paths" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileDashboardTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileReadTest.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/fileHandling/FileWriteTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/AlternativeGUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/StoryFileManager.java" beforeDir="false" />
-    </list>
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="made filewriting and filereading, made a simple terminal that allows for writing to file and reading after" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -186,7 +172,7 @@
       <workItem from="1678187658904" duration="465000" />
       <workItem from="1678795238310" duration="8100000" />
       <workItem from="1678820147739" duration="4515000" />
-      <workItem from="1679057477182" duration="7566000" />
+      <workItem from="1679057477182" duration="7912000" />
     </task>
     <task id="LOCAL-00001" summary="adding the functional files such as pom">
       <created>1678182107521</created>
@@ -230,7 +216,14 @@
       <option name="project" value="LOCAL" />
       <updated>1678826792637</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="made filewriting and filereading, made a simple terminal that allows for writing to file and reading after">
+      <created>1679068323638</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1679068323638</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -272,7 +265,8 @@
     <MESSAGE value="filled all the classes except for the GUI class. completed the communication within the backend of the project" />
     <MESSAGE value="fixed file reading and opening, but not saving" />
     <MESSAGE value="Tried adding a new gui and reading file method" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tried adding a new gui and reading file method" />
+    <MESSAGE value="made filewriting and filereading, made a simple terminal that allows for writing to file and reading after" />
+    <option name="LAST_COMMIT_MESSAGE" value="made filewriting and filereading, made a simple terminal that allows for writing to file and reading after" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
