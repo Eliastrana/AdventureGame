@@ -4,6 +4,8 @@ package edu.ntnu.idatt2001;
 import javafx.application.Application;
 import javafx.stage.Stage;
 
+import java.nio.file.Path;
+
 import static javafx.application.Application.launch;
 
 public class Main extends Application {
@@ -13,7 +15,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        GUI gui = new GUI();
+        PathsFileGUI gui = new PathsFileGUI();
+        //GUI gui = new GUI();
         gui.start(stage);
 
     }
