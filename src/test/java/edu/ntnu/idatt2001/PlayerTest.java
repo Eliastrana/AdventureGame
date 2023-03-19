@@ -20,7 +20,7 @@ class PlayerConstructorTest {
     assertEquals("Vegard", player.getName());
     assertEquals(100, player.getHealth());
     assertEquals(0, player.getScore());
-    assertEquals(0, player.getInventoryList().size());
+    assertEquals(0, player.getInventory().size());
   }
 
   @Test
@@ -102,7 +102,7 @@ class PlayerAddersTest {
   void addToInventory() {
     Player player = new Player("Vegard", 100, 0, 0);
     player.addToInventory("Sword");
-    assertEquals(1, player.getInventoryList().size());
+    assertEquals(1, player.getInventory().size());
   }
 
   @Test

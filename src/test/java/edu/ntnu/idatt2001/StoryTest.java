@@ -69,12 +69,14 @@ class StoryGettersTest {
   @DisplayName("Test getPassages")
   void getPassages() {
     Story story = new Story("Title", new Passage("Title", "Content"));
-    story.addPassage(new Passage("Title", "Content"));
+    story.addPassage(new Passage("newTitle", "newContent"));
     assertEquals(1, story.getPassages().size());
   }
 
-  //@Test
-  //@DisplayName("Test getPassage")
+  @Test
+  @DisplayName("Test getPassage")
+  void getPassage() {
+  }
 
 }
 
@@ -113,5 +115,13 @@ class StoryAddersTest {
     story.addPassage(passage);
     story.removePassage(passage.getLinks().get(0));
     assertEquals(1, story.getPassages().size());
+  }
+  @Test
+  @DisplayName("Test removePassage with null link")
+  void removePassageWithNullLink() {
+    Story story = new Story("storyTitle", new Passage("passageTitle", "passageContent"));
+    Passage passage = new Passage("newTitle", "newContent");
+    story.addPassage(passage);
+    assertThrows(IllegalArgumentException.class, () -> story.removePassage(null));
   }
 }

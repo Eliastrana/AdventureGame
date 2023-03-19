@@ -16,8 +16,8 @@ public class Passage {
 
     /**
      * Creates a new passage with the given title and content.
-     * @param title
-     * @param content
+     * @param title String title of the passage
+     * @param content String content of the passage
      */
     public Passage(String title, String content) {
         if (title == null || title.isEmpty()) throw new IllegalArgumentException("Title cannot be empty");
@@ -60,6 +60,7 @@ public class Passage {
         return true;
     }
 
+
     /**
      * Returns the list of links of the passage.
      * @return ArrayList<Link> links
@@ -100,6 +101,10 @@ public class Passage {
         return !links.isEmpty();
     }
 
+    /**
+     * Returns the links of the passage.
+     * @return String with all the links
+     */
 
     @Override
     public String toString() {
