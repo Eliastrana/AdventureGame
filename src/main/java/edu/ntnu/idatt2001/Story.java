@@ -24,7 +24,7 @@ public class Story {
      */
 
     public Story(String title, Passage openingPassage) {
-        if (title == null || title.isEmpty()) throw new IllegalArgumentException("Title cannot be empty");
+        if (title == null || title.isBlank()) throw new IllegalArgumentException("Title cannot be empty");
         if (openingPassage == null) throw new IllegalArgumentException("Opening passage cannot be null");
         this.title = title;
         this.openingPassage = openingPassage;
@@ -76,6 +76,9 @@ public class Story {
      * @param link Link containing the link to the passage
      */
     public void removePassage(Link link) {
+        if (link == null) {
+            throw new IllegalArgumentException("Link cannot be null");
+        }
         // check if any passage has the given link in its links
         boolean isLinkInUse = passages.values()
                 .stream()
@@ -102,6 +105,10 @@ public class Story {
                 .collect(Collectors.toList()); // Collect the broken links into a list
     }
 
+    /**
+     * Returns a list with all the passages in the story.
+     * @return List containing all the passages in the story.
+     */
     public Collection<Passage> getPassages() {
         return passages.values();
     }

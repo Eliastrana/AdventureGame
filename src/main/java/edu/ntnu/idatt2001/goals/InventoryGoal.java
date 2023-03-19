@@ -15,7 +15,7 @@ public class InventoryGoal implements Goal {
 
     public boolean isFullfilled(Player player) {
         if (player == null) throw new IllegalArgumentException("Player cannot be null");
-        HashSet<String> playerItems = new HashSet<>(player.getInventoryList());
+        HashSet<String> playerItems = new HashSet<>(player.getInventory());
         return playerItems.containsAll(mandatoryItems);
     }
 }

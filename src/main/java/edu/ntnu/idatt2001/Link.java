@@ -84,9 +84,15 @@ public class Link {
         return Objects.hash(text, reference, actions);
     }
 
+    /**
+     * Returns a string representation of the link.
+     * @return String with text, reference and actions
+     */
+
+
     @Override
     public String toString() {
-        return "Tekst: " + getText() + "\n"
+        return "Text: " + getText() + "\n"
                 + "Reference: " + getReference() + "\n"
                 + "Actions: " + getActions();
     }
