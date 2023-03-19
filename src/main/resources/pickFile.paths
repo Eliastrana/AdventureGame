@@ -1,0 +1,15 @@
+:: Welcome
+Welcome to the game 
+[start playing] (firt fight)
+
+:: First fight
+A big man tries to chase you 
+[Run away] (Chase sequense) 
+[Fight] (bigmanFight)
+
+:: Chase sequense
+he catches up to you
+
+:: bigmanFight
+You kill him
+
