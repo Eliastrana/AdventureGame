@@ -36,12 +36,12 @@ public class FileDashboard {
         }
     }
 
-
     public static void write() {
-        FileWrite writer = new FileWrite("src/main/resources/testStory.paths");
-        List<String> passages = new ArrayList<>();
-
         Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the filename: ");
+        String fileName = scanner.nextLine().trim() + ".paths";
+
+        List<String> passages = new ArrayList<>();
 
         // Ask the user to enter passages and their content
         while (true) {
@@ -59,6 +59,7 @@ public class FileDashboard {
         }
 
         try {
+            FileWrite writer = new FileWrite("src/main/resources/" + fileName);
             writer.appendPathsFile(passages.toArray(new String[0]));
         } catch (IOException e) {
             e.printStackTrace();
@@ -66,8 +67,12 @@ public class FileDashboard {
     }
 
     public static String read() {
-        FileRead formatter = new FileRead("src/main/resources/testStory.paths");
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter the filename: ");
+        String fileName = scanner.nextLine().trim() + ".paths";
+
         try {
+            FileRead formatter = new FileRead("src/main/resources/" + fileName);
             String formattedStory = formatter.formatPathsFile();
             return formattedStory;
         } catch (IOException e) {
