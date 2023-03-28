@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.fileHandling;
 
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -18,7 +19,7 @@ public class FileDashboard {
             int choice = scanner.nextInt();
             switch (choice){
                 case 1:
-                    write();
+                    //write();
                     break;
                 case 2:
                     //String formattedStory = read(fileName);
@@ -33,35 +34,29 @@ public class FileDashboard {
         }
     }
 
-    public static void write() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the filename: ");
-        String fileName = scanner.nextLine().trim() + ".paths";
-
+    public static void write(String text, String fileName) {
         List<String> passages = new ArrayList<>();
 
-        // Ask the user to enter passages and their content
-        while (true) {
-            System.out.println("Enter a passage (or 'q' to quit):");
-            String passage = scanner.nextLine().trim();
-            if (passage.equalsIgnoreCase("q")) {
-                break;
-            }
-
-            System.out.println("Enter the content of the passage:");
-            String content = scanner.nextLine().trim();
-
+        // Split the text into lines and process each line as a passage and its content
+        String[] lines = text.split("\\r?\\n"); // split by new line character
+        for (int i = 0; i < lines.length; i += 2) {
+            String passage = lines[i].trim();
+            String content = (i + 1 < lines.length) ? lines[i + 1].trim() : "";
             passages.add(passage);
             passages.add(content);
         }
 
         try {
-            FileWrite writer = new FileWrite("src/main/resources/" + fileName);
+            FileWrite writer = new FileWrite("src/main/resources/" + fileName + ".paths");
             writer.appendPathsFile(passages.toArray(new String[0]));
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
+
+
+
+
 
     public static String read(String fileName) {
         try {

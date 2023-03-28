@@ -4,18 +4,21 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Made som changes to Story">
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/AdventureGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/FileDashboardFX.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/OutcommendedGUIcode.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/StartingPage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/vcs.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it">
+      <change afterPath="$PROJECT_DIR$/guitest" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/Style.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/eliastest.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/megatest.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/sillytest.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testFight.paths.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testigjen.paths.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/testwithnew.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/trashtest.paths" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PathsFileGUI.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PathsFileGUI.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/FileDashboardFX.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/StartingPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/StartingPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileDashboard.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pickFile.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pickFile.paths" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/testStory.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/testStory.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileWrite.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -32,6 +35,7 @@
         <option value="JUnit5 Test Class" />
         <option value="JavaFXApplication" />
         <option value="Class" />
+        <option value="CSS File" />
       </list>
     </option>
   </component>
@@ -54,22 +58,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT2001/CardGame&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "last_opened_file_path": "C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT2001/CardGame",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "settings.editor.selected.configurable": "project.propVCSSupport.DirectoryMappings",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="F:\Kode\adventuregame\src\main\resources" />
+    </key>
+  </component>
   <component name="RunManager" selected="Application.AdventureGame">
     <configuration name="AdventureGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.AdventureGame" />
@@ -167,7 +177,7 @@
       <workItem from="1679060023569" duration="7205000" />
       <workItem from="1679225727696" duration="4786000" />
       <workItem from="1679994918923" duration="2526000" />
-      <workItem from="1679997565720" duration="20534000" />
+      <workItem from="1679997565720" duration="26299000" />
     </task>
     <task id="LOCAL-00001" summary="adding the functional files such as pom">
       <created>1678182107521</created>
@@ -209,7 +219,13 @@
       <option name="presentableId" value="LOCAL−00006" />
       <updated>1679068522324</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL−00007" summary="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it">
+      <created>1680022566673</created>
+      <option name="number" value="LOCAL−00007" />
+      <option name="presentableId" value="LOCAL−00007" />
+      <updated>1680022566673</updated>
+    </task>
+    <option name="localTasksCounter" value="8" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -251,7 +267,8 @@
     <MESSAGE value="filled all the classes except for the GUI class. completed the communication within the backend of the project" />
     <MESSAGE value="Implemented tests for main classes" />
     <MESSAGE value="Made som changes to Story" />
-    <option name="LAST_COMMIT_MESSAGE" value="Made som changes to Story" />
+    <MESSAGE value="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it" />
+    <option name="LAST_COMMIT_MESSAGE" value="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
