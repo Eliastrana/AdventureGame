@@ -15,8 +15,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage stage) throws Exception {
-        PathsFileGUI gui = new PathsFileGUI();
+        //PathsFileGUI gui = new PathsFileGUI();
         //GUI gui = new GUI();
+        StartingPage gui = new StartingPage();
         gui.start(stage);
 
     }

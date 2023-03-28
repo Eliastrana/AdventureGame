@@ -1,12 +1,9 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 
 public class FileDashboard {
 
@@ -24,8 +21,8 @@ public class FileDashboard {
                     write();
                     break;
                 case 2:
-                    String formattedStory = read();
-                    System.out.println(formattedStory);
+                    //String formattedStory = read(fileName);
+                    //System.out.println(formattedStory);
                     break;
                 case 3:
                     System.exit(0);
@@ -66,13 +63,9 @@ public class FileDashboard {
         }
     }
 
-    public static String read() {
-        Scanner scanner = new Scanner(System.in);
-        System.out.println("Enter the filename: ");
-        String fileName = scanner.nextLine().trim() + ".paths";
-
+    public static String read(String fileName) {
         try {
-            FileRead formatter = new FileRead("src/main/resources/" + fileName);
+            FileRead formatter = new FileRead("src/main/resources/" + fileName + ".paths");
             String formattedStory = formatter.formatPathsFile();
             return formattedStory;
         } catch (IOException e) {
@@ -80,4 +73,5 @@ public class FileDashboard {
         }
         return null;
     }
+
 }

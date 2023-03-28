@@ -1,6 +1,6 @@
 :: Welcome
 Welcome to the game 
-[start playing] (firt fight)
+[startplaying] (First fight)
 
 :: First fight
 A big man tries to chase you 
@@ -12,4 +12,9 @@ he catches up to you
 
 :: bigmanFight
 You kill him
+[Happy dance] (happyDance)
+
+:: happyDance
+[back to start] (Welcome)
+
 
