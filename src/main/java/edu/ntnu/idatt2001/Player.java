@@ -14,15 +14,9 @@ public class Player {
     private int gold;
     private ArrayList<String> inventory;
 
-    /**
-     * Creates a new player with the given name, health, score, and gold.
-     * @param name String name
-     * @param health int health
-     * @param score int score
-     * @param gold int gold
-     */
 
-    public Player(String name, int health, int score, int gold) {
+    // required parameters only
+    Player(String name, int health, int score, int gold) {
         if (name == null || name.isBlank()) {
             throw new IllegalArgumentException("Name cannot be empty");
         }
@@ -35,13 +29,14 @@ public class Player {
         if (gold < 0) {
             throw new IllegalArgumentException("Gold cannot be negative");
         }
-
         this.name = name;
         this.health = health;
         this.score = score;
         this.gold = gold;
         this.inventory = new ArrayList<>();
     }
+
+
 
     /**
      * Returns the name of the player.
@@ -129,6 +124,19 @@ public class Player {
             throw new IllegalArgumentException("Score cannot be negative");
         }
         this.score += score;
+    }
+
+    @Override
+    public String toString() {
+        return """
+                Player {
+                name: %s,
+                health: %d,
+                score: %d,
+                gold: %d,
+                inventory: %s
+                }
+                """.formatted(name, health, score, gold, inventory);
     }
 
 
