@@ -60,8 +60,7 @@ public class PathsFileGUI {
                     button.setOnAction(new EventHandler<ActionEvent>() {
                         @Override
                         public void handle(ActionEvent event) {
-                            Scene targetScene = getScene(buttonText);
-                            primaryStage.setScene(targetScene);
+                            setTextOfVBoxPane(paneVBox, buttonText);
                         }
                     });
 
@@ -86,115 +85,29 @@ public class PathsFileGUI {
         primaryStage.show();
     }
 
+    private void setTextOfVBoxPane(VBox paneVBox, String target) {
+        // Iterate over each label in the VBox
+        for (Node node : paneVBox.getChildren()) {
+            if (node instanceof Label) {
+                Label label = (Label) node;
+                String line = label.getText();
 
+                // Check if the line contains a button
+                if (line.contains("[") && line.contains("]")) {
+                    int startIndex = line.indexOf("[");
+                    int endIndex = line.indexOf("]");
 
-    private Scene getScene(String target) {
-        VBox root = new VBox();
-        Scene scene = new Scene(root, 1000, 700);
+                    String buttonText = line.substring(startIndex + 1, endIndex);
 
-        // Iterate over each pane
-        for (String pane : formattedStory.split("::")) {
-            // Split the pane into lines
-            String[] lines = pane.trim().split("\n");
-
-            // Check if the title of the pane matches the target
-            if (lines[0].contains("(") && lines[0].contains(")")) {
-                int startIndex = lines[0].indexOf("(");
-                int endIndex = lines[0].indexOf(")");
-
-                String title = lines[0].substring(startIndex + 1, endIndex);
-
-                if (title.equals(target)) {
-                    VBox paneVBox = new VBox();
-
-                    for (String line : lines) {
-                        Label label = new Label(line.trim());
-                        label.setStyle("-fx-font-size: 20px");
-
-                        if (line.contains("[") && line.contains("]")) {
-                            int buttonStartIndex = line.indexOf("[");
-                            int buttonEndIndex = line.indexOf("]");
-
-                            String buttonText = line.substring(buttonStartIndex + 1, buttonEndIndex);
-
-                            Button button = new Button(buttonText);
-
-                            // Create a new scene when the button is clicked
-                            button.setOnAction(new EventHandler<ActionEvent>() {
-                                @Override
-                                public void handle(ActionEvent event) {
-                                    Scene targetScene = getScene(getTarget(line));
-                                    primaryStage.setScene(targetScene);
-                                }
-                            });
-
-                            // Add the button to the label and the label to the pane VBox
-                            label.setGraphic(button);
-                        }
-
-                        paneVBox.getChildren().add(label);
-                        paneVBox.setAlignment(Pos.CENTER);
+                    if (buttonText.equals(target)) {
+                        // Get the text after the button text
+                        String newText = line.substring(endIndex + 1).trim();
+                        label.setText(newText);
                     }
-
-                    root.getChildren().clear();
-                    root.getChildren().add(paneVBox);
-                    break;
                 }
             }
         }
-
-        System.out.println("Target: " + target);
-        return scene;
     }
-
-
-    private String getNextTitle(String pane) {
-        // Split the pane into lines
-        String[] lines = pane.trim().split("\n");
-
-        // Check if the title of the pane matches the target
-        if (lines[0].contains("(") && lines[0].contains(")")) {
-            int startIndex = lines[0].indexOf("(");
-            int endIndex = lines[0].indexOf(")");
-
-            String title = lines[0].substring(startIndex + 1, endIndex);
-
-            // Find the index of the current pane
-            int currentIndex = formattedStory.indexOf(pane);
-
-            // Find the next pane in the story
-            int nextIndex = formattedStory.indexOf("::", currentIndex + pane.length());
-
-            if (nextIndex == -1) {
-                // This is the last pane in the story
-                return null;
-            } else {
-                // Get the next pane and its title
-                String nextPane = formattedStory.substring(nextIndex + 2);
-                String[] nextPaneLines = nextPane.trim().split("\n");
-                String nextTitle = nextPaneLines[0].substring(startIndex + 1, endIndex);
-
-                System.out.println("Next Pane: " + nextPane);
-                return nextTitle;
-            }
-        }
-
-        return null;
-    }
-
-
-
-    private String getTarget(String line) {
-        int startIndex = line.indexOf("[");
-        int endIndex = line.indexOf("]");
-
-        return line.substring(startIndex + 1, endIndex).trim();
-    }
-
-
 }
-
-
-
 
 
