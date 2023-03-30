@@ -4,6 +4,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -77,7 +79,7 @@ import static org.junit.jupiter.api.Assertions.*;
     @DisplayName("Test valid addLink")
     void addLink() {
       Passage passage = new Passage("Title", "Content");
-      passage.addLink(new Link("testText","testReference" ));
+      passage.addLink(new Link("testText","testReference",new ArrayList<>()));
       assertEquals(1, passage.getLinks().size());
     }
     @Test
@@ -98,7 +100,7 @@ import static org.junit.jupiter.api.Assertions.*;
     void hasLink() {
       Passage passage = new Passage("Title", "Content");
       assertFalse(passage.hasLink());
-      passage.addLink(new Link("testText","testReference" ));
+      passage.addLink(new Link("testText","testReference" , new ArrayList<>()));
       assertTrue(passage.hasLink());
     }
 

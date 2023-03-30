@@ -5,6 +5,8 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
+import java.util.ArrayList;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -14,7 +16,7 @@ class LinkConstructorTest {
   @Test
   @DisplayName("Test valid constructor")
   void constructorTest() {
-    Link link = new Link("Text", "Content");
+    Link link = new Link("Text", "Content",new ArrayList<>());
     assertEquals("Text", link.getText());
     assertEquals("Content", link.getReference());
     assertEquals(0, link.getActions().size());
@@ -23,25 +25,25 @@ class LinkConstructorTest {
   @Test
   @DisplayName("Test constructor with null text")
   void constructorTestWithNullText() {
-    assertThrows(IllegalArgumentException.class, () -> new Link(null, "Content"));
+    assertThrows(IllegalArgumentException.class, () -> new Link(null, "Content",new ArrayList<>()));
   }
 
   @Test
   @DisplayName("Test constructor with empty text")
   void constructorTestWithEmptyText() {
-    assertThrows(IllegalArgumentException.class, () -> new Link("", "Content"));
+    assertThrows(IllegalArgumentException.class, () -> new Link("", "Content",new ArrayList<>()));
   }
 
   @Test
   @DisplayName("Test constructor with null reference")
   void constructorTestWithNullReference() {
-    assertThrows(IllegalArgumentException.class, () -> new Link("Text", null));
+    assertThrows(IllegalArgumentException.class, () -> new Link("Text", null, new ArrayList<>()));
   }
 
   @Test
   @DisplayName("Test constructor with empty reference")
   void constructorTestWithEmptyReference() {
-    assertThrows(IllegalArgumentException.class, () -> new Link("Text", ""));
+    assertThrows(IllegalArgumentException.class, () -> new Link("Text", "",new ArrayList<>()));
   }
 
 }
@@ -52,21 +54,21 @@ class LinkGettersTest {
   @Test
   @DisplayName("Test getText")
   void getText() {
-    Link link = new Link("Text", "Content");
+    Link link = new Link("Text", "Content", new ArrayList<>());
     assertEquals("Text", link.getText());
   }
 
   @Test
   @DisplayName("Test getReference")
   void getReference() {
-    Link link = new Link("Text", "Content");
+    Link link = new Link("Text", "Content", new ArrayList<>());
     assertEquals("Content", link.getReference());
   }
 
   @Test
   @DisplayName("Test getActions")
   void getActions() {
-    Link link = new Link("Text", "Content");
+    Link link = new Link("Text", "Content", new ArrayList<>());
     assertEquals(0, link.getActions().size());
   }
 }
@@ -78,7 +80,7 @@ class LinkAddersTest {
   @DisplayName("Test addAction")
     // Vet ikke hvordan jeg skal teste denne
   void addAction() {
-    Link link = new Link("Text", "Content");
+    Link link = new Link("Text", "Content", new ArrayList<>());
     assertEquals(0, link.getActions().size());
   }
 

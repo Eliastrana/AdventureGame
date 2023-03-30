@@ -36,6 +36,9 @@ public class Passage {
         return title;
 
     }
+    public void setLinks(List<Link> links) {
+        this.links = (ArrayList<Link>) links;
+    }
 
     /**
      * Returns the content of the passage.

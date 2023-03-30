@@ -4,8 +4,7 @@ Welcome to the game
 
 :: First fight
 A big man tries to chase you 
-[Run away] (Chase sequense) 
-[Fight] (bigmanFight)
+[Run away] (Chase sequense)
 
 :: Chase sequense
 he catches up to you

@@ -1,11 +1,21 @@
 package edu.ntnu.idatt2001.fileHandling;
 
+import edu.ntnu.idatt2001.Action.Action;
+import edu.ntnu.idatt2001.Link;
+import edu.ntnu.idatt2001.Passage;
+import edu.ntnu.idatt2001.Story;
+
+import javax.imageio.stream.ImageInputStream;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class FileRead {
     private String filePath;
@@ -19,8 +29,9 @@ public class FileRead {
 
 
 
-    public String formatPathsFile() throws IOException {
-        StringBuilder formattedStory = new StringBuilder();
+    public List<Passage> formatPathsFile() throws IOException {
+        List<Passage> passages = new ArrayList<>();
+
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
         String tittel = null;
@@ -85,6 +96,13 @@ public class FileRead {
             Passage passage = new Passage(tittel, innhold);
             passage.setLinks(links);
             passages.add(passage);
+        }
+        for (Passage passage : passages) {
+            System.out.println(passage.getTitle());
+            System.out.println(passage.getContent());
+            System.out.println(passage.getLinks());
+
+
         }
 
         return passages;

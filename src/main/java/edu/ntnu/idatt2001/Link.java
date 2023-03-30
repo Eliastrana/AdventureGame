@@ -93,7 +93,7 @@ public class Link {
 
     @Override
     public String toString() {
-        return "Text: " + getText() + "\n"
+        return "Button: " + getText() + "\n"
                 + "Reference: " + getReference() + "\n"
                 + "Actions: " + getActions();
     }
