@@ -1,5 +1,6 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.GUI;
 
+import edu.ntnu.idatt2001.GUI.PathsFileGUI;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import javafx.application.Application;
 import javafx.geometry.Pos;
@@ -12,6 +13,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import java.io.FileNotFoundException;
 import java.io.FileWriter;
 import java.io.IOException;
 
@@ -72,7 +74,8 @@ public class StartingPage extends Application {
         importGameButton.setOnAction(e -> {
 
 
-            readGameContent.setText(FileDashboard.read(importGameField.getText()));
+           readGameContent.setText(FileDashboard.read(importGameField.getText()));
+
 
             System.out.println(FileDashboard.read(importGameField.getText()));
 
@@ -133,8 +136,6 @@ public class StartingPage extends Application {
         root.getChildren().addAll(title, pageStructure);
         root.setAlignment(Pos.TOP_CENTER);
         root.setSpacing(300);
-
-
 
 
         primaryStage.setScene(mainScene);

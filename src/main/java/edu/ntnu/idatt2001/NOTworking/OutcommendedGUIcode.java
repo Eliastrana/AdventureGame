@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.NOTworking;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -10,8 +10,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class OutcommendedGUIcode {
-}
+//public class OutcommendedGUIcode {
+//}
 
 //
 //    @Override

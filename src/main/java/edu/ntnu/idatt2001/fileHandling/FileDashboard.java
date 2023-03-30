@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-import java.io.FileWriter;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.List;
 
 public class FileDashboard {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws FileNotFoundException {
 
         while (true){
             System.out.println("1. Write to file");
@@ -19,11 +19,10 @@ public class FileDashboard {
             int choice = scanner.nextInt();
             switch (choice){
                 case 1:
-                    //write();
+
                     break;
                 case 2:
-                    //String formattedStory = read(fileName);
-                    //System.out.println(formattedStory);
+                    fileReadTester();
                     break;
                 case 3:
                     System.exit(0);
@@ -33,6 +32,32 @@ public class FileDashboard {
             }
         }
     }
+
+
+
+    public static void fileReadTester() throws FileNotFoundException {
+        String fileName = "src/main/resources/pickFile.paths";
+        FileRead fileRead = new FileRead(fileName);
+        System.out.println(fileRead);
+    }
+
+    public static String read(String fileName) {
+        FileRead formatter = new FileRead("src/main/resources/" + fileName + ".paths");
+
+        String formattedStory = formatter.toString();
+
+        return formattedStory;
+
+    }
+
+
+
+
+
+
+
+
+
 
     public static void write(String text, String fileName) {
         List<String> passages = new ArrayList<>();
@@ -58,15 +83,6 @@ public class FileDashboard {
 
 
 
-    public static String read(String fileName) {
-        try {
-            FileRead formatter = new FileRead("src/main/resources/" + fileName + ".paths");
-            String formattedStory = formatter.formatPathsFile();
-            return formattedStory;
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return null;
-    }
+
 
 }

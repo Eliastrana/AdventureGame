@@ -103,7 +103,7 @@ class GameTest {
       Story story = new Story("Title", passage);
       Game game = new Game(player, story, new ArrayList<>());
       game.begin();
-      game.go(new Link("Text", "Refernce"));
+      game.go(new Link("Text", "Refernce" , new ArrayList<>()));
       assertEquals("Title", game.getStory().getOpeningPassage().getTitle());
       assertEquals("Content", game.getStory().getOpeningPassage().getContent());
     }

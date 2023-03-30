@@ -1,4 +1,4 @@
-package edu.ntnu.idatt2001;
+package edu.ntnu.idatt2001.GUI;
 
 import javafx.application.Application;
 import javafx.event.ActionEvent;

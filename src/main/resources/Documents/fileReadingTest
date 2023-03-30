@@ -1,0 +1,53 @@
+package edu.ntnu.idatt2001;
+
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
+
+public class FileReader {
+
+    public static Story readStoryFromFile(String fileName) throws IOException {
+        Story story = null;
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                line = line.trim();
+                if (!line.isEmpty()) {e
+                    if (line.startsWith("::")) {
+                        String title = line.substring(2).trim();
+                        String content = "";
+                        Link[] links = new Link[0];
+                        while ((line = br.readLine()) != null && !line.trim().isEmpty() && !line.startsWith("::")) {
+                            if (line.contains("[")) {
+                                String[] parts = line.split("\\[");
+                                String[] linkParts = parts[1].split("\\]");
+                                String linkTitle = linkParts[1].trim();
+                                String linkPassage = linkParts[0].trim();
+                                Link link = new Link(linkTitle, linkPassage, new Action[0]);
+                                links = addLinkToArray(links, link);
+                            }
+                            else {
+                                content += line.trim() + "\n";
+                            }
+                        }
+                        Passage passage = new Passage(title, content.trim(), links);
+                        if (story == null) {
+                            story = new Story(title, passage);
+                        }
+                        else {
+                            story.addPassage(passage);
+                        }
+                    }
+                }
+            }
+        }
+        return story;
+    }
+
+    private static Link[] addLinkToArray(Link[] links, Link link) {
+        Link[] newLinks = new Link[links.length + 1];
+        System.arraycopy(links, 0, newLinks, 0, links.length);
+        newLinks[links.length] = link;
+        return newLinks;
+    }
+}

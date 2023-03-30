@@ -3,41 +3,93 @@ package edu.ntnu.idatt2001.fileHandling;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
 
 public class FileRead {
     private String filePath;
 
+    Passage passage = null;
+
+
     public FileRead(String filePath) {
         this.filePath = filePath;
     }
+
+
 
     public String formatPathsFile() throws IOException {
         StringBuilder formattedStory = new StringBuilder();
         BufferedReader reader = new BufferedReader(new FileReader(filePath));
         String line;
-        boolean inBlock = false;
+        String tittel = null;
+        String innhold = null;
+        List<Link> links = new ArrayList<>();
 
         while ((line = reader.readLine()) != null) {
             if (line.startsWith("::")) {
-                if (inBlock) {
-                    formattedStory.append("\n");
+                // Start of new passage
+                if (tittel != null) {
+                    Passage passage = new Passage(tittel, innhold);
+                    System.out.println(passage.getTitle());
+                    passages.add(passage);
+                    tittel = null;
+                    innhold = null;
                 }
-                formattedStory.append(line).append("\n");
-                formattedStory.append(reader.readLine()).append("\n");
-                inBlock = true;
+                tittel = line;
+                //System.out.println("Tittel: " + tittel);
+            } else if (!line.startsWith("[") && !line.trim().isEmpty()) {
+                // Passage content
+
+                innhold = (innhold == null) ? line : innhold + "\n" + line;
+                //System.out.println("Innhold: " + innhold);
+
             } else if (line.startsWith("[")) {
-                formattedStory.append(line).append("\n");
-            } else if (line.trim().isEmpty()) {
-                formattedStory.append("\n");
-                inBlock = false;
+                // Passage link
+
+                int startIndex = line.indexOf("[") + 1;
+                int endIndex = line.indexOf("]");
+                String textInsideBrackets = line.substring(startIndex, endIndex);
+
+
+                int startIndex2 = line.indexOf("(") + 1;
+                int endIndex2 = line.indexOf(")");
+                String textInsideParentheses = line.substring(startIndex2, endIndex2);
+
+
+                links.add(new Link(textInsideBrackets,textInsideParentheses, new ArrayList<>()));
+
+
+
+            }
+
+
+            else if (line.trim().isEmpty()) {
+                // End of block
+                if (tittel != null) {
+                    Passage passage = new Passage(tittel, innhold);
+                    passage.setLinks(links);
+                    passages.add(passage);
+
+                    tittel = null;
+                    innhold = null;
+                    links = new ArrayList<>();
+                }
+
             }
         }
 
-        reader.close();
-        return formattedStory.toString();
+        // Add last passage
+        if (tittel != null) {
+            Passage passage = new Passage(tittel, innhold);
+            passage.setLinks(links);
+            passages.add(passage);
+        }
+
+        return passages;
     }
+
 
     public String getFilePath() throws UnsupportedOperationException {
         if (!filePath.equals("src/main/resources/testStory.paths")) {
@@ -46,6 +98,33 @@ public class FileRead {
         return filePath;
     }
 
+
+    @Override
+    public String toString() {
+
+        FileRead fileRead = new FileRead(filePath);
+
+        String passageText = "";
+        try {
+            passageText = String.valueOf(fileRead.formatPathsFile());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return passageText;
+    }
+
+
+    public static void main(String[] args) {
+        try {
+            String filePath = "src/main/resources/pickFile.paths";
+            FileRead fileRead = new FileRead(filePath);
+
+            String passageText = String.valueOf(fileRead.formatPathsFile());
+            System.out.println(passageText);
+        } catch (IOException e) {
+            System.out.println("Error: " + e.getMessage());
+        }
+    }
 
 
 

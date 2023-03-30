@@ -110,7 +110,7 @@ class StoryAddersTest {
   void removePassage() {
     Story story = new Story("storyTitle", new Passage("passageTitle", "passageContent"));
     Passage passage = new Passage("newTitle", "newContent");
-    Link link = new Link("linkTitle", "linkContent");
+    Link link = new Link("linkTitle", "linkContent", new ArrayList<>());
     passage.addLink(link);
     story.addPassage(passage);
     story.removePassage(passage.getLinks().get(0));

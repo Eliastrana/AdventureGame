@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001;
 
+
 import javax.security.auth.login.CredentialNotFoundException;
 import javax.swing.*;
 import java.util.ArrayList;
@@ -21,7 +22,7 @@ public class Link {
      * @param text String text with a description of the link
      * @param reference String reference
      */
-    public Link(String text, String reference) {
+    public Link(String text, String reference, ArrayList<Action> actions) {
         if (text == null || text.isEmpty()) {
             throw new IllegalArgumentException("Text cannot be empty");
         }
@@ -30,7 +31,7 @@ public class Link {
         }
         this.text = text;
         this.reference = reference;
-        this.actions = new ArrayList<>();
+        this.actions = actions;
     }
 
     /**
@@ -95,5 +96,11 @@ public class Link {
         return "Text: " + getText() + "\n"
                 + "Reference: " + getReference() + "\n"
                 + "Actions: " + getActions();
+    }
+
+    public static void main(String[] args) {
+        Link link = new Link("Go to the next room", "room2" , new ArrayList<>());
+
+        System.out.println(link);
     }
 }

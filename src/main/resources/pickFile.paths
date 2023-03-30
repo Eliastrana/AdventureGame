@@ -9,12 +9,15 @@ A big man tries to chase you
 
 :: Chase sequense
 he catches up to you
+[Back to start] (Welcome)
+
 
 :: bigmanFight
 You kill him
 [Happy dance] (happyDance)
 
 :: happyDance
+You dance around the room
 [back to start] (Welcome)
 
 

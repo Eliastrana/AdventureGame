@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001;
 
+import edu.ntnu.idatt2001.Action.Action;
+
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -57,7 +59,7 @@ public class Story {
     public void addPassage(Passage newPassage){
         if (newPassage == null) throw new IllegalArgumentException("Passage cannot be null");
         if (newPassage.getTitle().equals(openingPassage.getTitle())) throw new IllegalArgumentException("Passage cannot have the same title as the opening passage");
-        passages.put(new Link(newPassage.getTitle(),newPassage.getContent()),newPassage);
+        passages.put(new Link(newPassage.getTitle(),newPassage.getContent(), new ArrayList<>()),newPassage);
     }
 
     /**
@@ -111,6 +113,12 @@ public class Story {
      */
     public Collection<Passage> getPassages() {
         return passages.values();
+    }
+
+    public static void main(String[] args) {
+        Story story = new Story("The story", new Passage("The beginning", "Once upon a time..."));
+        System.out.println(story.getTitle() + story.getPassages()+ story.openingPassage.toString());
+
     }
 
 }
