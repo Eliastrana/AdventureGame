@@ -46,7 +46,6 @@ public class FileDashboard {
         String formattedStory = formatter.toString();
 
         return formattedStory;
-
     }
 
     public static String readCharacter(String filename) {

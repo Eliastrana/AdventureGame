@@ -97,10 +97,4 @@ public class Link {
                 + "Reference: " + getReference() + "\n"
                 + "Actions: " + getActions();
     }
-
-    public static void main(String[] args) {
-        Link link = new Link("Go to the next room", "room2" , new ArrayList<>());
-
-        System.out.println(link);
-    }
 }

@@ -35,6 +35,10 @@ public class PlayerBuilder implements Builder {
     public Object build() {
         return new Player(name, health, score, gold);
     }
+    public Player getPlayer() {
+        return new Player(name,health,score,gold);
+    }
+
 
 
     @Override

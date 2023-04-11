@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.GUI;
 
-import edu.ntnu.idatt2001.GUI.PathsFileGUI;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.PlayerRegister;
 import javafx.application.Application;

@@ -32,6 +32,7 @@ public class FileRead {
         List<Link> links = new ArrayList<>();
 
         while ((line = reader.readLine()) != null) {
+
             if (line.startsWith("::")) {
                 // Start of new passage
                 if (tittel != null) {
@@ -82,6 +83,7 @@ public class FileRead {
                 }
 
             }
+
         }
 
         // Add last passage
