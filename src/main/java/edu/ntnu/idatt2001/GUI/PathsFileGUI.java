@@ -1,24 +1,28 @@
 package edu.ntnu.idatt2001.GUI;
 
-import javafx.application.Application;
+import edu.ntnu.idatt2001.fileHandling.PlayerRegister;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.Pane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 public class PathsFileGUI {
 
     private final String formattedStory;
 
     private Stage primaryStage;
+
+    private TextField importCharacterField;
 
 
     public PathsFileGUI(String formattedStory) {
@@ -29,9 +33,19 @@ public class PathsFileGUI {
     public void VBox(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
+
+
         BorderPane root = new BorderPane();
         Scene mainScene = new Scene(root, 800, 600);
         primaryStage.setScene(mainScene);
+
+
+
+
+
+
+
+
 
         // Read the content of the file
         String[] panes = formattedStory.split("::");

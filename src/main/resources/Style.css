@@ -126,3 +126,32 @@
 -fx-border-width: 2;
 
 }
+
+/* Set font family and size */
+.text-area {
+    -fx-font-family: Arial;
+    -fx-font-size: 14pt;
+}
+
+/* Set background and text color */
+.text-area .content {
+    -fx-background-color: #F5F5F5;
+    -fx-text-fill: #333333;
+}
+
+/* Remove border and padding */
+.text-area .content .scroll-pane {
+    -fx-background-color: transparent;
+    -fx-padding: 0;
+    -fx-border-width: 0;
+}
+
+.background {
+    -fx-background-color: #6471af;
+}
+
+.playerStats {
+    -fx-background-color: #6471af;
+    -fx-text-fill: #333333;
+    -fx-font-size: 30;
+}

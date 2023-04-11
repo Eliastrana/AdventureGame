@@ -139,5 +139,4 @@ public class Player {
                 """.formatted(name, health, score, gold, inventory);
     }
 
-
 }

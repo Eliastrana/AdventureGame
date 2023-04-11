@@ -30,7 +30,7 @@ public class Story {
         if (openingPassage == null) throw new IllegalArgumentException("Opening passage cannot be null");
         this.title = title;
         this.openingPassage = openingPassage;
-        passages = new IdentityHashMap<>();
+        passages = new HashMap<>();
     }
 
     /**

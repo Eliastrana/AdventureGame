@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-import java.io.FileNotFoundException;
-import java.io.IOException;
+import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
 import java.util.List;
@@ -50,12 +49,27 @@ public class FileDashboard {
 
     }
 
+    public static String readCharacter(String filename) {
+        String filePath = "src/main/resources/characters/" + filename + ".paths";
+//        FileRead fil = new FileRead(filename);
+//        try {
+//            fil.characterInfoReader(filename);
+//        } catch (IOException e) {
+//            throw new RuntimeException(e);
+//        }
 
-
-
-
-
-
+        StringBuilder contentBuilder = new StringBuilder();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                contentBuilder.append(line).append("\n");
+            }
+        } catch (IOException e) {
+            System.err.println("Error reading file: " + e.getMessage());
+            return null;
+        }
+        return contentBuilder.toString();
+    }
 
 
 
