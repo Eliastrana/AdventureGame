@@ -1,21 +1,14 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-import edu.ntnu.idatt2001.Action.Action;
-import edu.ntnu.idatt2001.Link;
-import edu.ntnu.idatt2001.Passage;
-import edu.ntnu.idatt2001.Story;
+import edu.ntnu.idatt2001.*;
 
-import javax.imageio.stream.ImageInputStream;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
-import java.util.regex.Matcher;
-import java.util.regex.Pattern;
+
 
 public class FileRead {
     private String filePath;
@@ -39,6 +32,7 @@ public class FileRead {
         List<Link> links = new ArrayList<>();
 
         while ((line = reader.readLine()) != null) {
+
             if (line.startsWith("::")) {
                 // Start of new passage
                 if (tittel != null) {
@@ -89,24 +83,44 @@ public class FileRead {
                 }
 
             }
+
         }
 
         // Add last passage
-        if (tittel != null) {
-            Passage passage = new Passage(tittel, innhold);
-            passage.setLinks(links);
-            passages.add(passage);
-        }
-        for (Passage passage : passages) {
-            System.out.println(passage.getTitle());
-            System.out.println(passage.getContent());
-            System.out.println(passage.getLinks());
+//        if (tittel != null) {
+//            Passage passage = new Passage(tittel, innhold);
+//            passage.setLinks(links);
+//            passages.add(passage);
+//        }
+//        for (Passage passage : passages) {
+//            System.out.println(passage.getTitle());
+//            System.out.println(passage.getContent());
+//            System.out.println(passage.getLinks());
+//        }
 
 
-        }
+        //Story story = new Story(getTitleTroughFilePath(),passages.get(0));
+
+
+        //System.out.println("Title of Story: "+ story.getTitle() +"\n"+ "Opening passage: " +"\n"+ story.getOpeningPassage());
+
 
         return passages;
     }
+
+    public String getTitleTroughFilePath() {
+
+        String path = filePath;
+        int slashIndex = path.lastIndexOf('/');
+        String fileName = path.substring(slashIndex + 1, path.indexOf('.'));
+
+        return fileName;
+    }
+
+
+
+
+
 
 
     public String getFilePath() throws UnsupportedOperationException {
@@ -129,6 +143,28 @@ public class FileRead {
             throw new RuntimeException(e);
         }
         return passageText;
+    }
+
+
+    public String characterInfoReader(String file) throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader(file));
+        String line;
+
+
+        while ((line = reader.readLine()) != null) {
+            String[] fields = line.split(",");
+            String name = fields[0];
+            int health = Integer.parseInt(fields[1]);
+            int score = Integer.parseInt(fields[2]);
+            int gold = Integer.parseInt(fields[3]);
+
+            Player player = new PlayerBuilder().setName(name)
+                    .setHealth(health)
+                    .setScore(score)
+                    .setGold(gold).getPlayer();
+            return player.toString();
+        }
+        return null;
     }
 
 

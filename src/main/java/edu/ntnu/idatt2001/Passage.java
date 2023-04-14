@@ -111,8 +111,19 @@ public class Passage {
      * @return String with all the links
      */
 
+    //@Override
+    //public String toString() {
+    //   return super.toString();
+    //}
+
+
+
     @Override
     public String toString() {
-        return super.toString();
+        return "Title: " + getTitle() + "\n"
+                + "Content: " + getContent() + "\n"
+                + "Links: " + getLinks() + "\n";
     }
 }
+
+

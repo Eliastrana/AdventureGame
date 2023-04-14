@@ -16,24 +16,23 @@ public class Player {
 
 
     // required parameters only
-    Player(String name, int health, int score, int gold) {
-        if (name == null || name.isBlank()) {
-            throw new IllegalArgumentException("Name cannot be empty");
-        }
-        if (health < 0) {
-            throw new IllegalArgumentException("Health cannot be negative");
-        }
-        if (score < 0) {
-            throw new IllegalArgumentException("Score cannot be negative");
-        }
-        if (gold < 0) {
-            throw new IllegalArgumentException("Gold cannot be negative");
-        }
+    public Player(String name, int health) {
+        this(name,health,0);
+    }
+
+    public Player(String name, int health, int score) {
+        this(name,health,score,0);
+    }
+
+    public Player(String name, int health, int score, int gold) {
+        this(name,health,score,gold,null);
+    }
+    public Player(String name, int health, int score, int gold, ArrayList<String> inventory) {
         this.name = name;
         this.health = health;
         this.score = score;
         this.gold = gold;
-        this.inventory = new ArrayList<>();
+        this.inventory = inventory;
     }
 
 
@@ -138,6 +137,5 @@ public class Player {
                 }
                 """.formatted(name, health, score, gold, inventory);
     }
-
 
 }

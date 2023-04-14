@@ -30,7 +30,7 @@ public class Story {
         if (openingPassage == null) throw new IllegalArgumentException("Opening passage cannot be null");
         this.title = title;
         this.openingPassage = openingPassage;
-        passages = new IdentityHashMap<>();
+        passages = new HashMap<>();
     }
 
     /**
@@ -117,7 +117,7 @@ public class Story {
 
     public static void main(String[] args) {
         Story story = new Story("The story", new Passage("The beginning", "Once upon a time..."));
-        System.out.println(story.getTitle() + story.getPassages()+ story.openingPassage.toString());
+        System.out.println("Title: "+ story.getTitle() +"\n"+"Passages: "+ story.getPassages()+"\n"+ "Opening passage: " + story.openingPassage.toString());
 
     }
 

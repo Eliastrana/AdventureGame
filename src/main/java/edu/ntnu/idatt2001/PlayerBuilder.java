@@ -1,8 +1,6 @@
 package edu.ntnu.idatt2001;
 
 import javafx.util.Builder;
-
-import java.net.http.WebSocket;
 import java.util.ArrayList;
 
 public class PlayerBuilder implements Builder {
@@ -36,6 +34,21 @@ public class PlayerBuilder implements Builder {
     @Override
     public Object build() {
         return new Player(name, health, score, gold);
+    }
+    public Player getPlayer() {
+        return new Player(name,health,score,gold);
+    }
+
+
+
+    @Override
+    public String toString() {
+        return
+                "Name: " + name +
+                " Health: " + health +
+                " Score: " + score +
+                " Gold: " + gold +
+                " Inventory: " + inventory;
     }
 
 }
