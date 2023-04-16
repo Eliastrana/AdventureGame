@@ -33,19 +33,9 @@ public class PathsFileGUI {
     public void VBox(Stage primaryStage) {
         this.primaryStage = primaryStage;
 
-
-
         BorderPane root = new BorderPane();
         Scene mainScene = new Scene(root, 800, 600);
         primaryStage.setScene(mainScene);
-
-
-
-
-
-
-
-
 
         // Read the content of the file
         String[] panes = formattedStory.split("::");

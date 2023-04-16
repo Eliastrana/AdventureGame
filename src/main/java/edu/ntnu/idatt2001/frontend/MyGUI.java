@@ -12,7 +12,7 @@ public class MyGUI extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-        primaryStage.setTitle("Navigation Example");
+        primaryStage.setTitle("Adventure Game");
 
         primaryStage.setMinHeight(540);
         primaryStage.setMinWidth(720);
