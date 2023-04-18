@@ -20,116 +20,64 @@ public class FileRead {
         this.filePath = filePath;
     }
 
-
-
     public List<Passage> formatPathsFile() throws IOException {
         List<Passage> passages = new ArrayList<>();
 
-        BufferedReader reader = new BufferedReader(new FileReader(filePath));
-        String line;
-        String tittel = null;
-        String innhold = null;
-        List<Link> links = new ArrayList<>();
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            String tittel = null;
+            String innhold = null;
+            List<Link> links = new ArrayList<>();
+            Map<Link, Passage> testPassage = new HashMap<>();
 
-        while ((line = reader.readLine()) != null) {
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("::")) {
+                    // Start of new passage
+                    if (tittel != null) {
+                        Passage passage = new Passage(tittel, innhold);
+                        passage.setLinks(links);
+                        passages.add(passage);
+                        tittel = null;
+                        innhold = null;
+                        links = new ArrayList<>();
+                    }
+                    tittel = line;
+                } else if (!line.startsWith("[") && !line.trim().isEmpty()) {
+                    // Passage content
+                    innhold = (innhold == null) ? line : innhold + "\n" + line;
+                } else if (line.startsWith("[")) {
+                    // Passage link
+                    int startIndex = line.indexOf("[") + 1;
+                    int endIndex = line.indexOf("]");
+                    String textInsideBrackets = line.substring(startIndex, endIndex);
 
-            if (line.startsWith("::")) {
-                // Start of new passage
-                if (tittel != null) {
-                    Passage passage = new Passage(tittel, innhold);
-                    System.out.println(passage.getTitle());
-                    passages.add(passage);
-                    tittel = null;
-                    innhold = null;
-                }
-                tittel = line;
-                //System.out.println("Tittel: " + tittel);
-            } else if (!line.startsWith("[") && !line.trim().isEmpty()) {
-                // Passage content
+                    int startIndex2 = line.indexOf("(") + 1;
+                    int endIndex2 = line.indexOf(")");
+                    String textInsideParentheses = line.substring(startIndex2, endIndex2);
 
-                innhold = (innhold == null) ? line : innhold + "\n" + line;
-                //System.out.println("Innhold: " + innhold);
-
-            } else if (line.startsWith("[")) {
-                // Passage link
-
-                int startIndex = line.indexOf("[") + 1;
-                int endIndex = line.indexOf("]");
-                String textInsideBrackets = line.substring(startIndex, endIndex);
-
-
-                int startIndex2 = line.indexOf("(") + 1;
-                int endIndex2 = line.indexOf(")");
-                String textInsideParentheses = line.substring(startIndex2, endIndex2);
-
-
-                links.add(new Link(textInsideBrackets,textInsideParentheses, new ArrayList<>()));
-
-
-
-            }
-
-
-            else if (line.trim().isEmpty()) {
-                // End of block
-                if (tittel != null) {
+                    links.add(new Link(textInsideBrackets, textInsideParentheses, new ArrayList<>()));
+                } else if (line.trim().isEmpty() && tittel != null) {
+                    // End of block
                     Passage passage = new Passage(tittel, innhold);
                     passage.setLinks(links);
                     passages.add(passage);
-
                     tittel = null;
                     innhold = null;
                     links = new ArrayList<>();
                 }
-
             }
-
+            if (tittel != null) {
+                Passage passage = new Passage(tittel, innhold);
+                passage.setLinks(links);
+                passages.add(passage);
+            }
+        } catch (IOException e) {
+            // Handle file I/O errors here
+            e.printStackTrace();
         }
-
-        // Add last passage
-//        if (tittel != null) {
-//            Passage passage = new Passage(tittel, innhold);
-//            passage.setLinks(links);
-//            passages.add(passage);
-//        }
-//        for (Passage passage : passages) {
-//            System.out.println(passage.getTitle());
-//            System.out.println(passage.getContent());
-//            System.out.println(passage.getLinks());
-//        }
-
-
-        //Story story = new Story(getTitleTroughFilePath(),passages.get(0));
-
-
-        //System.out.println("Title of Story: "+ story.getTitle() +"\n"+ "Opening passage: " +"\n"+ story.getOpeningPassage());
-
 
         return passages;
     }
-
-    public String getTitleTroughFilePath() {
-
-        String path = filePath;
-        int slashIndex = path.lastIndexOf('/');
-        String fileName = path.substring(slashIndex + 1, path.indexOf('.'));
-
-        return fileName;
-    }
-
-
-
-
-
-
-
-    public String getFilePath() throws UnsupportedOperationException {
-        if (!filePath.equals("src/main/resources/testStory.paths")) {
-            throw new UnsupportedOperationException("Invalid file path provided");
-        }
-        return filePath;
-    }
-
 
     @Override
     public String toString() {
@@ -145,32 +93,9 @@ public class FileRead {
         return passageText;
     }
 
-
-    public String characterInfoReader(String file) throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader(file));
-        String line;
-
-
-        while ((line = reader.readLine()) != null) {
-            String[] fields = line.split(",");
-            String name = fields[0];
-            int health = Integer.parseInt(fields[1]);
-            int score = Integer.parseInt(fields[2]);
-            int gold = Integer.parseInt(fields[3]);
-
-            Player player = new PlayerBuilder().setName(name)
-                    .setHealth(health)
-                    .setScore(score)
-                    .setGold(gold).getPlayer();
-            return player.toString();
-        }
-        return null;
-    }
-
-
     public static void main(String[] args) {
         try {
-            String filePath = "src/main/resources/pickFile.paths";
+            String filePath = "src/main/resources/hauntedHouse.paths";
             FileRead fileRead = new FileRead(filePath);
 
             String passageText = String.valueOf(fileRead.formatPathsFile());
@@ -179,9 +104,44 @@ public class FileRead {
             System.out.println("Error: " + e.getMessage());
         }
     }
-
-
-
-
-
 }
+
+
+//    public String characterInfoReader(String file) throws IOException {
+//        BufferedReader reader = new BufferedReader(new FileReader(file));
+//        String line;
+//
+//
+//        while ((line = reader.readLine()) != null) {
+//            String[] fields = line.split(",");
+//            String name = fields[0];
+//            int health = Integer.parseInt(fields[1]);
+//            int score = Integer.parseInt(fields[2]);
+//            int gold = Integer.parseInt(fields[3]);
+//
+//            Player player = new PlayerBuilder().setName(name)
+//                    .setHealth(health)
+//                    .setScore(score)
+//                    .setGold(gold).getPlayer();
+//            return player.toString();
+//        }
+//        return null;
+//    }
+
+
+//    public String getFilePath() throws UnsupportedOperationException {
+//        if (!filePath.equals("src/main/resources/testStory.paths")) {
+//            throw new UnsupportedOperationException("Invalid file path provided");
+//        }
+//        return filePath;
+//    }
+
+
+//        public String getTitleTroughFilePath() {
+//
+//        String path = filePath;
+//        int slashIndex = path.lastIndexOf('/');
+//        String fileName = path.substring(slashIndex + 1, path.indexOf('.'));
+//
+//        return fileName;
+//    }

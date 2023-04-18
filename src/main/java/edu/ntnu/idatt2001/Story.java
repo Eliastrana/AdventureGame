@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001;
 
-import edu.ntnu.idatt2001.Action.Action;
-
+import javax.swing.*;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -70,7 +69,8 @@ public class Story {
 
     public Passage getPassage(Link link){
         if (link == null) throw new IllegalArgumentException("Link cannot be null");
-        return passages.get(link);
+        Link newlink = new Link(link.getReference(),link.getReference(), new ArrayList<Action>());
+        return passages.get(newlink);
     }
 
     /**

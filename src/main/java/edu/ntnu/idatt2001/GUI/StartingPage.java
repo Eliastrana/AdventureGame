@@ -201,8 +201,8 @@ public class StartingPage extends Application {
 
 
         String filePath = "src/main/resources/characters/"+importCharacterField.getText()+".paths";
-        PlayerRegister playerRegister = new PlayerRegister();
-        String characterInfo = playerRegister.characterInforVariable(filePath);
+//        PlayerRegister playerRegister = new PlayerRegister();
+//        String characterInfo = playerRegister.characterInforVariable(filePath);
         HBox playerStats = new HBox();
         playerStats.setSpacing(10);
         Text playerNameVariable = new Text();
@@ -211,7 +211,7 @@ public class StartingPage extends Application {
             Text emptyMenu = new Text();
             playerStats.getChildren().addAll(emptyMenu);
         } else {
-            playerNameVariable.setText(characterInfo);
+//            playerNameVariable.setText(characterInfo);
             playerStats.getChildren().addAll(playerNameVariable);
         }
 
