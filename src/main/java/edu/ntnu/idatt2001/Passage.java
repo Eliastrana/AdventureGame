@@ -61,9 +61,10 @@ public class Passage {
         if (link == null) {
             throw new IllegalArgumentException("Link cannot be null");
         }
-        links.add(link);
-        return true;
+
+        return links.add(link);
     }
+
 
 
     /**

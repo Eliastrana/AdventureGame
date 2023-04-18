@@ -26,6 +26,7 @@ public class PathsFileGUI {
 
 
     public PathsFileGUI(String formattedStory) {
+
         this.formattedStory = formattedStory;
     }
 

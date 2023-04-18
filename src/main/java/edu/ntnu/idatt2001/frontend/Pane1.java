@@ -24,6 +24,7 @@ public class Pane1 extends StackPane {
 
         structure.getStylesheets().add("/Style.css");
 
+        FileDashboard fileDashboard = new FileDashboard();
 
         VBox content = new VBox();
 
@@ -35,8 +36,9 @@ public class Pane1 extends StackPane {
         Button importGameButton = new Button("Import game");
         importGameButton.setOnAction(e -> {
 
-            readGameContent.setText(FileDashboard.read(importGameField.getText()));
-            System.out.println(FileDashboard.read(importGameField.getText()));
+
+            readGameContent.setText(fileDashboard.read(importGameField.getText()));
+            System.out.println(fileDashboard.read(importGameField.getText()));
 
         });
 

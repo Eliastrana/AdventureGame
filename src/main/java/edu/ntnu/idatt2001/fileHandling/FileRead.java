@@ -7,20 +7,25 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 
 public class FileRead {
-    private String filePath;
+
+    public String filePath;
 
     Passage passage = null;
 
 
     public FileRead(String filePath) {
+
         this.filePath = filePath;
     }
 
     public List<Passage> formatPathsFile() throws IOException {
+
         List<Passage> passages = new ArrayList<>();
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -94,15 +99,20 @@ public class FileRead {
     }
 
     public static void main(String[] args) {
+
         try {
             String filePath = "src/main/resources/hauntedHouse.paths";
             FileRead fileRead = new FileRead(filePath);
 
-            String passageText = String.valueOf(fileRead.formatPathsFile());
-            System.out.println(passageText);
+
+            for (Passage passage : fileRead.formatPathsFile()) {
+                System.out.println(passage);
+            }
+
         } catch (IOException e) {
             System.out.println("Error: " + e.getMessage());
         }
+
     }
 }
 

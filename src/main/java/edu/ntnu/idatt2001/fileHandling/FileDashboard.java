@@ -15,13 +15,14 @@ public class FileDashboard {
             System.out.println("3. Exit");
             System.out.println("Choose an option: ");
             Scanner scanner = new Scanner(System.in);
+            FileDashboard fileDashboard = new FileDashboard();
             int choice = scanner.nextInt();
             switch (choice){
                 case 1:
 
                     break;
                 case 2:
-                    fileReadTester();
+                    fileDashboard.fileReadTester();
                     break;
                 case 3:
                     System.exit(0);
@@ -34,13 +35,13 @@ public class FileDashboard {
 
 
 
-    public static void fileReadTester() throws FileNotFoundException {
+    public void fileReadTester() throws FileNotFoundException {
         String fileName = "src/main/resources/pickFile.paths";
         FileRead fileRead = new FileRead(fileName);
         System.out.println(fileRead);
     }
 
-    public static String read(String fileName) {
+    public String read(String fileName) {
         FileRead formatter = new FileRead("src/main/resources/" + fileName + ".paths");
 
         String formattedStory = formatter.toString();
@@ -48,7 +49,7 @@ public class FileDashboard {
         return formattedStory;
     }
 
-    public static String readCharacter(String filename) {
+    public String readCharacter(String filename) {
         String filePath = "src/main/resources/characters/" + filename + ".paths";
 //        FileRead fil = new FileRead(filename);
 //        try {

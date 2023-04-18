@@ -57,8 +57,8 @@ public class Story {
 
     public void addPassage(Passage newPassage){
         if (newPassage == null) throw new IllegalArgumentException("Passage cannot be null");
-        if (newPassage.getTitle().equals(openingPassage.getTitle())) throw new IllegalArgumentException("Passage cannot have the same title as the opening passage");
-        passages.put(new Link(newPassage.getTitle(),newPassage.getContent(), new ArrayList<>()),newPassage);
+        //if (newPassage.getTitle().equals(openingPassage.getTitle())) throw new IllegalArgumentException("Passage cannot have the same title as the opening passage");
+        passages.put(new Link(newPassage.getTitle(),newPassage.getTitle(), new ArrayList<>()),newPassage);
     }
 
     /**
@@ -118,7 +118,5 @@ public class Story {
     public static void main(String[] args) {
         Story story = new Story("The story", new Passage("The beginning", "Once upon a time..."));
         System.out.println("Title: "+ story.getTitle() +"\n"+"Passages: "+ story.getPassages()+"\n"+ "Opening passage: " + story.openingPassage.toString());
-
     }
-
 }
