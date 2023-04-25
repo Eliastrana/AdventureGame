@@ -69,12 +69,12 @@ public class CreateGame {
 
     public static void main(String[] args) throws IOException {
         CreateGame createGame = new CreateGame("src/main/resources/hauntedHouse.paths");
-        //System.out.println(createGame.storyGenerator(createGame.launchGame()));
-        //System.out.println(createGame.launchGame().getPassages());
+        System.out.println(createGame.storyGenerator(createGame.launchGame()));
+        System.out.println(createGame.launchGame().getPassages());
 
 
-        //System.out.println(createGame.gameGenerator("src/main/resources/characters/warrior.paths").getStory().getPassages());
-        //System.out.println(createGame.storyGenerator(createGame.gameGenerator("src/main/resources/characters/warrior.paths").getStory()));
+        System.out.println(createGame.gameGenerator("src/main/resources/characters/warrior.paths").getStory().getPassages());
+        System.out.println(createGame.storyGenerator(createGame.gameGenerator("src/main/resources/characters/warrior.paths").getStory()));
     }
 
 

@@ -28,38 +28,14 @@ public class PaneGenerator extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
-
-
-        System.out.println("Starting PaneGenerator...");
         titleLabel = new Label(game.begin().getTitle());
         titleLabel.setStyle("-fx-font-size: 24px; -fx-alignment: center;");
-        System.out.println("Title label created.");
 
         contentArea = new Text();
-        contentArea.setText(game.begin().getContent());
-
         buttonBox = new VBox();
         buttonBox.setSpacing(10);
 
-        List<Link> links = this.game.begin().getLinks();
-        System.out.println("Links:");
-        for (Link link : links) {
-            System.out.println(link.getText());
-            Button button = new Button(link.getText());
-            button.setOnAction(event -> {
-                System.out.println(this.game.begin().getContent());
-                System.out.println(link);
-                Passage passage = game.go(link);
-                System.out.println(passage);
-                System.out.println("Passage: " +passage);
-                contentArea.setText(passage.getContent()); //This is where the program breaks
-                stage.setScene(new Scene(new BorderPane(contentArea, null, null, buttonBox, null)));
-                stage.setTitle(passage.getTitle());
-                stage.show();
-            });
-
-            buttonBox.getChildren().add(button);
-        }
+        updateContentAndButtons(game.begin());
 
         BorderPane root = new BorderPane();
         root.setTop(titleLabel);
@@ -70,9 +46,30 @@ public class PaneGenerator extends Application {
         stage.setScene(scene);
         stage.setTitle(game.getStory().getTitle());
         stage.show();
-
-        System.out.println("PaneGenerator started.");
     }
+
+    private void updateContentAndButtons(Passage passage) {
+        if (passage == null) {
+            System.out.println("Error: Passage not found.");
+            return;
+        }
+
+        titleLabel.setText(passage.getTitle());
+        contentArea.setText(passage.getContent());
+
+        buttonBox.getChildren().clear();
+        List<Link> links = passage.getLinks();
+        for (Link link : links) {
+            Button button = new Button(link.getText());
+            button.setOnAction(event -> {
+                Passage nextPassage = game.go(link);
+                updateContentAndButtons(nextPassage);
+            });
+
+            buttonBox.getChildren().add(button);
+        }
+    }
+
 
     public static void main(String[] args) {
         launch(args);
