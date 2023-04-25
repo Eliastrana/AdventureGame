@@ -63,6 +63,17 @@
 
 }
 
+#comboBox {
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #4ec8cb;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
 
 button:hover {
     background-color: #3e8e41;

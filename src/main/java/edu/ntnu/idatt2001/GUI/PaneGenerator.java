@@ -12,6 +12,7 @@ import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import java.io.IOException;
@@ -55,7 +56,12 @@ public class PaneGenerator extends Application {
 
         contentArea = new Text();
         contentArea.setWrappingWidth(700);
+        contentArea.setFill(Color.WHITE); // Set fill color to white
         contentArea.setId("contentArea");
+
+
+        //contentArea.setId("contentArea");
+
 
         buttonBox = new HBox();
         buttonBox.getStylesheets().add("/Style.css");

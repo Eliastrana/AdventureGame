@@ -1,0 +1,23 @@
+::Welcome
+Hei hvordan går det?
+[Fight] (FightScene)
+
+::FightScene
+The monster tries to fight you
+[Attack] (AttackScene)
+[Defend] (DefendScene)
+
+::AttackScene
+You attack the monster
+[Continue] (Last Fight)
+
+::DefendScene
+You defend yourself
+[Continue] (Last Fight)
+
+::Last Fight
+The monster is defeated
+[Continue] (End)
+
+::End
+The End
