@@ -3,12 +3,14 @@ package edu.ntnu.idatt2001.GUI;
 import edu.ntnu.idatt2001.Game;
 import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.Passage;
+import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -17,10 +19,16 @@ import java.util.List;
 
 public class PaneGenerator extends Application {
 
+
+
     private Game game;
+
+    private HBox playerInfo;
     private Label titleLabel;
     private Text contentArea;
-    private VBox buttonBox;
+    private HBox buttonBox;
+
+
 
     public PaneGenerator(Game game) {
         this.game = game;
@@ -28,21 +36,54 @@ public class PaneGenerator extends Application {
 
     @Override
     public void start(Stage stage) throws IOException {
+
+
         titleLabel = new Label(game.begin().getTitle());
-        titleLabel.setStyle("-fx-font-size: 24px; -fx-alignment: center;");
+        titleLabel.setId("title");
+
+        VBox topInfo = new VBox();
+        topInfo.setSpacing(30);
+
+        playerInfo = new HBox();
+        playerInfo.getChildren().addAll(new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
+                new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory()));
+
+        playerInfo.setSpacing(20);
+        playerInfo.setAlignment(javafx.geometry.Pos.CENTER);
+        playerInfo.setId("playerInfo");
+
 
         contentArea = new Text();
-        buttonBox = new VBox();
-        buttonBox.setSpacing(10);
+        contentArea.setWrappingWidth(700);
+        contentArea.setId("contentArea");
+
+        buttonBox = new HBox();
+        buttonBox.getStylesheets().add("/Style.css");
+        buttonBox.setSpacing(20);
+        buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
+        buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
+
+
 
         updateContentAndButtons(game.begin());
 
         BorderPane root = new BorderPane();
-        root.setTop(titleLabel);
+
+        topInfo.getChildren().addAll(playerInfo, titleLabel);
+        topInfo.setSpacing(80);
+        topInfo.setAlignment(javafx.geometry.Pos.CENTER);
+        topInfo.setPadding(new javafx.geometry.Insets(20, 20, 20, 20));
+
+
+
+        root.setTop(topInfo);
         root.setCenter(contentArea);
         root.setBottom(buttonBox);
 
+
         Scene scene = new Scene(root, 800, 600);
+        scene.getStylesheets().add("Style.css");
+
         stage.setScene(scene);
         stage.setTitle(game.getStory().getTitle());
         stage.show();
@@ -61,6 +102,7 @@ public class PaneGenerator extends Application {
         List<Link> links = passage.getLinks();
         for (Link link : links) {
             Button button = new Button(link.getText());
+            button.setId("navigationButton");
             button.setOnAction(event -> {
                 Passage nextPassage = game.go(link);
                 updateContentAndButtons(nextPassage);

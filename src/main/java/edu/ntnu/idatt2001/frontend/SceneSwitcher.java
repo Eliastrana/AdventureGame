@@ -7,8 +7,8 @@ import javafx.stage.Stage;
 
 public class SceneSwitcher {
 
-    private static Stage primaryStage;
-    private static Scene mainScene;
+    public static Stage primaryStage;
+    public static Scene mainScene;
     private static StackPane stackPane;
 
     public SceneSwitcher(Stage primaryStage, Scene mainScene) {
