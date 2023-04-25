@@ -5,33 +5,21 @@ You find yourself in a small, dimly lit room. There is a door in front of you.
 [Try to open the door](Another room)
 
 ::Another room
-The door opens to another room. You see a desk with a large, dusty book.
+The door opens to another room. You see a desk with a large, dusty book and a boarded-up window.
 [Open the book](The book of spells)
 [Inspect the room](Room inspection)
 
 ::Room inspection
-You take a closer look at the room. There are spider webs in the corners, and a layer of dust covers everything. You notice a faint musty smell in the air. There is a window on the opposite side of the room, but it is boarded up. You hear a faint whisper coming from behind the door you just entered.
+You take a closer look at the room. You notice a faint musty smell in the air and hear a faint whisper coming from behind the door you just entered.
 [Investigate the whisper](Whisper investigation)
-[Open the window](The window)
 
 ::Whisper investigation
 You cautiously approach the door and listen intently. The whispering grows louder, but you can't make out what is being said. Suddenly, the door slams shut, making you jump in surprise. You feel a chill run down your spine.
 [Explore the room further](Larger room)
 
-::The window
-You try to pry the boards off the window, but they are securely fastened. You notice that there are scratches on the boards, as if someone or something had tried to break through them before. You hear a faint whisper coming from behind the door you just entered.
-[Investigate the whisper](Whisper investigation)
-[Inspect the desk](Desk inspection)
-
-::Desk inspection
-You approach the desk and notice that there are several papers scattered about. Some of them are handwritten notes, while others are pages torn from a book. You pick up one of the notes and read it. It says, "Beware of the spirits that haunt this house. They will not rest until they have claimed another soul." You hear a faint whisper coming from behind the door you just entered.
-[Investigate the whisper](Whisper investigation)
-[Open the book](The book of spells)
-
 ::The book of spells
 You flip through the pages of the book of spells. Most of the spells seem harmless enough, but a few of them send shivers down your spine. You hear a faint whisper coming from behind the door you just entered.
 [Investigate the whisper](Whisper investigation)
-[Put the book back and explore the room further](Larger room)
 
 ::Larger room
 You enter a larger room with several pieces of furniture scattered about. You notice a staircase leading up to the next floor.
@@ -39,14 +27,12 @@ You enter a larger room with several pieces of furniture scattered about. You no
 [Go up the stairs](Second floor)
 
 ::Furniture inspection
-You walk around the room, examining the furniture. Most of it is old and worn, but there are a few pieces that seem to be in good condition. As you approach a large wardrobe, you hear a faint whisper coming from inside.
+You walk around the room, examining the furniture. As you approach a large wardrobe, you hear a faint whisper coming from inside.
 [Investigate the whisper](Wardrobe investigation)
-[Continue exploring the room](Larger room)
 
 ::Wardrobe investigation
 You cautiously open the wardrobe and peek inside. There is nothing there except a few moth-eaten clothes. However, as you turn to leave, you catch a glimpse of something moving in the shadows.
 [Investigate further](Shadow investigation)
-[Leave the wardrobe and continue exploring the room](Larger room)
 
 ::Shadow investigation
 You cautiously approach the moving shadow. As you get closer, you realize it's just a stray cat that has made its home inside the wardrobe. Relieved, you leave the wardrobe and continue exploring the room.
@@ -56,44 +42,22 @@ You cautiously approach the moving shadow. As you get closer, you realize it's j
 You climb the stairs and arrive on the second floor. There are a few closed doors, and you hear strange noises coming from behind them. With trepidation, you decide to explore further.
 [Open the first door](First room)
 [Open the second door](Second room)
-[Open the third door](Third room)
 
 ::First room
-You enter the first room and find it filled with old paintings and statues. The atmosphere is eerie, and you can't shake the feeling that you're being watched. You notice a small key hidden behind one of the paintings.
-[Take the key](Take key)
-[Leave the room and try another door](Second floor)
+You enter the first room and find it filled with old paintings and statues. You notice a small key hidden behind one of the paintings.
+[Take the key and continue exploring](Take key)
 
 ::Take key
 You carefully grab the key and place it in your pocket. With the key in hand, you decide to explore the other rooms on this floor.
-[Leave the room and try another door](Second floor)
+[Open the second door](Second room)
 
 ::Second room
-You open the second door and find a library filled with dusty, ancient books. You feel a sudden gust of wind as you enter, causing the pages of some books to rustle. You decide to explore the library and see if there's any useful information.
+You open the second door and find a library filled with dusty, ancient books. You decide to explore the library and see if there's any useful information.
 [Look for a specific book](Specific book)
-[Leave the room and try another door](Second floor)
 
 ::Specific book
 You search the shelves and find a book titled "The Haunting of Blackwood Manor." You read about the tragic history of the manor and how it became haunted by vengeful spirits. The book provides information on how to appease the spirits and escape the haunted house.
-[Take the book with you](Take book)
-[Leave the book and try another door](Second floor)
-
-::Take book
-You take the book with you, hoping the information it contains will help you escape the haunted house. You leave the library and continue exploring the second floor.
-[Leave the room and try another door](Second floor)
-
-::Third room
-You open the third door and discover a bedroom. The room looks like it hasn't been used in years, and there's a thick layer of dust covering everything. You notice a locked chest at the foot of the bed.
-[Unlock the chest with the key](Unlock chest)
-[Leave the room and return to the second floor](Second floor)
-
-::Unlock chest
-You use the key you found earlier to unlock the chest. Inside, you find an old, ornate locket with a picture of a young woman. According to the book you found in the library, the locket belonged to the woman who once lived in the manor, and returning it to her grave will appease her spirit.
-[Take the locket and find her grave](Find grave)
+[Take the book with you and find a way out](Find grave)
 
 ::Find grave
-You leave the bedroom and head back downstairs. Using the information from the book, you locate a secret passage that leads to the manor's hidden graveyard. You find the woman's grave and place the locket on the headstone. As you do, you feel the oppressive atmosphere of the house lift. The spirits have been appeased, and you can now safely leave the haunted house.
-Leave the house
-
-::Escape
-With the spirits at rest, you make your way out of the haunted house. As you step out into the sunlight, you can't help but feel relieved that you managed to escape. Your adventure in the haunted house has come to an end, but the memories will stay with you forever.
-[The End]
+You leave the bedroom and head back downstairs. Using the information from the book, you locate a secret passage that leads to the manor's hidden graveyard. You find the woman's grave and place the key on the head
