@@ -5,6 +5,8 @@ Welcome to the game
 :: First fight
 A big man tries to chase you 
 [Run away] (Chase sequense)
+[Fight] (Fight Scene)
+
 
 :: Chase sequense
 he catches up to you
@@ -20,3 +22,10 @@ You dance around the room
 [back to start] (Welcome)
 
 
+:: Fight Scene
+You fight the troll
+[Hit]
+
+:: Trollkiss
+You kiss the troll
+[Celebrate]

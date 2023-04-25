@@ -4,7 +4,58 @@ Haunted House
 You are in a small, dimly lit room. There is a door in front of you.
 [Try to open the door](Another room)
 
+[Try to open the door](Another room)
+
 ::Another room
 The door opens to another room. You see a desk with a large, dusty book.
 [Open the book](The book of spells)
-[Go back](Beginnings)
+[Inspect the room](Room inspection)
+
+::Room inspection
+You take a closer look at the room. There are spider webs in the corners, and a layer of dust covers everything. You notice a faint musty smell in the air. There is a window on the opposite side of the room, but it is boarded up. You hear a faint whisper coming from behind the door you just entered.
+[Investigate the whisper](Whisper investigation)
+[Open the window](The window)
+
+::Whisper investigation
+You cautiously approach the door and listen intently. The whispering grows louder, but you can't make out what is being said. Suddenly, the door slams shut, making you jump in surprise.
+[Regain composure and try the door again](Another room)
+
+::The window
+You try to pry the boards off the window, but they are securely fastened. You notice that there are scratches on the boards, as if someone or something had tried to break through them before. You hear a faint whisper coming from behind the door you just entered.
+[Investigate the whisper](Whisper investigation)
+[Inspect the desk](Desk inspection)
+
+::Desk inspection
+You approach the desk and notice that there are several papers scattered about. Some of them are handwritten notes, while others are pages torn from a book. You pick up one of the notes and read it. It says, "Beware of the spirits that haunt this house. They will not rest until they have claimed another soul." You hear a faint whisper coming from behind the door you just entered.
+[Investigate the whisper](Whisper investigation)
+[Open the book](The book of spells)
+
+::Reading time
+You flip through the pages of the book of spells. Most of the spells seem harmless enough, but a few of them send shivers down your spine. You hear a faint whisper coming from behind the door you just entered.
+[Investigate the whisper](Whisper investigation)
+[Put the book back and explore the room](Room inspection)
+
+::Whisper investigation
+You approach the door and listen intently. The whispering grows louder, but you still can't make out what is being said. Suddenly, the door slams shut, making you jump in surprise. You feel a chill run down your spine and realize that you are not alone in the house.
+[Regain composure and try the door again](Another room)
+
+::Another room
+You enter another room. This one is much larger than the previous one, and there are several pieces of furniture scattered about. You notice a staircase leading up to the next floor.
+[Inspect the furniture](Furniture inspection)
+[Go up the stairs](Second floor)
+
+
+::Furniture inspection
+You walk around the room, examining the furniture. Most of it is old and worn, but there are a few pieces that seem to be in good condition. As you approach a large wardrobe, you hear a faint whisper coming from inside.
+[Investigate the whisper](Wardrobe investigation)
+[Continue exploring the room](Another room)
+
+
+
+::Second floor
+You cautiously open the wardrobe and peek inside. There is nothing there except a few moth-eaten clothes. However, as you turn to leave, you catch a glimpse of something moving in the shadows.
+[Investigate further](Shadow investigation)
+[Leave the wardrobe and continue exploring the room](Another room)
+
+::Shadow investigation
+You step closer to the shadows, trying to get a better look. Suddenly, a cold hand reaches out and grabs your wrist.door](Another room)
