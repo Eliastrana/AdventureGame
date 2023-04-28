@@ -22,7 +22,6 @@ public class FileDashboard {
 
                     break;
                 case 2:
-                    fileDashboard.fileReadTester();
                     break;
                 case 3:
                     System.exit(0);
@@ -35,11 +34,7 @@ public class FileDashboard {
 
 
 
-    public void fileReadTester() throws FileNotFoundException {
-        String fileName = "src/main/resources/pickFile.paths";
-        FileRead fileRead = new FileRead(fileName);
-        System.out.println(fileRead);
-    }
+
 
     public String read(String fileName) {
         FileRead formatter = new FileRead("src/main/resources/" + fileName + ".paths");
@@ -51,12 +46,6 @@ public class FileDashboard {
 
     public String readCharacter(String filename) {
         String filePath = "src/main/resources/characters/" + filename + ".paths";
-//        FileRead fil = new FileRead(filename);
-//        try {
-//            fil.characterInfoReader(filename);
-//        } catch (IOException e) {
-//            throw new RuntimeException(e);
-//        }
 
         StringBuilder contentBuilder = new StringBuilder();
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -86,7 +75,7 @@ public class FileDashboard {
         }
 
         try {
-            FileWrite writer = new FileWrite("src/main/resources/" + fileName + ".paths");
+            FileWrite writer = new FileWrite("src/main/resources/paths/" + fileName + ".paths");
             writer.appendPathsFile(passages.toArray(new String[0]));
         } catch (IOException e) {
             e.printStackTrace();

@@ -21,9 +21,12 @@ public class SceneSwitcher {
 
     public static void switchToPane(StackPane pane) {
         stackPane.getChildren().add(pane);
-        Button backButton = (Button) pane.getChildren().get(1); //Tallet her ser ut til å skape en out of bounds exception
-        backButton.setOnAction(e -> stackPane.getChildren().remove(pane));
+        if (pane.getChildren().size() > 1) {
+            Button backButton = (Button) pane.getChildren().get(1);
+            backButton.setOnAction(e -> stackPane.getChildren().remove(pane));
+        }
     }
+
 
     public static void switchToMainMenu() {
         stackPane.getChildren().remove(1);
