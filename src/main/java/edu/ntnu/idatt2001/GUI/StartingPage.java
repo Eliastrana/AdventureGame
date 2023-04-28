@@ -18,9 +18,9 @@ public class StartingPage extends Application {
 
 
 
-    public static TextArea readGameContent = new TextArea();
+    public TextArea readGameContent = new TextArea();
 
-    public static TextArea readCharacterField = new TextArea();
+    public TextArea readCharacterField = new TextArea();
 
     TextField writeGameSaveName = new TextField();
 
@@ -52,6 +52,7 @@ public class StartingPage extends Application {
     TextField setPlayerScore = new TextField();
     TextField setPlayerInventory = new TextField();
 
+    FileDashboard fileDashboard = new FileDashboard();
     @Override
     public void start(Stage primaryStage) {
 
@@ -112,7 +113,7 @@ public class StartingPage extends Application {
         Button importCharacterButton = new Button("Import character");
         importCharacterButton.setOnAction(e -> {
 
-            readCharacterField.setText(FileDashboard.readCharacter(importCharacterField.getText()));
+            readCharacterField.setText(fileDashboard.readCharacter(importCharacterField.getText()));
 
             //System.out.println(FileDashboard.readCharacter(importCharacterField.getText()));
 
@@ -125,9 +126,9 @@ public class StartingPage extends Application {
         importGameField.setPromptText("Enter file name");
         Button importGameButton = new Button("Import game");
         importGameButton.setOnAction(e -> {
-
-           readGameContent.setText(FileDashboard.read(importGameField.getText()));
-           System.out.println(FileDashboard.read(importGameField.getText()));
+            FileDashboard fileDashboard = new FileDashboard();
+           readGameContent.setText(fileDashboard.read(importGameField.getText()));
+           System.out.println(fileDashboard.read(importGameField.getText()));
 
         });
 
@@ -201,8 +202,8 @@ public class StartingPage extends Application {
 
 
         String filePath = "src/main/resources/characters/"+importCharacterField.getText()+".paths";
-        PlayerRegister playerRegister = new PlayerRegister();
-        String characterInfo = playerRegister.characterInforVariable(filePath);
+//        PlayerRegister playerRegister = new PlayerRegister();
+//        String characterInfo = playerRegister.characterInforVariable(filePath);
         HBox playerStats = new HBox();
         playerStats.setSpacing(10);
         Text playerNameVariable = new Text();
@@ -211,7 +212,7 @@ public class StartingPage extends Application {
             Text emptyMenu = new Text();
             playerStats.getChildren().addAll(emptyMenu);
         } else {
-            playerNameVariable.setText(characterInfo);
+//            playerNameVariable.setText(characterInfo);
             playerStats.getChildren().addAll(playerNameVariable);
         }
 

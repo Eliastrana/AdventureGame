@@ -1,0 +1,63 @@
+Haunted House
+
+::Beginnings
+You find yourself in a small, dimly lit room. There is a door in front of you.
+[Try to open the door](Another room)
+
+::Another room
+The door opens to another room. You see a desk with a large, dusty book and a boarded-up window.
+[Open the book](The book of spells)
+[Inspect the room](Room inspection)
+
+::Room inspection
+You take a closer look at the room. You notice a faint musty smell in the air and hear a faint whisper coming from behind the door you just entered.
+[Investigate the whisper](Whisper investigation)
+
+::Whisper investigation
+You cautiously approach the door and listen intently. The whispering grows louder, but you can't make out what is being said. Suddenly, the door slams shut, making you jump in surprise. You feel a chill run down your spine.
+[Explore the room further](Larger room)
+
+::The book of spells
+You flip through the pages of the book of spells. Most of the spells seem harmless enough, but a few of them send shivers down your spine. You hear a faint whisper coming from behind the door you just entered.
+[Investigate the whisper](Whisper investigation)
+
+::Larger room
+You enter a larger room with several pieces of furniture scattered about. You notice a staircase leading up to the next floor.
+[Inspect the furniture](Furniture inspection)
+[Go up the stairs](Second floor)
+
+::Furniture inspection
+You walk around the room, examining the furniture. As you approach a large wardrobe, you hear a faint whisper coming from inside.
+[Investigate the whisper](Wardrobe investigation)
+
+::Wardrobe investigation
+You cautiously open the wardrobe and peek inside. There is nothing there except a few moth-eaten clothes. However, as you turn to leave, you catch a glimpse of something moving in the shadows.
+[Investigate further](Shadow investigation)
+
+::Shadow investigation
+You cautiously approach the moving shadow. As you get closer, you realize it's just a stray cat that has made its home inside the wardrobe. Relieved, you leave the wardrobe and continue exploring the room.
+[Head to the staircase](Second floor)
+
+::Second floor
+You climb the stairs and arrive on the second floor. There are a few closed doors, and you hear strange noises coming from behind them. With trepidation, you decide to explore further.
+[Open the first door](First room)
+[Open the second door](Second room)
+
+::First room
+You enter the first room and find it filled with old paintings and statues. You notice a small key hidden behind one of the paintings.
+[Take the key and continue exploring](Take key)
+
+::Take key
+You carefully grab the key and place it in your pocket. With the key in hand, you decide to explore the other rooms on this floor.
+[Open the second door](Second room)
+
+::Second room
+You open the second door and find a library filled with dusty, ancient books. You decide to explore the library and see if there's any useful information.
+[Look for a specific book](Specific book)
+
+::Specific book
+You search the shelves and find a book titled "The Haunting of Blackwood Manor." You read about the tragic history of the manor and how it became haunted by vengeful spirits. The book provides information on how to appease the spirits and escape the haunted house.
+[Take the book with you and find a way out](Find grave)
+
+::Find grave
+You leave the bedroom and head back downstairs. Using the information from the book, you locate a secret passage that leads to the manor's hidden graveyard. You find the woman's grave and place the key on the head

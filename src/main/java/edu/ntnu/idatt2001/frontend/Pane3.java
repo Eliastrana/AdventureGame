@@ -22,9 +22,19 @@ public class Pane3 extends StackPane {
 
     public Pane3() {
 
+
         VBox structure = new VBox();
 
         structure.getStylesheets().add("/Style.css");
+
+        createPlayerName.setId("textField");
+        setPlayerHealth.setId("textField");
+        setPlayerGold.setId("textField");
+        setPlayerScore.setId("textField");
+        setPlayerInventory.setId("textField");
+
+
+
 
         VBox playerCreation = new VBox();
 
@@ -36,7 +46,10 @@ public class Pane3 extends StackPane {
         setPlayerScore.setPromptText("Enter player score");
         setPlayerInventory.setPromptText("Enter player inventory");
         Button createPlayerButton = new Button("Create player");
+        createPlayerButton.setId("confirmButton");
         playerCreation.getChildren().addAll(createPlayer, createPlayerName, setPlayerHealth, setPlayerGold, setPlayerScore, setPlayerInventory, createPlayerButton);
+        playerCreation.setSpacing(10);
+
 
         createPlayerButton.setOnAction(e -> {
 
@@ -55,8 +68,6 @@ public class Pane3 extends StackPane {
         });
         setStyle("-fx-background-color: #e3ffcc;");
 
-        Text text1 = new Text("Pane 3");
-        text1.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 
         Button backButton = new Button("Back to Main");
         backButton.setId("backButton");
@@ -65,7 +76,7 @@ public class Pane3 extends StackPane {
 
         playerCreation.setAlignment(Pos.CENTER);
 
-        structure.getChildren().addAll(backButton, text1, playerCreation);
+        structure.getChildren().addAll(backButton, playerCreation);
         structure.setSpacing(20);
 
         getChildren().addAll(structure);

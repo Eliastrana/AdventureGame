@@ -1,4 +1,7 @@
 package edu.ntnu.idatt2001.fileHandling;
+import edu.ntnu.idatt2001.Player;
+import edu.ntnu.idatt2001.PlayerBuilder;
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -23,7 +26,7 @@ public class PlayerRegister {
     }
 
 
-    public String characterInforVariable(String filePath) {
+    public Player characterInforVariable(String filePath) {
         String output = null;
         try {
             FileReader fileReader = new FileReader(filePath);
@@ -37,15 +40,23 @@ public class PlayerRegister {
             int gold = Integer.parseInt(values[2]);
             int score = Integer.parseInt(values[3]);
 
+            Player player = new PlayerBuilder()
+                    .setName(name)
+                    .setHealth(health)
+                    .setGold(gold)
+                    .setScore(score)
+                    .getPlayer();
+
             output = "Name: " + name + " Health: " + health + " Gold: " + gold + " Score: " + score;
             System.out.println(output);
-
-            bufferedReader.close();
+            return player;
         } catch (Exception e) {
             e.printStackTrace();
         }
-        return output;
+
+        return null;
     }
+
 
 
     public static void main(String[] args) {

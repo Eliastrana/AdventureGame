@@ -1,35 +1,40 @@
-//package edu.ntnu.idatt2001.fileHandling;
-//
-//import org.junit.jupiter.api.Test;
-//import static org.junit.jupiter.api.Assertions.*;
-//
-//import java.io.BufferedWriter;
-//import java.io.FileWriter;
-//import java.io.IOException;
-//import java.nio.file.Files;
-//import java.nio.file.Path;
-//import java.nio.file.Paths;
-//
-//public class FileReadTest {
-//
-//
-//    // Test that the file is read correctly
-//
-//
-//    @Test
-//    public void testFilePath() throws UnsupportedOperationException {
-//        // Create a FileRead object and check that the file path is correct
-//        String filePath = "src/main/resources/testStory.paths";
-//        FileRead fileRead = new FileRead(filePath);
-//        assertEquals(filePath, fileRead.getFilePath());
-//    }
-//
-////    @Test
-////    public void testInvalidFilePath() {
-////        // Create a FileRead object with an invalid file path and check that an exception is thrown
-////        String filePath = "/invalid/path//file.txt";
-////        Throwable exception = assertThrows(UnsupportedOperationException.class, () -> new FileRead(filePath));
-////        assertEquals("File path not set", exception.getMessage());
-////    }
-//
-//}
+package edu.ntnu.idatt2001.fileHandling;
+
+import edu.ntnu.idatt2001.Passage;
+import org.junit.jupiter.api.Test;
+
+import java.io.IOException;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+public class FileReadTest {
+
+    @Test
+    public void testFormatPathsFile() throws IOException {
+        // Create a new FileRead object and call the formatPathsFile() method
+        FileRead fileRead = new FileRead("src/main/resources/test.paths");
+        List<Passage> passages = fileRead.formatPathsFile();
+
+        // Assert that the returned list is not null and contains two elements
+        assertNotNull(passages);
+        assertEquals(2, passages.size());
+
+        // Assert that the first passage has the correct title, content, and links
+        Passage firstPassage = passages.get(0);
+        assertEquals(":: Start", firstPassage.getTitle());
+        assertEquals("This is the start of the story.\n\n[Click here to go to the next passage.](:: Next)", firstPassage.getContent());
+        assertEquals(1, firstPassage.getLinks().size());
+        assertEquals("Click here to go to the next passage.", firstPassage.getLinks().get(0).getText());
+        //assertEquals(":: Next", firstPassage.getLinks().get(0).getTargetId());
+
+        // Assert that the second passage has the correct title, content, and links
+        Passage secondPassage = passages.get(1);
+        assertEquals(":: Next", secondPassage.getTitle());
+        assertEquals("This is the next passage.\n\n[Click here to go back to the start.](:: Start)", secondPassage.getContent());
+        assertEquals(1, secondPassage.getLinks().size());
+        assertEquals("Click here to go back to the start.", secondPassage.getLinks().get(0).getText());
+        //assertEquals(":: Start", secondPassage.getLinks().get(0).getTargetId());
+    }
+}

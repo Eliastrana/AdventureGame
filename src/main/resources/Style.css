@@ -8,26 +8,22 @@
     -fx-padding: 10px;
 }
 
+#playerInfo {
+    -fx-font-size: 20px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-fill: #ffffff;
 
-/*#mainMenuButton {*/
-/*    -fx-background-color: #000000;*/
-/*    -fx-text-fill: #ffffff;*/
-/*    -fx-min-height: 50px;*/
-/*    -fx-min-width: 150px;*/
-/*    -fx-max-height: 50px;*/
-/*    -fx-max-width: 150px;*/
+    -fx-padding: 10px;
+}
+
+.root {
+    -fx-background-image: url("zeldabackground.jpeg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
 
 
-/*    -fx-font-size: 12px;*/
-/*    -fx-font-weight: bold;*/
-/*    -fx-font-family: "Arial";*/
-/*    -fx-border-color: #ffffff;*/
-/*    -fx-border-width: 2px;*/
-/*    -fx-border-radius: 10px;*/
-/*    -fx-background-radius: 10px;*/
-/*    -fx-padding: 10px;*/
-/*    -fx-cursor: hand;*/
-/*}*/
 
 #mainMenuButton {
     -fx-background-color: #4ec8cb;
@@ -46,16 +42,37 @@
 
 
 
-button {
-    padding: 10px 20px;
-    font-size: 1.2rem;
-    border: none;
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 4px;
-    cursor: pointer;
-    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
-    transition: 0.3s;
+#navigationButton {
+    -fx-background-color: #4ec8cb;
+    -fx-text-fill: white;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Helvetica Neue", sans-serif;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+#navigationButton:hover {
+    -fx-background-color: #249a75;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+#contentArea {
+    -fx-font-size: 30px;
+    -fx-text-fill: #ffffff;
+
+}
+
+#comboBox {
+    -fx-font-size: 20px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #4ec8cb;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
 }
 
 button:hover {
@@ -79,4 +96,65 @@ button:hover {
 
 #backButton:hover {
     background-color: #34495e;
+}
+
+
+#textField {
+
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-min-height: 35px;
+    -fx-min-width: 150px;
+    -fx-max-height: 50px;
+    -fx-max-width: 150px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+
+}
+
+#textArea{
+
+        -fx-background-color: #ffffff;
+        -fx-text-fill: #000000;
+        -fx-min-height: 150px;
+        -fx-min-width: 400px;
+        -fx-max-height: 150px;
+        -fx-max-width: 400px;
+        -fx-font-size: 12px;
+        -fx-font-weight: bold;
+        -fx-font-family: "Arial";
+        -fx-border-color: #ffffff;
+        -fx-border-width: 2px;
+        -fx-border-radius: 10px;
+        -fx-background-radius: 10px;
+        -fx-padding: 10px;
+        -fx-cursor: hand;
+
+}
+
+#confirmButton {
+
+    -fx-background-color: #000000;
+    -fx-text-fill: #ffffff;
+    -fx-min-height: 50px;
+    -fx-min-width: 150px;
+    -fx-max-height: 50px;
+    -fx-max-width: 150px;
+    -fx-font-size: 12px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Arial";
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+
 }

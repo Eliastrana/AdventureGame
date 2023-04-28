@@ -1,0 +1,40 @@
+Title: The Troll's Lair
+
+::The Forest
+You are lost in a dark and ominous forest. You feel uneasy and vulnerable, as if you are being watched. Suddenly, a monstrous troll emerges from the shadows, towering over you with its massive size.
+[Fight the troll](The Battle)
+[Flee deeper into the forest](Lost in the Woods)
+
+::Lost in the Woods
+You try to run away from the troll, but you soon realize that you are hopelessly lost. The forest seems to stretch on endlessly in all directions, and the troll is hot on your heels.
+[Continue running](The Troll's Catch)
+Hide in the undergrowth
+
+::Ambush
+You duck behind a bush and hold your breath, hoping that the troll won't find you. But it's no use - the troll sniffs you out and grabs you with its enormous hand.
+[The Troll's Captive](The End)
+
+::The Troll's Catch
+You keep running through the forest, looking for a way out. But the troll is too fast and too strong for you to escape.
+[The Troll's Captive](The End)
+
+::The Battle
+You take a fighting stance, determined to defend yourself against the troll. The troll roars in fury and charges at you, swinging its massive arms.
+[Fight back with your bare hands](The Heroic Victory)
+[Use the magic sword](The Easy Way Out)
+
+::The Easy Way Out
+You remember the magic sword that you received from the old wizard in the nearby town. You draw it from its scabbard and point it at the troll. With a wave of your hand, the sword begins to glow with a bright light. The troll shrieks in terror and runs away, disappearing into the forest.
+[The Aftermath](The End)
+
+::The Heroic Victory
+You grit your teeth and fight back with all your strength. The troll is a formidable opponent, but you refuse to back down. You dodge its attacks and land a few powerful blows of your own. Finally, the troll falls to the ground, defeated.
+[The Aftermath](The End)
+
+::The Troll's Captive
+You are thrown into a damp and dark cave, the troll's lair. The troll seems to be amused by your fear and torment, as it brings you scraps of food and water. Days turn into weeks, and you begin to lose hope of ever escaping.
+[The End]
+
+::The Aftermath
+You emerge from the forest, battered and bruised but alive. You realize that you have faced your fears and emerged victorious. You vow to never let anyone or anything intimidate you again.
+[The End]

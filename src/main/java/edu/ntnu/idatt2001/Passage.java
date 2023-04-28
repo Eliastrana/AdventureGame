@@ -61,9 +61,10 @@ public class Passage {
         if (link == null) {
             throw new IllegalArgumentException("Link cannot be null");
         }
-        links.add(link);
-        return true;
+
+        return links.add(link);
     }
+
 
 
     /**
@@ -116,13 +117,16 @@ public class Passage {
     //   return super.toString();
     //}
 
-
-
     @Override
     public String toString() {
         return "Title: " + getTitle() + "\n"
                 + "Content: " + getContent() + "\n"
                 + "Links: " + getLinks() + "\n";
+    }
+
+    public static void main(String[] args) {
+        Passage passage = new Passage("test", "test");
+        System.out.println(passage);
     }
 }
 
