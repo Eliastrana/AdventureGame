@@ -5,16 +5,23 @@ import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
+import edu.ntnu.idatt2001.frontend.Pane1;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -41,6 +48,18 @@ public class PaneGenerator extends Application {
 
         titleLabel = new Label(game.begin().getTitle());
         titleLabel.setId("title");
+
+
+
+        Pane characterImage = new Pane();
+        String imageSource = "characterIcons/"+ Pane1.processSelectedImage();
+        Image image = new Image(imageSource);
+        ImageView imageView = new ImageView(image);
+        characterImage.getChildren().add(imageView);
+
+
+
+
 
         VBox topInfo = new VBox();
         topInfo.setSpacing(30);
@@ -83,6 +102,7 @@ public class PaneGenerator extends Application {
 
 
         root.setTop(topInfo);
+        root.setLeft(characterImage);
         root.setCenter(contentArea);
         root.setBottom(buttonBox);
 

@@ -11,6 +11,9 @@ public class MainMenuPane extends VBox {
 
     public MainMenuPane() {
 
+
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
+
         VBox structure = new VBox();
         structure.getStylesheets().add("/Style.css");
         structure.setAlignment(Pos.BOTTOM_LEFT);

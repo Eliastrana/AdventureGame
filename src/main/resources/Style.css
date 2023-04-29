@@ -1,12 +1,22 @@
 
 
+@font-face {
+    font-family: "Brazie";
+    src: url("/brazie-font/Brazie-51zLz.ttf");
+}
+
 #title {
     -fx-font-size: 80px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-    -fx-text-fill: #ffffff;
+    -fx-font-family: "Brazie";
+    -fx-fill: #5e3720;
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 2px;
     -fx-padding: 10px;
 }
+
+
+
 
 #playerInfo {
     -fx-font-size: 20px;
@@ -19,6 +29,12 @@
 
 .root {
     -fx-background-image: url("zeldabackground.jpeg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
+.MainMenuPane {
+    -fx-background-image: url("mainmenubackground.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
@@ -64,7 +80,7 @@
 }
 
 #comboBox {
-    -fx-font-size: 20px;
+    -fx-font-size: 13px;
     -fx-text-fill: #ffffff;
     -fx-background-color: #4ec8cb;
     -fx-border-color: #ffffff;
