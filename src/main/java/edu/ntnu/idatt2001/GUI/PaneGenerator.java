@@ -116,10 +116,11 @@ public class PaneGenerator extends Application {
     }
 
     private void updateContentAndButtons(Passage passage) {
+
         if (passage == null) {
-            System.out.println("Error: Passage not found.");
-            return;
+            throw new IllegalArgumentException("Passage cannot be null");
         }
+        game.getPlayer().setLastPassage(passage);
 
         titleLabel.setText(passage.getTitle());
         contentArea.setText(passage.getContent());
@@ -131,6 +132,7 @@ public class PaneGenerator extends Application {
             button.setId("navigationButton");
             button.setOnAction(event -> {
                 Passage nextPassage = game.go(link);
+                game.getPlayer().setLastPassage(nextPassage);
                 updateContentAndButtons(nextPassage);
             });
 
