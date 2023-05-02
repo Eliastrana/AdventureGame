@@ -29,13 +29,15 @@ public class SceneSwitcher {
     }
 
     public static void switchToPane1() {
+        stackPane.getChildren().clear();
         primaryStage.setFullScreen(false);
-        MainMenuPane mainMenuPane = new MainMenuPane();
-        mainMenuPane.getChildren().clear();
-        mainMenuPane.getChildren().add(new Pane1());
-        //Pane1 pane1 = new Pane1();
-        primaryStage.getScene().setRoot(mainMenuPane);
+        primaryStage.hide();
+        Pane1 pane1 = new Pane1();
+        pane1.setStyle("-fx-background-color: #a9cade;");
+        primaryStage.setScene(new Scene(pane1));
+        primaryStage.show();
     }
+
 
 
 
@@ -46,6 +48,16 @@ public class SceneSwitcher {
     public static StackPane getStackPane() {
         return stackPane;
     }
+
+
+
+    public static void quitFullScreen(){
+        primaryStage.setFullScreen(false);
+        stackPane.getChildren().remove(1);
+        stackPane.getChildren().add(new MainMenuPane());
+    }
+
+
 
 
 }

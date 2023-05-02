@@ -32,6 +32,7 @@ public class CreateGame {
             if (passage != null) {
                 story.addPassage(passage);
                 System.out.println("Adding passage to story.");
+                FileDashboard.gameSave(passage.getTitle(), "src/main/resources/saveData/save.txt");
             }
         }
 

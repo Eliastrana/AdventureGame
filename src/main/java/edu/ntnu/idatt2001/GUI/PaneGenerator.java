@@ -14,10 +14,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
-import javafx.scene.layout.VBox;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -143,8 +140,9 @@ public class PaneGenerator extends Application {
         updateContentAndButtons(game.getStory().getOpeningPassage());
     }
     private void quitGame() {
-        SceneSwitcher.switchToMainMenu();
+    SceneSwitcher.switchToPane1();
     }
+
 
     private void updateContentAndButtons(Passage passage) {
 

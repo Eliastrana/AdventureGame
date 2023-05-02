@@ -101,7 +101,7 @@ public class Pane1 extends StackPane {
                 if (file.isFile() && file.getName().endsWith(".png") && !fileNames.contains(file.getName())) {
                     ImageView imageView = new ImageView(new Image(file.toURI().toString()));
                     imageView.setFitWidth(150);
-                    imageView.setFitHeight(150);
+                    imageView.setFitHeight(160);
                     imageView.setOnMouseClicked(event -> selectImage(imageView));
                     imageViews.add(imageView);
                     fileNames.add(file.getName());
