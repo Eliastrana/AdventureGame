@@ -85,6 +85,24 @@
 
 }
 
+
+/* set the background color of the pane */
+#savedGamePane {
+    -fx-background-color: #a9cade;
+    -fx-min-height: 50px;
+    -fx-min-width: 150px;
+    -fx-border-radius: 5px; /* add rounded corners */
+    -fx-padding: 10px; /* add some padding */
+    -fx-border-width: 1px; /* add a border */
+    -fx-border-color: #a1c5a1;
+}
+
+/* set the hover effect */
+#savedGamePane:hover {
+    -fx-background-color: #dddddd;
+    -fx-border-color: #aaaaaa;
+}
+
 #contentArea {
     -fx-font-size: 30px;
     -fx-text-fill: #ffffff;

@@ -7,6 +7,8 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+import java.io.IOException;
+
 public class MainMenuPane extends VBox {
 
     public MainMenuPane() {
@@ -45,7 +47,13 @@ public class MainMenuPane extends VBox {
 
 
 
-        button1.setOnAction(e -> SceneSwitcher.switchToPane(new Pane1()));
+        button1.setOnAction(e -> {
+            try {
+                SceneSwitcher.switchToPane(new Pane1());
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+        });
         button2.setOnAction(e -> SceneSwitcher.switchToPane(new Pane2()));
         button3.setOnAction(e -> SceneSwitcher.switchToPane(new Pane3()));
         button4.setOnAction(e -> SceneSwitcher.switchToPane(new Pane4()));

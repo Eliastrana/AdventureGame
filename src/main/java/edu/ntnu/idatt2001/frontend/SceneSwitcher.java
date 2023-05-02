@@ -6,6 +6,8 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class SceneSwitcher {
 
     public static Stage primaryStage;
@@ -28,7 +30,7 @@ public class SceneSwitcher {
         }
     }
 
-    public static void switchToPane1() {
+    public static void switchToPane1() throws IOException {
         stackPane.getChildren().clear();
         primaryStage.setFullScreen(false);
         primaryStage.hide();

@@ -5,6 +5,8 @@ import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
+import edu.ntnu.idatt2001.fileHandling.FileDashboard;
+import edu.ntnu.idatt2001.fileHandling.GameSave;
 import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import javafx.application.Application;
@@ -74,7 +76,11 @@ public class PaneGenerator extends Application {
         Button quitButton = new Button("Quit");
         quitButton.setId("navigationButton");
         quitButton.setOnAction(e -> {
-            quitGame();
+            try {
+                quitGame();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
             System.out.println("Quitting game");
         });
 
@@ -139,7 +145,7 @@ public class PaneGenerator extends Application {
     private void restartGame() throws IOException {
         updateContentAndButtons(game.getStory().getOpeningPassage());
     }
-    private void quitGame() {
+    private void quitGame() throws IOException {
     SceneSwitcher.switchToPane1();
     }
 
@@ -164,6 +170,13 @@ public class PaneGenerator extends Application {
                 Passage nextPassage = game.go(link);
                 game.getPlayer().setLastPassage(nextPassage);
                 updateContentAndButtons(nextPassage);
+                System.out.println(nextPassage.getTitle());
+                try {
+                    FileDashboard.gameSave(nextPassage.getTitle(),"src/main/resources/saveData/"+Pane1.saveName.getText()+".txt");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             });
 
             buttonBox.getChildren().add(button);
