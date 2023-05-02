@@ -91,6 +91,7 @@ public class Player {
      */
 
     public ArrayList<String> getInventory() {
+
         return inventory;
     }
 
@@ -100,6 +101,7 @@ public class Player {
      */
 
     public Passage getLastPassage() {
+
         return lastPassage;
     }
     public void setLastPassage(Passage passage) {
@@ -163,5 +165,4 @@ public class Player {
                 }
                 """.formatted(name, health, score, gold, inventory);
     }
-
 }

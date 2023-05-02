@@ -89,7 +89,7 @@ public class PaneGenerator extends Application {
 
         playerInfo = new HBox();
         playerInfo.getChildren().addAll(topmenuOptions, new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
-                new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory()));
+                new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory().get(0)));
 
 
         playerInfo.setSpacing(20);

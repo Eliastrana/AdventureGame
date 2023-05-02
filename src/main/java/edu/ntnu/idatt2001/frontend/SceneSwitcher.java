@@ -28,17 +28,19 @@ public class SceneSwitcher {
         }
     }
 
+    public static void switchToPane1() {
+        primaryStage.setFullScreen(false);
+        MainMenuPane mainMenuPane = new MainMenuPane();
+        mainMenuPane.getChildren().clear();
+        mainMenuPane.getChildren().add(new Pane1());
+        //Pane1 pane1 = new Pane1();
+        primaryStage.getScene().setRoot(mainMenuPane);
+    }
+
+
 
     public static void switchToMainMenu() {
-
-        stackPane.getChildren().clear();
-        primaryStage.close();
-
-        stackPane.getChildren().add(new Pane1());
-
-
-
-
+        stackPane.getChildren().remove(1);
     }
 
     public static StackPane getStackPane() {

@@ -4,17 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Added backend for the restart game function">
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Added a restart button and implemented inventory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane1.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane1.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Style.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Elias.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/Elias.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Vegard.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/Vegard.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" afterDir="false" />
     </list>
     <list id="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" name="Changes by eliastrana" comment="Changes by eliastrana">
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/Style.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/Style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -44,24 +51,18 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/resources/Style.css">
-      <ranges>
-        <range start1="74" end1="74" start2="74" end2="86" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
-        <range start1="78" end1="79" start2="90" end2="90" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="98" end1="99" start2="109" end2="110" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="115" end1="115" start2="126" end2="128" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="158" end1="159" start2="171" end2="171" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-      </ranges>
-    </file>
     <file path="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java">
       <ranges>
-        <range start1="8" end1="8" start2="8" end2="9" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="62" end1="62" start2="63" end2="85" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
-        <range start1="67" end1="68" start2="90" end2="91" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
-        <range start1="69" end1="69" start2="92" end2="93" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="116" end1="116" start2="140" end2="147" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="118" end1="118" start2="149" end2="150" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="141" end1="141" start2="173" end2="174" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
+        <range start1="91" end1="92" start2="91" end2="92" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
+        <range start1="144" end1="144" start2="144" end2="145" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
+        <range start1="145" end1="146" start2="146" end2="148" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
+        <range start1="29" end1="29" start2="28" end2="36" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
+        <range start1="32" end1="41" start2="39" end2="40" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
       </ranges>
     </file>
   </component>
@@ -200,7 +201,7 @@
       <workItem from="1679994918923" duration="2526000" />
       <workItem from="1679997565720" duration="26299000" />
       <workItem from="1680169869015" duration="19963000" />
-      <workItem from="1682840549138" duration="11327000" />
+      <workItem from="1682840549138" duration="14699000" />
     </task>
     <task id="LOCAL-00001" summary="adding the functional files such as pom">
       <created>1678182107521</created>
@@ -284,7 +285,19 @@
       <option name="presentableId" value="LOCAL−00013" />
       <updated>1682936689828</updated>
     </task>
-    <option name="localTasksCounter" value="14" />
+    <task id="LOCAL−00014" summary="Added a restart button and implemented inventory">
+      <created>1683032748010</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1683032748010</updated>
+    </task>
+    <task id="LOCAL−00015" summary="Changes by eliastrana">
+      <created>1683032766323</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1683032766323</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -339,12 +352,13 @@
     <MESSAGE value="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it" />
     <MESSAGE value="Fixed all of the communication between link, passage and fileread." />
     <MESSAGE value="Implemented a well-functioning gamelauncher" />
-    <MESSAGE value="Changes by eliastrana" />
     <MESSAGE value="Edited the HauntedHouse.paths story" />
     <MESSAGE value="Added more to HauntedHouse.paths" />
     <MESSAGE value="Rewrote HautedHouse.paths" />
     <MESSAGE value="Added backend for the restart game function" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added backend for the restart game function" />
+    <MESSAGE value="Added a restart button and implemented inventory" />
+    <MESSAGE value="Changes by eliastrana" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by eliastrana" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />
