@@ -6,6 +6,7 @@ import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import edu.ntnu.idatt2001.frontend.Pane1;
+import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -68,6 +69,7 @@ public class PaneGenerator extends Application {
         playerInfo.getChildren().addAll(new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
                 new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory()));
 
+
         playerInfo.setSpacing(20);
         playerInfo.setAlignment(javafx.geometry.Pos.CENTER);
         playerInfo.setId("playerInfo");
@@ -115,7 +117,15 @@ public class PaneGenerator extends Application {
         stage.show();
     }
 
+    private void restartGame() throws IOException {
+        updateContentAndButtons(game.getStory().getOpeningPassage());
+    }
+    private void quitGame() {
+        SceneSwitcher.switchToMainMenu();
+    }
+
     private void updateContentAndButtons(Passage passage) {
+
 
         if (passage == null) {
             throw new IllegalArgumentException("Passage cannot be null");
@@ -139,6 +149,7 @@ public class PaneGenerator extends Application {
             buttonBox.getChildren().add(button);
         }
     }
+
 
 
     public static void main(String[] args) {

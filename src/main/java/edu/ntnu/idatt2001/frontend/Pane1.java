@@ -70,7 +70,7 @@ public class Pane1 extends StackPane {
         playButton.setOnAction(event -> {
 
             System.out.println(processSelectedImage());
-            if (comboBox2 != null) {
+            if (comboBox2.getItems() != null) {
                 // Handle the selected file here
                 CreateGame game = new CreateGame("src/main/resources/paths/"+comboBox2.getValue()+".paths");
                 PaneGenerator gui = null;
@@ -179,8 +179,6 @@ public class Pane1 extends StackPane {
         selectedIndex = imageViews.indexOf(selectedImageView);
         selectedImageView.setEffect(new javafx.scene.effect.InnerShadow(50, Color.BLUEVIOLET));
     }
-
-
 
     public static String processSelectedImage() {
         ImageView selectedImageView = imageViews.get(selectedIndex);

@@ -4,6 +4,7 @@ package edu.ntnu.idatt2001.frontend;
 import edu.ntnu.idatt2001.fileHandling.PlayerRegister;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
@@ -19,6 +20,8 @@ public class Pane3 extends StackPane {
     TextField setPlayerGold = new TextField();
     TextField setPlayerScore = new TextField();
     TextField setPlayerInventory = new TextField();
+
+    ComboBox<String> playerInventory = new ComboBox<>();
 
     public Pane3() {
 
@@ -36,6 +39,8 @@ public class Pane3 extends StackPane {
 
 
 
+
+
         VBox playerCreation = new VBox();
 
         Text createPlayer = new Text("Create player:");
@@ -45,6 +50,8 @@ public class Pane3 extends StackPane {
         setPlayerGold.setPromptText("Enter player gold");
         setPlayerScore.setPromptText("Enter player score");
         setPlayerInventory.setPromptText("Enter player inventory");
+        playerInventory.setPromptText("Enter player inventory");
+
         Button createPlayerButton = new Button("Create player");
         createPlayerButton.setId("confirmButton");
         playerCreation.getChildren().addAll(createPlayer, createPlayerName, setPlayerHealth, setPlayerGold, setPlayerScore, setPlayerInventory, createPlayerButton);
@@ -82,5 +89,9 @@ public class Pane3 extends StackPane {
         getChildren().addAll(structure);
 
     }
+    private void populatePlayerInventory() {
+        playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Fleshlight");
+    }
+
 }
 
