@@ -61,12 +61,34 @@ public class PaneGenerator extends Application {
 
 
 
+        VBox topmenuOptions = new VBox();
+
+        Button restart = new Button("Restart");
+        restart.setId("navigationButton");
+        restart.setOnAction(e -> {
+            try {
+                restartGame();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+
+        Button quitButton = new Button("Quit");
+        quitButton.setId("navigationButton");
+        quitButton.setOnAction(e -> {
+            quitGame();
+            System.out.println("Quitting game");
+        });
+
+
+        topmenuOptions.getChildren().addAll(restart, quitButton);
 
         VBox topInfo = new VBox();
         topInfo.setSpacing(30);
 
         playerInfo = new HBox();
-        playerInfo.getChildren().addAll(new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
+        playerInfo.getChildren().addAll(topmenuOptions, new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
                 new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory()));
 
 

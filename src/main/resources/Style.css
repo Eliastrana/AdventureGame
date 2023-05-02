@@ -73,6 +73,18 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
 }
 
+#smallButton {
+    -fx-background-color: #4ec8cb;
+    -fx-text-fill: white;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Helvetica Neue", sans-serif;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-max-height: 20;
+    -fx-max-width: 60;
+
+}
+
 #contentArea {
     -fx-font-size: 30px;
     -fx-text-fill: #ffffff;

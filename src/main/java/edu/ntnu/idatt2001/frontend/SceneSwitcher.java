@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.frontend;
 
+import edu.ntnu.idatt2001.GUI.PaneGenerator;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;
@@ -29,7 +30,15 @@ public class SceneSwitcher {
 
 
     public static void switchToMainMenu() {
-        stackPane.getChildren().remove(1);
+
+        stackPane.getChildren().clear();
+        primaryStage.close();
+
+        stackPane.getChildren().add(new Pane1());
+
+
+
+
     }
 
     public static StackPane getStackPane() {
