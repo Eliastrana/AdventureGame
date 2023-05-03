@@ -1,8 +1,9 @@
 package edu.ntnu.idatt2001;
 
 
+import edu.ntnu.idatt2001.Action.Action;
+
 import javax.security.auth.login.CredentialNotFoundException;
-import javax.swing.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;

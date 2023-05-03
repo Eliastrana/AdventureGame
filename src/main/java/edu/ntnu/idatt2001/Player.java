@@ -125,9 +125,6 @@ public class Player {
      * @param gold int gold
      */
     public void addGold(int gold) {
-        if (gold < 0) {
-            throw new IllegalArgumentException("Gold cannot be negative");
-        }
         this.gold += gold;
     }
 
@@ -136,9 +133,6 @@ public class Player {
      * @param health int health
      */
     public void addHealth(int health) {
-        if (health < 0) {
-            throw new IllegalArgumentException("Health cannot be negative");
-        }
         this.health += health;
     }
 

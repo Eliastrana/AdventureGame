@@ -39,7 +39,7 @@ public class FileDashboard {
 
 
     public String read(String fileName) {
-        FileRead formatter = new FileRead("src/main/resources/" + fileName + ".paths");
+        FileRead formatter = new FileRead("src/main/resources/paths" + fileName + ".paths");
 
         String formattedStory = formatter.toString();
 

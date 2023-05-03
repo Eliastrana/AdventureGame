@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.GUI;
 
+import edu.ntnu.idatt2001.Action.Action;
 import edu.ntnu.idatt2001.Game;
 import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.Passage;
@@ -168,10 +169,15 @@ public class PaneGenerator extends Application {
             Button button = new Button(link.getText());
             button.setId("navigationButton");
             button.setOnAction(event -> {
+                for (Action action : link.getActions()) {
+                    action.execute(game.getPlayer());
+                }
                 Passage nextPassage = game.go(link);
                 game.getPlayer().setLastPassage(nextPassage);
                 updateContentAndButtons(nextPassage);
+
                 System.out.println(nextPassage.getTitle());
+                System.out.println(game.getPlayer().getHealth());
                 try {
                     FileDashboard.gameSave(nextPassage.getTitle(),"src/main/resources/saveData/"+Pane1.saveName.getText()+".txt");
                 } catch (IOException e) {
