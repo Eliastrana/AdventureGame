@@ -11,7 +11,6 @@ public class GoldAction implements Action {
 
     public void execute(Player player) {
         if (player == null) throw new IllegalArgumentException("Player cannot be null");
-
         player.addGold(gold);
     }
 

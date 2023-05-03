@@ -39,13 +39,16 @@ public class PlayerRegister {
             int health = Integer.parseInt(values[1]);
             int gold = Integer.parseInt(values[2]);
             int score = Integer.parseInt(values[3]);
+            String inventory = values[4];
 
             Player player = new PlayerBuilder()
                     .setName(name)
                     .setHealth(health)
                     .setGold(gold)
                     .setScore(score)
+                    .addToInventory(inventory)
                     .getPlayer();
+
 
             output = "Name: " + name + " Health: " + health + " Gold: " + gold + " Score: " + score;
             System.out.println(output);

@@ -5,16 +5,23 @@ import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
+import edu.ntnu.idatt2001.fileHandling.FileDashboard;
+import edu.ntnu.idatt2001.fileHandling.GameSave;
+import edu.ntnu.idatt2001.frontend.Pane1;
+import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import javafx.application.Application;
+import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.HBox;
-import javafx.scene.layout.VBox;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
+import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
@@ -42,12 +49,51 @@ public class PaneGenerator extends Application {
         titleLabel = new Label(game.begin().getTitle());
         titleLabel.setId("title");
 
+
+
+        Pane characterImage = new Pane();
+        String imageSource = "characterIcons/"+ Pane1.processSelectedImage();
+        Image image = new Image(imageSource);
+        ImageView imageView = new ImageView(image);
+        characterImage.getChildren().add(imageView);
+
+
+
+
+        VBox topmenuOptions = new VBox();
+
+        Button restart = new Button("Restart");
+        restart.setId("navigationButton");
+        restart.setOnAction(e -> {
+            try {
+                restartGame();
+            } catch (IOException ioException) {
+                ioException.printStackTrace();
+            }
+        });
+
+
+        Button quitButton = new Button("Quit");
+        quitButton.setId("navigationButton");
+        quitButton.setOnAction(e -> {
+            try {
+                quitGame();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+            System.out.println("Quitting game");
+        });
+
+
+        topmenuOptions.getChildren().addAll(restart, quitButton);
+
         VBox topInfo = new VBox();
         topInfo.setSpacing(30);
 
         playerInfo = new HBox();
-        playerInfo.getChildren().addAll(new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
-                new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory()));
+        playerInfo.getChildren().addAll(topmenuOptions, new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
+                new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory().get(0)));
+
 
         playerInfo.setSpacing(20);
         playerInfo.setAlignment(javafx.geometry.Pos.CENTER);
@@ -83,6 +129,7 @@ public class PaneGenerator extends Application {
 
 
         root.setTop(topInfo);
+        root.setLeft(characterImage);
         root.setCenter(contentArea);
         root.setBottom(buttonBox);
 
@@ -95,11 +142,21 @@ public class PaneGenerator extends Application {
         stage.show();
     }
 
+    private void restartGame() throws IOException {
+        updateContentAndButtons(game.getStory().getOpeningPassage());
+    }
+    private void quitGame() throws IOException {
+    SceneSwitcher.switchToPane1();
+    }
+
+
     private void updateContentAndButtons(Passage passage) {
+
+
         if (passage == null) {
-            System.out.println("Error: Passage not found.");
-            return;
+            throw new IllegalArgumentException("Passage cannot be null");
         }
+        game.getPlayer().setLastPassage(passage);
 
         titleLabel.setText(passage.getTitle());
         contentArea.setText(passage.getContent());
@@ -111,12 +168,21 @@ public class PaneGenerator extends Application {
             button.setId("navigationButton");
             button.setOnAction(event -> {
                 Passage nextPassage = game.go(link);
+                game.getPlayer().setLastPassage(nextPassage);
                 updateContentAndButtons(nextPassage);
+                System.out.println(nextPassage.getTitle());
+                try {
+                    FileDashboard.gameSave(nextPassage.getTitle(),"src/main/resources/saveData/"+Pane1.saveName.getText()+".txt");
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+
             });
 
             buttonBox.getChildren().add(button);
         }
     }
+
 
 
     public static void main(String[] args) {

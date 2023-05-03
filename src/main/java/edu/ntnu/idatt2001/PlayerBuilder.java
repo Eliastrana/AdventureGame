@@ -8,7 +8,7 @@ public class PlayerBuilder implements Builder {
     private int health;
     private int score;
     private int gold;
-    private ArrayList<String> inventory;
+    private ArrayList<String> inventory = new ArrayList<>();
 
     public PlayerBuilder setName(String name) {
         this.name = name;
@@ -29,14 +29,18 @@ public class PlayerBuilder implements Builder {
         this.gold = gold;
         return this;
     }
+    public PlayerBuilder addToInventory(String inventory) {
+        this.inventory.add(inventory);
+        return this;
+    }
 
 
     @Override
     public Object build() {
-        return new Player(name, health, score, gold);
+        return new Player(name, health, score, gold, inventory);
     }
     public Player getPlayer() {
-        return new Player(name,health,score,gold);
+        return new Player(name,health,score,gold,inventory);
     }
 
 

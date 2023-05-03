@@ -4,16 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Implemented builder pattern to the Player class">
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Added a restart button and implemented inventory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Story.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/CreateGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/CreateGame.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileRead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileRead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Elias.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/Elias.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Vegard.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/Vegard.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" afterDir="false" />
     </list>
-    <list id="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" name="Changes by eliastrana" comment="">
-      <change beforePath="$PROJECT_DIR$/src/main/resources/hauntedHouse.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/hauntedHouse.paths" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pickFile.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/pickFile.paths" afterDir="false" />
+    <list id="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" name="Changes by eliastrana" comment="Changes by eliastrana">
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -42,6 +50,22 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="LineStatusTrackerManager">
+    <file path="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java">
+      <ranges>
+        <range start1="91" end1="92" start2="91" end2="92" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
+        <range start1="144" end1="144" start2="144" end2="145" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
+        <range start1="145" end1="146" start2="146" end2="148" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
+      </ranges>
+    </file>
+    <file path="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java">
+      <ranges>
+        <range start1="2" end1="3" start2="2" end2="2" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
+        <range start1="29" end1="29" start2="28" end2="36" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
+        <range start1="32" end1="41" start2="39" end2="40" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
+      </ranges>
+    </file>
+  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -60,14 +84,17 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
     &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT2001/CardGame&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT1002/idatt1002&quot;,
     &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
     &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
     &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
     &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
     &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
     &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;project.propVCSSupport.DirectoryMappings&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
     &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
 }</component>
@@ -174,6 +201,7 @@
       <workItem from="1679994918923" duration="2526000" />
       <workItem from="1679997565720" duration="26299000" />
       <workItem from="1680169869015" duration="19963000" />
+      <workItem from="1682840549138" duration="14699000" />
     </task>
     <task id="LOCAL-00001" summary="adding the functional files such as pom">
       <created>1678182107521</created>
@@ -221,7 +249,55 @@
       <option name="presentableId" value="LOCAL−00007" />
       <updated>1680022566673</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL−00008" summary="Implemented a well-functioning gamelauncher">
+      <created>1682414026731</created>
+      <option name="number" value="LOCAL−00008" />
+      <option name="presentableId" value="LOCAL−00008" />
+      <updated>1682414026731</updated>
+    </task>
+    <task id="LOCAL−00009" summary="Changes by eliastrana">
+      <created>1682414046391</created>
+      <option name="number" value="LOCAL−00009" />
+      <option name="presentableId" value="LOCAL−00009" />
+      <updated>1682414046391</updated>
+    </task>
+    <task id="LOCAL−00010" summary="Edited the HauntedHouse.paths story">
+      <created>1682421507825</created>
+      <option name="number" value="LOCAL−00010" />
+      <option name="presentableId" value="LOCAL−00010" />
+      <updated>1682421507825</updated>
+    </task>
+    <task id="LOCAL−00011" summary="Added more to HauntedHouse.paths">
+      <created>1682436186967</created>
+      <option name="number" value="LOCAL−00011" />
+      <option name="presentableId" value="LOCAL−00011" />
+      <updated>1682436186967</updated>
+    </task>
+    <task id="LOCAL−00012" summary="Rewrote HautedHouse.paths">
+      <created>1682436535894</created>
+      <option name="number" value="LOCAL−00012" />
+      <option name="presentableId" value="LOCAL−00012" />
+      <updated>1682436535894</updated>
+    </task>
+    <task id="LOCAL−00013" summary="Added backend for the restart game function">
+      <created>1682936689828</created>
+      <option name="number" value="LOCAL−00013" />
+      <option name="presentableId" value="LOCAL−00013" />
+      <updated>1682936689828</updated>
+    </task>
+    <task id="LOCAL−00014" summary="Added a restart button and implemented inventory">
+      <created>1683032748010</created>
+      <option name="number" value="LOCAL−00014" />
+      <option name="presentableId" value="LOCAL−00014" />
+      <updated>1683032748010</updated>
+    </task>
+    <task id="LOCAL−00015" summary="Changes by eliastrana">
+      <created>1683032766323</created>
+      <option name="number" value="LOCAL−00015" />
+      <option name="presentableId" value="LOCAL−00015" />
+      <updated>1683032766323</updated>
+    </task>
+    <option name="localTasksCounter" value="16" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -230,6 +306,11 @@
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
       <map>
+        <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337">
+          <value>
+            <State />
+          </value>
+        </entry>
         <entry key="MAIN">
           <value>
             <State>
@@ -254,6 +335,11 @@
         </entry>
       </map>
     </option>
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337" value="TOOL_WINDOW" />
+      </map>
+    </option>
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
@@ -265,7 +351,14 @@
     <MESSAGE value="Made som changes to Story" />
     <MESSAGE value="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it" />
     <MESSAGE value="Fixed all of the communication between link, passage and fileread." />
-    <option name="LAST_COMMIT_MESSAGE" value="Fixed all of the communication between link, passage and fileread." />
+    <MESSAGE value="Implemented a well-functioning gamelauncher" />
+    <MESSAGE value="Edited the HauntedHouse.paths story" />
+    <MESSAGE value="Added more to HauntedHouse.paths" />
+    <MESSAGE value="Rewrote HautedHouse.paths" />
+    <MESSAGE value="Added backend for the restart game function" />
+    <MESSAGE value="Added a restart button and implemented inventory" />
+    <MESSAGE value="Changes by eliastrana" />
+    <option name="LAST_COMMIT_MESSAGE" value="Changes by eliastrana" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

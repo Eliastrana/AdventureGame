@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.fileHandling;
 
+import edu.ntnu.idatt2001.Game;
+
 import java.io.*;
 import java.util.Scanner;
 import java.util.ArrayList;
@@ -84,8 +86,32 @@ public class FileDashboard {
 
 
 
+    public void writeToFile(String input, String fileName) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            writer.write(input);
+        }
+    }
+
+public static void gameSave(String input, String filePath) throws IOException {
+
+
+        GameSave savaData = new GameSave(filePath);
+        try {
+            savaData.progressSaver(input, filePath);
+            System.out.println("Data written to " + filePath + " successfully.");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
 
 
 
 }
+
+
+
+
+
+
+

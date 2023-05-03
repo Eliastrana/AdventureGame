@@ -1,12 +1,22 @@
 
 
+@font-face {
+    font-family: "Brazie";
+    src: url("/brazie-font/Brazie-51zLz.ttf");
+}
+
 #title {
     -fx-font-size: 80px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
-    -fx-text-fill: #ffffff;
+    -fx-font-family: "Brazie";
+    -fx-fill: #5e3720;
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 2px;
     -fx-padding: 10px;
 }
+
+
+
 
 #playerInfo {
     -fx-font-size: 20px;
@@ -23,30 +33,36 @@
     -fx-background-size: cover;
 }
 
+.MainMenuPane {
+    -fx-background-image: url("mainmenubackground.jpg");
+    -fx-background-repeat: no-repeat;
+    -fx-background-size: cover;
+}
+
 
 
 #mainMenuButton {
-    -fx-background-color: #4ec8cb;
+    -fx-background-color: #5b2c07;
     -fx-text-fill: white;
+    -fx-font-family: Brazie;
     -fx-font-size: 1.2em;
-    -fx-font-family: "Helvetica Neue", sans-serif;
     -fx-border-radius: 5px;
     -fx-padding: 10px 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
 }
 
 #mainMenuButton:hover {
-    -fx-background-color: #249a75;
+    -fx-background-color: #93c5d9;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
 }
 
 
 
 #navigationButton {
-    -fx-background-color: #4ec8cb;
+    -fx-background-color: #944c0f;
     -fx-text-fill: white;
+    -fx-font-family: Brazie;
     -fx-font-size: 1.2em;
-    -fx-font-family: "Helvetica Neue", sans-serif;
     -fx-border-radius: 5px;
     -fx-padding: 10px 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
@@ -57,14 +73,43 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
 }
 
-#contentArea {
-    -fx-font-size: 30px;
-    -fx-text-fill: #ffffff;
+#smallButton {
+    -fx-background-color: #4ec8cb;
+    -fx-text-fill: white;
+    -fx-font-size: 1.2em;
+    -fx-font-family: "Helvetica Neue", sans-serif;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-max-height: 20;
+    -fx-max-width: 60;
 
 }
 
+
+/* set the background color of the pane */
+#savedGamePane {
+    -fx-background-color: #a9cade;
+    -fx-min-height: 50px;
+    -fx-min-width: 150px;
+    -fx-border-radius: 5px; /* add rounded corners */
+    -fx-padding: 10px; /* add some padding */
+    -fx-border-width: 1px; /* add a border */
+    -fx-border-color: #a1c5a1;
+}
+
+/* set the hover effect */
+#savedGamePane:hover {
+    -fx-background-color: #dddddd;
+    -fx-border-color: #aaaaaa;
+}
+
+#contentArea {
+    -fx-font-size: 30px;
+    -fx-text-fill: #ffffff;
+}
+
 #comboBox {
-    -fx-font-size: 20px;
+    -fx-font-size: 13px;
     -fx-text-fill: #ffffff;
     -fx-background-color: #4ec8cb;
     -fx-border-color: #ffffff;
@@ -80,7 +125,7 @@ button:hover {
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
-#backButton{
+#backButton, quitButton{
     font-size: 16px;
     font-weight: bold;
     text-align: center;
@@ -97,6 +142,8 @@ button:hover {
 #backButton:hover {
     background-color: #34495e;
 }
+
+
 
 
 #textField {
@@ -140,7 +187,6 @@ button:hover {
 }
 
 #confirmButton {
-
     -fx-background-color: #000000;
     -fx-text-fill: #ffffff;
     -fx-min-height: 50px;
