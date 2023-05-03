@@ -3,24 +3,29 @@ Haunted House
 ::Beginnings
 You find yourself in a small, dimly lit room. There is a door in front of you.
 [Try to open the door](Another room)
-{HealthAction: -1}
+{HealthAction: -10}
+
 
 ::Another room
 The door opens to another room. You see a desk with a large, dusty book and a boarded-up window.
 [Open the book](The book of spells)
 [Inspect the room](Room inspection)
+{InventoryAction: Beer}
 
 ::Room inspection
 You take a closer look at the room. You notice a faint musty smell in the air and hear a faint whisper coming from behind the door you just entered.
 [Investigate the whisper](Whisper investigation)
+{ScoreAction: 15}
 
 ::Whisper investigation
 You cautiously approach the door and listen intently. The whispering grows louder, but you can't make out what is being said. Suddenly, the door slams shut, making you jump in surprise. You feel a chill run down your spine.
 [Explore the room further](Larger room)
+{HealthAction: -10}
 
 ::The book of spells
 You flip through the pages of the book of spells. Most of the spells seem harmless enough, but a few of them send shivers down your spine. You hear a faint whisper coming from behind the door you just entered.
 [Investigate the whisper](Whisper investigation)
+{InventoryAction: Flask of holy water}
 
 ::Larger room
 You enter a larger room with several pieces of furniture scattered about. You notice a staircase leading up to the next floor.

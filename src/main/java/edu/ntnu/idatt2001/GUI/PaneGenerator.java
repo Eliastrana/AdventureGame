@@ -22,21 +22,15 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import javax.swing.*;
 import java.io.IOException;
 import java.util.List;
 
 public class PaneGenerator extends Application {
-
-
-
     private Game game;
-
     private HBox playerInfo;
     private Label titleLabel;
     private Text contentArea;
     private HBox buttonBox;
-
     VBox topmenuOptions = new VBox();
 
 
@@ -176,8 +170,9 @@ public class PaneGenerator extends Application {
                 }
                 playerInfo.getChildren().clear();
                 playerInfo.getChildren().addAll(topmenuOptions, new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
-                        new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory().get(0)));
+                        new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory()));
 
+                System.out.println(game.getPlayer().getInventory());
                 Passage nextPassage = game.go(link);
                 game.getPlayer().setLastPassage(nextPassage);
                 updateContentAndButtons(nextPassage);

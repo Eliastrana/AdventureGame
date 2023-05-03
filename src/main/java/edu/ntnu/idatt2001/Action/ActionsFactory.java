@@ -16,6 +16,9 @@ public class ActionsFactory {
       if (actionParts.length == 2) {
         String actionType = actionParts[0].trim();
         String actionValue = actionParts[1].trim();
+        System.out.println("actionType: " + actionType);
+        System.out.println("actionValue: " + actionValue);
+        System.out.println(actionType + " " + actionValue);
 
         switch (actionType) {
           case "HealthAction":

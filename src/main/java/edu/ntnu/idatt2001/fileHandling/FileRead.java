@@ -45,7 +45,6 @@ public class FileRead {
                         // Add action to the last link
                         links.get(links.size() - 1).addAction(action);
                     }
-
                 }
                 else if (!line.startsWith("[") && !line.trim().isEmpty()) {
                     // Passage content

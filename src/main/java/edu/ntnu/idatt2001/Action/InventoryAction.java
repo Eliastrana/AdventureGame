@@ -6,6 +6,7 @@ public class InventoryAction implements Action {
     private String item;
 
     InventoryAction(String item) {
+
         this.item = item;
     }
 
