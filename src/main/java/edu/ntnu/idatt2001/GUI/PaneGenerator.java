@@ -67,6 +67,7 @@ public class PaneGenerator extends Application {
         restart.setOnAction(e -> {
             try {
                 restartGame();
+                FileDashboard.gameSave(game.getStory().getOpeningPassage().getTitle(), "src/main/resources/saveData/"+ Pane1.saveName.getText() +".txt");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }

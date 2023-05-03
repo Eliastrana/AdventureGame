@@ -98,7 +98,7 @@ public static void gameSave(String input, String filePath) throws IOException {
         GameSave savaData = new GameSave(filePath);
         try {
             savaData.progressSaver(input, filePath);
-            System.out.println("Data written to " + filePath + " successfully.");
+            //System.out.println("Data written to " + filePath + " successfully.");
         } catch (IOException e) {
             e.printStackTrace();
         }

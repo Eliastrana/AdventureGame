@@ -53,74 +53,42 @@ public class Pane1 extends StackPane {
         File savedGamesfolder = new File("src/main/resources/saveData/");
         File[] listOfFiles = savedGamesfolder.listFiles();
 
-        for (File file : listOfFiles) {
-            if (file.isFile()) {
+// Sort files by last modified timestamp in descending order
+        Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
 
+        int count = 0;
+        for (File file : listOfFiles) {
+            if (file.isFile() && count < 3) { // Only process the first three files
                 StackPane pane = new StackPane();
-                pane.setPadding(new Insets(10));
-                pane.setPrefSize(120, 50);
+                pane.setId("savedGamePane");
 
                 Rectangle background = new Rectangle();
                 background.setId("savedGamePane");
-                background.setWidth(120);
-                background.setHeight(50);
-                background.setArcWidth(20);
-                background.setArcHeight(20);
-                background.setFill(Color.rgb(255, 255, 255, 0.8));
-
-
 
                 VBox savedGameContent = new VBox();
                 Text savedGameText = new Text(SaveFileReader.fileParser(file.getPath()));
+                savedGameText.setId("savedGameText");
                 savedGameContent.getChildren().add(savedGameText);
 
                 content.setAlignment(Pos.CENTER);
                 content.setSpacing(5);
 
                 pane.setOnMouseClicked(e -> {
-
                     CreateGame game = new CreateGame("src/main/resources/paths/"+"hauntedHouse"+".paths");
-
-                    //String playerStats = "Character: " + comboBox.getValue() + "\n" + "Path: " + comboBox2.getValue() + "\n";
                     try {
-                        //FileDashboard.gameSave(playerStats, "src/main/resources/saveData/"+saveName.getText()+".txt");
+                        PaneGenerator gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/" + "warrior" + ".paths"));
 
-
-                        PaneGenerator gui = null;
-                        try {
-                            //processSelectedImage();
-                            gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/" + "warrior" + ".paths"));
-
-                            gui.start(primaryStage);
-                            primaryStage.setFullScreen(true);
-                        } catch (IOException ex) {
-                            throw new RuntimeException(ex);
-
-                        }
-                    } finally {
-
+                        gui.start(primaryStage);
+                        primaryStage.setFullScreen(true);
+                    } catch (IOException ex) {
+                        throw new RuntimeException(ex);
                     }
-
-
-//                    CreateGame game = new CreateGame("src/main/resources/paths/hauntedHouse.paths");
-//                    PaneGenerator gui = null;
-//
-//                    try {
-//                        gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/warrior.paths"));
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//
-//                    try {
-//                        gui.start(primaryStage);
-//                    } catch (IOException ex) {
-//                        throw new RuntimeException(ex);
-//                    }
-//                    primaryStage.setFullScreen(true);
                 });
 
                 pane.getChildren().addAll(background, savedGameContent);
                 savedGames.getChildren().add(pane);
+
+                count++;
             }
         }
 
@@ -180,7 +148,6 @@ public class Pane1 extends StackPane {
                 try {
                     //processSelectedImage();
                     gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/"+comboBox.getValue()+".paths"));
-                    FileDashboard.gameSave(comboBox.getValue(), "src/main/resources/saveData/"+saveName.getText()+".txt");
 
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -213,12 +180,7 @@ public class Pane1 extends StackPane {
                 }
             }
         }
-
-
-
-
         imageBox.getChildren().addAll(imageViews);
-
 
         Button openButton = new Button("Import game from desktop");
         openButton.setId("navigationButton");
