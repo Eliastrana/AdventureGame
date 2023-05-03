@@ -37,6 +37,9 @@ public class PaneGenerator extends Application {
     private Text contentArea;
     private HBox buttonBox;
 
+    VBox topmenuOptions = new VBox();
+
+
 
 
     public PaneGenerator(Game game) {
@@ -61,7 +64,6 @@ public class PaneGenerator extends Application {
 
 
 
-        VBox topmenuOptions = new VBox();
 
         Button restart = new Button("Restart");
         restart.setId("navigationButton");
@@ -172,6 +174,10 @@ public class PaneGenerator extends Application {
                 for (Action action : link.getActions()) {
                     action.execute(game.getPlayer());
                 }
+                playerInfo.getChildren().clear();
+                playerInfo.getChildren().addAll(topmenuOptions, new Label("Player: " + game.getPlayer().getName()), new Label("Health: " + game.getPlayer().getHealth()),
+                        new Label ("Gold: " + game.getPlayer().getGold()), new Label ("Score: " + game.getPlayer().getScore()), new Label ("Inventory: " + game.getPlayer().getInventory().get(0)));
+
                 Passage nextPassage = game.go(link);
                 game.getPlayer().setLastPassage(nextPassage);
                 updateContentAndButtons(nextPassage);
