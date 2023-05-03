@@ -4,25 +4,24 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="Added a restart button and implemented inventory">
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="pushing the save data directory">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Elias.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/Elias.paths" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Vegard.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/Vegard.paths" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/NOTworking/AdventureGame.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/NOTworking/GUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/NOTworking/OutcommendedGUIcode.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/eliastest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/lasttest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/megatest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/morgentest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pickFile.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/sillytest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/testStory.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/testigjen.paths.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/testwithnew.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/thetrolllair.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/trashtest.paths" beforeDir="false" />
     </list>
-    <list id="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" name="Changes by eliastrana" comment="Changes by eliastrana">
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" afterDir="false" />
-    </list>
+    <list id="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" name="Changes by eliastrana" comment="Changes by eliastrana" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -50,22 +49,6 @@
     </option>
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
-  <component name="LineStatusTrackerManager">
-    <file path="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java">
-      <ranges>
-        <range start1="91" end1="92" start2="91" end2="92" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="144" end1="144" start2="144" end2="145" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
-        <range start1="145" end1="146" start2="146" end2="148" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
-      </ranges>
-    </file>
-    <file path="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java">
-      <ranges>
-        <range start1="2" end1="3" start2="2" end2="2" changelist="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" />
-        <range start1="29" end1="29" start2="28" end2="36" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-        <range start1="32" end1="41" start2="39" end2="40" changelist="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" />
-      </ranges>
-    </file>
-  </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
@@ -77,27 +60,28 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
-    &quot;last_opened_file_path&quot;: &quot;C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT1002/idatt1002&quot;,
-    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
-    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
-    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "RunOnceActivity.OpenProjectViewOnStart": "true",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+    "WebServerToolWindowFactoryState": "false",
+    "codeWithMe.voiceChat.enabledByDefault": "false",
+    "git-widget-placeholder": "main",
+    "last_opened_file_path": "C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT1002/idatt1002",
+    "list.type.of.created.stylesheet": "CSS",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.pluginManager",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
       <recent name="F:\Kode\adventuregame\src\main\java\edu\ntnu\idatt2001\GUI" />
@@ -304,6 +288,11 @@
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
+    <option name="OPEN_GENERIC_TABS">
+      <map>
+        <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337" value="TOOL_WINDOW" />
+      </map>
+    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337">
@@ -333,11 +322,6 @@
             </State>
           </value>
         </entry>
-      </map>
-    </option>
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337" value="TOOL_WINDOW" />
       </map>
     </option>
   </component>
