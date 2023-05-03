@@ -5,7 +5,6 @@ import edu.ntnu.idatt2001.Player;
 public class HealthAction implements Action {
     private int health;
     public HealthAction(int health) {
-
         this.health = health;
     }
 

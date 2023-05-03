@@ -1,6 +1,8 @@
 package edu.ntnu.idatt2001.fileHandling;
 
 import edu.ntnu.idatt2001.*;
+import edu.ntnu.idatt2001.Action.Action;
+import edu.ntnu.idatt2001.Action.ActionsFactory;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -36,7 +38,16 @@ public class FileRead {
                         links = new ArrayList<>();
                     }
                     title = line.substring(2).trim(); // Remove the "::" prefix and trim the title
-                } else if (!line.startsWith("[") && !line.trim().isEmpty()) {
+                }
+                else if (line.startsWith("{")) {
+                    Action action = ActionsFactory.createAction(line);
+                    if (action != null) {
+                        // Add action to the last link
+                        links.get(links.size() - 1).addAction(action);
+                    }
+
+                }
+                else if (!line.startsWith("[") && !line.trim().isEmpty()) {
                     // Passage content
                     if (contentBuilder.length() > 0) {
                         contentBuilder.append("\n");
@@ -54,6 +65,7 @@ public class FileRead {
 
                     links.add(new Link(textInsideBrackets, textInsideParentheses, new ArrayList<>()));
                 }
+
             }
             // Add the last passage
             if (title != null) {
@@ -81,7 +93,7 @@ public class FileRead {
 
     public static void main(String[] args) {
         try {
-            String filePath = "src/main/resources/hauntedHouse.paths";
+            String filePath = "src/main/resources/paths/hauntedHouseWithActions.paths";
             FileRead fileRead = new FileRead(filePath);
 
             for (Passage passage : fileRead.formatPathsFile()) {
