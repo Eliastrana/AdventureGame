@@ -14,11 +14,11 @@ public class GoldAction implements Action {
         if (player == null) throw new IllegalArgumentException("Player cannot be null");
         player.addGold(gold);
 
-//        if (gold > 0){
-//            SoundPlayer.play("src/main/resources/sounds/positivesound.wav");
-//        } else {
-//            SoundPlayer.play("src/main/resources/sounds/negativesound.wav");
-//        }
+        if (gold > 0){
+            SoundPlayer.play("src/main/resources/sounds/coins.wav");
+        } else {
+            SoundPlayer.play("src/main/resources/sounds/negativesound.wav");
+        }
     }
 
 }

@@ -15,11 +15,11 @@ public class ScoreAction implements Action {
     public void execute(Player player) {
         if (player == null) throw new IllegalArgumentException("Player cannot be null");
 
-//        if (points > 0){
-//            SoundPlayer.playOnLoop("src/main/resources/sounds/positivesound.wav");
-//        } else {
-//            SoundPlayer.play("src/main/resources/sounds/negativesound.wav");
-//        }
+        if (points > 0){
+            SoundPlayer.play("src/main/resources/sounds/positivesound.wav");
+        } else {
+            SoundPlayer.play("src/main/resources/sounds/negativesound.wav");
+        }
 
         player.addScore(points);
 

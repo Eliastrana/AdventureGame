@@ -12,6 +12,8 @@ import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.application.Application;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.value.ObservableValue;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -22,6 +24,8 @@ import javafx.scene.layout.*;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import javafx.beans.value.ChangeListener;
+
 
 import java.io.File;
 import java.io.FileInputStream;
@@ -36,16 +40,6 @@ public class PaneGenerator extends Application {
     private HBox buttonBox;
     HBox topmenuOptions = new HBox();
 
-    ImageView iconImageView = new ImageView();
-
-
-    Pane itemImage = new Pane();
-
-    Label itemLabel = new Label();
-
-
-
-
 
     public PaneGenerator(Game game) {
         this.game = game;
@@ -54,14 +48,13 @@ public class PaneGenerator extends Application {
     @Override
     public void start(Stage stage) throws IOException {
 
-
         titleLabel = new Label(game.begin().getTitle());
         titleLabel.setId("title");
 
         SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
 
         Pane characterImage = new Pane();
-        String imageSource = "characterIcons/"+ Pane1.processSelectedImage();
+        String imageSource = "characterIcons/" + Pane1.processSelectedImage();
         Image image = new Image(imageSource);
         ImageView imageView = new ImageView(image);
         characterImage.getChildren().add(imageView);
@@ -71,7 +64,7 @@ public class PaneGenerator extends Application {
         restart.setOnAction(e -> {
             try {
                 restartGame();
-                FileDashboard.gameSave(game.getStory().getOpeningPassage().getTitle(), "src/main/resources/saveData/"+ Pane1.saveName.getText() +".txt");
+                FileDashboard.gameSave(game.getStory().getOpeningPassage().getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -118,6 +111,7 @@ public class PaneGenerator extends Application {
         topInfo.setAlignment(javafx.geometry.Pos.CENTER);
         topInfo.setPadding(new javafx.geometry.Insets(20, 20, 20, 20));
 
+
         root.setTop(topInfo);
         root.setLeft(characterImage);
 
@@ -161,14 +155,12 @@ public class PaneGenerator extends Application {
             itemBox.setSpacing(10);
             itemBox.setAlignment(Pos.CENTER);
 
-            playerInfo.getChildren().addAll(topmenuOptions, nameLabel, healthLabel, goldLabel, scoreLabel,inventoryLabel, itemBox);
+            playerInfo.getChildren().addAll(topmenuOptions, nameLabel, healthLabel, goldLabel, scoreLabel, inventoryLabel, itemBox);
 
         } catch (Exception e) {
             System.err.println("Could not show player info: " + e.getMessage()); // handle specific exception
         }
     }
-
-
 
     private void restartGame() throws IOException {
         updateContentAndButtons(game.getStory().getOpeningPassage());
@@ -176,10 +168,8 @@ public class PaneGenerator extends Application {
 
     }
 
-
-
     private void quitGame() throws IOException {
-    SceneSwitcher.switchToPane1();
+        SceneSwitcher.switchToPane1();
     }
 
 
@@ -197,6 +187,8 @@ public class PaneGenerator extends Application {
             Button button = new Button(link.getText());
             button.setId("navigationButton");
             button.setOnAction(event -> {
+
+
                 for (Action action : link.getActions()) {
                     action.execute(game.getPlayer());
                 }
@@ -208,7 +200,7 @@ public class PaneGenerator extends Application {
                 updateContentAndButtons(nextPassage);
 
                 try {
-                    FileDashboard.gameSave(nextPassage.getTitle(),"src/main/resources/saveData/"+Pane1.saveName.getText()+".txt");
+                    FileDashboard.gameSave(nextPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
                 } catch (IOException e) {
                     throw new RuntimeException(e);
                 }
@@ -218,7 +210,8 @@ public class PaneGenerator extends Application {
         }
     }
 
-    public static void main(String[] args) {
+    public static void main (String[]args){
         launch(args);
     }
+
 }
