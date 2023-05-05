@@ -10,6 +10,12 @@ import java.io.FileReader;
 public class PlayerRegister {
 
     public static void saveTextToFile(String text, String filename) {
+        if (text.isBlank()) {
+            throw new IllegalArgumentException("Text is blank");
+        }
+        if (filename.isBlank()) {
+            throw new IllegalArgumentException("Filename is blank");
+        }
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
             String[] words = text.split("\\s+"); // Split the text into words

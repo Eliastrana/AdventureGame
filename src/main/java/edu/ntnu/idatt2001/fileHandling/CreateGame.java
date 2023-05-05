@@ -9,13 +9,30 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+/**
+ * A class that creates a game from a file.
+ *
+ */
+
 public class CreateGame {
     String filePath;
     Story story;
 
+    /**
+     * Constructor for CreateGame
+     * @param filepath String filepath
+     */
+
     public CreateGame(String filepath) {
+
         this.filePath = filepath;
     }
+
+    /**
+     * Method that launches the game
+     * @return Story
+     * @throws IOException IOException
+     */
 
     public Story launchGame() throws IOException {
         FileRead fileRead = new FileRead(filePath);
@@ -49,6 +66,12 @@ public class CreateGame {
         return story;
     }
 
+    /**
+     * Method that generates the story
+     * @param story Story
+     * @return String with all passages
+     */
+
     public String storyGenerator(Story story) {
         String totalStory = story.getOpeningPassage().getTitle() + story.getOpeningPassage().getContent();
         for (Passage passage : story.getPassages()) {
@@ -57,6 +80,13 @@ public class CreateGame {
 
         return totalStory;
     }
+
+    /**
+     * Method that generates the game
+     * @param playerFilepath String filepath
+     * @return Game
+     * @throws IOException IOException
+     */
 
     public Game gameGenerator(String playerFilepath) throws IOException {
         PlayerRegister playerRegister = new PlayerRegister();

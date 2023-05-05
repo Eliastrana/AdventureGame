@@ -50,8 +50,5 @@ public class Game {
         return story.getPassage(link);
     }
 
-    public static void main(String[] args) {
-
-    }
 }
 
