@@ -115,6 +115,14 @@
     -fx-padding: 10px;
 }
 
+
+#iconImage {
+
+    -fx-max-height: 50px;
+    -fx-max-width: 50px;
+
+
+}
 #contentArea {
     -fx-font-size: 30px;
     -fx-text-fill: #ffffff;

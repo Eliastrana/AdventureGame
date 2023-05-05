@@ -91,7 +91,7 @@ public class Pane3 extends StackPane {
 
     }
     private void populatePlayerInventory() {
-        playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Fleshlight");
+        playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
     }
 
 }

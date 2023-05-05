@@ -10,7 +10,7 @@ import java.util.stream.Collectors;
 public class Story {
 
     private final String title;
-    private final Passage openingPassage;
+    private Passage openingPassage;
     private final Map<String, Passage> passages;
 
     public Story(String title, Passage openingPassage) {
@@ -35,6 +35,12 @@ public class Story {
      */
     public Passage getOpeningPassage() {
         return openingPassage;
+    }
+
+
+
+    public void setOpeningPassage(Passage openingPassage) {
+        this.openingPassage = openingPassage;
     }
 
     /**
@@ -100,10 +106,8 @@ public class Story {
      * @return List containing all the passages in the story.
      */
     public Collection<Passage> getPassages() {
+
         return passages.values();
     }
-    public static void main(String[] args) {
-        Story story = new Story("The story", new Passage("The beginning", "Once upon a time..."));
-        System.out.println("Title: "+ story.getTitle() +"\n"+"Passages: "+ story.getPassages()+"\n"+ "Opening passage: " + story.openingPassage.toString());
-    }
+
 }

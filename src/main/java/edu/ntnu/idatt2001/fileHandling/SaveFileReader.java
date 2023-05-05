@@ -1,8 +1,15 @@
 package edu.ntnu.idatt2001.fileHandling;
 
+import edu.ntnu.idatt2001.GUI.PaneGenerator;
+import javafx.stage.Stage;
+
 import java.io.*;
 
+
 public class SaveFileReader {
+
+
+
 
     public static String fileParser(String filePath) throws IOException {
         File file = new File(filePath);
@@ -24,9 +31,27 @@ public class SaveFileReader {
     }
 
 
-    public static String loadGame(String filePath) throws IOException {
-        return fileParser(filePath);
+
+    public static void openSavedGame() throws IOException {
+
+        String openFile = fileParser("src/main/resources/saveData/save.txt");
+
+        String[] split = openFile.split("\n");
+        String image = split[0];
+        String name = split[1];
+        String path = split[2];
+        String lastSeenPassage = split[3];
+
+
+
+
     }
+
+
+
+
+
+
     public static void main(String[] args) {
         try {
             System.out.println(fileParser("src/main/resources/saveData/Eliastirsdag.txt"));

@@ -7,6 +7,7 @@ import edu.ntnu.idatt2001.Game;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
+import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
@@ -28,6 +29,7 @@ import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
+import static edu.ntnu.idatt2001.fileHandling.SaveFileReader.openSavedGame;
 import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 public class Pane1 extends StackPane {
@@ -53,7 +55,6 @@ public class Pane1 extends StackPane {
         File savedGamesfolder = new File("src/main/resources/saveData/");
         File[] listOfFiles = savedGamesfolder.listFiles();
 
-// Sort files by last modified timestamp in descending order
         Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
 
         int count = 0;
@@ -74,12 +75,8 @@ public class Pane1 extends StackPane {
                 content.setSpacing(5);
 
                 pane.setOnMouseClicked(e -> {
-                    CreateGame game = new CreateGame("src/main/resources/paths/"+"hauntedHouse"+".paths");
                     try {
-                        PaneGenerator gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/" + "warrior" + ".paths"));
-
-                        gui.start(primaryStage);
-                        primaryStage.setFullScreen(true);
+                        openSavedGame();
                     } catch (IOException ex) {
                         throw new RuntimeException(ex);
                     }
@@ -125,42 +122,33 @@ public class Pane1 extends StackPane {
         Button playButton = new Button("Play");
         playButton.setId("navigationButton");
         playButton.setOnAction(event -> {
-
             try {
-                FileDashboard.gameSave(processSelectedImage(), "src/main/resources/saveData/"+saveName.getText()+".txt");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(processSelectedImage());
-            if (comboBox2.getItems() != null) {
-                // Handle the selected file here
-                CreateGame game = new CreateGame("src/main/resources/paths/"+comboBox2.getValue()+".paths");
+                FileDashboard.gameSave(processSelectedImage(), "src/main/resources/saveData/" + saveName.getText() + ".txt");
+                System.out.println(processSelectedImage());
 
-                String playerStats = "Character: " + comboBox.getValue() + "\n" + "Path: " + comboBox2.getValue() + "\n";
+                if (comboBox2.getItems() != null) {
+                    // Handle the selected file here
+                    CreateGame game = new CreateGame("src/main/resources/paths/" + comboBox2.getValue() + ".paths");
 
-                try {
-                    FileDashboard.gameSave(playerStats, "src/main/resources/saveData/"+saveName.getText()+".txt");
+                    String playerStats = "Character: " + comboBox.getValue() + "\n" + "Path: " + comboBox2.getValue() + "\n";
+                    FileDashboard.gameSave(playerStats, "src/main/resources/saveData/" + saveName.getText() + ".txt");
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                PaneGenerator gui = null;
-                try {
-                    //processSelectedImage();
-                    gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/"+comboBox.getValue()+".paths"));
+                    PaneGenerator gui;
 
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                try {
+                    gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/" + comboBox.getValue() + ".paths"));
                     gui.start(primaryStage);
                     primaryStage.setFullScreen(true);
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
                 }
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("An error occurred");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
             }
         });
+
+
 
 
         HBox imageBox = new HBox();

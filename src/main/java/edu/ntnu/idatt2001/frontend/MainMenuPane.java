@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.frontend;
 
 
+import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -46,16 +47,27 @@ public class MainMenuPane extends VBox {
         setAlignment(Pos.CENTER);
 
 
-
         button1.setOnAction(e -> {
             try {
                 SceneSwitcher.switchToPane(new Pane1());
+                SoundPlayer.play("src/main/resources/sounds/click.wav");
             } catch (IOException ex) {
                 throw new RuntimeException(ex);
             }
         });
-        button2.setOnAction(e -> SceneSwitcher.switchToPane(new Pane2()));
-        button3.setOnAction(e -> SceneSwitcher.switchToPane(new Pane3()));
-        button4.setOnAction(e -> SceneSwitcher.switchToPane(new Pane4()));
+        button2.setOnAction(e -> {
+            SceneSwitcher.switchToPane(new Pane2());
+            SoundPlayer.play("src/main/resources/sounds/click.wav");
+        });
+        button3.setOnAction(e -> {
+            SceneSwitcher.switchToPane(new Pane3());
+            SoundPlayer.play("src/main/resources/sounds/click.wav");
+        });
+        button4.setOnAction(e -> {
+            SceneSwitcher.switchToPane(new Pane4());
+            SoundPlayer.play("src/main/resources/sounds/click.wav");
+        });
+
+
     }
 }
