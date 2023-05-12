@@ -4,6 +4,7 @@ package edu.ntnu.idatt2001.frontend;
 import edu.ntnu.idatt2001.GUI.PaneGenerator;
 import edu.ntnu.idatt2001.GUI.PathsFileGUI;
 import edu.ntnu.idatt2001.Game;
+import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
@@ -123,22 +124,60 @@ public class Pane1 extends StackPane {
         playButton.setId("navigationButton");
         playButton.setOnAction(event -> {
             try {
+
+
                 FileDashboard.gameSave(processSelectedImage(), "src/main/resources/saveData/" + saveName.getText() + ".txt");
                 System.out.println(processSelectedImage());
+
 
                 if (comboBox2.getItems() != null) {
                     // Handle the selected file here
                     CreateGame game = new CreateGame("src/main/resources/paths/" + comboBox2.getValue() + ".paths");
 
+                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
+
+
                     String playerStats = "Character: " + comboBox.getValue() + "\n" + "Path: " + comboBox2.getValue() + "\n";
                     FileDashboard.gameSave(playerStats, "src/main/resources/saveData/" + saveName.getText() + ".txt");
 
                     PaneGenerator gui;
+                    Game gameCreated = game.gameGenerator("src/main/resources/characters/" + comboBox.getValue() + ".paths");
 
-                    gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/" + comboBox.getValue() + ".paths"));
-                    gui.start(primaryStage);
-                    primaryStage.setFullScreen(true);
-                }
+                    if (gameCreated.getStory().getBrokenLinks().size() != 0) {
+                        Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
+                        brokenLinks.setTitle("Warning");
+                        brokenLinks.setHeaderText("Broken links");
+                        brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()
+                                + "\n" + "The following links are broken: " + gameCreated.getStory().getBrokenLinks());
+
+                        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                        ButtonType removeButton = new ButtonType("Remove", ButtonBar.ButtonData.APPLY);
+
+                        brokenLinks.getButtonTypes().addAll(cancelButton, removeButton);
+
+                        Optional<ButtonType> result = brokenLinks.showAndWait();
+                        if (result.isPresent()) {
+                            if (result.get() == cancelButton) {
+                                return;
+                            } else if (result.get() == removeButton) {
+                                List<Link> brokenLinksList = gameCreated.getStory().getBrokenLinks();
+                                for (Link link : brokenLinksList) {
+                                    gameCreated.getStory().removePassage(link);
+                                }
+                            }
+                        }
+                    }
+
+
+
+                    gui = new PaneGenerator(gameCreated);
+
+                gui.start(primaryStage);
+                primaryStage.setFullScreen(true);
+
+
+            }
+
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
                 alert.setTitle("Error");

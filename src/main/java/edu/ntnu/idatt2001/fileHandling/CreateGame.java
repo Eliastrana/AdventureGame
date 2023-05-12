@@ -52,17 +52,6 @@ public class CreateGame {
             }
         }
 
-
-//        for (Passage passage : passages) {
-//            story.addPassage(passage);
-//            System.out.println("Legger til story.");
-//        }
-//        for (int i = 1; i < passages.size(); i++) {
-//            Passage passage = passages.get(i);
-//            story.addPassage(passage);
-//            System.out.println("Legger til story.");
-//        }
-
         return story;
     }
 
@@ -89,10 +78,19 @@ public class CreateGame {
      */
 
     public Game gameGenerator(String playerFilepath) throws IOException {
-        PlayerRegister playerRegister = new PlayerRegister();
-        Player player = playerRegister.characterInforVariable(playerFilepath);
+        Player player = playerGenerator(playerFilepath);
         Story story = launchGame();
         return new Game(player, story, new ArrayList<>());
+    }
+
+    /**
+     * Method that generates the player
+     * @param playerFilepath String filepath
+     * @return Player
+     */
+    public Player playerGenerator(String playerFilepath) {
+        PlayerRegister playerRegister = new PlayerRegister();
+        return playerRegister.characterInforVariable(playerFilepath);
     }
 
 

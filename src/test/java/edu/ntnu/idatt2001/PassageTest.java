@@ -8,7 +8,7 @@ import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
-
+class PassageTest {
   @Nested
   @DisplayName("Constructor Test")
   class PassageConstructorTest {
@@ -21,6 +21,7 @@ import static org.junit.jupiter.api.Assertions.*;
       assertEquals("Content", passage.getContent());
       assertEquals(0, passage.getLinks().size());
     }
+
     @Test
     @DisplayName("Test constructor with null title")
     void constructorTestWithNullTitle() {
@@ -45,6 +46,7 @@ import static org.junit.jupiter.api.Assertions.*;
       assertThrows(IllegalArgumentException.class, () -> new Passage("Title", ""));
     }
   }
+
   @Nested
   @DisplayName("Getters Test")
   class PassageGettersTest {
@@ -79,9 +81,10 @@ import static org.junit.jupiter.api.Assertions.*;
     @DisplayName("Test valid addLink")
     void addLink() {
       Passage passage = new Passage("Title", "Content");
-      passage.addLink(new Link("testText","testReference",new ArrayList<>()));
+      passage.addLink(new Link("testText", "testReference", new ArrayList<>()));
       assertEquals(1, passage.getLinks().size());
     }
+
     @Test
     @DisplayName("Test addLink with null link")
     void addLinkWithNullLink() {
@@ -100,18 +103,18 @@ import static org.junit.jupiter.api.Assertions.*;
     void hasLink() {
       Passage passage = new Passage("Title", "Content");
       assertFalse(passage.hasLink());
-      passage.addLink(new Link("testText","testReference" , new ArrayList<>()));
+      passage.addLink(new Link("testText", "testReference", new ArrayList<>()));
       assertTrue(passage.hasLink());
     }
 
 
+    @Test
+    void testEquals() {
+    }
 
-  @Test
-  void testEquals() {
+    @Test
+    void testHashCode() {
+    }
   }
-
-  @Test
-  void testHashCode() {
-  }
-  }
+}
 

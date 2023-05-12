@@ -40,7 +40,11 @@ public class PaneGenerator extends Application {
     private HBox buttonBox;
     HBox topmenuOptions = new HBox();
 
-
+    Label nameLabel = new Label();
+    Label healthLabel = new Label();
+    Label goldLabel = new Label();
+    Label scoreLabel = new Label();
+    Label inventoryLabel = new Label();
     public PaneGenerator(Game game) {
         this.game = game;
     }
@@ -119,7 +123,7 @@ public class PaneGenerator extends Application {
         root.setBottom(buttonBox);
 
         Scene scene = new Scene(root, 800, 600);
-        scene.getStylesheets().add("Style.css");
+        scene.getStylesheets().add("/Style.css");
 
         stage.setScene(scene);
         stage.setTitle(game.getStory().getTitle());
@@ -129,13 +133,13 @@ public class PaneGenerator extends Application {
     public void updatePlayerInfo() {
         try {
             playerInfo.getChildren().clear(); // remove existing child nodes
-
+            nameLabel.setText("Player: " + game.getPlayer().getName());
+            healthLabel.setText("Health: " + game.getPlayer().getHealth());
+            goldLabel.setText("Gold: " + game.getPlayer().getGold());
+            scoreLabel.setText("Score: " + game.getPlayer().getScore());
+            inventoryLabel.setText("Inventory: ");
             // create new labels with updated player info
-            Label nameLabel = new Label("Player: " + game.getPlayer().getName());
-            Label healthLabel = new Label("Health: " + game.getPlayer().getHealth());
-            Label goldLabel = new Label("Gold: " + game.getPlayer().getGold());
-            Label scoreLabel = new Label("Score: " + game.getPlayer().getScore());
-            Label inventoryLabel = new Label("Inventory: ");
+
             HBox itemBox = new HBox(); // create HBox to hold item labels and images
             for (String item : game.getPlayer().getInventory()) {
                 String imagePath = "src/main/resources/items/" + item + ".png";
@@ -165,7 +169,7 @@ public class PaneGenerator extends Application {
     private void restartGame() throws IOException {
         updateContentAndButtons(game.getStory().getOpeningPassage());
         playerInfo.getChildren().clear();
-
+        updatePlayerInfo();
     }
 
     private void quitGame() throws IOException {
@@ -177,38 +181,43 @@ public class PaneGenerator extends Application {
         if (passage == null) {
             throw new IllegalArgumentException("Passage cannot be null");
         }
+
         game.getPlayer().setLastPassage(passage);
         titleLabel.setText(passage.getTitle());
         contentArea.setText(passage.getContent());
         buttonBox.getChildren().clear();
+
         List<Link> links = passage.getLinks();
         for (Link link : links) {
             SoundPlayer.play("src/main/resources/sounds/click.wav");
+
             Button button = new Button(link.getText());
             button.setId("navigationButton");
             button.setOnAction(event -> {
-
-
                 for (Action action : link.getActions()) {
                     action.execute(game.getPlayer());
                 }
 
+                Passage nextPassage = game.go(link);
+                if (nextPassage.hasLink()) {
+                    game.getPlayer().setLastPassage(nextPassage);
+                    updateContentAndButtons(nextPassage);
+                    try {
+                        FileDashboard.gameSave(nextPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+                    } catch (IOException e) {
+                        throw new RuntimeException(e);
+                    }
+                }
+
+
                 playerInfo.getChildren().clear();
                 updatePlayerInfo();
-                Passage nextPassage = game.go(link);
-                game.getPlayer().setLastPassage(nextPassage);
-                updateContentAndButtons(nextPassage);
-
-                try {
-                    FileDashboard.gameSave(nextPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
             });
 
             buttonBox.getChildren().add(button);
         }
     }
+
 
     public static void main (String[]args){
         launch(args);

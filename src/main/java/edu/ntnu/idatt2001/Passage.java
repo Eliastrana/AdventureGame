@@ -103,19 +103,10 @@ public class Passage {
      * @return boolean true/false
      */
     public boolean hasLink() {
-
         return !links.isEmpty();
     }
 
-    /**
-     * Returns the links of the passage.
-     * @return String with all the links
-     */
 
-    //@Override
-    //public String toString() {
-    //   return super.toString();
-    //}
 
     @Override
     public String toString() {

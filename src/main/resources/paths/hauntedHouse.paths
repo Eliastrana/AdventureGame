@@ -8,7 +8,7 @@ You find yourself in a small, dimly lit room. There is a door in front of you.
 
 ::Another room
 The door opens to another room. You see a desk with a large, dusty book and a boarded-up window.
-[Open the book](The book of spells)
+[Open the book](none)
 [Inspect the room](Room inspection)
 {InventoryAction: Beer}
 

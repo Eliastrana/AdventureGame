@@ -74,7 +74,7 @@ public class Story {
      * @param link Link containing the link to the passage
      */
     public void removePassage(Link link) {
-        Objects.requireNonNull(link, "Link cannot be null");
+        Objects.requireNonNull(link, "Link provided cannot be null");
 
         boolean isLinkInUse = passages.values()
                 .stream()
@@ -82,11 +82,13 @@ public class Story {
 
         if (isLinkInUse) {
             System.out.println("Link is already in use");
+            // Add debug information if needed
+            System.out.println("Link: " + link);
             return;
         }
-
         passages.remove(link.getReference());
     }
+
 
     /**
      * Returns a list with all the broken links.

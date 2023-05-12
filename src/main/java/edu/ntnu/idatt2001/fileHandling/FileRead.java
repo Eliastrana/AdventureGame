@@ -26,8 +26,11 @@ public class FileRead {
             String title = null;
             StringBuilder contentBuilder = new StringBuilder();
             List<Link> links = new ArrayList<>();
+            int lineNumber = 0;
 
             while ((line = reader.readLine()) != null) {
+                lineNumber++;
+
                 if (line.startsWith("::")) {
                     // Start of new passage
                     if (title != null) {
@@ -38,15 +41,19 @@ public class FileRead {
                         links = new ArrayList<>();
                     }
                     title = line.substring(2).trim(); // Remove the "::" prefix and trim the title
-                }
-                else if (line.startsWith("{")) {
+                } else if (line.startsWith("{")) {
                     Action action = ActionsFactory.createAction(line);
                     if (action != null) {
                         // Add action to the last link
-                        links.get(links.size() - 1).addAction(action);
+                        if (!links.isEmpty()) {
+                            links.get(links.size() - 1).addAction(action);
+                        } else {
+                            System.err.println("Error at line " + lineNumber + ": Action found before any link.");
+                        }
+                    } else {
+                        System.err.println("Error at line " + lineNumber + ": Invalid action format.");
                     }
-                }
-                else if (!line.startsWith("[") && !line.trim().isEmpty()) {
+                } else if (!line.startsWith("[") && !line.trim().isEmpty()) {
                     // Passage content
                     if (contentBuilder.length() > 0) {
                         contentBuilder.append("\n");
@@ -64,7 +71,6 @@ public class FileRead {
 
                     links.add(new Link(textInsideBrackets, textInsideParentheses, new ArrayList<>()));
                 }
-
             }
             // Add the last passage
             if (title != null) {
@@ -78,6 +84,7 @@ public class FileRead {
 
         return passages;
     }
+
 
     @Override
     public String toString() {
