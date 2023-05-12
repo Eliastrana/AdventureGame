@@ -11,15 +11,48 @@ public class SaveFileReader {
 
 
 
-    public static String fileParser(String filePath) throws IOException {
+    public static String getImage(String filePath) throws IOException {
         File file = new File(filePath);
         BufferedReader br = new BufferedReader(new FileReader(file));
 
         String image = br.readLine();
-        String name = br.readLine();
-        String path = br.readLine();
-        String lastSeenPassage = "";
+        br.close();
 
+        return image;
+    }
+
+    public static String getName(String filePath) throws IOException {
+        File file = new File(filePath);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        br.readLine(); // Skip image line
+        String name = br.readLine();
+        br.close();
+
+        return name;
+    }
+
+    public static String getPath(String filePath) throws IOException {
+        File file = new File(filePath);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        br.readLine(); // Skip image line
+        br.readLine(); // Skip name line
+        String path = br.readLine();
+        br.close();
+
+        return path;
+    }
+
+    public static String getLastSeenPassage(String filePath) throws IOException {
+        File file = new File(filePath);
+        BufferedReader br = new BufferedReader(new FileReader(file));
+
+        br.readLine(); // Skip image line
+        br.readLine(); // Skip name line
+        br.readLine(); // Skip path line
+
+        String lastSeenPassage = "";
         String line;
         while ((line = br.readLine()) != null) {
             lastSeenPassage = line;
@@ -27,36 +60,36 @@ public class SaveFileReader {
 
         br.close();
 
-        return image +"\n"+ name + "\n" + path + "\n" + lastSeenPassage;
+        return lastSeenPassage;
     }
 
 
-
-    public static void openSavedGame() throws IOException {
-
-        String openFile = fileParser("src/main/resources/saveData/save.txt");
-
-        String[] split = openFile.split("\n");
-        String image = split[0];
-        String name = split[1];
-        String path = split[2];
-        String lastSeenPassage = split[3];
-
-
-
-
-    }
-
-
-
-
-
-
-    public static void main(String[] args) {
-        try {
-            System.out.println(fileParser("src/main/resources/saveData/Eliastirsdag.txt"));
+    public static String findWordBeforePng(String filename, String path) {
+        String filePath = path + "/" + filename;
+        String line = null;
+        String word = null;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            while ((line = reader.readLine()) != null) {
+                if (line.contains(filename)) {
+                    int index = line.indexOf(filename);
+                    if (index > 0) {
+                        int startIndex = index - 1;
+                        while (startIndex >= 0 && Character.isLetter(line.charAt(startIndex))) {
+                            startIndex--;
+                        }
+                        word = line.substring(startIndex + 1, index);
+                    }
+                    break;
+                }
+            }
         } catch (IOException e) {
             e.printStackTrace();
         }
+        return word;
     }
+
+
+
+
+
 }

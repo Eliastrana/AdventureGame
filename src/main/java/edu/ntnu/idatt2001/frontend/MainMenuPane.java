@@ -10,9 +10,10 @@ import javafx.scene.text.Text;
 
 import java.io.IOException;
 
+
 public class MainMenuPane extends VBox {
 
-    public MainMenuPane() {
+    public MainMenuPane() throws IOException {
 
 
         setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
@@ -40,7 +41,9 @@ public class MainMenuPane extends VBox {
         button4.setId("mainMenuButton");
         menuButtons.getChildren().addAll(button1, button2, button3, button4);
 
-        structure.getChildren().addAll(titleText, menuButtons);
+
+
+        structure.getChildren().addAll(titleText, menuButtons, QuickLoad.savedGamesContainer());
         structure.setAlignment(Pos.CENTER);
         getChildren().addAll(structure);
 

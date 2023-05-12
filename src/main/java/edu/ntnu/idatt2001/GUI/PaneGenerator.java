@@ -68,7 +68,8 @@ public class PaneGenerator extends Application {
         restart.setOnAction(e -> {
             try {
                 restartGame();
-                FileDashboard.gameSave(game.getStory().getOpeningPassage().getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+                String saveData = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
+                FileDashboard.gameSave(game.getStory().getOpeningPassage().getTitle(), saveData);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -199,11 +200,12 @@ public class PaneGenerator extends Application {
                 }
 
                 Passage nextPassage = game.go(link);
-                if (nextPassage.hasLink()) {
+                if (nextPassage != null) {
                     game.getPlayer().setLastPassage(nextPassage);
                     updateContentAndButtons(nextPassage);
                     try {
-                        FileDashboard.gameSave(nextPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+                        String saveData = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
+                        FileDashboard.gameSave(nextPassage.getTitle(), saveData);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }

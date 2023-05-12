@@ -1,37 +1,24 @@
 package edu.ntnu.idatt2001.frontend;
 
 
-import edu.ntnu.idatt2001.GUI.PaneGenerator;
-import edu.ntnu.idatt2001.GUI.PathsFileGUI;
-import edu.ntnu.idatt2001.Game;
-import edu.ntnu.idatt2001.Link;
-import edu.ntnu.idatt2001.fileHandling.CreateGame;
-import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
-import edu.ntnu.idatt2001.utility.SoundPlayer;
-import javafx.geometry.Insets;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static edu.ntnu.idatt2001.fileHandling.SaveFileReader.openSavedGame;
-import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 public class Pane1 extends StackPane {
 
@@ -40,6 +27,9 @@ public class Pane1 extends StackPane {
 
     public static TextField saveName = new TextField();
 
+    public static ComboBox<String> comboBoxCharacter = new ComboBox<String>();
+
+    public static ComboBox<String> comboBoxPath = new ComboBox<String>();
 
 
     public Pane1() throws IOException {
@@ -47,50 +37,8 @@ public class Pane1 extends StackPane {
         VBox structure = new VBox();
         structure.getStylesheets().add("/Style.css");
         VBox content = new VBox();
-
-
-        HBox savedGames = new HBox();
-        savedGames.setAlignment(Pos.CENTER);
-        savedGames.setSpacing(15);
-
-        File savedGamesfolder = new File("src/main/resources/saveData/");
-        File[] listOfFiles = savedGamesfolder.listFiles();
-
-        Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
-
-        int count = 0;
-        for (File file : listOfFiles) {
-            if (file.isFile() && count < 3) { // Only process the first three files
-                StackPane pane = new StackPane();
-                pane.setId("savedGamePane");
-
-                Rectangle background = new Rectangle();
-                background.setId("savedGamePane");
-
-                VBox savedGameContent = new VBox();
-                Text savedGameText = new Text(SaveFileReader.fileParser(file.getPath()));
-                savedGameText.setId("savedGameText");
-                savedGameContent.getChildren().add(savedGameText);
-
-                content.setAlignment(Pos.CENTER);
-                content.setSpacing(5);
-
-                pane.setOnMouseClicked(e -> {
-                    try {
-                        openSavedGame();
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-                pane.getChildren().addAll(background, savedGameContent);
-                savedGames.getChildren().add(pane);
-
-                count++;
-            }
-        }
-
-
+        content.setAlignment(Pos.CENTER);
+        content.setSpacing(5);
 
         File characters = new File("src/main/resources/characters/");
         String[] filenames = characters.list();
@@ -100,10 +48,9 @@ public class Pane1 extends StackPane {
             String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
             names.add(name);
         }
-        ComboBox<String> comboBox = new ComboBox<String>();
-        comboBox.getItems().addAll(names);
-        comboBox.setPromptText("Select character");
-        comboBox.setId("comboBox");
+        comboBoxCharacter.getItems().addAll(names);
+        comboBoxCharacter.setPromptText("Select character");
+        comboBoxCharacter.setId("comboBox");
 
         File paths = new File("src/main/resources/paths/");
         String[] filenames2 = paths.list();
@@ -112,10 +59,9 @@ public class Pane1 extends StackPane {
             String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
             names2.add(name);
         }
-        ComboBox<String> comboBox2 = new ComboBox<String>();
-        comboBox2.getItems().addAll(names2);
-        comboBox2.setPromptText("Select path");
-        comboBox2.setId("comboBox");
+        comboBoxPath.getItems().addAll(names2);
+        comboBoxPath.setPromptText("Select path");
+        comboBoxPath.setId("comboBox");
 
         saveName.setPromptText("Enter save name");
         saveName.setId("textField");
@@ -125,58 +71,7 @@ public class Pane1 extends StackPane {
         playButton.setOnAction(event -> {
             try {
 
-
-                FileDashboard.gameSave(processSelectedImage(), "src/main/resources/saveData/" + saveName.getText() + ".txt");
-                System.out.println(processSelectedImage());
-
-
-                if (comboBox2.getItems() != null) {
-                    // Handle the selected file here
-                    CreateGame game = new CreateGame("src/main/resources/paths/" + comboBox2.getValue() + ".paths");
-
-                    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-
-
-                    String playerStats = "Character: " + comboBox.getValue() + "\n" + "Path: " + comboBox2.getValue() + "\n";
-                    FileDashboard.gameSave(playerStats, "src/main/resources/saveData/" + saveName.getText() + ".txt");
-
-                    PaneGenerator gui;
-                    Game gameCreated = game.gameGenerator("src/main/resources/characters/" + comboBox.getValue() + ".paths");
-
-                    if (gameCreated.getStory().getBrokenLinks().size() != 0) {
-                        Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
-                        brokenLinks.setTitle("Warning");
-                        brokenLinks.setHeaderText("Broken links");
-                        brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()
-                                + "\n" + "The following links are broken: " + gameCreated.getStory().getBrokenLinks());
-
-                        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                        ButtonType removeButton = new ButtonType("Remove", ButtonBar.ButtonData.APPLY);
-
-                        brokenLinks.getButtonTypes().addAll(cancelButton, removeButton);
-
-                        Optional<ButtonType> result = brokenLinks.showAndWait();
-                        if (result.isPresent()) {
-                            if (result.get() == cancelButton) {
-                                return;
-                            } else if (result.get() == removeButton) {
-                                List<Link> brokenLinksList = gameCreated.getStory().getBrokenLinks();
-                                for (Link link : brokenLinksList) {
-                                    gameCreated.getStory().removePassage(link);
-                                }
-                            }
-                        }
-                    }
-
-
-
-                    gui = new PaneGenerator(gameCreated);
-
-                gui.start(primaryStage);
-                primaryStage.setFullScreen(true);
-
-
-            }
+                StartGameFromCatalog.startGameFromCatalogMethod();
 
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -184,9 +79,10 @@ public class Pane1 extends StackPane {
                 alert.setHeaderText("An error occurred");
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
+                throw new RuntimeException(e);
+
             }
         });
-
 
 
 
@@ -201,61 +97,54 @@ public class Pane1 extends StackPane {
                     ImageView imageView = new ImageView(new Image(file.toURI().toString()));
                     imageView.setFitWidth(150);
                     imageView.setFitHeight(160);
-                    imageView.setOnMouseClicked(event -> selectImage(imageView));
                     imageViews.add(imageView);
                     fileNames.add(file.getName());
                 }
             }
         }
-        imageBox.getChildren().addAll(imageViews);
+        final int[] currentImageIndex = {0};
+        imageBox.getChildren().add(imageViews.get(currentImageIndex[0]));
+        imageBox.setOnMouseClicked(event -> {
+            if (currentImageIndex[0] < imageViews.size() - 1) {
+                currentImageIndex[0]++;
+            } else {
+                currentImageIndex[0] = 0;
+            }
+            ImageView currentImage = imageViews.get(currentImageIndex[0]);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), currentImage);
+            transition.setFromX(imageBox.getWidth());
+            transition.setToX(0);
+            transition.play();
+            imageBox.getChildren().set(0, currentImage);
+
+            // Select the current image
+            selectImage(currentImageIndex[0]);
+        });
+
+
+
+
 
         Button openButton = new Button("Import game from desktop");
         openButton.setId("navigationButton");
         openButton.setOnAction(event -> {
 
+            StartGameFromImport.StartGameFromImportMethod();
 
-            // Create a file chooser dialog
-            FileChooser fileChooser = new FileChooser();
-
-            // Set the initial directory to the user's desktop
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Desktop"));
-
-            // Show the dialog and wait for the user to select a file
-            File selectedFile = fileChooser.showOpenDialog(primaryStage);
-            if (selectedFile != null) {
-                // Handle the selected file here
-                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-                CreateGame game = new CreateGame(selectedFile.getAbsolutePath());
-                PaneGenerator gui = null;
-                try {
-                    gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/"+comboBox.getValue()+".paths"));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    gui.start(primaryStage);
-                    primaryStage.setFullScreen(true);
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
         });
 
         setStyle("-fx-background-color: #a9cade;");
 
         Button backButton = new Button("Back to Main");
         backButton.setOnAction(e -> {
-                    SceneSwitcher.switchToMainMenu();
-                    //getChildren().clear();
-                    imageViews.clear();
-
-                }
-        );
+            SceneSwitcher.switchToMainMenu();
+            //getChildren().clear();
+            imageViews.clear();
+        });
         backButton.setAlignment(Pos.TOP_LEFT);
 
         HBox comboBoxes = new HBox();
-        comboBoxes.getChildren().addAll(comboBox, comboBox2);
+        comboBoxes.getChildren().addAll(comboBoxCharacter, comboBoxPath);
         comboBoxes.setAlignment(Pos.CENTER);
         comboBoxes.setSpacing(20);
 
@@ -264,7 +153,7 @@ public class Pane1 extends StackPane {
         playButtons.setAlignment(Pos.CENTER);
         playButtons.setSpacing(20);
 
-        content.getChildren().addAll(savedGames, comboBoxes,imageBox,saveName, playButtons);
+        content.getChildren().addAll(comboBoxes, imageBox, saveName, playButtons);
         content.setAlignment(Pos.BASELINE_CENTER);
         content.setSpacing(20);
 
@@ -275,12 +164,13 @@ public class Pane1 extends StackPane {
     }
 
 
-    private void selectImage(ImageView selectedImageView) {
+    private void selectImage(int currentIndex) {
         if (selectedIndex >= 0 && selectedIndex < imageViews.size()) {
             ImageView prevSelectedImageView = imageViews.get(selectedIndex);
             prevSelectedImageView.setEffect(null);
         }
-        selectedIndex = imageViews.indexOf(selectedImageView);
+        selectedIndex = currentIndex;
+        ImageView selectedImageView = imageViews.get(selectedIndex);
         selectedImageView.setEffect(new javafx.scene.effect.InnerShadow(50, Color.BLUEVIOLET));
     }
 
@@ -290,6 +180,7 @@ public class Pane1 extends StackPane {
         int index = imageUrl.lastIndexOf("/") + 1;
         return imageUrl.substring(index);
     }
+
 
 }
 

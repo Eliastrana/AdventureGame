@@ -5,13 +5,15 @@ import javafx.scene.Scene;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
+import java.io.IOException;
+
 public class MyGUI extends Application {
 
     private Scene mainScene;
     private SceneSwitcher sceneSwitcher;
 
     @Override
-    public void start(Stage primaryStage) {
+    public void start(Stage primaryStage) throws IOException {
         primaryStage.setTitle("Adventure Game");
 
         primaryStage.setMinHeight(540);

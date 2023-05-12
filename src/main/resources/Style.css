@@ -88,16 +88,28 @@
 
 /* set the background color of the pane */
 #savedGamePane {
-    -fx-background-color: #4ec8cb;
+    -fx-background-color: #5b2c07;
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", sans-serif;
+
     -fx-border-color: #ffffff;
     -fx-border-width: 2px;
     -fx-background-radius: 10px;
     -fx-border-radius: 10px;
     -fx-padding: 10px;
+    -fx-font-size: 20px;
+
 
     -fx-min-height: 50px;
-    -fx-min-width: 150px;
+    -fx-min-width: 200px;
 }
+
+#savedGameText {
+    -fx-text-fill: #ffffff;
+    -fx-font-size: 14px;
+    -fx-font-family: "Helvetica Neue", sans-serif;
+}
+
 
 /* set the hover effect */
 #savedGamePane:hover {

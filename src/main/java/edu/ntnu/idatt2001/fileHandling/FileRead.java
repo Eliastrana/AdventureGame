@@ -4,11 +4,12 @@ import edu.ntnu.idatt2001.*;
 import edu.ntnu.idatt2001.Action.Action;
 import edu.ntnu.idatt2001.Action.ActionsFactory;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
+import java.io.LineNumberReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import javafx.scene.control.Alert;
 
 public class FileRead {
 
@@ -17,6 +18,7 @@ public class FileRead {
     public FileRead(String filePath) {
         this.filePath = filePath;
     }
+
 
     public List<Passage> formatPathsFile() throws IOException {
         List<Passage> passages = new ArrayList<>();
@@ -48,10 +50,10 @@ public class FileRead {
                         if (!links.isEmpty()) {
                             links.get(links.size() - 1).addAction(action);
                         } else {
-                            System.err.println("Error at line " + lineNumber + ": Action found before any link.");
+                            throw new IOException("Error at line " + lineNumber + ": Action found before any link.");
                         }
                     } else {
-                        System.err.println("Error at line " + lineNumber + ": Invalid action format.");
+                        throw new IOException("Error at line " + lineNumber + ": Invalid action format.");
                     }
                 } else if (!line.startsWith("[") && !line.trim().isEmpty()) {
                     // Passage content
@@ -79,12 +81,21 @@ public class FileRead {
                 passages.add(passage);
             }
         } catch (IOException e) {
+            alertError("Error reading file:"+ "\n"+filePath+"\n"+ e.getMessage());
             e.printStackTrace();
+            return null;
         }
 
         return passages;
     }
 
+    private void alertError(String message) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Parser Error");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 
     @Override
     public String toString() {
@@ -97,17 +108,13 @@ public class FileRead {
         return passageText;
     }
 
-    public static void main(String[] args) {
-        try {
-            String filePath = "src/main/resources/paths/hauntedHouseWithActions.paths";
-            FileRead fileRead = new FileRead(filePath);
+    public static void main(String[] args) throws IOException {
+        String filePath = "src/main/resources/paths/hauntedHouseWithActions.paths";
+        FileRead fileRead = new FileRead(filePath);
 
-            for (Passage passage : fileRead.formatPathsFile()) {
-                System.out.println(passage);
-            }
-
-        } catch (IOException e) {
-            System.out.println("Error: " + e.getMessage());
+        for (Passage passage : fileRead.formatPathsFile()) {
+            System.out.println(passage);
         }
+
     }
 }
