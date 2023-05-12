@@ -4,6 +4,7 @@ import edu.ntnu.idatt2001.GUI.PaneGenerator;
 import javafx.stage.Stage;
 
 import java.io.*;
+import java.util.ArrayList;
 
 
 public class SaveFileReader {
@@ -30,6 +31,24 @@ public class SaveFileReader {
         br.close();
 
         return name;
+    }
+    public static String backOnePassage(String filePath) {
+        ArrayList<String> lines = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("T:")) {
+                    lines.add(line.substring(2));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        if (lines.size() < 1) {
+            throw new IllegalArgumentException("The file does not have a penultimate line");
+        }
+        return lines.get(lines.size() - 1);
     }
 
     public static String getPath(String filePath) throws IOException {

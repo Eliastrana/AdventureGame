@@ -75,6 +75,8 @@ public class PaneGenerator extends Application {
             }
         });
 
+        
+
         Button quitButton = new Button("Quit");
         quitButton.setId("navigationButton");
         quitButton.setOnAction(e -> {
