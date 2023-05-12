@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.fileHandling;
 
 import edu.ntnu.idatt2001.GUI.PaneGenerator;
+import edu.ntnu.idatt2001.Passage;
 import javafx.stage.Stage;
 
 import java.io.*;
@@ -38,7 +39,7 @@ public class SaveFileReader {
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.startsWith("T:")) {
+                if (line.startsWith("P:")) {
                     lines.add(line.substring(2));
                 }
             }
@@ -106,6 +107,10 @@ public class SaveFileReader {
         }
         return word;
     }
+
+
+
+
 
 
 

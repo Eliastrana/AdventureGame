@@ -8,6 +8,7 @@ import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.GameSave;
+import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
@@ -67,9 +68,9 @@ public class PaneGenerator extends Application {
         restart.setId("navigationButton");
         restart.setOnAction(e -> {
             try {
+                FileDashboard.gameSave("P:" + game.getStory().getOpeningPassage().getTitle(),"src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+                writeStatus();
                 restartGame();
-                String saveData = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
-                FileDashboard.gameSave(game.getStory().getOpeningPassage().getTitle(), saveData);
             } catch (IOException ioException) {
                 ioException.printStackTrace();
             }
@@ -88,7 +89,35 @@ public class PaneGenerator extends Application {
             System.out.println("Quitting game");
         });
 
-        topmenuOptions.getChildren().addAll(restart, quitButton);
+        Button backButton = new Button("Back");
+        backButton.setId("navigationButton");
+        backButton.setOnAction(e -> {
+            String backOnePassage = SaveFileReader.backOnePassage("src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+            System.out.println(backOnePassage);
+            Passage backPassage = game.getStory().getPassages().stream()
+                    .filter(pass -> pass.getTitle().equals(backOnePassage))
+                    .findFirst()
+                    .orElse(null);
+
+            if (backPassage != null) {
+                System.out.println("Back to: " + backPassage.getTitle());
+            }
+
+            try {
+                assert backPassage != null;
+                FileDashboard.gameSave("P:"+backPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+                updateContentAndButtons(backPassage);
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
+            }
+
+            writeStatus();
+            playerInfo.getChildren().clear();
+            updatePlayerInfo();
+        });
+
+        topmenuOptions.getChildren().addAll(restart, backButton, quitButton);
+
         topmenuOptions.setSpacing(20);
         VBox topInfo = new VBox();
         topInfo.setSpacing(30);
@@ -206,11 +235,11 @@ public class PaneGenerator extends Application {
                     game.getPlayer().setLastPassage(nextPassage);
                     updateContentAndButtons(nextPassage);
                     try {
-                        String saveData = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
-                        FileDashboard.gameSave(nextPassage.getTitle(), saveData);
+                        FileDashboard.gameSave("P:"+nextPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    writeStatus();
                 }
 
 
@@ -219,6 +248,20 @@ public class PaneGenerator extends Application {
             });
 
             buttonBox.getChildren().add(button);
+        }
+    }
+    private void writeStatus() {
+        try {
+            String saveData = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
+            FileDashboard.gameSave("N:"+game.getPlayer().getName(), saveData);
+            FileDashboard.gameSave("H:"+game.getPlayer().getHealth(), saveData);
+            FileDashboard.gameSave("G:"+game.getPlayer().getGold(), saveData);
+            FileDashboard.gameSave("S:"+game.getPlayer().getScore(), saveData);
+            FileDashboard.gameSave("I:"+game.getPlayer().getInventory(), saveData);
+            FileDashboard.gameSave("\n", saveData);
+
+        } catch (IOException e) {
+            throw new RuntimeException(e);
         }
     }
 
