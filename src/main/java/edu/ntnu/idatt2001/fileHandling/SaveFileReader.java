@@ -6,6 +6,8 @@ import javafx.stage.Stage;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedList;
 
 
 public class SaveFileReader {
@@ -33,24 +35,78 @@ public class SaveFileReader {
 
         return name;
     }
-    public static String backOnePassage(String filePath) {
-        ArrayList<String> lines = new ArrayList<>();
+
+    public static HashMap<String, LinkedList<String>> backOnePassage(String filePath) {
+        HashMap<String, LinkedList<String>> map = new HashMap<>();
+        map.put("P:", new LinkedList<>());
+        map.put("N:", new LinkedList<>());
+        map.put("H:", new LinkedList<>());
+        map.put("G:", new LinkedList<>());
+        map.put("S:", new LinkedList<>());
+        map.put("I:", new LinkedList<>());
 
         try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                if (line.startsWith("P:")) {
-                    lines.add(line.substring(2));
+                for (String key : map.keySet()) {
+                    if (line.startsWith(key)) {
+                        if (map.get(key).size() == 2) {
+                            map.get(key).removeFirst();
+                        }
+                        map.get(key).addLast(line.substring(2));
+                    }
                 }
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        if (lines.size() < 1) {
-            throw new IllegalArgumentException("The file does not have a penultimate line");
-        }
-        return lines.get(lines.size() - 1);
+
+        return map;
     }
+
+    public static int getHealth(String filePath) {
+        int health = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("H:")) {
+                    health = Integer.parseInt(line.substring(2));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return health;
+    }
+    public static int getScore(String filePath) {
+        int strength = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("S:")) {
+                    strength = Integer.parseInt(line.substring(2));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return strength;
+    }
+    public static int getGold(String filePath) {
+        int gold = 0;
+        try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                if (line.startsWith("G:")) {
+                    gold = Integer.parseInt(line.substring(2));
+                }
+            }
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+        return gold;
+    }
+
 
     public static String getPath(String filePath) throws IOException {
         File file = new File(filePath);
