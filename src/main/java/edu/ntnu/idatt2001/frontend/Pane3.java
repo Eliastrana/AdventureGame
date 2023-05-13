@@ -77,8 +77,9 @@ public class Pane3 extends StackPane {
         setStyle("-fx-background-color: #e3ffcc;");
 
 
-        Button backButton = new Button("Back to Main");
-        backButton.setId("backButton");
+        Button backButton = new Button("Back");
+        backButton.setId("backNavigation");
+
         backButton.setAlignment(Pos.TOP_LEFT);
         backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
 

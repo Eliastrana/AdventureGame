@@ -140,10 +140,24 @@
     -fx-text-fill: #ffffff;
 }
 
+/*#comboBox {*/
+/*    -fx-font-size: 13px;*/
+/*    -fx-font-family: Brazie;*/
+/*    -fx-text-fill: white;*/
+/*    -fx-background-color: #5b2c07;*/
+/*    -fx-border-color: #ffffff;*/
+/*    -fx-border-width: 2px;*/
+/*    -fx-border-radius: 10px;*/
+/*    -fx-background-radius: 10px;*/
+/*    -fx-padding: 10px;*/
+/*    -fx-cursor: hand;*/
+/*}*/
+
 #comboBox {
     -fx-font-size: 13px;
-    -fx-text-fill: #ffffff;
-    -fx-background-color: #4ec8cb;
+    -fx-font-family: Brazie;
+    -fx-text-fill: black;
+    -fx-background-color: #a9cade;
     -fx-border-color: #ffffff;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;
@@ -152,9 +166,9 @@
     -fx-cursor: hand;
 }
 
+
 button:hover {
     background-color: #3e8e41;
-    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
 }
 
 #backButton, quitButton{
@@ -171,12 +185,40 @@ button:hover {
     transition: all 0.3s ease;
 }
 
+
+
 #backButton:hover {
     background-color: #34495e;
 }
 
 
+#backNavigation {
+    -fx-background-color: #944c0f;
+    -fx-text-fill: white;
+    -fx-font-family: Brazie;
+    -fx-font-size: 1.2em;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
 
+#backNavigation:hover {
+    -fx-background-color: #e17e28;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+#ArrowButtons{
+    -fx-font-size: 25px;
+    -fx-background-color: transparent;
+    -fx-background-insets: 0;
+    -fx-padding: 0;
+    -fx-text-fill: #ffffff;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 0 0 4px 4px;
+    -fx-border-radius: 2px;
+    -fx-shape: "M 0 0 L 5 5 L 0 10 L 0 0 Z";
+
+}
 
 #textField {
 
@@ -188,7 +230,7 @@ button:hover {
     -fx-max-width: 150px;
     -fx-font-size: 12px;
     -fx-font-weight: bold;
-    -fx-font-family: "Arial";
+    -fx-font-family: Brazie;
     -fx-border-color: #ffffff;
     -fx-border-width: 2px;
     -fx-border-radius: 10px;

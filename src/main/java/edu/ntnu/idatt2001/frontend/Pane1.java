@@ -3,8 +3,10 @@ package edu.ntnu.idatt2001.frontend;
 
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import javafx.animation.TranslateTransition;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -34,9 +36,23 @@ public class Pane1 extends StackPane {
 
     public Pane1() throws IOException {
 
-        VBox structure = new VBox();
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
+
+
+
+        HBox structure = new HBox();
+
+        HBox content = new HBox();
+
+
+        VBox characterImageAndButtons = new VBox();
+
+        VBox inputFields = new VBox();
+
+
+
+
         structure.getStylesheets().add("/Style.css");
-        VBox content = new VBox();
         content.setAlignment(Pos.CENTER);
         content.setSpacing(5);
 
@@ -51,6 +67,7 @@ public class Pane1 extends StackPane {
         comboBoxCharacter.getItems().addAll(names);
         comboBoxCharacter.setPromptText("Select character");
         comboBoxCharacter.setId("comboBox");
+
 
         File paths = new File("src/main/resources/paths/");
         String[] filenames2 = paths.list();
@@ -80,11 +97,8 @@ public class Pane1 extends StackPane {
                 alert.setContentText(e.getMessage());
                 alert.showAndWait();
                 throw new RuntimeException(e);
-
             }
         });
-
-
 
         HBox imageBox = new HBox();
         imageBox.setAlignment(Pos.CENTER);
@@ -95,16 +109,40 @@ public class Pane1 extends StackPane {
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".png") && !fileNames.contains(file.getName())) {
                     ImageView imageView = new ImageView(new Image(file.toURI().toString()));
-                    imageView.setFitWidth(150);
-                    imageView.setFitHeight(160);
+                    imageView.setFitWidth(200);
+                    imageView.setFitHeight(300);
                     imageViews.add(imageView);
                     fileNames.add(file.getName());
                 }
             }
         }
+
         final int[] currentImageIndex = {0};
         imageBox.getChildren().add(imageViews.get(currentImageIndex[0]));
-        imageBox.setOnMouseClicked(event -> {
+
+        Button leftButton = new Button("<");
+        leftButton.setId("ArrowButton");
+
+        leftButton.setOnAction(event -> {
+            if (currentImageIndex[0] > 0) {
+                currentImageIndex[0]--;
+            } else {
+                currentImageIndex[0] = imageViews.size() - 1;
+            }
+            ImageView currentImage = imageViews.get(currentImageIndex[0]);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), currentImage);
+            transition.setFromX(-imageBox.getWidth());
+            transition.setToX(0);
+            transition.play();
+            imageBox.getChildren().set(0, currentImage);
+
+            // Select the current image
+            selectImage(currentImageIndex[0]);
+        });
+
+        Button rightButton = new Button(">");
+        rightButton.setId("ArrowButton");
+        rightButton.setOnAction(event -> {
             if (currentImageIndex[0] < imageViews.size() - 1) {
                 currentImageIndex[0]++;
             } else {
@@ -121,7 +159,10 @@ public class Pane1 extends StackPane {
             selectImage(currentImageIndex[0]);
         });
 
-
+        HBox root = new HBox(imageBox, new HBox(leftButton, rightButton));
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(10);
+        root.setId("ArrowButton");
 
 
 
@@ -129,33 +170,68 @@ public class Pane1 extends StackPane {
         openButton.setId("navigationButton");
         openButton.setOnAction(event -> {
 
-            StartGameFromImport.StartGameFromImportMethod();
 
+            if (comboBoxCharacter.getValue() == null || saveName.getText().isEmpty()) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Empty fields");
+                alert.setHeaderText("Please select a character and a save name");
+                alert.showAndWait();
+                return;
+            } else {
+                try {
+                    StartGameFromImport.StartGameFromImportMethod();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
+                }
+            }
         });
 
-        setStyle("-fx-background-color: #a9cade;");
 
-        Button backButton = new Button("Back to Main");
+        Button backButton = new Button("Back");
+        backButton.setPadding(new Insets(10, 10, 10, 10));
+        backButton.setId("backNavigation");
         backButton.setOnAction(e -> {
             SceneSwitcher.switchToMainMenu();
             //getChildren().clear();
             imageViews.clear();
+            comboBoxPath.getItems().clear();
+            comboBoxCharacter.getItems().clear();
+            saveName.clear();
+
         });
         backButton.setAlignment(Pos.TOP_LEFT);
 
-        HBox comboBoxes = new HBox();
+
+
+
+        VBox comboBoxes = new VBox();
         comboBoxes.getChildren().addAll(comboBoxCharacter, comboBoxPath);
         comboBoxes.setAlignment(Pos.CENTER);
         comboBoxes.setSpacing(20);
 
-        HBox playButtons = new HBox();
+        VBox playButtons = new VBox();
         playButtons.getChildren().addAll(playButton, openButton);
         playButtons.setAlignment(Pos.CENTER);
         playButtons.setSpacing(20);
 
-        content.getChildren().addAll(comboBoxes, imageBox, saveName, playButtons);
-        content.setAlignment(Pos.BASELINE_CENTER);
+        content.setAlignment(Pos.CENTER);
         content.setSpacing(20);
+
+        characterImageAndButtons.getChildren().addAll(imageBox,root);
+
+        characterImageAndButtons.setAlignment(Pos.TOP_LEFT);
+        characterImageAndButtons.setSpacing(10);
+        characterImageAndButtons.setPadding(new Insets(100, 50, 100, 0));
+
+
+
+        inputFields.getChildren().addAll(comboBoxes, saveName, playButtons);
+        inputFields.setAlignment(Pos.CENTER);
+        inputFields.setSpacing(50);
+        inputFields.setPadding(new Insets(100, 100, 100, 0));
+
+
+        content.getChildren().addAll(characterImageAndButtons, inputFields);
 
         structure.getChildren().addAll(backButton, content);
         structure.setSpacing(20);
@@ -171,15 +247,20 @@ public class Pane1 extends StackPane {
         }
         selectedIndex = currentIndex;
         ImageView selectedImageView = imageViews.get(selectedIndex);
-        selectedImageView.setEffect(new javafx.scene.effect.InnerShadow(50, Color.BLUEVIOLET));
+        selectedImageView.setEffect(new DropShadow(20, Color.BLACK));
     }
 
     public static String processSelectedImage() {
+        if (selectedIndex < 0 || selectedIndex >= imageViews.size()) {
+            // Select the first image by default
+            selectedIndex = 0;
+        }
         ImageView selectedImageView = imageViews.get(selectedIndex);
         String imageUrl = selectedImageView.getImage().getUrl();
         int index = imageUrl.lastIndexOf("/") + 1;
         return imageUrl.substring(index);
     }
+
 
 
 }

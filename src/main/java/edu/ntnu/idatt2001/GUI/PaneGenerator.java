@@ -31,6 +31,8 @@ import javafx.beans.value.ChangeListener;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 public class PaneGenerator extends Application {
@@ -46,12 +48,17 @@ public class PaneGenerator extends Application {
     Label goldLabel = new Label();
     Label scoreLabel = new Label();
     Label inventoryLabel = new Label();
+    String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
     public PaneGenerator(Game game) {
         this.game = game;
     }
 
     @Override
     public void start(Stage stage) throws IOException {
+
+
+        writeFirstPassage();
+
 
         titleLabel = new Label(game.begin().getTitle());
         titleLabel.setId("title");
@@ -68,11 +75,9 @@ public class PaneGenerator extends Application {
         restart.setId("navigationButton");
         restart.setOnAction(e -> {
             try {
-                FileDashboard.gameSave("P:" + game.getStory().getOpeningPassage().getTitle(),"src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
-                writeStatus();
-                restartGame();
-            } catch (IOException ioException) {
-                ioException.printStackTrace();
+                restartAction();
+            } catch (IOException ex) {
+                throw new RuntimeException(ex);
             }
         });
 
@@ -92,28 +97,7 @@ public class PaneGenerator extends Application {
         Button backButton = new Button("Back");
         backButton.setId("navigationButton");
         backButton.setOnAction(e -> {
-            String backOnePassage = SaveFileReader.backOnePassage("src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
-            System.out.println(backOnePassage);
-            Passage backPassage = game.getStory().getPassages().stream()
-                    .filter(pass -> pass.getTitle().equals(backOnePassage))
-                    .findFirst()
-                    .orElse(null);
-
-            if (backPassage != null) {
-                System.out.println("Back to: " + backPassage.getTitle());
-            }
-
-            try {
-                assert backPassage != null;
-                FileDashboard.gameSave("P:"+backPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
-                updateContentAndButtons(backPassage);
-            } catch (IOException ex) {
-                throw new RuntimeException(ex);
-            }
-
-            writeStatus();
-            playerInfo.getChildren().clear();
-            updatePlayerInfo();
+            backAction();
         });
 
         topmenuOptions.getChildren().addAll(restart, backButton, quitButton);
@@ -165,10 +149,10 @@ public class PaneGenerator extends Application {
     public void updatePlayerInfo() {
         try {
             playerInfo.getChildren().clear(); // remove existing child nodes
-            nameLabel.setText("Player: " + game.getPlayer().getName());
-            healthLabel.setText("Health: " + game.getPlayer().getHealth());
-            goldLabel.setText("Gold: " + game.getPlayer().getGold());
-            scoreLabel.setText("Score: " + game.getPlayer().getScore());
+            nameLabel.setText("Player: " + SaveFileReader.getName(filePath));
+            healthLabel.setText("Health: " + SaveFileReader.getHealth(filePath));
+            goldLabel.setText("Gold: " + SaveFileReader.getGold(filePath));
+            scoreLabel.setText("Score: " + SaveFileReader.getScore(filePath));
             inventoryLabel.setText("Inventory: ");
             // create new labels with updated player info
 
@@ -198,7 +182,7 @@ public class PaneGenerator extends Application {
         }
     }
 
-    private void restartGame() throws IOException {
+    private void restartAction() throws IOException {
         updateContentAndButtons(game.getStory().getOpeningPassage());
         playerInfo.getChildren().clear();
         updatePlayerInfo();
@@ -213,8 +197,8 @@ public class PaneGenerator extends Application {
         if (passage == null) {
             throw new IllegalArgumentException("Passage cannot be null");
         }
-
         game.getPlayer().setLastPassage(passage);
+        System.out.println("Current passage: " + passage.getTitle());
         titleLabel.setText(passage.getTitle());
         contentArea.setText(passage.getContent());
         buttonBox.getChildren().clear();
@@ -233,37 +217,81 @@ public class PaneGenerator extends Application {
                 Passage nextPassage = game.go(link);
                 if (nextPassage != null) {
                     game.getPlayer().setLastPassage(nextPassage);
-                    updateContentAndButtons(nextPassage);
                     try {
-                        FileDashboard.gameSave("P:"+nextPassage.getTitle(), "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt");
+                        FileDashboard.gameSave("P:" + nextPassage.getTitle(), filePath);
                     } catch (IOException e) {
                         throw new RuntimeException(e);
                     }
+                    updateContentAndButtons(nextPassage);
                     writeStatus();
                 }
-
-
                 playerInfo.getChildren().clear();
                 updatePlayerInfo();
             });
-
             buttonBox.getChildren().add(button);
         }
     }
+
     private void writeStatus() {
         try {
-            String saveData = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
-            FileDashboard.gameSave("N:"+game.getPlayer().getName(), saveData);
-            FileDashboard.gameSave("H:"+game.getPlayer().getHealth(), saveData);
-            FileDashboard.gameSave("G:"+game.getPlayer().getGold(), saveData);
-            FileDashboard.gameSave("S:"+game.getPlayer().getScore(), saveData);
-            FileDashboard.gameSave("I:"+game.getPlayer().getInventory(), saveData);
-            FileDashboard.gameSave("\n", saveData);
+            FileDashboard.gameSave("N:"+game.getPlayer().getName(), filePath);
+            FileDashboard.gameSave("H:"+game.getPlayer().getHealth(), filePath);
+            FileDashboard.gameSave("G:"+game.getPlayer().getGold(), filePath);
+            FileDashboard.gameSave("S:"+game.getPlayer().getScore(), filePath);
+            FileDashboard.gameSave("I:"+game.getPlayer().getInventory(), filePath);
+            FileDashboard.gameSave("\n", filePath);
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
     }
+    private void writeFirstPassage()  {
+        try {
+            FileDashboard.gameSave("P:" + game.getStory().getOpeningPassage().getTitle(), filePath);
+            writeStatus();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+    private void backAction(){
+        HashMap<String, LinkedList<String>> backOnePassage = SaveFileReader.backOnePassage(filePath);
+        System.out.println(backOnePassage);
+        String newPassageTitle = backOnePassage.get("P:").getFirst();
+        String newName = backOnePassage.get("N:").getFirst();
+        int newHealth = Integer.parseInt(backOnePassage.get("H:").getFirst());
+        int newGold = Integer.parseInt(backOnePassage.get("G:").getFirst());
+        int newScore = Integer.parseInt(backOnePassage.get("S:").getFirst());
+        List<String> newInventory = backOnePassage.get("I:");
+
+
+
+        nameLabel.setText("Name: " + newName);
+        healthLabel.setText("Health: " + newHealth);
+        goldLabel.setText("Gold: " + newGold);
+        scoreLabel.setText("Score: " + newScore);
+        inventoryLabel.setText("Inventory: " + newInventory);
+
+        Passage backPassage = game.getStory().getPassages().stream()
+                .filter(pass -> pass.getTitle().equals(newPassageTitle))
+                .findFirst()
+                .orElse(null);
+        System.out.println(backPassage);
+
+        if (backPassage != null) {
+            System.out.println("Back to: " + backPassage.getTitle());
+        }
+
+        try {
+            assert backPassage != null;
+            FileDashboard.gameSave("P:"+backPassage.getTitle(), filePath);
+            updateContentAndButtons(backPassage);
+            playerInfo.getChildren().clear();
+            updatePlayerInfo();
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+    }
+
 
 
     public static void main (String[]args){

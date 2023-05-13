@@ -23,10 +23,10 @@ public class StartGameFromCatalog {
 
     public static void startGameFromCatalogMethod() throws IOException {
 
-        String saveData = "src/main/resources/saveData/" + saveName.getText() + ".txt";
+        String saveData = "src/main/resources/saveData/" + saveName.getText();
         String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
         String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
-        String playerStats = "Character: " +"\n"+ comboBoxCharacter.getValue() + "\n" + "Path: "+"\n" + comboBoxPath.getValue() + "\n"+"Last visited passage: "+"\n";
+        String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() +"\n";
 
 
         FileDashboard.gameSave(processSelectedImage(), saveData);

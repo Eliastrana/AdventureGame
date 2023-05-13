@@ -3,13 +3,14 @@ Magical Mountain
 ::Beginnings
 You find yourself at the base of a towering mountain, shrouded in mist. A narrow path leads up to the summit.
 [Begin the ascent](The Climb)
-{ScoreAction: 10}
+{GoldAction: 10}
 
 ::The Climb
 You start to climb up the steep path, taking care with each step. As you ascend, you notice that the mist is beginning to clear, revealing a stunning vista of rolling hills and forests below. Suddenly, you hear a rustling sound from behind a nearby boulder.
 [Investigate the sound](Behind the boulder)
 [Continue climbing](Higher up)
 {InventoryAction: Water bottle}
+{HealthAction: -10}
 
 ::Behind the boulder
 You carefully approach the boulder, peering around it. You see a small, furry creature, its eyes fixed on you. It seems to be friendly and unafraid of your presence.
@@ -27,6 +28,7 @@ You make your way up the winding path, each step bringing you closer to the summ
 [Approach the palace](The Crystal Palace)
 [Take a rest](Rest stop)
 {ScoreAction: 10}
+{GoldAction: 50}
 
 ::Rest stop
 You sit down on a nearby rock to catch your breath. As you rest, you notice a small stream trickling nearby. You take a sip of water from your bottle and listen to the soothing sound of the water.

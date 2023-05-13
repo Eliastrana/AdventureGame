@@ -16,6 +16,7 @@ public class MainMenuPane extends VBox {
     public MainMenuPane() throws IOException {
 
 
+        SoundPlayer.play("src/main/resources/sounds/ambiance.wav");
         setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
         VBox structure = new VBox();

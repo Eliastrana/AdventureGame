@@ -111,7 +111,9 @@ public class Pane2 extends StackPane {
 
 
 
-        Button backButton = new Button("Back to Main");
+        Button backButton = new Button("Back");
+        backButton.setId("backNavigation");
+
         backButton.setAlignment(Pos.TOP_LEFT);
         backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
 

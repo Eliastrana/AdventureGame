@@ -15,7 +15,9 @@ public class Pane4 extends StackPane {
         Text text1 = new Text("Pane 4");
         text1.setFont(Font.font("Verdana", FontWeight.BOLD, 20));
 
-        Button backButton = new Button("Back to Main");
+        Button backButton = new Button("Back");
+        backButton.setId("backNavigation");
+
         backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
 
         getChildren().addAll(text1, backButton);
