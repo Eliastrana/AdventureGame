@@ -72,7 +72,7 @@ public class PaneGenerator extends Application {
         characterImage.getChildren().add(imageView);
 
         Button restart = new Button("Restart");
-        restart.setId("navigationButton");
+        restart.setId("topMenuButton");
         restart.setOnAction(e -> {
             try {
                 restartAction();
@@ -84,7 +84,7 @@ public class PaneGenerator extends Application {
 
 
         Button quitButton = new Button("Quit");
-        quitButton.setId("navigationButton");
+        quitButton.setId("topMenuButton");
         quitButton.setOnAction(e -> {
             try {
                 quitGame();
@@ -95,7 +95,7 @@ public class PaneGenerator extends Application {
         });
 
         Button backButton = new Button("Back");
-        backButton.setId("navigationButton");
+        backButton.setId("topMenuButton");
         backButton.setOnAction(e -> {
             backAction();
         });

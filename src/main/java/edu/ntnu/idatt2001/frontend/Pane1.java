@@ -36,6 +36,17 @@ public class Pane1 extends StackPane {
 
     public Pane1() throws IOException {
 
+        // Add listener to category1menu
+        comboBoxCharacter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
+        });
+
+// Add listener to category2menu
+        comboBoxPath.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
+        });
+
+
         setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
 
@@ -83,12 +94,24 @@ public class Pane1 extends StackPane {
         saveName.setPromptText("Enter save name");
         saveName.setId("textField");
 
+
         Button playButton = new Button("Play");
         playButton.setId("navigationButton");
         playButton.setOnAction(event -> {
             try {
 
-                StartGameFromCatalog.startGameFromCatalogMethod();
+                String saveNameString = saveName.getText().trim();
+
+                if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
+                    StartGameFromCatalog.startGameFromCatalogMethod();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Unavailable");
+                    alert.setHeaderText("Name already in use");
+                    alert.setContentText("Save name already exists, please choose another name");
+                    alert.showAndWait();
+                }
+
 
             } catch (IOException e) {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
@@ -260,6 +283,41 @@ public class Pane1 extends StackPane {
         int index = imageUrl.lastIndexOf("/") + 1;
         return imageUrl.substring(index);
     }
+
+
+    private void updateSaveGameName() {
+        String category1 = comboBoxCharacter.getSelectionModel().getSelectedItem();
+        String category2 = comboBoxPath.getSelectionModel().getSelectedItem();
+
+        saveName.setText(category1 + "_" + category2 + "_save");
+    }
+
+
+    public boolean isFileNameUnique(String fileName, String directoryPath) {
+        File directory = new File(directoryPath);
+        String newFileName = fileName;
+        int count = 1;
+
+        while (new File(directory, newFileName).exists()) {
+            int indexOfDot = fileName.lastIndexOf('.');
+            if (indexOfDot == -1) {
+                newFileName = fileName + "_" + count;
+            } else {
+                String nameWithoutExtension = fileName.substring(0, indexOfDot);
+                String extension = fileName.substring(indexOfDot + 1);
+                newFileName = nameWithoutExtension + "_" + count + "." + extension;
+            }
+            count++;
+        }
+
+        if (!newFileName.equals(fileName)) {
+            return false;
+        }
+
+        return true;
+    }
+
+
 
 
 

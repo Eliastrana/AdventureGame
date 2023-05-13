@@ -57,6 +57,22 @@
 }
 
 
+#topMenuButton {
+    -fx-background-color: #5b2c07;
+    -fx-text-fill: white;
+    -fx-max-height: 30;
+    -fx-max-width: 100;
+    -fx-font-family: Brazie;
+    -fx-font-size: 12px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+}
+
+#topMenuButton:hover {
+    -fx-background-color: #93c5d9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
 
 #navigationButton {
     -fx-background-color: #944c0f;
@@ -172,7 +188,7 @@ button:hover {
 }
 
 #backButton, quitButton{
-    font-size: 16px;
+    font-size: 12px;
     font-weight: bold;
     text-align: center;
     text-transform: uppercase;
@@ -225,7 +241,7 @@ button:hover {
     -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
     -fx-min-height: 35px;
-    -fx-min-width: 150px;
+    -fx-min-width: 250px;
     -fx-max-height: 50px;
     -fx-max-width: 150px;
     -fx-font-size: 12px;

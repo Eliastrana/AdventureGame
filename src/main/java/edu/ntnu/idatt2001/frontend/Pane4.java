@@ -10,7 +10,7 @@ import javafx.scene.text.Text;
 public class Pane4 extends StackPane {
 
     public Pane4() {
-        setStyle("-fx-background-color: #e01111;");
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
         Text text1 = new Text("Pane 4");
         text1.setFont(Font.font("Verdana", FontWeight.BOLD, 20));

@@ -25,6 +25,10 @@ public class Pane3 extends StackPane {
 
     public Pane3() {
 
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
+
+
+        playerInventory.setId("comboBox");
 
         VBox structure = new VBox();
 
@@ -55,6 +59,7 @@ public class Pane3 extends StackPane {
 
         Button createPlayerButton = new Button("Create player");
         createPlayerButton.setId("confirmButton");
+        createPlayerButton.setId("mainMenuButton");
         playerCreation.getChildren().addAll(createPlayer, createPlayerName, setPlayerHealth, setPlayerGold, setPlayerScore, playerInventory, createPlayerButton);
         playerCreation.setSpacing(10);
 
@@ -74,7 +79,6 @@ public class Pane3 extends StackPane {
 
 
         });
-        setStyle("-fx-background-color: #e3ffcc;");
 
 
         Button backButton = new Button("Back");
