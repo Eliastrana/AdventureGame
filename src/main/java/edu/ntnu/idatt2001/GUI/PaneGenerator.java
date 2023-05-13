@@ -48,7 +48,7 @@ public class PaneGenerator extends Application {
     Label goldLabel = new Label();
     Label scoreLabel = new Label();
     Label inventoryLabel = new Label();
-    String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText() + ".txt";
+    String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText();
     public PaneGenerator(Game game) {
         this.game = game;
     }

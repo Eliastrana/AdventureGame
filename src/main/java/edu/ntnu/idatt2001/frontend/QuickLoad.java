@@ -71,6 +71,9 @@ public class QuickLoad {
 
 
                 pane.setOnMouseClicked(e -> {
+                    // Write code to reload game
+                    System.out.println("Clicked on " + file.getName());
+
 
                 });
 
