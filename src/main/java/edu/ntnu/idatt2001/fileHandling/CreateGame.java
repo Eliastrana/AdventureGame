@@ -101,8 +101,6 @@ public class CreateGame {
         System.out.println(createGame.launchGame().getPassages());
 
 
-        System.out.println(createGame.gameGenerator("src/main/resources/characters/warrior.paths").getStory().getPassages());
-        System.out.println(createGame.storyGenerator(createGame.gameGenerator("src/main/resources/characters/warrior.paths").getStory()));
     }
 
 

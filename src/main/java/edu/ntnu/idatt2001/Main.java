@@ -20,7 +20,6 @@ public class Main extends Application {
         //edu.ntnu.idatt2001.GUI.StartingPage gui = new edu.ntnu.idatt2001.GUI.StartingPage();
         MyGUI gui = new MyGUI();
         CreateGame game = new CreateGame("src/main/resources/hauntedHouse.paths");
-        //PaneGenerator gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/warrior.paths"));
         gui.start(stage);
 
     }

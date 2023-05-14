@@ -211,7 +211,7 @@ public class PaneGenerator extends Application {
             SoundPlayer.play("src/main/resources/sounds/click.wav");
 
             Button button = new Button(link.getText());
-            button.setId("navigationButton");
+            button.setId("inGameChoiceButton");
             button.setOnAction(event -> {
                 for (Action action : link.getActions()) {
                     action.execute(game.getPlayer());

@@ -85,7 +85,7 @@
 }
 
 #navigationButton:hover {
-    -fx-background-color: #249a75;
+    -fx-background-color: #93c5d9;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
 }
 
@@ -102,6 +102,12 @@
 
 }
 
+
+#Pane1ConfirmButton:hover {
+    -fx-background-color: #93c5d9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
 #mediumTitle {
     -fx-font-size: 40px;
     -fx-font-weight: bold;
@@ -112,10 +118,7 @@
     -fx-padding: 10px;
 }
 
-#Pane1ConfirmButton:hover {
-    -fx-background-color: #249a75;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
-}
+
 
 #smallButton {
     -fx-background-color: #4ec8cb;
@@ -157,8 +160,8 @@
 
 /* set the hover effect */
 #savedGamePane:hover {
-    -fx-background-color: #0a70a2;
-    -fx-border-color: #aaaaaa;
+    -fx-background-color: #93c5d9;
+    -fx-border-color: #ffffff;
 }
 
 #savedGameText {
@@ -184,18 +187,6 @@
     -fx-text-fill: #ffffff;
 }
 
-/*#comboBox {*/
-/*    -fx-font-size: 13px;*/
-/*    -fx-font-family: Brazie;*/
-/*    -fx-text-fill: white;*/
-/*    -fx-background-color: #5b2c07;*/
-/*    -fx-border-color: #ffffff;*/
-/*    -fx-border-width: 2px;*/
-/*    -fx-border-radius: 10px;*/
-/*    -fx-background-radius: 10px;*/
-/*    -fx-padding: 10px;*/
-/*    -fx-cursor: hand;*/
-/*}*/
 
 #comboBox {
     -fx-font-size: 13px;
@@ -253,8 +244,83 @@ button:hover {
 }
 
 #backNavigation:hover {
-    -fx-background-color: #e17e28;
+    -fx-background-color: #93c5d9;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+#textFieldGoals {
+
+    -fx-background-color: #ffffff;
+    -fx-text-fill: #000000;
+    -fx-min-height: 35px;
+    -fx-min-width: 150px;
+    -fx-max-height: 35px;
+    -fx-max-width: 150px;
+    -fx-font-size: 11px;
+    -fx-font-weight: bold;
+    -fx-font-family: Brazie;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+    -fx-border-radius: 10px;
+    -fx-background-radius: 10px;
+    -fx-padding: 10px;
+    -fx-cursor: hand;
+}
+
+#confirmGoals {
+
+    -fx-background-color: #944c0f;
+    -fx-text-fill: white;
+    -fx-font-family: Brazie;
+    -fx-max-height: 20px;
+    -fx-max-width: 80px;
+    -fx-font-size: 10px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+
+}
+
+#confirmGoals:hover {
+    -fx-background-color: #93c5d9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+#inGameChoiceButton{
+
+    -fx-background-color: #944c0f;
+    -fx-text-fill: white;
+    -fx-font-family: Brazie;
+    -fx-font-size: 20px;
+    -fx-min-width: 250px;
+    -fx-min-height: 80px;
+    -fx-max-height: 80px;
+    -fx-max-width: 250px;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+
+}
+
+#inGameChoiceButton:hover {
+    -fx-background-color: #93c5d9;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+#pane{
+
+    -fx-background-color: #5b2c07;
+    -fx-text-fill: white;
+    -fx-font-family: "Helvetica Neue", sans-serif;
+    -fx-border-color: #ffffff;
+    -fx-border-width: 2px;
+
+    -fx-background-radius: 10px;
+    -fx-border-radius: 10px;
+    -fx-padding: 10px;
+    -fx-font-size: 20px;
+    -fx-min-height: 50px;
+    -fx-min-width: 200px;
 }
 
 #ArrowButtons{
