@@ -15,8 +15,7 @@ public class MainMenuPane extends VBox {
 
     public MainMenuPane() throws IOException {
 
-
-        SoundPlayer.play("src/main/resources/sounds/ambiance.wav");
+        SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
         setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
         VBox structure = new VBox();
@@ -26,7 +25,6 @@ public class MainMenuPane extends VBox {
 
         Text titleText = new Text("Adventure Game");
         titleText.setId("title");
-
 
         HBox menuButtons = new HBox();
         menuButtons.setAlignment(Pos.CENTER);
@@ -38,11 +36,9 @@ public class MainMenuPane extends VBox {
         button2.setId("mainMenuButton");
         Button button3 = new Button("Create Character");
         button3.setId("mainMenuButton");
-        Button button4 = new Button("Settings");
+        Button button4 = new Button("Goals");
         button4.setId("mainMenuButton");
         menuButtons.getChildren().addAll(button1, button2, button3, button4);
-
-
 
         structure.getChildren().addAll(titleText, menuButtons, QuickLoad.savedGamesContainer());
         structure.setAlignment(Pos.CENTER);

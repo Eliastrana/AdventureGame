@@ -22,6 +22,7 @@ import java.io.IOException;
 import java.util.*;
 
 
+
 public class Pane1 extends StackPane {
 
     private static final List<ImageView> imageViews = new ArrayList<>();
@@ -36,32 +37,12 @@ public class Pane1 extends StackPane {
 
     public Pane1() throws IOException {
 
-        // Add listener to category1menu
-        comboBoxCharacter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            updateSaveGameName();
-        });
-
-// Add listener to category2menu
-        comboBoxPath.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
-            updateSaveGameName();
-        });
-
-
         setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
-
-
         HBox structure = new HBox();
-
         HBox content = new HBox();
-
-
         VBox characterImageAndButtons = new VBox();
-
         VBox inputFields = new VBox();
-
-
-
 
         structure.getStylesheets().add("/Style.css");
         content.setAlignment(Pos.CENTER);
@@ -94,9 +75,15 @@ public class Pane1 extends StackPane {
         saveName.setPromptText("Enter save name");
         saveName.setId("textField");
 
+        comboBoxCharacter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
+        });
+        comboBoxPath.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
+        });
 
         Button playButton = new Button("Play");
-        playButton.setId("navigationButton");
+        playButton.setId("Pane1ConfirmButton");
         playButton.setOnAction(event -> {
             try {
 
@@ -142,7 +129,6 @@ public class Pane1 extends StackPane {
 
         final int[] currentImageIndex = {0};
         imageBox.getChildren().add(imageViews.get(currentImageIndex[0]));
-
         Button leftButton = new Button("<");
         leftButton.setId("ArrowButton");
 
@@ -187,28 +173,17 @@ public class Pane1 extends StackPane {
         root.setSpacing(10);
         root.setId("ArrowButton");
 
-
-
-        Button openButton = new Button("Import game from desktop");
-        openButton.setId("navigationButton");
+        Button openButton = new Button("Import from desktop");
+        openButton.setId("Pane1ConfirmButton");
         openButton.setOnAction(event -> {
 
-
-            if (comboBoxCharacter.getValue() == null || saveName.getText().isEmpty()) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Empty fields");
-                alert.setHeaderText("Please select a character and a save name");
-                alert.showAndWait();
-                return;
-            } else {
-                try {
-                    StartGameFromImport.StartGameFromImportMethod();
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+            try {
+                StartGameFromImport.startGameFromImportMethod();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
             }
-        });
 
+        });
 
         Button backButton = new Button("Back");
         backButton.setPadding(new Insets(10, 10, 10, 10));
@@ -223,10 +198,6 @@ public class Pane1 extends StackPane {
 
         });
         backButton.setAlignment(Pos.TOP_LEFT);
-
-
-
-
         VBox comboBoxes = new VBox();
         comboBoxes.getChildren().addAll(comboBoxCharacter, comboBoxPath);
         comboBoxes.setAlignment(Pos.CENTER);
@@ -239,26 +210,19 @@ public class Pane1 extends StackPane {
 
         content.setAlignment(Pos.CENTER);
         content.setSpacing(20);
-
         characterImageAndButtons.getChildren().addAll(imageBox,root);
-
         characterImageAndButtons.setAlignment(Pos.TOP_LEFT);
         characterImageAndButtons.setSpacing(10);
         characterImageAndButtons.setPadding(new Insets(100, 50, 100, 0));
-
-
 
         inputFields.getChildren().addAll(comboBoxes, saveName, playButtons);
         inputFields.setAlignment(Pos.CENTER);
         inputFields.setSpacing(50);
         inputFields.setPadding(new Insets(100, 100, 100, 0));
 
-
         content.getChildren().addAll(characterImageAndButtons, inputFields);
-
         structure.getChildren().addAll(backButton, content);
         structure.setSpacing(20);
-
         getChildren().addAll(structure);
     }
 
@@ -293,6 +257,7 @@ public class Pane1 extends StackPane {
     }
 
 
+
     public boolean isFileNameUnique(String fileName, String directoryPath) {
         File directory = new File(directoryPath);
         String newFileName = fileName;
@@ -316,10 +281,5 @@ public class Pane1 extends StackPane {
 
         return true;
     }
-
-
-
-
-
 }
 

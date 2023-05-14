@@ -89,6 +89,34 @@
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
 }
 
+#Pane1ConfirmButton{
+
+    -fx-background-color: #944c0f;
+    -fx-text-fill: white;
+    -fx-font-family: Brazie;
+    -fx-min-width: 200;
+    -fx-font-size: 1.2em;
+    -fx-border-radius: 5px;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);
+
+}
+
+#mediumTitle {
+    -fx-font-size: 40px;
+    -fx-font-weight: bold;
+    -fx-font-family: "Brazie";
+    -fx-fill: #5e3720;
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 2px;
+    -fx-padding: 10px;
+}
+
+#Pane1ConfirmButton:hover {
+    -fx-background-color: #249a75;
+    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
 #smallButton {
     -fx-background-color: #4ec8cb;
     -fx-text-fill: white;
@@ -176,10 +204,16 @@
     -fx-background-color: #a9cade;
     -fx-border-color: #ffffff;
     -fx-border-width: 2px;
+    -fx-min-width: 200px;
     -fx-border-radius: 10px;
     -fx-background-radius: 10px;
     -fx-padding: 10px;
     -fx-cursor: hand;
+}
+
+#comboBox:hover {
+    -fx-background-color: #476b81;
+    -fx-text-fill: white;
 }
 
 
@@ -241,7 +275,7 @@ button:hover {
     -fx-background-color: #ffffff;
     -fx-text-fill: #000000;
     -fx-min-height: 35px;
-    -fx-min-width: 250px;
+    -fx-min-width: 200px;
     -fx-max-height: 50px;
     -fx-max-width: 150px;
     -fx-font-size: 12px;
