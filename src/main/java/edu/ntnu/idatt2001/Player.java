@@ -66,12 +66,29 @@ public class Player {
     }
 
     /**
+     * Sets the health of the player.
+     * @param health int health
+     */
+    public void setHealth(int health) {
+        this.health = health;
+    }
+
+
+    /**
      * Returns the score of the player.
      * @return int score
      */
 
     public int getScore() {
         return score;
+    }
+
+    /**
+     * Sets the score of the player.
+     * @param score int score
+     */
+    public void setScore(int score) {
+        this.score = score;
     }
 
     /**
@@ -93,6 +110,18 @@ public class Player {
     public ArrayList<String> getInventory() {
 
         return inventory;
+    }
+
+    /**
+     * Sets the inventory of the player.
+     * @param inventory ArrayList inventory
+     */
+
+    public void setInventory(ArrayList<String> inventory) {
+        if (inventory == null) {
+            throw new IllegalArgumentException("Inventory cannot be null");
+        }
+        this.inventory = inventory;
     }
 
     /**
@@ -118,6 +147,14 @@ public class Player {
 
     public int getGold() {
         return gold;
+    }
+
+    /**
+     * Sets the gold of the player.
+     * @param gold int gold
+     */
+    public void setGold(int gold) {
+        this.gold = gold;
     }
 
     /**
@@ -159,4 +196,6 @@ public class Player {
                 }
                 """.formatted(name, health, score, gold, inventory);
     }
+
+
 }
