@@ -114,11 +114,6 @@ public class Passage {
                 + "Content: " + getContent() + "\n"
                 + "Links: " + getLinks() + "\n";
     }
-
-    public static void main(String[] args) {
-        Passage passage = new Passage("test", "test");
-        System.out.println(passage);
-    }
 }
 
 
