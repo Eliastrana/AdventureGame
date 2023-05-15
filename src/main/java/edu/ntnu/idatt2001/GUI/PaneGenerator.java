@@ -89,6 +89,7 @@ public class PaneGenerator extends Application {
     restart.setId("topMenuButton");
     restart.setOnAction(e -> {
       try {
+        updateGoals();
         restartAction();
       } catch (IOException ex) {
         throw new RuntimeException(ex);
@@ -111,6 +112,7 @@ public class PaneGenerator extends Application {
     Button backButton = new Button("Back");
     backButton.setId("topMenuButton");
     backButton.setOnAction(e -> {
+      updateGoals();
       backAction();
     });
 
@@ -254,29 +256,97 @@ public class PaneGenerator extends Application {
 
   }
 
-  private void displayGoals (){
+  private void displayGoals() {
+    Text healthGoalTitle = new Text("Health: ");
+    healthGoalTitle.setId("goalsInfo");
+    Text currentHealth = new Text(game.getPlayer().getHealth() + " / ");
+    currentHealth.setId("goalsInfo");
+
+    HBox totalHealthGoals = new HBox();
+    HBox healthGoalsHBox = new HBox();
+
+    for (Goal goal : healthGoals) {
+      Text goalText = new Text(goal.toString() + " ");
+      goalText.setId("goalsInfo");
+      if (goal.isFullfilled(game.getPlayer())) {
+        goalText.setStyle("-fx-fill: green;");
+      } else {
+        goalText.setStyle("-fx-fill: red;");
+      }
+      healthGoalsHBox.getChildren().add(goalText);
+    }
+    totalHealthGoals.getChildren().addAll(currentHealth, healthGoalsHBox);
+    topGoalsHealth.getChildren().addAll(healthGoalTitle, totalHealthGoals);
 
 
+    Text scoreGoalTitle = new Text("Score: " + "\n");
+    scoreGoalTitle.setId("goalsInfo");
+    Text currentScore = new Text(game.getPlayer().getScore() + "/");
+    currentScore.setId("goalsInfo");
 
-    Text health = new Text("Health: " + "\n" +game.getPlayer().getHealth() +" / "+healthGoals.toString());
-    health.setId("goalsInfo");
-    Text score = new Text("Score: " + "\n" + game.getPlayer().getScore()+" / "+scoreGoals.toString());
-    score.setId("goalsInfo");
-    Text gold = new Text("Gold: " + "\n" + game.getPlayer().getGold()+" / "+goldGoals.toString());
-    gold.setId("goalsInfo");
-    Text inventory = new Text("Inventory: " + "\n" + game.getPlayer().getInventory().size()+" / "+inventoryGoals.toString());
-    inventory.setId("goalsInfo");
+    HBox totalScoreGoals = new HBox();
+    HBox scoreGoalsHBox = new HBox();
 
-    //Text goalText = new Text(goal.toString() + " Fulfilled: " + goal.isFullfilled(game.getPlayer()) + "\n");
+    for (Goal goal : scoreGoals) {
+      Text goalText = new Text(goal.toString() + " ");
+      goalText.setId("goalsInfo");
+      if (goal.isFullfilled(game.getPlayer())) {
+        goalText.setStyle("-fx-fill: green;");
+      } else {
+        goalText.setStyle("-fx-fill: red;");
+      }
+      scoreGoalsHBox.getChildren().add(goalText);
+    }
+    totalScoreGoals.getChildren().addAll(currentScore, scoreGoalsHBox);
+    topGoalsScore.getChildren().addAll(scoreGoalTitle, totalScoreGoals);
 
 
+    Text goldGoalTitle = new Text("Gold: " + "\n");
+    goldGoalTitle.setId("goalsInfo");
+    Text currentGold = new Text(game.getPlayer().getGold() + "/");
+    currentGold.setId("goalsInfo");
 
-    topGoalsHealth.getChildren().add(health);
-    topGoalsGold.getChildren().add(gold);
-    topGoalsScore.getChildren().add(score);
-    topGoalsInventory.getChildren().add(inventory);
+    HBox totalGoldGoals = new HBox();
+    HBox goldGoalsHBox = new HBox();
 
+    for (Goal goal : goldGoals) {
+      Text goalText = new Text(goal.toString() + " ");
+      goalText.setId("goalsInfo");
+      if (goal.isFullfilled(game.getPlayer())) {
+        goalText.setStyle("-fx-fill: green;");
+      } else {
+        goalText.setStyle("-fx-fill: red;");
+      }
+      goldGoalsHBox.getChildren().add(goalText);
+    }
+    totalGoldGoals.getChildren().addAll(currentGold, goldGoalsHBox);
+    topGoalsGold.getChildren().addAll(goldGoalTitle, totalGoldGoals);
+
+
+    Text inventoryGoalTitle = new Text("Inventory: " + "\n");
+    inventoryGoalTitle.setId("goalsInfo");
+    Text currentInventory = new Text(game.getPlayer().getInventory().size() + "/");
+    currentInventory.setId("goalsInfo");
+
+    HBox totalInventoryGoals = new HBox();
+    HBox inventoryGoalsHBox = new HBox();
+
+    for (Goal goal : inventoryGoals) {
+      Text goalText = new Text(goal.toString() + " ");
+      goalText.setId("goalsInfo");
+      if (goal.isFullfilled(game.getPlayer())) {
+        goalText.setStyle("-fx-fill: green;");
+      } else {
+        goalText.setStyle("-fx-fill: red;");
+      }
+      inventoryGoalsHBox.getChildren().add(goalText);
+    }
+    totalInventoryGoals.getChildren().addAll(currentInventory, inventoryGoalsHBox);
+    topGoalsInventory.getChildren().addAll(inventoryGoalTitle, totalInventoryGoals);
   }
+
+
+
 
   private void sortGoals() {
 
@@ -325,12 +395,7 @@ public class PaneGenerator extends Application {
       button.setOnAction(event -> {
         for (Action action : link.getActions()) {
           action.execute(game.getPlayer());
-
-          topGoalsHealth.getChildren().clear();
-          topGoalsGold.getChildren().clear();
-          topGoalsScore.getChildren().clear();
-          topGoalsInventory.getChildren().clear();
-          displayGoals();
+          updateGoals();
         }
 
         Passage nextPassage = game.go(link);
@@ -435,6 +500,13 @@ public class PaneGenerator extends Application {
         }
       }
     }
+  }
+  private void updateGoals() {
+    topGoalsHealth.getChildren().clear();
+    topGoalsGold.getChildren().clear();
+    topGoalsScore.getChildren().clear();
+    topGoalsInventory.getChildren().clear();
+    displayGoals();
   }
 }
 
