@@ -34,6 +34,8 @@ public class Pane1 extends StackPane {
 
     public static ComboBox<String> comboBoxPath = new ComboBox<String>();
 
+    public static ComboBox<String> comboBoxGoals = new ComboBox<String>();
+
 
     public Pane1() throws IOException {
 
@@ -72,6 +74,22 @@ public class Pane1 extends StackPane {
         comboBoxPath.setPromptText("Select path");
         comboBoxPath.setId("comboBox");
 
+
+        File goals = new File("src/main/resources/savedGoals/");
+        String[] filenames3 = goals.list();
+        ArrayList<String> names3 = new ArrayList<String>(Arrays.asList());
+        for (String filename : filenames3) {
+            String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
+            names3.add(name);
+        }
+        comboBoxGoals.getItems().addAll(names3);
+        comboBoxGoals.setPromptText("Select goal");
+        comboBoxGoals.setId("comboBox");
+
+
+
+
+
         saveName.setPromptText("Enter save name");
         saveName.setId("textField");
 
@@ -79,6 +97,9 @@ public class Pane1 extends StackPane {
             updateSaveGameName();
         });
         comboBoxPath.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
+        });
+        comboBoxGoals.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
             updateSaveGameName();
         });
 
@@ -199,17 +220,17 @@ public class Pane1 extends StackPane {
         });
         backButton.setAlignment(Pos.TOP_LEFT);
         VBox comboBoxes = new VBox();
-        comboBoxes.getChildren().addAll(comboBoxCharacter, comboBoxPath);
+        comboBoxes.getChildren().addAll(comboBoxCharacter, comboBoxPath, comboBoxGoals);
         comboBoxes.setAlignment(Pos.CENTER);
-        comboBoxes.setSpacing(20);
+        comboBoxes.setSpacing(10);
 
         VBox playButtons = new VBox();
         playButtons.getChildren().addAll(playButton, openButton);
         playButtons.setAlignment(Pos.CENTER);
-        playButtons.setSpacing(20);
+        playButtons.setSpacing(15);
 
         content.setAlignment(Pos.CENTER);
-        content.setSpacing(20);
+        content.setSpacing(10);
         characterImageAndButtons.getChildren().addAll(imageBox,root);
         characterImageAndButtons.setAlignment(Pos.TOP_LEFT);
         characterImageAndButtons.setSpacing(10);
@@ -217,7 +238,7 @@ public class Pane1 extends StackPane {
 
         inputFields.getChildren().addAll(comboBoxes, saveName, playButtons);
         inputFields.setAlignment(Pos.CENTER);
-        inputFields.setSpacing(50);
+        inputFields.setSpacing(20);
         inputFields.setPadding(new Insets(100, 100, 100, 0));
 
         content.getChildren().addAll(characterImageAndButtons, inputFields);
@@ -252,8 +273,9 @@ public class Pane1 extends StackPane {
     private void updateSaveGameName() {
         String category1 = comboBoxCharacter.getSelectionModel().getSelectedItem();
         String category2 = comboBoxPath.getSelectionModel().getSelectedItem();
+        String category3 = comboBoxGoals.getSelectionModel().getSelectedItem();
 
-        saveName.setText(category1 + "_" + category2 + "_save");
+        saveName.setText(category1 + "_" + category2 + "_" + category3 + "_save");
     }
 
 

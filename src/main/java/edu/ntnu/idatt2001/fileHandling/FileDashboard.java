@@ -105,6 +105,14 @@ public static void gameSave(String input, String filePath) throws IOException {
     }
 
 
+    //A method that takes the input from the user and writes it to a file
+    public static void writeGoals(String input, String saveLocation) throws IOException {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveLocation, true))) {
+            writer.write(input);
+            writer.newLine(); // Add a new line after the appended content
+        }
+    }
+
 
 
 }
