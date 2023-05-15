@@ -295,7 +295,6 @@ button:hover {
     -fx-min-width: 250px;
     -fx-min-height: 80px;
     -fx-max-height: 80px;
-    -fx-max-width: 250px;
     -fx-border-radius: 5px;
     -fx-padding: 10px 20px;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.2), 10, 0, 0, 0);

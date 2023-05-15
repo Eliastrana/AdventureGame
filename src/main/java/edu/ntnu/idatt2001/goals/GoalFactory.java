@@ -7,7 +7,7 @@ public class GoalFactory {
       return null;
     }
 
-    String[] goalParts = input.trim().split(" ");
+    String[] goalParts = input.trim().split(": ");
 
     if (goalParts.length == 2) {
       String goalType = goalParts[0];
