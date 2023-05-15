@@ -18,6 +18,7 @@ import java.util.Comparator;
 public class QuickLoad {
 
     public static HBox savedGamesContainer() throws IOException {
+        SaveFileReader saveFileReader = new SaveFileReader();
 
 
         HBox savedGames = new HBox();
@@ -42,22 +43,22 @@ public class QuickLoad {
                 HBox savedGameContentStructure = new HBox();
 
                 VBox savedGameContent = new VBox();
-                Text savedGameCharacter = new Text("Character name: "+"\n"+SaveFileReader.getName(file.getPath()));
+                Text savedGameCharacter = new Text("Character name: "+"\n"+saveFileReader.getName(file.getPath()));
                 savedGameCharacter.setStyle("-fx-fill: #ffffff; -fx-font-size: 10");
 
                 savedGameCharacter.setId("savedGameText");
 
-                Text savedGamePath = new Text("Chosen path: "+"\n"+SaveFileReader.getPath(file.getPath()));
+                Text savedGamePath = new Text("Chosen path: "+"\n"+saveFileReader.getPath(file.getPath()));
                 savedGamePath.setId("savedGameText");
                 savedGamePath.setStyle("-fx-fill: #ffffff; -fx-font-size: 10");
 
-                Text savedGameCurrentPassage = new Text("Last seen passage: "+"\n"+SaveFileReader.getLastSeenPassage(file.getPath()));
+                Text savedGameCurrentPassage = new Text("Last seen passage: "+"\n"+saveFileReader.getLastSeenPassage(file.getPath()));
                 savedGameCurrentPassage.setId("savedGameText");
                 savedGameCurrentPassage.setStyle("-fx-fill: #ffffff; -fx-font-size: 10");
 
 
-                Image image = new Image("file:src/main/resources/characterIcons/" +SaveFileReader.getImage(file.getPath()));
-                System.out.println("file:src/main/resources/characterIcons/" +SaveFileReader.getImage(file.getPath()));
+                Image image = new Image("file:src/main/resources/characterIcons/" +saveFileReader.getImage(file.getPath()));
+                System.out.println("file:src/main/resources/characterIcons/" +saveFileReader.getImage(file.getPath()));
                 ImageView savedGameImage = new ImageView(image);
                 savedGameImage.setFitHeight(100);
                 savedGameImage.setFitWidth(60);
