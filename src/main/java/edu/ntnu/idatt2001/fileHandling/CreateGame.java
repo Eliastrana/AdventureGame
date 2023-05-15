@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.fileHandling;
 
 import edu.ntnu.idatt2001.*;
+import edu.ntnu.idatt2001.goals.Goal;
 
 import javax.imageio.stream.ImageInputStream;
 import java.io.IOException;
@@ -8,6 +9,8 @@ import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+
+import static edu.ntnu.idatt2001.frontend.Pane1.comboBoxGoals;
 
 /**
  * A class that creates a game from a file.
@@ -26,6 +29,7 @@ public class CreateGame {
     public CreateGame(String filepath) {
 
         this.filePath = filepath;
+        String goalFilePath = "src/main/resources/savedGoals/" + comboBoxGoals.getValue();
     }
 
     /**
@@ -80,7 +84,8 @@ public class CreateGame {
     public Game gameGenerator(String playerFilepath) throws IOException {
         Player player = playerGenerator(playerFilepath);
         Story story = launchGame();
-        return new Game(player, story, new ArrayList<>());
+        ArrayList<Goal> goals = goalGenerator("src/main/resources/savedGoals/" + comboBoxGoals.getValue());
+        return new Game(player, story, goals);
     }
 
     /**
@@ -91,6 +96,13 @@ public class CreateGame {
     public Player playerGenerator(String playerFilepath) {
         PlayerRegister playerRegister = new PlayerRegister();
         return playerRegister.characterInforVariable(playerFilepath);
+    }
+
+
+    public ArrayList<Goal> goalGenerator(String goalFile) throws IOException {
+        GoalRegister goalRegister = new GoalRegister();
+        goalRegister.loadGoalsFromFile(goalFile);
+        return (ArrayList<Goal>) goalRegister.getGoals();
     }
 
 

@@ -13,11 +13,8 @@ import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
 
-import static edu.ntnu.idatt2001.frontend.Pane1.processSelectedImage;
-import static edu.ntnu.idatt2001.frontend.Pane1.saveName;
+import static edu.ntnu.idatt2001.frontend.Pane1.*;
 import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
-import static edu.ntnu.idatt2001.frontend.Pane1.comboBoxCharacter;
-import static edu.ntnu.idatt2001.frontend.Pane1.comboBoxPath;
 
 public class StartGameFromCatalog {
 
@@ -27,7 +24,7 @@ public class StartGameFromCatalog {
         String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
         String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
         String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() +"\n";
-        String goals = "src/main/resources/goals/" + comboBoxPath.getValue();
+        String goals = "src/main/resources/savedGoals/" + comboBoxGoals.getValue();
 
 
         FileDashboard.gameSave(processSelectedImage(), saveData);
