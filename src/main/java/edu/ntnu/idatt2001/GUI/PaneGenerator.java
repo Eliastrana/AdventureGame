@@ -8,6 +8,7 @@ import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
+import edu.ntnu.idatt2001.goals.Goal;
 import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.File;
@@ -127,13 +128,10 @@ public class PaneGenerator extends Application {
     playerInfo.setId("playerInfo");
 
 
-    Text goals = new Text("Goals: " + game.getPlayer().getHealth()+"/"+game.getGoals());
-    Text score = new Text("Score: ");
-    Text health = new Text("Health: ");
-    Text gold = new Text("Gold: ");
-    Text inventory = new Text("Inventory: ");
 
-    topGoals.getChildren().addAll(goals, score, health, gold, inventory);
+    displayGoals();
+
+
 
 
     contentArea = new Text();
@@ -170,6 +168,20 @@ public class PaneGenerator extends Application {
     stage.setTitle(game.getStory().getTitle());
     stage.show();
   }
+
+  public void displayGoals() {
+    topGoals.getChildren().clear();
+    VBox goalsContainer = new VBox();
+    for (Goal goal : game.getGoals()) {
+      Text goalText = new Text(goal.toString() + " Fulfilled: " + goal.isFullfilled(game.getPlayer()) + "\n");
+      goalsContainer.getChildren().add(goalText);
+    }
+    topGoals.getChildren().add(goalsContainer);
+  }
+
+
+
+
 
   public void updatePlayerInfo() {
     try {
@@ -246,6 +258,7 @@ public class PaneGenerator extends Application {
       button.setOnAction(event -> {
         for (Action action : link.getActions()) {
           action.execute(game.getPlayer());
+          displayGoals();
         }
 
         Passage nextPassage = game.go(link);

@@ -20,16 +20,21 @@ import static edu.ntnu.idatt2001.frontend.Pane1.comboBoxGoals;
 public class CreateGame {
     String filePath;
     Story story;
+    String goalFilePath;
 
     /**
      * Constructor for CreateGame
      * @param filepath String filepath
      */
 
-    public CreateGame(String filepath) {
+    public CreateGame(String filepath, String goalFilePath) {
+
+        if (comboBoxGoals.getValue() == null) {
+            throw new IllegalArgumentException("No goal selected from comboBoxGoals");
+        }
 
         this.filePath = filepath;
-        String goalFilePath = "src/main/resources/savedGoals/" + comboBoxGoals.getValue();
+        this.goalFilePath = goalFilePath;
     }
 
     /**
@@ -84,7 +89,7 @@ public class CreateGame {
     public Game gameGenerator(String playerFilepath) throws IOException {
         Player player = playerGenerator(playerFilepath);
         Story story = launchGame();
-        ArrayList<Goal> goals = goalGenerator("src/main/resources/savedGoals/" + comboBoxGoals.getValue());
+        ArrayList<Goal> goals = goalGenerator(goalFilePath);
         return new Game(player, story, goals);
     }
 
@@ -99,21 +104,13 @@ public class CreateGame {
     }
 
 
-    public ArrayList<Goal> goalGenerator(String goalFile) throws IOException {
+    public ArrayList<Goal> goalGenerator(String goalFile) {
         GoalRegister goalRegister = new GoalRegister();
         goalRegister.loadGoalsFromFile(goalFile);
         return (ArrayList<Goal>) goalRegister.getGoals();
     }
 
 
-
-    public static void main(String[] args) throws IOException {
-        CreateGame createGame = new CreateGame("src/main/resources/hauntedHouse.paths");
-        System.out.println(createGame.storyGenerator(createGame.launchGame()));
-        System.out.println(createGame.launchGame().getPassages());
-
-
-    }
 
 
 }

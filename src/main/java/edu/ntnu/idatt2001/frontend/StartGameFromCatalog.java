@@ -24,7 +24,7 @@ public class StartGameFromCatalog {
         String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
         String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
         String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() +"\n";
-        String goals = "src/main/resources/savedGoals/" + comboBoxGoals.getValue();
+        String goals = "src/main/resources/savedGoals/" + comboBoxGoals.getValue()+".txt";
 
 
         FileDashboard.gameSave(processSelectedImage(), saveData);
@@ -32,7 +32,15 @@ public class StartGameFromCatalog {
 
         if (comboBoxPath.getItems() != null) {
             // Handle the selected file here
-            CreateGame game = new CreateGame(pathFile);
+            if (comboBoxGoals.getValue() == null) {
+                Alert alert = new Alert(Alert.AlertType.WARNING);
+                alert.setTitle("Warning");
+                alert.setHeaderText("No goal selected");
+                alert.setContentText("Please select a goal from the dropdown menu");
+                alert.showAndWait();
+                return;
+            }
+            CreateGame game = new CreateGame(pathFile, goals);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             FileDashboard.gameSave(playerStats, saveData);
 

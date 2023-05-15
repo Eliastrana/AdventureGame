@@ -10,8 +10,15 @@ public class InventoryGoal implements Goal {
         this.minimumItems = minimumItems;
     }
 
+
     public boolean isFullfilled(Player player) {
         if (player == null) throw new IllegalArgumentException("Player cannot be null");
         return player.getInventory().size() >= minimumItems;
+    }
+
+
+    @Override
+    public String toString() {
+        return "Inventory Goal: " + minimumItems;
     }
 }
