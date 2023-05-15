@@ -9,6 +9,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
+import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -23,7 +24,7 @@ public class StartGameFromCatalog {
         String saveData = "src/main/resources/saveData/" + saveName.getText();
         String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
         String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
-        String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() +"\n";
+        String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() ;
         String goals = "src/main/resources/savedGoals/" + comboBoxGoals.getValue()+".txt";
 
 
@@ -43,6 +44,7 @@ public class StartGameFromCatalog {
             CreateGame game = new CreateGame(pathFile, goals);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             FileDashboard.gameSave(playerStats, saveData);
+            FileDashboard.gameSave(comboBoxGoals.getValue()+"\n", saveData);
 
             PaneGenerator gui;
             Game gameCreated = game.gameGenerator(characterFile);

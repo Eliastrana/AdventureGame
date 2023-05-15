@@ -8,7 +8,7 @@ import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
-import edu.ntnu.idatt2001.goals.Goal;
+import edu.ntnu.idatt2001.goals.*;
 import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.File;
@@ -234,6 +234,24 @@ public class PaneGenerator extends Application {
 
   }
 
+  private void sortGoals() {
+    ArrayList<Goal> scoreGoals = new ArrayList<>();
+    ArrayList<Goal> healthGoals = new ArrayList<>();
+    ArrayList<Goal> goldGoals = new ArrayList<>();
+    ArrayList<Goal> inventoryGoals = new ArrayList<>();
+    for (Goal goal : game.getGoals()) {
+      if (goal instanceof ScoreGoal)  {
+        scoreGoals.add(goal);
+      } else if (goal instanceof HealthGoal) {
+        healthGoals.add(goal);
+      } else if (goal instanceof GoldGoal) {
+        goldGoals.add(goal);
+      } else if (goal instanceof InventoryGoal) {
+        inventoryGoals.add(goal);
+      }
+    }
+  }
+
 
   private void quitGame() throws IOException {
     SceneSwitcher.switchToPane1();
@@ -334,7 +352,7 @@ public class PaneGenerator extends Application {
       FileDashboard.gameSave("C:"
               + passageCounter + "\nP:"
               + game.getStory().getOpeningPassage().getTitle(), filePath);
-      writeStatus();
+    writeStatus();
     } catch (IOException e) {
       e.printStackTrace();
     }
