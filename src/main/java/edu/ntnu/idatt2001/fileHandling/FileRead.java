@@ -44,7 +44,8 @@ public class FileRead {
                     }
                     title = line.substring(2).trim(); // Remove the "::" prefix and trim the title
                 } else if (line.startsWith("{")) {
-                    Action action = ActionsFactory.createAction(line);
+                    ActionsFactory actionsFactory = new ActionsFactory();
+                    Action action = actionsFactory.createAction(line);
                     if (action != null) {
                         // Add action to the last link
                         if (!links.isEmpty()) {

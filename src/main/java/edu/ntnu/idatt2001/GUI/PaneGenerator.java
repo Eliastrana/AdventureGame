@@ -258,7 +258,8 @@ public class PaneGenerator extends Application {
   }
 
   private void updatePlayerInfoBasedOnCounter(int counter) {
-    HashMap<String, Object> passageData = SaveFileReader.getPassageParameters(filePath, counter);
+    SaveFileReader reader = new SaveFileReader();
+    HashMap<String, Object> passageData = reader.getPassageParameters(filePath, counter);
     System.out.println(passageData);
 
     if (passageData.containsKey("health") && passageData.get("health") instanceof Integer) {
@@ -277,7 +278,8 @@ public class PaneGenerator extends Application {
   }
 
   private void updateInventoryBasedOnCounter(int counter) {
-    ArrayList<String> inventory = SaveFileReader.getInventoryFromCounter(filePath, counter);
+    SaveFileReader reader = new SaveFileReader();
+    ArrayList<String> inventory = reader.getInventoryFromCounter(filePath, counter);
     game.getPlayer().setInventory(inventory);
     updatePlayerInfo();
   }
@@ -313,7 +315,8 @@ public class PaneGenerator extends Application {
 
   private void backAction() {
     passageCounter--;
-    String namePassage = SaveFileReader.getPassageNameFromCounter(filePath, passageCounter);
+    SaveFileReader reader = new SaveFileReader();
+    String namePassage = reader.getPassageNameFromCounter(filePath, passageCounter);
     System.out.println("Checking if " + namePassage + " exists");
 
     if (game.getStory().getOpeningPassage().getTitle().equals(namePassage)) {

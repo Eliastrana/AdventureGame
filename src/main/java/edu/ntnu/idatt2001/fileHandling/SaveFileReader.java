@@ -1,7 +1,5 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
@@ -10,12 +8,9 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 
-
-
 public class SaveFileReader {
 
-
-  public static String getImage(String filePath) throws IOException {
+  public String getImage(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -25,7 +20,7 @@ public class SaveFileReader {
     return image;
   }
 
-  public static String getName(String filePath) throws IOException {
+  public String getName(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -36,8 +31,7 @@ public class SaveFileReader {
     return name;
   }
 
-
-  public static String getPath(String filePath) throws IOException {
+  public String getPath(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -49,7 +43,7 @@ public class SaveFileReader {
     return path;
   }
 
-  public static String getLastSeenPassage(String filePath) throws IOException {
+  public String getLastSeenPassage(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
 
@@ -64,24 +58,20 @@ public class SaveFileReader {
     return lastSeenPassage;
   }
 
-
-  public static String getPassageNameFromCounter(String filePath, int counter) {
+  public String getPassageNameFromCounter(String filePath, int counter) {
     String passageName = "";
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
       String line;
 
       while ((line = reader.readLine()) != null) {
         if (line.startsWith("C:" + counter)) {
-          //System.out.println("Found counter");
           while ((line = reader.readLine()) != null) {
             if (line.startsWith("P:")) {
               passageName = line.substring(2);
               break;
             }
           }
-
         }
-
       }
     } catch (IOException e) {
       throw new RuntimeException(e);
@@ -89,7 +79,7 @@ public class SaveFileReader {
     return passageName;
   }
 
-  public static ArrayList<String> getInventoryFromCounter(String filePath, int counter) {
+  public ArrayList<String> getInventoryFromCounter(String filePath, int counter) {
     ArrayList<String> passageInventory = new ArrayList<>();
     boolean isMatchingCounter = false;
 
@@ -113,8 +103,7 @@ public class SaveFileReader {
     return passageInventory;
   }
 
-
-  public static HashMap<String, Object> getPassageParameters(String filePath, int counter) {
+  public HashMap<String, Object> getPassageParameters(String filePath, int counter) {
     HashMap<String, Object> map = new HashMap<>();
 
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -124,7 +113,7 @@ public class SaveFileReader {
       while ((line = reader.readLine()) != null) {
         if (line.startsWith("C:" + counter)) {
           isMatchingCounter = true;
-        } else if (line.startsWith("C:") && isMatchingCounter) {
+        } else        if (line.startsWith("C:") && isMatchingCounter) {
           break; // Reached the next counter, stop reading
         }
 
@@ -144,6 +133,5 @@ public class SaveFileReader {
 
     return map;
   }
-
-
 }
+
