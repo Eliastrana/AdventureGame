@@ -27,6 +27,7 @@ public class StartGameFromCatalog {
         String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
         String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
         String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() +"\n";
+        String goals = "src/main/resources/goals/" + comboBoxPath.getValue();
 
 
         FileDashboard.gameSave(processSelectedImage(), saveData);
