@@ -33,7 +33,7 @@ public class PlayerRegister {
     }
 
     public Player characterInforVariable(String filePath) {
-        String output = null;
+
         try {
             FileReader fileReader = new FileReader(filePath);
             BufferedReader bufferedReader = new BufferedReader(fileReader);
@@ -55,8 +55,7 @@ public class PlayerRegister {
                     .addToInventory(inventory)
                     .getPlayer();
 
-            output = "Name: " + name + " Health: " + health + " Gold: " + gold + " Score: " + score;
-            System.out.println(output);
+
             return player;
         } catch (Exception e) {
             e.printStackTrace();
