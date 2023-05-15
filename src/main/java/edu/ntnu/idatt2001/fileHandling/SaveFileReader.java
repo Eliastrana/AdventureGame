@@ -30,6 +30,17 @@ public class SaveFileReader {
 
     return name;
   }
+  public String getImageIcon(String filePath) throws IOException {
+    File file = new File(filePath);
+    BufferedReader br = new BufferedReader(new FileReader(file));
+
+    String image = br.readLine();
+    br.close();
+
+    return image;
+  }
+
+
 
   public String getPath(String filePath) throws IOException {
     File file = new File(filePath);
@@ -41,6 +52,18 @@ public class SaveFileReader {
     br.close();
 
     return path;
+  }
+
+  public String getGoal(String filePath) throws IOException {
+    File file = new File(filePath);
+    BufferedReader br = new BufferedReader(new FileReader(file));
+    br.readLine(); // Skip image line
+    br.readLine(); // Skip name line
+    br.readLine(); // Skip path line
+    String name = br.readLine();
+    br.close();
+
+    return name;
   }
 
   public String getLastSeenPassage(String filePath) throws IOException {

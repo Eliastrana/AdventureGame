@@ -15,6 +15,8 @@ public class MainMenuPane extends VBox {
 
     public MainMenuPane() throws IOException {
 
+
+
         SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
         setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
@@ -40,7 +42,8 @@ public class MainMenuPane extends VBox {
         button4.setId("mainMenuButton");
         menuButtons.getChildren().addAll(button1, button2, button3, button4);
 
-        structure.getChildren().addAll(titleText, menuButtons, QuickLoad.savedGamesContainer());
+        HBox hBox = QuickLoad.savedNameDisplayer("characterPath", "filePath", "goalsPath", "characterIcon");
+        structure.getChildren().addAll(titleText, menuButtons, hBox);
         structure.setAlignment(Pos.CENTER);
         getChildren().addAll(structure);
 

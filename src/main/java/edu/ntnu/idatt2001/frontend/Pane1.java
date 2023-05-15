@@ -106,29 +106,35 @@ public class Pane1 extends StackPane {
         Button playButton = new Button("Play");
         playButton.setId("Pane1ConfirmButton");
         playButton.setOnAction(event -> {
-            try {
 
-                String saveNameString = saveName.getText().trim();
+            String saveNameString = saveName.getText().trim();
 
-                if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
-                    StartGameFromCatalog.startGameFromCatalogMethod();
-                } else {
-                    Alert alert = new Alert(Alert.AlertType.ERROR);
-                    alert.setTitle("Unavailable");
-                    alert.setHeaderText("Name already in use");
-                    alert.setContentText("Save name already exists, please choose another name");
-                    alert.showAndWait();
+            if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
+
+                String saveData = "src/main/resources/saveData/" + saveName.getText()+".txt";
+                String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
+                String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
+                String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() ;
+                String goalsFile = "src/main/resources/savedGoals/" + comboBoxGoals.getValue()+".txt";
+                String characterIcon = processSelectedImage();
+
+
+                StartGameFromCatalog startGameFromCatalog = new StartGameFromCatalog(saveData, pathFile, characterFile, playerStats, goalsFile, characterIcon);
+                try {
+                    startGameFromCatalog.startGameFromCatalogMethod();
+                } catch (IOException e) {
+                    throw new RuntimeException(e);
                 }
 
-
-            } catch (IOException e) {
+            } else {
                 Alert alert = new Alert(Alert.AlertType.ERROR);
-                alert.setTitle("Error");
-                alert.setHeaderText("An error occurred");
-                alert.setContentText(e.getMessage());
+                alert.setTitle("Unavailable");
+                alert.setHeaderText("Name already in use");
+                alert.setContentText("Save name already exists, please choose another name");
                 alert.showAndWait();
-                throw new RuntimeException(e);
             }
+
+
         });
 
         HBox imageBox = new HBox();
@@ -199,6 +205,7 @@ public class Pane1 extends StackPane {
         openButton.setOnAction(event -> {
 
             try {
+
                 StartGameFromImport.startGameFromImportMethod();
             } catch (IOException e) {
                 throw new RuntimeException(e);

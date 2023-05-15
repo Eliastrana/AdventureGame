@@ -19,22 +19,25 @@ import static edu.ntnu.idatt2001.frontend.Pane1.comboBoxGoals;
 
 public class CreateGame {
     String filePath;
-    Story story;
+
     String goalFilePath;
+    String characterPath;
+    String characterIconPath;
 
     /**
      * Constructor for CreateGame
-     * @param filepath String filepath
+     * @param filePath filePath
+     * @param characterPath characterPath
+     * @param goalsPath goalsPath
+     * @param characterIcon characterIcon
      */
 
-    public CreateGame(String filepath, String goalFilePath) {
+    public CreateGame(String filePath,String characterPath,String goalsPath,String characterIcon) {
 
-        if (comboBoxGoals.getValue() == null) {
-            throw new IllegalArgumentException("No goal selected from comboBoxGoals");
-        }
-
-        this.filePath = filepath;
-        this.goalFilePath = goalFilePath;
+        this.filePath = filePath;
+        this.goalFilePath = goalsPath;
+        this.characterPath = characterPath;
+        this.characterIconPath = characterIcon;
     }
 
     /**
@@ -62,6 +65,9 @@ public class CreateGame {
         }
 
         return story;
+    }
+    public String getCharacterIconPath() {
+        return characterIconPath;
     }
 
     /**

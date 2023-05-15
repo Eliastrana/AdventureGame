@@ -1,7 +1,14 @@
 package edu.ntnu.idatt2001.frontend;
 
+import edu.ntnu.idatt2001.GUI.PaneGenerator;
+import edu.ntnu.idatt2001.Game;
+import edu.ntnu.idatt2001.Link;
+import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import javafx.geometry.Pos;
+import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonBar;
+import javafx.scene.control.ButtonType;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -14,11 +21,57 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
+import java.util.List;
+import java.util.Optional;
+
+import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 public class QuickLoad {
+    SaveFileReader saveFileReader;
 
-    public static HBox savedGamesContainer() throws IOException {
-        SaveFileReader saveFileReader = new SaveFileReader();
+    String characterPath;
+    String filePath;
+    String goalsPath;
+    String characterIcon;
+
+    public QuickLoad(String characterPath, String filePath, String goalsPath, String characterIcon) {
+        this.characterPath = characterPath;
+        this.filePath = filePath;
+        this.goalsPath = goalsPath;
+        this.characterIcon = characterIcon;
+        saveFileReader = new SaveFileReader();
+    }
+
+    public String getCharacterPath() {
+        return characterPath;
+    }
+
+    public String getFilePath() {
+        return filePath;
+    }
+
+    public String getGoalsPath() {
+        return goalsPath;
+    }
+
+    public String getCharacterIcon() {
+        return characterIcon;
+    }
+
+
+
+
+    public static HBox savedNameDisplayer(String characterPath, String filePath, String goalsPath, String characterIcon) throws IOException {
+        QuickLoad quickLoad = new QuickLoad(characterPath, filePath, goalsPath, characterIcon);
+        return quickLoad.savedGamesContainer();
+    }
+
+
+
+
+
+    public HBox savedGamesContainer() throws IOException {
+
 
 
         HBox savedGames = new HBox();
@@ -72,12 +125,54 @@ public class QuickLoad {
 
 
                 pane.setOnMouseClicked(e -> {
-                    // Write code to reload game
-                    System.out.println("Clicked on " + file.getName());
+                    try {
+                        // Fetch the necessary data from the saved game file
+                        String characterPath = "src/main/resources/characters/" + saveFileReader.getName(file.getPath()) + ".paths";
+                        String filePath= "src/main/resources/paths/" + saveFileReader.getPath(file.getPath()) + ".paths";
+                        String goalsPath = "src/main/resources/savedGoals/" + saveFileReader.getGoal(file.getPath()) + ".txt";
+                        String characterIcon = saveFileReader.getImageIcon(file.getPath());
+                        System.out.println("QuickLoad:"+characterIcon);
 
+                        // Create a new game and check for broken links
+                        CreateGame game = new CreateGame(filePath, characterPath, goalsPath, characterIcon);
+                        Game gameCreated = game.gameGenerator(characterPath);
 
+                        if (gameCreated.getStory().getBrokenLinks().size() != 0) {
+                            Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
+                            brokenLinks.setTitle("Warning");
+                            brokenLinks.setHeaderText("Broken links");
+                            brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()
+                                    + "\n" + "The following links are broken: " + gameCreated.getStory().getBrokenLinks());
 
+                            ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
+                            ButtonType removeButton = new ButtonType("Remove", ButtonBar.ButtonData.APPLY);
+
+                            brokenLinks.getButtonTypes().addAll(cancelButton, removeButton);
+
+                            Optional<ButtonType> result = brokenLinks.showAndWait();
+                            if (result.isPresent()) {
+                                if (result.get() == cancelButton) {
+                                    return;
+                                } else if (result.get() == removeButton) {
+                                    List<Link> brokenLinksList = gameCreated.getStory().getBrokenLinks();
+                                    for (Link link : brokenLinksList) {
+                                        gameCreated.getStory().removePassage(link);
+                                    }
+                                }
+                            }
+                        }
+
+                        // Start the game
+                        PaneGenerator gui = new PaneGenerator(gameCreated, characterIcon);
+                        gui.start(primaryStage);
+                        primaryStage.setFullScreen(true);
+
+                    } catch (Exception exception) {
+                        exception.printStackTrace();
+                    }
                 });
+
+
 
                 pane.getChildren().addAll(background, savedGameContent);
                 savedGames.getChildren().add(pane);
@@ -90,4 +185,5 @@ public class QuickLoad {
         return savedGames;
 
     }
+
 }

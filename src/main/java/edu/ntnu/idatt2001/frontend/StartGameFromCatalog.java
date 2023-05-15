@@ -9,7 +9,6 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
-import java.io.File;
 import java.io.IOException;
 import java.util.List;
 import java.util.Optional;
@@ -18,14 +17,53 @@ import static edu.ntnu.idatt2001.frontend.Pane1.*;
 import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 public class StartGameFromCatalog {
+    String saveData;
+    String pathFile;
+    String characterFile;
+    String playerStats;
+    String goals;
+    String characterIcon;
 
-    public static void startGameFromCatalogMethod() throws IOException {
+    StartGameFromCatalog(String saveData, String pathFile, String characterFile, String playerStats, String goals, String characterIcon) {
+        this.saveData = saveData;
+        this.pathFile = pathFile;
+        this.characterFile = characterFile;
+        this.playerStats = playerStats;
+        this.goals = goals;
+        this.characterIcon = characterIcon;
+    }
 
-        String saveData = "src/main/resources/saveData/" + saveName.getText();
-        String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
-        String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
-        String playerStats = comboBoxCharacter.getValue() + "\n"  + comboBoxPath.getValue() ;
-        String goals = "src/main/resources/savedGoals/" + comboBoxGoals.getValue()+".txt";
+
+    public String getSaveData() {
+        return saveData;
+    }
+
+    public String getPathFile() {
+        return pathFile;
+    }
+
+    public String getCharacterFile() {
+        return characterFile;
+    }
+
+    public String getPlayerStats() {
+        return playerStats;
+    }
+
+    public String getGoals() {
+        return goals;
+    }
+
+    public String getCharacterIcon() {
+        return characterIcon;
+    }
+
+
+
+    public void startGameFromCatalogMethod() throws IOException {
+
+
+
 
 
         FileDashboard.gameSave(processSelectedImage(), saveData);
@@ -41,7 +79,7 @@ public class StartGameFromCatalog {
                 alert.showAndWait();
                 return;
             }
-            CreateGame game = new CreateGame(pathFile, goals);
+            CreateGame game = new CreateGame(pathFile, characterFile, goals, characterIcon);
             Alert alert = new Alert(Alert.AlertType.INFORMATION);
             FileDashboard.gameSave(playerStats, saveData);
             FileDashboard.gameSave(comboBoxGoals.getValue()+"\n", saveData);
@@ -73,8 +111,9 @@ public class StartGameFromCatalog {
                     }
                 }
             }
+            String characterIcon = game.getCharacterIconPath();
 
-            gui = new PaneGenerator(gameCreated);
+            gui = new PaneGenerator(gameCreated, characterIcon);
 
             gui.start(primaryStage);
             primaryStage.setFullScreen(true);
@@ -82,6 +121,13 @@ public class StartGameFromCatalog {
 
         }
 }
+    public static void startGameFromLoadedGame(Game gameCreated,String characterIcon) throws IOException {
+        PaneGenerator gui = new PaneGenerator(gameCreated, characterIcon);
+        // Start the game
+        gui.start(primaryStage);
+        primaryStage.setFullScreen(true);
+    }
+
 
 
 

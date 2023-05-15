@@ -7,7 +7,6 @@ import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import edu.ntnu.idatt2001.frontend.Pane1;
-import edu.ntnu.idatt2001.frontend.Pane4;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import edu.ntnu.idatt2001.goals.*;
 import edu.ntnu.idatt2001.utility.AlertUtil;
@@ -36,6 +35,9 @@ import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 
 public class PaneGenerator extends Application {
+
+  private String characterIcon;
+
   private Game game;
   private int passageCounter = 0;
   private HBox playerInfo;
@@ -61,10 +63,11 @@ public class PaneGenerator extends Application {
   ArrayList<Goal> healthGoals = new ArrayList<>();
   ArrayList<Goal> goldGoals = new ArrayList<>();
   ArrayList<Goal> inventoryGoals = new ArrayList<>();
-  String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText();
+  String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText()+".txt";
 
-  public PaneGenerator(Game game) {
+  public PaneGenerator(Game game, String characterIcon) {
     this.game = game;
+    this.characterIcon = characterIcon;
   }
 
   @Override
@@ -199,11 +202,6 @@ public class PaneGenerator extends Application {
     stage.setTitle(game.getStory().getTitle());
     stage.show();
   }
-
-
-
-
-
 
   public void updatePlayerInfo() {
     try {
