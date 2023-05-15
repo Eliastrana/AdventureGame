@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.frontend;
 
-
 import edu.ntnu.idatt2001.fileHandling.PlayerRegister;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
@@ -8,8 +7,6 @@ import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 
 public class Pane3 extends StackPane {
@@ -25,6 +22,10 @@ public class Pane3 extends StackPane {
 
     public Pane3() {
 
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
+
+
+        playerInventory.setId("comboBox");
 
         VBox structure = new VBox();
 
@@ -34,12 +35,6 @@ public class Pane3 extends StackPane {
         setPlayerHealth.setId("textField");
         setPlayerGold.setId("textField");
         setPlayerScore.setId("textField");
-
-
-
-
-
-
 
         VBox playerCreation = new VBox();
 
@@ -55,18 +50,18 @@ public class Pane3 extends StackPane {
 
         Button createPlayerButton = new Button("Create player");
         createPlayerButton.setId("confirmButton");
+        createPlayerButton.setId("mainMenuButton");
         playerCreation.getChildren().addAll(createPlayer, createPlayerName, setPlayerHealth, setPlayerGold, setPlayerScore, playerInventory, createPlayerButton);
         playerCreation.setSpacing(10);
 
-
         createPlayerButton.setOnAction(e -> {
 
-            String playerStats = createPlayerName.getText() +" " + setPlayerHealth.getText() + " " + setPlayerGold.getText() + " " + setPlayerScore.getText() + " " + playerInventory.getValue();
-
-            PlayerRegister.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
+            PlayerRegister register = new PlayerRegister();
+            String playerStats = createPlayerName.getText() +" " + setPlayerHealth.getText() + " " + setPlayerGold.getText()
+                    + " " + setPlayerScore.getText() + " " + playerInventory.getValue();
+            register.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
 
             System.out.println(playerStats+".paths");
-
             createPlayerName.clear();
             setPlayerHealth.clear();
             setPlayerGold.clear();
@@ -74,24 +69,20 @@ public class Pane3 extends StackPane {
 
 
         });
-        setStyle("-fx-background-color: #e3ffcc;");
 
 
-        Button backButton = new Button("Back to Main");
-        backButton.setId("backButton");
+        Button backButton = new Button("Back");
+        backButton.setId("backNavigation");
         backButton.setAlignment(Pos.TOP_LEFT);
         backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
-
         playerCreation.setAlignment(Pos.CENTER);
-
         structure.getChildren().addAll(backButton, playerCreation);
         structure.setSpacing(20);
-
         getChildren().addAll(structure);
 
     }
     private void populatePlayerInventory() {
-        playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Fleshlight");
+        playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
     }
 
 }

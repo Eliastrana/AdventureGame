@@ -7,9 +7,16 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.FileReader;
+
 public class PlayerRegister {
 
-    public static void saveTextToFile(String text, String filename) {
+    public void saveTextToFile(String text, String filename) {
+        if (text.isBlank()) {
+            throw new IllegalArgumentException("Text is blank");
+        }
+        if (filename.isBlank()) {
+            throw new IllegalArgumentException("Filename is blank");
+        }
         try {
             BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
             String[] words = text.split("\\s+"); // Split the text into words
@@ -24,7 +31,6 @@ public class PlayerRegister {
             System.out.println("An error occurred while saving the file: " + e.getMessage());
         }
     }
-
 
     public Player characterInforVariable(String filePath) {
         String output = null;
@@ -49,7 +55,6 @@ public class PlayerRegister {
                     .addToInventory(inventory)
                     .getPlayer();
 
-
             output = "Name: " + name + " Health: " + health + " Gold: " + gold + " Score: " + score;
             System.out.println(output);
             return player;
@@ -58,11 +63,5 @@ public class PlayerRegister {
         }
 
         return null;
-    }
-
-
-
-    public static void main(String[] args) {
-
     }
 }

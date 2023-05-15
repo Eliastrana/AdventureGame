@@ -1,34 +1,27 @@
 package edu.ntnu.idatt2001.frontend;
 
 
-import edu.ntnu.idatt2001.GUI.PaneGenerator;
-import edu.ntnu.idatt2001.GUI.PathsFileGUI;
-import edu.ntnu.idatt2001.Game;
-import edu.ntnu.idatt2001.fileHandling.CreateGame;
-import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
+import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
-import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
-import javafx.scene.text.Font;
-import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
-import javafx.stage.FileChooser;
+import javafx.util.Duration;
 
 import java.io.File;
 import java.io.IOException;
 import java.util.*;
 
-import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
+
 
 public class Pane1 extends StackPane {
 
@@ -37,62 +30,23 @@ public class Pane1 extends StackPane {
 
     public static TextField saveName = new TextField();
 
+    public static ComboBox<String> comboBoxCharacter = new ComboBox<String>();
+
+    public static ComboBox<String> comboBoxPath = new ComboBox<String>();
 
 
     public Pane1() throws IOException {
 
-        VBox structure = new VBox();
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
+
+        HBox structure = new HBox();
+        HBox content = new HBox();
+        VBox characterImageAndButtons = new VBox();
+        VBox inputFields = new VBox();
+
         structure.getStylesheets().add("/Style.css");
-        VBox content = new VBox();
-
-
-        HBox savedGames = new HBox();
-        savedGames.setAlignment(Pos.CENTER);
-        savedGames.setSpacing(15);
-
-        File savedGamesfolder = new File("src/main/resources/saveData/");
-        File[] listOfFiles = savedGamesfolder.listFiles();
-
-// Sort files by last modified timestamp in descending order
-        Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
-
-        int count = 0;
-        for (File file : listOfFiles) {
-            if (file.isFile() && count < 3) { // Only process the first three files
-                StackPane pane = new StackPane();
-                pane.setId("savedGamePane");
-
-                Rectangle background = new Rectangle();
-                background.setId("savedGamePane");
-
-                VBox savedGameContent = new VBox();
-                Text savedGameText = new Text(SaveFileReader.fileParser(file.getPath()));
-                savedGameText.setId("savedGameText");
-                savedGameContent.getChildren().add(savedGameText);
-
-                content.setAlignment(Pos.CENTER);
-                content.setSpacing(5);
-
-                pane.setOnMouseClicked(e -> {
-                    CreateGame game = new CreateGame("src/main/resources/paths/"+"hauntedHouse"+".paths");
-                    try {
-                        PaneGenerator gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/" + "warrior" + ".paths"));
-
-                        gui.start(primaryStage);
-                        primaryStage.setFullScreen(true);
-                    } catch (IOException ex) {
-                        throw new RuntimeException(ex);
-                    }
-                });
-
-                pane.getChildren().addAll(background, savedGameContent);
-                savedGames.getChildren().add(pane);
-
-                count++;
-            }
-        }
-
-
+        content.setAlignment(Pos.CENTER);
+        content.setSpacing(5);
 
         File characters = new File("src/main/resources/characters/");
         String[] filenames = characters.list();
@@ -102,10 +56,10 @@ public class Pane1 extends StackPane {
             String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
             names.add(name);
         }
-        ComboBox<String> comboBox = new ComboBox<String>();
-        comboBox.getItems().addAll(names);
-        comboBox.setPromptText("Select character");
-        comboBox.setId("comboBox");
+        comboBoxCharacter.getItems().addAll(names);
+        comboBoxCharacter.setPromptText("Select character");
+        comboBoxCharacter.setId("comboBox");
+
 
         File paths = new File("src/main/resources/paths/");
         String[] filenames2 = paths.list();
@@ -114,54 +68,47 @@ public class Pane1 extends StackPane {
             String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
             names2.add(name);
         }
-        ComboBox<String> comboBox2 = new ComboBox<String>();
-        comboBox2.getItems().addAll(names2);
-        comboBox2.setPromptText("Select path");
-        comboBox2.setId("comboBox");
+        comboBoxPath.getItems().addAll(names2);
+        comboBoxPath.setPromptText("Select path");
+        comboBoxPath.setId("comboBox");
 
         saveName.setPromptText("Enter save name");
         saveName.setId("textField");
 
-        Button playButton = new Button("Play");
-        playButton.setId("navigationButton");
-        playButton.setOnAction(event -> {
-
-            try {
-                FileDashboard.gameSave(processSelectedImage(), "src/main/resources/saveData/"+saveName.getText()+".txt");
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            System.out.println(processSelectedImage());
-            if (comboBox2.getItems() != null) {
-                // Handle the selected file here
-                CreateGame game = new CreateGame("src/main/resources/paths/"+comboBox2.getValue()+".paths");
-
-                String playerStats = "Character: " + comboBox.getValue() + "\n" + "Path: " + comboBox2.getValue() + "\n";
-
-                try {
-                    FileDashboard.gameSave(playerStats, "src/main/resources/saveData/"+saveName.getText()+".txt");
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                PaneGenerator gui = null;
-                try {
-                    //processSelectedImage();
-                    gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/"+comboBox.getValue()+".paths"));
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    gui.start(primaryStage);
-                    primaryStage.setFullScreen(true);
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-            }
+        comboBoxCharacter.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
+        });
+        comboBoxPath.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            updateSaveGameName();
         });
 
+        Button playButton = new Button("Play");
+        playButton.setId("Pane1ConfirmButton");
+        playButton.setOnAction(event -> {
+            try {
+
+                String saveNameString = saveName.getText().trim();
+
+                if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
+                    StartGameFromCatalog.startGameFromCatalogMethod();
+                } else {
+                    Alert alert = new Alert(Alert.AlertType.ERROR);
+                    alert.setTitle("Unavailable");
+                    alert.setHeaderText("Name already in use");
+                    alert.setContentText("Save name already exists, please choose another name");
+                    alert.showAndWait();
+                }
+
+
+            } catch (IOException e) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error");
+                alert.setHeaderText("An error occurred");
+                alert.setContentText(e.getMessage());
+                alert.showAndWait();
+                throw new RuntimeException(e);
+            }
+        });
 
         HBox imageBox = new HBox();
         imageBox.setAlignment(Pos.CENTER);
@@ -172,97 +119,167 @@ public class Pane1 extends StackPane {
             for (File file : files) {
                 if (file.isFile() && file.getName().endsWith(".png") && !fileNames.contains(file.getName())) {
                     ImageView imageView = new ImageView(new Image(file.toURI().toString()));
-                    imageView.setFitWidth(150);
-                    imageView.setFitHeight(160);
-                    imageView.setOnMouseClicked(event -> selectImage(imageView));
+                    imageView.setFitWidth(200);
+                    imageView.setFitHeight(300);
                     imageViews.add(imageView);
                     fileNames.add(file.getName());
                 }
             }
         }
-        imageBox.getChildren().addAll(imageViews);
 
-        Button openButton = new Button("Import game from desktop");
-        openButton.setId("navigationButton");
-        openButton.setOnAction(event -> {
+        final int[] currentImageIndex = {0};
+        imageBox.getChildren().add(imageViews.get(currentImageIndex[0]));
+        Button leftButton = new Button("<");
+        leftButton.setId("ArrowButton");
 
-
-            // Create a file chooser dialog
-            FileChooser fileChooser = new FileChooser();
-
-            // Set the initial directory to the user's desktop
-            fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Desktop"));
-
-            // Show the dialog and wait for the user to select a file
-            File selectedFile = fileChooser.showOpenDialog(primaryStage);
-            if (selectedFile != null) {
-                // Handle the selected file here
-                System.out.println("Selected file: " + selectedFile.getAbsolutePath());
-                CreateGame game = new CreateGame(selectedFile.getAbsolutePath());
-                PaneGenerator gui = null;
-                try {
-                    gui = new PaneGenerator(game.gameGenerator("src/main/resources/characters/"+comboBox.getValue()+".paths"));
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
-                try {
-                    gui.start(primaryStage);
-                    primaryStage.setFullScreen(true);
-
-                } catch (IOException e) {
-                    throw new RuntimeException(e);
-                }
+        leftButton.setOnAction(event -> {
+            if (currentImageIndex[0] > 0) {
+                currentImageIndex[0]--;
+            } else {
+                currentImageIndex[0] = imageViews.size() - 1;
             }
+            ImageView currentImage = imageViews.get(currentImageIndex[0]);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), currentImage);
+            transition.setFromX(-imageBox.getWidth());
+            transition.setToX(0);
+            transition.play();
+            imageBox.getChildren().set(0, currentImage);
+
+            // Select the current image
+            selectImage(currentImageIndex[0]);
         });
 
-        setStyle("-fx-background-color: #a9cade;");
+        Button rightButton = new Button(">");
+        rightButton.setId("ArrowButton");
+        rightButton.setOnAction(event -> {
+            if (currentImageIndex[0] < imageViews.size() - 1) {
+                currentImageIndex[0]++;
+            } else {
+                currentImageIndex[0] = 0;
+            }
+            ImageView currentImage = imageViews.get(currentImageIndex[0]);
+            TranslateTransition transition = new TranslateTransition(Duration.seconds(0.5), currentImage);
+            transition.setFromX(imageBox.getWidth());
+            transition.setToX(0);
+            transition.play();
+            imageBox.getChildren().set(0, currentImage);
 
-        Button backButton = new Button("Back to Main");
+            // Select the current image
+            selectImage(currentImageIndex[0]);
+        });
+
+        HBox root = new HBox(imageBox, new HBox(leftButton, rightButton));
+        root.setAlignment(Pos.CENTER);
+        root.setSpacing(10);
+        root.setId("ArrowButton");
+
+        Button openButton = new Button("Import from desktop");
+        openButton.setId("Pane1ConfirmButton");
+        openButton.setOnAction(event -> {
+
+            try {
+                StartGameFromImport.startGameFromImportMethod();
+            } catch (IOException e) {
+                throw new RuntimeException(e);
+            }
+
+        });
+
+        Button backButton = new Button("Back");
+        backButton.setPadding(new Insets(10, 10, 10, 10));
+        backButton.setId("backNavigation");
         backButton.setOnAction(e -> {
-                    SceneSwitcher.switchToMainMenu();
-                    //getChildren().clear();
-                    imageViews.clear();
+            SceneSwitcher.switchToMainMenu();
+            //getChildren().clear();
+            imageViews.clear();
+            comboBoxPath.getItems().clear();
+            comboBoxCharacter.getItems().clear();
+            saveName.clear();
 
-                }
-        );
+        });
         backButton.setAlignment(Pos.TOP_LEFT);
-
-        HBox comboBoxes = new HBox();
-        comboBoxes.getChildren().addAll(comboBox, comboBox2);
+        VBox comboBoxes = new VBox();
+        comboBoxes.getChildren().addAll(comboBoxCharacter, comboBoxPath);
         comboBoxes.setAlignment(Pos.CENTER);
         comboBoxes.setSpacing(20);
 
-        HBox playButtons = new HBox();
+        VBox playButtons = new VBox();
         playButtons.getChildren().addAll(playButton, openButton);
         playButtons.setAlignment(Pos.CENTER);
         playButtons.setSpacing(20);
 
-        content.getChildren().addAll(savedGames, comboBoxes,imageBox,saveName, playButtons);
-        content.setAlignment(Pos.BASELINE_CENTER);
+        content.setAlignment(Pos.CENTER);
         content.setSpacing(20);
+        characterImageAndButtons.getChildren().addAll(imageBox,root);
+        characterImageAndButtons.setAlignment(Pos.TOP_LEFT);
+        characterImageAndButtons.setSpacing(10);
+        characterImageAndButtons.setPadding(new Insets(100, 50, 100, 0));
 
+        inputFields.getChildren().addAll(comboBoxes, saveName, playButtons);
+        inputFields.setAlignment(Pos.CENTER);
+        inputFields.setSpacing(50);
+        inputFields.setPadding(new Insets(100, 100, 100, 0));
+
+        content.getChildren().addAll(characterImageAndButtons, inputFields);
         structure.getChildren().addAll(backButton, content);
         structure.setSpacing(20);
-
         getChildren().addAll(structure);
     }
 
 
-    private void selectImage(ImageView selectedImageView) {
+    private void selectImage(int currentIndex) {
         if (selectedIndex >= 0 && selectedIndex < imageViews.size()) {
             ImageView prevSelectedImageView = imageViews.get(selectedIndex);
             prevSelectedImageView.setEffect(null);
         }
-        selectedIndex = imageViews.indexOf(selectedImageView);
-        selectedImageView.setEffect(new javafx.scene.effect.InnerShadow(50, Color.BLUEVIOLET));
+        selectedIndex = currentIndex;
+        ImageView selectedImageView = imageViews.get(selectedIndex);
+        selectedImageView.setEffect(new DropShadow(20, Color.BLACK));
     }
 
     public static String processSelectedImage() {
+        if (selectedIndex < 0 || selectedIndex >= imageViews.size()) {
+            // Select the first image by default
+            selectedIndex = 0;
+        }
         ImageView selectedImageView = imageViews.get(selectedIndex);
         String imageUrl = selectedImageView.getImage().getUrl();
         int index = imageUrl.lastIndexOf("/") + 1;
         return imageUrl.substring(index);
     }
 
+
+    private void updateSaveGameName() {
+        String category1 = comboBoxCharacter.getSelectionModel().getSelectedItem();
+        String category2 = comboBoxPath.getSelectionModel().getSelectedItem();
+
+        saveName.setText(category1 + "_" + category2 + "_save");
+    }
+
+
+
+    public boolean isFileNameUnique(String fileName, String directoryPath) {
+        File directory = new File(directoryPath);
+        String newFileName = fileName;
+        int count = 1;
+
+        while (new File(directory, newFileName).exists()) {
+            int indexOfDot = fileName.lastIndexOf('.');
+            if (indexOfDot == -1) {
+                newFileName = fileName + "_" + count;
+            } else {
+                String nameWithoutExtension = fileName.substring(0, indexOfDot);
+                String extension = fileName.substring(indexOfDot + 1);
+                newFileName = nameWithoutExtension + "_" + count + "." + extension;
+            }
+            count++;
+        }
+
+        if (!newFileName.equals(fileName)) {
+            return false;
+        }
+
+        return true;
+    }
 }
 

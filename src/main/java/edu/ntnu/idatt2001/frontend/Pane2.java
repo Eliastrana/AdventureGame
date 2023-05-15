@@ -16,7 +16,7 @@ import javafx.scene.text.Text;
 public class Pane2 extends StackPane {
 
     public Pane2() {
-        setStyle("-fx-background-color: #ccd5ff;");
+        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
         VBox structure = new VBox();
         structure.getStylesheets().add("Style.css");
@@ -111,7 +111,9 @@ public class Pane2 extends StackPane {
 
 
 
-        Button backButton = new Button("Back to Main");
+        Button backButton = new Button("Back");
+        backButton.setId("backNavigation");
+
         backButton.setAlignment(Pos.TOP_LEFT);
         backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
 

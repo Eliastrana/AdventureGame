@@ -14,7 +14,7 @@ public class SceneSwitcher {
     public static Scene mainScene;
     private static StackPane stackPane;
 
-    public SceneSwitcher(Stage primaryStage, Scene mainScene) {
+    public SceneSwitcher(Stage primaryStage, Scene mainScene) throws IOException {
         this.primaryStage = primaryStage;
         this.mainScene = mainScene;
         stackPane = new StackPane();
@@ -53,7 +53,7 @@ public class SceneSwitcher {
 
 
 
-    public static void quitFullScreen(){
+    public static void quitFullScreen() throws IOException {
         primaryStage.setFullScreen(false);
         stackPane.getChildren().remove(1);
         stackPane.getChildren().add(new MainMenuPane());

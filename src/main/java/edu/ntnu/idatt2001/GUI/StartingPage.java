@@ -88,10 +88,11 @@ public class StartingPage extends Application {
         playerCreation.getChildren().addAll(createPlayer, createPlayerName, setPlayerHealth, setPlayerGold, setPlayerScore, setPlayerInventory, createPlayerButton);
 
         createPlayerButton.setOnAction(e -> {
+            PlayerRegister register = new PlayerRegister();
 
             String playerStats = createPlayerName.getText() +" " + setPlayerHealth.getText() + " " + setPlayerGold.getText() + " " + setPlayerScore.getText() + " " + setPlayerInventory.getText();
 
-            PlayerRegister.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
+            register.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
 
             System.out.println(playerStats + createPlayerName.getText()+".paths");
 

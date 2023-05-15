@@ -1,9 +1,8 @@
 package edu.ntnu.idatt2001.Action;
 
-
 public class ActionsFactory {
 
-  public static Action createAction(String input) {
+  public Action createAction(String input) {
     if (input == null || input.trim().isEmpty()) {
       return null;
     }
@@ -26,33 +25,35 @@ public class ActionsFactory {
               System.err.println("Invalid health value for HealthAction: " + actionValue);
             }
             break;
+
           // Add more action types here as needed
 
           case "GoldAction":
-              try {
-                  int gold = Integer.parseInt(actionValue);
-                  return new GoldAction(gold);
-              } catch (NumberFormatException e) {
-                  System.err.println("Invalid gold value for GoldAction: " + actionValue);
-              }
-              break;
+            try {
+              int gold = Integer.parseInt(actionValue);
+              return new GoldAction(gold);
+            } catch (NumberFormatException e) {
+              System.err.println("Invalid gold value for GoldAction: " + actionValue);
+            }
+            break;
 
-            case "ScoreAction":
-                try {
-                    int score = Integer.parseInt(actionValue);
-                    return new ScoreAction(score);
-                } catch (NumberFormatException e) {
-                    System.err.println("Invalid score value for ScoreAction: " + actionValue);
-                }
-                break;
+          case "ScoreAction":
+            try {
+              int score = Integer.parseInt(actionValue);
+              return new ScoreAction(score);
+            } catch (NumberFormatException e) {
+              System.err.println("Invalid score value for ScoreAction: " + actionValue);
+            }
+            break;
 
           case "InventoryAction":
-              try {
-                return new InventoryAction(actionValue);
-              } catch (NumberFormatException e) {
-                  System.err.println("Invalid inventory value for InventoryAction: " + actionValue);
-              }
-              break;
+            try {
+              return new InventoryAction(actionValue);
+            } catch (NumberFormatException e) {
+              System.err.println("Invalid inventory value for InventoryAction: " + actionValue);
+            }
+            break;
+
           default:
             System.err.println("Unknown action type: " + actionType);
         }
@@ -62,4 +63,3 @@ public class ActionsFactory {
     return null;
   }
 }
-

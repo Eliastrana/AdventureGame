@@ -17,9 +17,7 @@ public class GameSave {
             writer.close();
         }
 
-    public void loadGame(String filePath) throws IOException {
-        SaveFileReader.fileParser(filePath);
-    }
+
 
 
 
