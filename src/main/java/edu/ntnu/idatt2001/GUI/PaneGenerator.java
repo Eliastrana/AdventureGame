@@ -43,6 +43,8 @@ public class PaneGenerator extends Application {
   private HBox buttonBox;
   HBox topmenuOptions = new HBox();
 
+  HBox topGoals = new HBox();
+
   Label nameLabel = new Label();
   Label healthLabel = new Label();
   Label goldLabel = new Label();
@@ -124,6 +126,16 @@ public class PaneGenerator extends Application {
     playerInfo.setAlignment(javafx.geometry.Pos.CENTER);
     playerInfo.setId("playerInfo");
 
+
+    Text goals = new Text("Goals: " + game.getPlayer().getHealth()+"/"+game.getGoals());
+    Text score = new Text("Score: ");
+    Text health = new Text("Health: ");
+    Text gold = new Text("Gold: ");
+    Text inventory = new Text("Inventory: ");
+
+    topGoals.getChildren().addAll(goals, score, health, gold, inventory);
+
+
     contentArea = new Text();
     contentArea.setWrappingWidth(700);
     contentArea.setFill(Color.WHITE); // Set fill color to white
@@ -137,17 +149,19 @@ public class PaneGenerator extends Application {
     updateContentAndButtons(game.begin());
 
     BorderPane root = new BorderPane();
-    topInfo.getChildren().addAll(playerInfo, titleLabel);
+    topInfo.getChildren().addAll(playerInfo, topGoals, titleLabel);
     topInfo.setSpacing(80);
     topInfo.setAlignment(javafx.geometry.Pos.CENTER);
     topInfo.setPadding(new javafx.geometry.Insets(20, 20, 20, 20));
 
 
     root.setTop(topInfo);
+
     root.setLeft(characterImage);
 
     root.setCenter(contentArea);
     root.setBottom(buttonBox);
+
 
     Scene scene = new Scene(root, 800, 600);
     scene.getStylesheets().add("/Style.css");

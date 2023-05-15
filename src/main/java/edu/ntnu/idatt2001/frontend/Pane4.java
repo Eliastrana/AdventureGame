@@ -22,15 +22,11 @@ import java.nio.file.Path;
 public class Pane4 extends StackPane {
 
     TextField saveNameField = new TextField();
+    TextArea currentGoalsArea = new TextArea();
     TextField scoreField = new TextField();
     TextField goldField = new TextField();
     TextField healthField = new TextField();
     TextField inventoryField = new TextField();
-
-    String scoreGoal = scoreField.getText();
-    String goldGoal = goldField.getText();
-    String healthGoal = healthField.getText();
-    String inventoryGoal = inventoryField.getText();
 
     public Pane4() {
 
@@ -45,8 +41,6 @@ public class Pane4 extends StackPane {
         goalsPane.setId("pane");
         goalsPane.setPadding(new Insets(20));
         goalsPane.setPrefSize(600, 500);
-
-
         Text title = new Text("Goals");
         title.setId("title");
 
@@ -59,10 +53,7 @@ public class Pane4 extends StackPane {
 
         HBox goals = new HBox();
         goals.setSpacing(20);
-
         VBox currentGoals = new VBox();
-
-        TextArea currentGoalsArea = new TextArea();
         currentGoalsArea.setPrefSize(200, 200);
         currentGoalsArea.setEditable(false);
         currentGoalsArea.setText("src/main/resources/savedGoals/" + saveNameField.getText() + ".txt");
@@ -81,8 +72,6 @@ public class Pane4 extends StackPane {
         currentGoals.setId("playerInfo");
         Text currentGoalsTitle = new Text("Current Goals ");
         currentGoalsTitle.setId("mediumTitle");
-
-
         currentGoals.getChildren().addAll(currentGoalsTitle, currentGoalsArea);
 
         VBox updateGoals = new VBox();
@@ -90,6 +79,7 @@ public class Pane4 extends StackPane {
         Text updateGoalsTitle = new Text("Update Goals");
         updateGoalsTitle.setId("mediumTitle");
         saveNameField.setPromptText("Enter save name");
+        saveNameField.setId("textFieldGoals");
         scoreField.setPromptText("Enter score goal");
         scoreField.setId("textFieldGoals");
         goldField.setPromptText("Enter gold goal");
@@ -122,22 +112,13 @@ public class Pane4 extends StackPane {
 
         });
 
-
-
-
-
-        updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, scoreField, goldField, healthField, inventoryField, updateButton);
-
-        goals.getChildren().addAll(currentGoals, updateGoals);
+        updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, scoreField, goldField, healthField, inventoryField);
+        goals.getChildren().addAll(currentGoals, updateGoals ,updateButton);
         goals.setAlignment(Pos.CENTER);
-
         goalsPane.getChildren().addAll(goals);
-
-
         backButtonHolder.getChildren().add(backButton);
         structure.getChildren().addAll(backButtonHolder, title, goalsPane);
         structure.setAlignment(Pos.CENTER);
-
         getChildren().addAll(structure);
     }
 
@@ -151,8 +132,6 @@ public class Pane4 extends StackPane {
         }
 
         SoundPlayer.play("src/main/resources/sounds/click.wav");
-
         field.clear();
     }
-
 }
