@@ -162,7 +162,7 @@ public class PaneGenerator extends Application {
 
 
     topGoals.getChildren().addAll(goalsTitle, topGoalsHealth, topGoalsGold, topGoalsScore, topGoalsInventory);
-    topGoals.setSpacing(20);
+    topGoals.setSpacing(5);
 
     contentArea = new Text();
     contentArea.setWrappingWidth(700);
