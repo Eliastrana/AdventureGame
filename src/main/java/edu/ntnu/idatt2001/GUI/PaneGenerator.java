@@ -8,6 +8,7 @@ import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
+import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.File;
 import java.io.FileInputStream;
@@ -30,6 +31,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 
 public class PaneGenerator extends Application {
@@ -95,8 +97,22 @@ public class PaneGenerator extends Application {
       backAction();
     });
 
+    Button helpButton = new Button("Help");
+    helpButton.setId("topMenuButton");
+    helpButton.setOnAction(e -> {
+      SoundPlayer.play("src/main/resources/sounds/click.wav");
 
-    topmenuOptions.getChildren().addAll(restart, backButton, quitButton);
+        AlertUtil.showAlert("Top Menu Button", "These buttons allow you to navigate back to the start, as well as going back one passage, or quit the game!", 200, 100, primaryStage);
+        AlertUtil.showAlert("Title", "This is the title of the passage!", 230, 200, primaryStage);
+        AlertUtil.showAlert("Content", "This is the content of the passage!", 250, 600, primaryStage);
+        AlertUtil.showAlert("Navigation button", "Click these buttons to make your choice!", 250, 900, primaryStage);
+        AlertUtil.showAlert("Your status!", "Here you can see your status within the categories, as well as your current inventory!", 850, 100, primaryStage);
+
+
+    });
+
+
+      topmenuOptions.getChildren().addAll(helpButton, restart, backButton, quitButton);
 
     topmenuOptions.setSpacing(20);
     VBox topInfo = new VBox();

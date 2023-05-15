@@ -28,7 +28,7 @@
 }
 
 .root {
-    -fx-background-image: url("zeldabackground.jpeg");
+    -fx-background-image: url("mainmenubackground.jpg");
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
@@ -305,6 +305,15 @@ button:hover {
 #inGameChoiceButton:hover {
     -fx-background-color: #93c5d9;
     -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.4), 10, 0, 0, 0);
+}
+
+
+alertBox {
+    -fx-font-size: 18px;
+    -fx-text-fill: #000000;
+    -fx-stroke: #FFFFFF;
+    -fx-stroke-width: 18px;
+
 }
 
 #pane{
