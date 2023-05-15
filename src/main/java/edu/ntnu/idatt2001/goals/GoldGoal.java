@@ -21,7 +21,7 @@ public class GoldGoal implements Goal {
 
     @Override
     public String toString() {
-        return "Gold Goal: " + minimumGold;
+        return String.valueOf(minimumGold);
     }
 
 }

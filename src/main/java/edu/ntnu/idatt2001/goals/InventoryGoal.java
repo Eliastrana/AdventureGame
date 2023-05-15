@@ -19,6 +19,6 @@ public class InventoryGoal implements Goal {
 
     @Override
     public String toString() {
-        return "Inventory Goal: " + minimumItems;
+        return String.valueOf(minimumItems);
     }
 }

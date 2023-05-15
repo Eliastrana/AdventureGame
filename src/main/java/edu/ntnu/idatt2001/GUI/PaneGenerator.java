@@ -7,6 +7,7 @@ import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
 import edu.ntnu.idatt2001.frontend.Pane1;
+import edu.ntnu.idatt2001.frontend.Pane4;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import edu.ntnu.idatt2001.goals.*;
 import edu.ntnu.idatt2001.utility.AlertUtil;
@@ -14,9 +15,8 @@ import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -44,13 +44,23 @@ public class PaneGenerator extends Application {
   private HBox buttonBox;
   HBox topmenuOptions = new HBox();
 
-  HBox topGoals = new HBox();
+  VBox topGoals = new VBox();
+
+  VBox topGoalsHealth = new VBox();
+  VBox topGoalsGold = new VBox();
+  VBox topGoalsScore = new VBox();
+  VBox topGoalsInventory = new VBox();
 
   Label nameLabel = new Label();
   Label healthLabel = new Label();
   Label goldLabel = new Label();
   Label scoreLabel = new Label();
   Label inventoryLabel = new Label();
+
+  ArrayList<Goal> scoreGoals = new ArrayList<>();
+  ArrayList<Goal> healthGoals = new ArrayList<>();
+  ArrayList<Goal> goldGoals = new ArrayList<>();
+  ArrayList<Goal> inventoryGoals = new ArrayList<>();
   String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText();
 
   public PaneGenerator(Game game) {
@@ -63,7 +73,11 @@ public class PaneGenerator extends Application {
     titleLabel = new Label(game.begin().getTitle());
     titleLabel.setId("title");
 
+
     SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
+
+    sortGoals();
+    displayGoals();
 
     Pane characterImage = new Pane();
     String imageSource = "characterIcons/" + Pane1.processSelectedImage();
@@ -129,10 +143,24 @@ public class PaneGenerator extends Application {
 
 
 
-    displayGoals();
 
 
 
+    //displayGoals();
+
+
+    topGoalsHealth.setId("goalsInfo");
+    topGoalsGold.setId("goalsInfo");
+    topGoalsScore.setId("goalsInfo");
+    topGoalsInventory.setId("goalsInfo");
+
+
+    Text goalsTitle  = new Text("Goals:");
+    goalsTitle.setId("goalsInfo");
+
+
+    topGoals.getChildren().addAll(goalsTitle, topGoalsHealth, topGoalsGold, topGoalsScore, topGoalsInventory);
+    topGoals.setSpacing(20);
 
     contentArea = new Text();
     contentArea.setWrappingWidth(700);
@@ -147,7 +175,7 @@ public class PaneGenerator extends Application {
     updateContentAndButtons(game.begin());
 
     BorderPane root = new BorderPane();
-    topInfo.getChildren().addAll(playerInfo, topGoals, titleLabel);
+    topInfo.getChildren().addAll(playerInfo, titleLabel);
     topInfo.setSpacing(80);
     topInfo.setAlignment(javafx.geometry.Pos.CENTER);
     topInfo.setPadding(new javafx.geometry.Insets(20, 20, 20, 20));
@@ -156,6 +184,7 @@ public class PaneGenerator extends Application {
     root.setTop(topInfo);
 
     root.setLeft(characterImage);
+    root.setRight(topGoals);
 
     root.setCenter(contentArea);
     root.setBottom(buttonBox);
@@ -169,15 +198,6 @@ public class PaneGenerator extends Application {
     stage.show();
   }
 
-  public void displayGoals() {
-    topGoals.getChildren().clear();
-    VBox goalsContainer = new VBox();
-    for (Goal goal : game.getGoals()) {
-      Text goalText = new Text(goal.toString() + " Fulfilled: " + goal.isFullfilled(game.getPlayer()) + "\n");
-      goalsContainer.getChildren().add(goalText);
-    }
-    topGoals.getChildren().add(goalsContainer);
-  }
 
 
 
@@ -234,11 +254,35 @@ public class PaneGenerator extends Application {
 
   }
 
+  private void displayGoals (){
+
+
+
+    Text health = new Text("Health: " + "\n" +game.getPlayer().getHealth() +" / "+healthGoals.toString());
+    health.setId("goalsInfo");
+    Text score = new Text("Score: " + "\n" + game.getPlayer().getScore()+" / "+scoreGoals.toString());
+    score.setId("goalsInfo");
+    Text gold = new Text("Gold: " + "\n" + game.getPlayer().getGold()+" / "+goldGoals.toString());
+    gold.setId("goalsInfo");
+    Text inventory = new Text("Inventory: " + "\n" + game.getPlayer().getInventory().size()+" / "+inventoryGoals.toString());
+    inventory.setId("goalsInfo");
+
+    //Text goalText = new Text(goal.toString() + " Fulfilled: " + goal.isFullfilled(game.getPlayer()) + "\n");
+
+
+
+    topGoalsHealth.getChildren().add(health);
+    topGoalsGold.getChildren().add(gold);
+    topGoalsScore.getChildren().add(score);
+    topGoalsInventory.getChildren().add(inventory);
+
+  }
+
   private void sortGoals() {
-    ArrayList<Goal> scoreGoals = new ArrayList<>();
-    ArrayList<Goal> healthGoals = new ArrayList<>();
-    ArrayList<Goal> goldGoals = new ArrayList<>();
-    ArrayList<Goal> inventoryGoals = new ArrayList<>();
+
+    Comparator<Goal> comparator = Comparator.comparingInt(goal -> Integer.parseInt(goal.toString()));
+
+
     for (Goal goal : game.getGoals()) {
       if (goal instanceof ScoreGoal)  {
         scoreGoals.add(goal);
@@ -250,6 +294,11 @@ public class PaneGenerator extends Application {
         inventoryGoals.add(goal);
       }
     }
+
+    scoreGoals.sort(comparator);
+    healthGoals.sort(comparator);
+    goldGoals.sort(comparator);
+    inventoryGoals.sort(comparator);
   }
 
 
@@ -276,6 +325,11 @@ public class PaneGenerator extends Application {
       button.setOnAction(event -> {
         for (Action action : link.getActions()) {
           action.execute(game.getPlayer());
+
+          topGoalsHealth.getChildren().clear();
+          topGoalsGold.getChildren().clear();
+          topGoalsScore.getChildren().clear();
+          topGoalsInventory.getChildren().clear();
           displayGoals();
         }
 

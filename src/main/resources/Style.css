@@ -7,12 +7,16 @@
 
 #title {
     -fx-font-size: 80px;
+    -fx-text-fill: #FFFFFF;
     -fx-font-weight: bold;
     -fx-font-family: "Brazie";
     -fx-fill: #5e3720;
     -fx-stroke: #ffffff;
     -fx-stroke-width: 2px;
     -fx-padding: 10px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,2), 50, 0, 0, 0 );
+
+
 }
 
 
@@ -182,10 +186,6 @@
 
 
 }
-#contentArea {
-    -fx-font-size: 30px;
-    -fx-text-fill: #ffffff;
-}
 
 
 #comboBox {
@@ -267,6 +267,16 @@ button:hover {
     -fx-cursor: hand;
 }
 
+#goalsInfo {
+    -fx-font-size: 25px;
+    -fx-font-family: Arial;
+    -fx-fill: #ffffff;
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 1px;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.9), 10, 0, 0, 0 );
+    -fx-padding: 10px;
+}
+
 #confirmGoals {
 
     -fx-background-color: #944c0f;
@@ -344,6 +354,17 @@ alertBox {
 
 }
 
+#contentArea {
+
+    -fx-font-size: 35px;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: rgba(139, 69, 19, 1); /* Brown color with 50% transparency */
+    -fx-background-radius: 10px; /* Rounded corner radius */
+    -fx-padding: 10px; /* Padding around the text */
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.9), 10, 0, 0, 0 );
+    -fx-stroke: #ffffff;
+    -fx-stroke-width: 1px;
+}
 #textField {
 
     -fx-background-color: #ffffff;

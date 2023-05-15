@@ -22,7 +22,7 @@ public class HealthGoal implements Goal {
 
     @Override
     public String toString() {
-        return "Health Goal: " + minimumHealth;
+        return String.valueOf(minimumHealth);
     }
 
 }
