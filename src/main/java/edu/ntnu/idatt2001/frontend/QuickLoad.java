@@ -111,7 +111,7 @@ public class QuickLoad {
 
 
                 Image image = new Image("file:src/main/resources/characterIcons/" +saveFileReader.getImage(file.getPath()));
-                System.out.println("file:src/main/resources/characterIcons/" +saveFileReader.getImage(file.getPath()));
+                System.out.println("QuickLoad:"+"file:src/main/resources/characterIcons/" +saveFileReader.getImage(file.getPath()));
                 ImageView savedGameImage = new ImageView(image);
                 savedGameImage.setFitHeight(100);
                 savedGameImage.setFitWidth(60);

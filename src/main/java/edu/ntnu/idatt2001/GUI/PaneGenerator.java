@@ -14,6 +14,7 @@ import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.sql.SQLOutput;
 import java.util.*;
 
 import javafx.application.Application;
@@ -82,11 +83,21 @@ public class PaneGenerator extends Application {
     sortGoals();
     displayGoals();
 
+    System.out.println(characterIcon);
     Pane characterImage = new Pane();
-    String imageSource = "characterIcons/" + Pane1.processSelectedImage();
-    Image image = new Image(imageSource);
-    ImageView imageView = new ImageView(image);
-    characterImage.getChildren().add(imageView);
+
+
+    if (characterIcon != null) {
+
+
+      System.out.println("Character icon: " + characterIcon);
+      Image image = new Image("/characterIcons/" + characterIcon);
+
+      ImageView imageView = new ImageView(image);
+
+      characterImage.getChildren().add(imageView);
+    }
+
 
     Button restart = new Button("Restart");
     restart.setId("topMenuButton");
