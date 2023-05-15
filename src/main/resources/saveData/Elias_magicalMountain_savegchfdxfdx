@@ -1,0 +1,85 @@
+Fairy.png
+Elias
+magicalMountain
+
+C:0
+P:Beginnings
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:1
+P:The Climb
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight]
+
+
+C:2
+P:Behind the boulder
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight]
+
+
+C:3
+P:Friendly creature
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight]
+
+
+C:4
+P:Higher up
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight, Rock]
+
+
+C:5
+P:The Crystal Palace
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight, Rock]
+
+
+C:6
+P:The Royal Audience
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight, Rock]
+
+
+C:7
+P:Return home
+N:Elias
+H:100
+G:110
+S:10
+I:[Flashlight, Rock, Tea cup]
+
+
+C:8
+P:The end
+N:Elias
+H:100
+G:110
+S:30
+I:[Flashlight, Rock, Tea cup]
+
+
