@@ -89,8 +89,8 @@ public class PaneGenerator extends Application {
     restart.setId("topMenuButton");
     restart.setOnAction(e -> {
       try {
-        updateGoals();
         restartAction();
+        updateGoals();
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -212,8 +212,6 @@ public class PaneGenerator extends Application {
       healthLabel.setText("Health: " + game.getPlayer().getHealth());
       goldLabel.setText("Gold: " + game.getPlayer().getGold());
       scoreLabel.setText("Score: " + game.getPlayer().getScore());
-      inventoryLabel.setText("Inventory: ");
-      // create new labels with updated player info
 
       HBox itemBox = new HBox(); // create HBox to hold item labels and images
       for (String item : game.getPlayer().getInventory()) {
@@ -226,9 +224,8 @@ public class PaneGenerator extends Application {
           iconImageView.setFitWidth(50);
           itemBox.getChildren().add(iconImageView); // add image to itemBox
         } else {
-          inventoryLabel.setText(game.getPlayer().getInventory().toString());
-          //Label itemLabel = new Label(item);
-          //itemBox.getChildren().add(itemLabel); // add label to itemBox
+          Label itemLabel = new Label(item);
+          itemBox.getChildren().add(itemLabel); // add label to itemBox
         }
       }
 
@@ -240,13 +237,14 @@ public class PaneGenerator extends Application {
               healthLabel,
               goldLabel,
               scoreLabel,
-              inventoryLabel,
+              new Label("Inventory: "),
               itemBox);
 
     } catch (Exception e) {
       System.err.println("Could not show player info: " + e.getMessage());
     }
   }
+
 
   private void restartAction() throws IOException {
     passageCounter = 0;
