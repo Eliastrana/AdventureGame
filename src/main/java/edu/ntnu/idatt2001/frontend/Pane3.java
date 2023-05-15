@@ -56,9 +56,10 @@ public class Pane3 extends StackPane {
 
         createPlayerButton.setOnAction(e -> {
 
+            PlayerRegister register = new PlayerRegister();
             String playerStats = createPlayerName.getText() +" " + setPlayerHealth.getText() + " " + setPlayerGold.getText()
                     + " " + setPlayerScore.getText() + " " + playerInventory.getValue();
-            PlayerRegister.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
+            register.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
 
             System.out.println(playerStats+".paths");
             createPlayerName.clear();
