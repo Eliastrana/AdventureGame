@@ -1,9 +1,12 @@
 package edu.ntnu.idatt2001.frontend;
 
+import edu.ntnu.idatt2001.fileHandling.FileDashboard;
+import edu.ntnu.idatt2001.fileHandling.FileWrite;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
@@ -12,9 +15,13 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
 import javax.sound.midi.Soundbank;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Path;
 
 public class Pane4 extends StackPane {
 
+    TextField saveNameField = new TextField();
     TextField scoreField = new TextField();
     TextField goldField = new TextField();
     TextField healthField = new TextField();
@@ -54,24 +61,35 @@ public class Pane4 extends StackPane {
         goals.setSpacing(20);
 
         VBox currentGoals = new VBox();
+
+        TextArea currentGoalsArea = new TextArea();
+        currentGoalsArea.setPrefSize(200, 200);
+        currentGoalsArea.setEditable(false);
+        currentGoalsArea.setText("src/main/resources/savedGoals/" + saveNameField.getText() + ".txt");
+
+        saveNameField.textProperty().addListener((observable, oldValue, newValue) -> {
+            String filePath = "src/main/resources/savedGoals/" + newValue + ".txt";
+            try {
+                String fileContent = Files.readString(Path.of(filePath));
+                currentGoalsArea.setText(fileContent);
+            } catch (IOException e) {
+                currentGoalsArea.setText(""); // Clear the TextArea if the file cannot be read
+            }
+        });
+
         currentGoals.setSpacing(10);
         currentGoals.setId("playerInfo");
         Text currentGoalsTitle = new Text("Current Goals ");
         currentGoalsTitle.setId("mediumTitle");
-        Text score = new Text("Score goal: " + scoreGoal);
-        score.setId("playerInfo");
-        Text gold = new Text("Gold goal: " + goldGoal);
-        gold.setId("playerInfo");
-        Text health = new Text("Health goal: " + healthGoal);
-        health.setId("playerInfo");
-        Text inventory = new Text("Inventory goal: " + inventoryGoal);
-        inventory.setId("playerInfo");
-        currentGoals.getChildren().addAll(currentGoalsTitle, score, gold, health, inventory);
+
+
+        currentGoals.getChildren().addAll(currentGoalsTitle, currentGoalsArea);
 
         VBox updateGoals = new VBox();
         updateGoals.setSpacing(10);
         Text updateGoalsTitle = new Text("Update Goals");
         updateGoalsTitle.setId("mediumTitle");
+        saveNameField.setPromptText("Enter save name");
         scoreField.setPromptText("Enter score goal");
         scoreField.setId("textFieldGoals");
         goldField.setPromptText("Enter gold goal");
@@ -84,33 +102,31 @@ public class Pane4 extends StackPane {
         Button updateButton = new Button("Update");
         updateButton.setId("confirmGoals");
 
+
         updateButton.setOnAction(e -> {
             if (!scoreField.getText().isEmpty()) {
-                score.setText("Score goal: " + scoreField.getText());
-                SoundPlayer.play("src/main/resources/sounds/click.wav");
-                scoreField.clear();
+                saveAndClearField(scoreField, "ScoreGoal: ");
             }
+
             if (!goldField.getText().isEmpty()) {
-                gold.setText("Gold goal: " + goldField.getText());
-                SoundPlayer.play("src/main/resources/sounds/click.wav");
-                goldField.clear();
+                saveAndClearField(goldField, "GoldGoal: ");
             }
+
             if (!healthField.getText().isEmpty()) {
-                health.setText("Health goal: " + healthField.getText());
-                SoundPlayer.play("src/main/resources/sounds/click.wav");
-                healthField.clear();
+                saveAndClearField(healthField, "HealthGoal: ");
             }
+
             if (!inventoryField.getText().isEmpty()) {
-                inventory.setText("Inventory goal: " + inventoryField.getText());
-                SoundPlayer.play("src/main/resources/sounds/click.wav");
-                inventoryField.clear();
+                saveAndClearField(inventoryField, "InventoryGoal: ");
             }
+
         });
 
 
 
 
-        updateGoals.getChildren().addAll(updateGoalsTitle, scoreField, goldField, healthField, inventoryField, updateButton);
+
+        updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, scoreField, goldField, healthField, inventoryField, updateButton);
 
         goals.getChildren().addAll(currentGoals, updateGoals);
         goals.setAlignment(Pos.CENTER);
@@ -124,4 +140,19 @@ public class Pane4 extends StackPane {
 
         getChildren().addAll(structure);
     }
+
+    private void saveAndClearField(TextField field, String prefix) {
+        try {
+            String saveName = saveNameField.getText() + ".txt";
+            String saveLocation = "src/main/resources/savedGoals/" + saveName;
+            FileDashboard.writeGoals(prefix + field.getText(), saveLocation);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        }
+
+        SoundPlayer.play("src/main/resources/sounds/click.wav");
+
+        field.clear();
+    }
+
 }
