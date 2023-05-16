@@ -70,7 +70,11 @@ public class QuickLoad {
     savedGames.setAlignment(Pos.CENTER);
     savedGames.setSpacing(15);
 
-    File savedGamesfolder = new File("src/main/resources/saveData/");
+    File savedGamesfolder = new File("src"
+            + File.separator
+            + "main" + File.separator
+            + "resources" + File.separator
+            + "saveData");
     File[] listOfFiles = savedGamesfolder.listFiles();
 
     Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
@@ -125,23 +129,20 @@ public class QuickLoad {
 
         pane.setOnMouseClicked(e -> {
           try {
-            // Fetch the necessary data from the saved game file
             String characterPath = "src/main/resources/characters/"
                     + saveFileReader.getName(file.getPath())
                     + ".paths";
             String filePath = "src/main/resources/paths/"
                     + saveFileReader.getPath(file.getPath())
                     + ".paths";
-            String goalsPath = "src/main/resources/savedGoals/" + saveFileReader.getGoal(file.getPath()) + ".txt";
+            String goalsPath = "src/main/resources/savedGoals/"
+                    + saveFileReader.getGoal(file.getPath())
+                    + ".txt";
             String characterIcon = saveFileReader.getImageIcon(file.getPath());
             String savedDataPath = file.getPath();
 
-            System.out.println("src/main/resources/saveData/" + filePath + ".txt");
-            System.out.println(filePath);
 
-            System.out.println("QuickLoad:" + characterIcon);
 
-            // Create a new game and check for broken links
             CreateGame game = new CreateGame(filePath, characterPath, goalsPath, characterIcon);
             Game gameCreated = game.gameGenerator(characterPath);
 
@@ -149,8 +150,10 @@ public class QuickLoad {
               Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
               brokenLinks.setTitle("Warning");
               brokenLinks.setHeaderText("Broken links");
-              brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()
-                      + "\n" + "The following links are broken: " + gameCreated.getStory().getBrokenLinks());
+              brokenLinks.setContentText("Number of broken links: "
+                      + gameCreated.getStory().getBrokenLinks().size()
+                      + "\n" + "The following links are broken: "
+                      + gameCreated.getStory().getBrokenLinks());
 
               ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
               ButtonType removeButton = new ButtonType("Remove", ButtonBar.ButtonData.APPLY);
@@ -179,13 +182,9 @@ public class QuickLoad {
             exception.printStackTrace();
           }
         });
-
-
         pane.getChildren().addAll(background, savedGameContent);
         savedGames.getChildren().add(pane);
-
         count++;
-
       }
     }
 
