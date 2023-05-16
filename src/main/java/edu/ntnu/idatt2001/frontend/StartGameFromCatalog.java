@@ -2,130 +2,85 @@ package edu.ntnu.idatt2001.frontend;
 
 import edu.ntnu.idatt2001.GUI.PaneGenerator;
 import edu.ntnu.idatt2001.Game;
-import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.fileHandling.CreateGame;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
+import java.io.IOException;
+import java.util.Optional;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
-
-import java.io.IOException;
-import java.util.List;
-import java.util.Optional;
 
 import static edu.ntnu.idatt2001.frontend.Pane1.*;
 import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 public class StartGameFromCatalog {
-    String saveData;
-    String pathFile;
-    String characterFile;
-    String playerStats;
-    String goals;
-    String characterIcon;
+  String saveData;
+  String pathFile;
+  String characterFile;
+  String playerStats;
+  String goals;
+  String characterIcon;
 
-    StartGameFromCatalog(String saveData, String pathFile, String characterFile, String playerStats, String goals, String characterIcon) {
-        this.saveData = saveData;
-        this.pathFile = pathFile;
-        this.characterFile = characterFile;
-        this.playerStats = playerStats;
-        this.goals = goals;
-        this.characterIcon = characterIcon;
-    }
+  StartGameFromCatalog(String saveData, String pathFile, String characterFile, String playerStats, String goals, String characterIcon) {
+    this.saveData = saveData;
+    this.pathFile = pathFile;
+    this.characterFile = characterFile;
+    this.playerStats = playerStats;
+    this.goals = goals;
+    this.characterIcon = characterIcon;
+  }
 
-
-    public String getSaveData() {
-        return saveData;
-    }
-
-    public String getPathFile() {
-        return pathFile;
-    }
-
-    public String getCharacterFile() {
-        return characterFile;
-    }
-
-    public String getPlayerStats() {
-        return playerStats;
-    }
-
-    public String getGoals() {
-        return goals;
-    }
-
-    public String getCharacterIcon() {
-        return characterIcon;
-    }
+  public String getGoals() {
+    return goals;
+  }
 
 
-
-    public void startGameFromCatalogMethod() throws IOException {
-
+  public void startGameFromCatalogMethod() throws IOException {
 
 
+    FileDashboard.gameSave(processSelectedImage(), saveData);
 
 
-        FileDashboard.gameSave(processSelectedImage(), saveData);
-        System.out.println(processSelectedImage());
+    if (comboBoxPath.getItems() != null) {
+      if (comboBoxGoals.getValue() == null) {
+        Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.setTitle("Warning");
+        alert.setHeaderText("No goal selected");
+        alert.setContentText("Please select a goal from the dropdown menu");
+        alert.showAndWait();
+        return;
+      }
+      CreateGame game = new CreateGame(pathFile, characterFile, goals, characterIcon);
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      FileDashboard.gameSave(playerStats, saveData);
+      FileDashboard.gameSave(comboBoxGoals.getValue() + "\n", saveData);
 
-        if (comboBoxPath.getItems() != null) {
-            // Handle the selected file here
-            if (comboBoxGoals.getValue() == null) {
-                Alert alert = new Alert(Alert.AlertType.WARNING);
-                alert.setTitle("Warning");
-                alert.setHeaderText("No goal selected");
-                alert.setContentText("Please select a goal from the dropdown menu");
-                alert.showAndWait();
-                return;
-            }
-            CreateGame game = new CreateGame(pathFile, characterFile, goals, characterIcon);
-            Alert alert = new Alert(Alert.AlertType.INFORMATION);
-            FileDashboard.gameSave(playerStats, saveData);
-            FileDashboard.gameSave(comboBoxGoals.getValue()+"\n", saveData);
+      PaneGenerator gui;
+      Game gameCreated = game.gameGenerator(characterFile);
 
-            PaneGenerator gui;
-            Game gameCreated = game.gameGenerator(characterFile);
+      if (gameCreated.getStory().getBrokenLinks().size() != 0) {
+        Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
+        brokenLinks.setTitle("Warning");
+        brokenLinks.setHeaderText("Broken links");
+        brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()
+                + "\n" + "The following links are broken: \n" + gameCreated.getStory().getBrokenLinks()
+                + "\n The buttons will be disabled.");
 
-            if (gameCreated.getStory().getBrokenLinks().size() != 0) {
-                Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
-                brokenLinks.setTitle("Warning");
-                brokenLinks.setHeaderText("Broken links");
-                brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()
-                        + "\n" + "The following links are broken: " + gameCreated.getStory().getBrokenLinks());
+        ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
 
-                ButtonType cancelButton = new ButtonType("Cancel", ButtonBar.ButtonData.CANCEL_CLOSE);
-                ButtonType removeButton = new ButtonType("Remove", ButtonBar.ButtonData.APPLY);
+        brokenLinks.getButtonTypes().add(cancelButton);
 
-                brokenLinks.getButtonTypes().addAll(cancelButton, removeButton);
-
-                Optional<ButtonType> result = brokenLinks.showAndWait();
-                if (result.isPresent()) {
-                    if (result.get() == cancelButton) {
-                        return;
-                    } else if (result.get() == removeButton) {
-                        List<Link> brokenLinksList = gameCreated.getStory().getBrokenLinks();
-                        for (Link link : brokenLinksList) {
-                            gameCreated.getStory().removePassage(link);
-                        }
-                    }
-                }
-            }
-            String characterIcon = game.getCharacterIconPath();
-
-            System.out.println("Savedata: " + saveData);
-            System.out.println("CharacterIcon: " + characterIcon);
-
-            gui = new PaneGenerator(gameCreated,saveData,characterIcon);
-
-            gui.start(primaryStage);
-            primaryStage.setFullScreen(true);
-
-
+        Optional<ButtonType> result = brokenLinks.showAndWait();
+        if (result.isPresent() && result.get() == cancelButton) {
+          return;
         }
-}
+      }
+      String characterIcon = game.getCharacterIconPath();
 
+      gui = new PaneGenerator(gameCreated, saveData, characterIcon);
 
-
-
+      gui.start(primaryStage);
+      primaryStage.setFullScreen(true);
+    }
+  }
 }
