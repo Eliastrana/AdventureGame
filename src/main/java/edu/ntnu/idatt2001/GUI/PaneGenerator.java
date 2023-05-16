@@ -64,11 +64,12 @@ public class PaneGenerator extends Application {
   ArrayList<Goal> healthGoals = new ArrayList<>();
   ArrayList<Goal> goldGoals = new ArrayList<>();
   ArrayList<Goal> inventoryGoals = new ArrayList<>();
-  String filePath = "src/main/resources/saveData/" + Pane1.saveName.getText()+".txt";
+  String saveFilePath;
 
-  public PaneGenerator(Game game, String characterIcon) {
+  public PaneGenerator(Game game, String saveFilePath,String characterIcon) {
     this.game = game;
     this.characterIcon = characterIcon;
+    this.saveFilePath = saveFilePath;
   }
 
   @Override
@@ -93,11 +94,11 @@ public class PaneGenerator extends Application {
 
 
     SaveFileReader saveFileReader = new SaveFileReader();
-    if (saveFileReader.getFirstPassageExisting(filePath)) {
-      String lastSeenPassage = saveFileReader.getLastSeenPassage(filePath);
+    if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
+      String lastSeenPassage = saveFileReader.getLastSeenPassage(saveFilePath);
       for (Passage passage : game.getStory().getPassages()) {
         if (passage.getTitle().equals(lastSeenPassage)) {
-          passageCounter = saveFileReader.getCounterFromPassageTitle(filePath, lastSeenPassage);
+          passageCounter = saveFileReader.getCounterFromPassageTitle(saveFilePath, lastSeenPassage);
           updateInventoryBasedOnCounter(passageCounter);
           updatePlayerInfoBasedOnCounter(passageCounter);
           updateGoals();
@@ -418,8 +419,7 @@ public class PaneGenerator extends Application {
     if (passage == null) {
       throw new IllegalArgumentException("Passage cannot be null");
     }
-    System.out.println("Updating content and buttons"
-            + " for passage: " + passage.getTitle());
+
     game.getPlayer().setLastPassage(passage);
     titleLabel.setText(passage.getTitle());
     contentArea.setText(passage.getContent());
@@ -427,6 +427,7 @@ public class PaneGenerator extends Application {
 
     List<Link> links = passage.getLinks();
     for (Link link : links) {
+      System.out.println(link);
       SoundPlayer.play("src/main/resources/sounds/click.wav");
 
       Button button = new Button(link.getText());
@@ -446,7 +447,7 @@ public class PaneGenerator extends Application {
                     + passageCounter
                     + "\n"
                     + "P:"
-                    + nextPassage.getTitle(), filePath);
+                    + nextPassage.getTitle(), saveFilePath);
             writeStatus();
           } catch (IOException e) {
             throw new RuntimeException(e);
@@ -462,7 +463,7 @@ public class PaneGenerator extends Application {
 
   private void updatePlayerInfoBasedOnCounter(int counter) {
     SaveFileReader reader = new SaveFileReader();
-    HashMap<String, Object> passageData = reader.getPassageParameters(filePath, counter);
+    HashMap<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
     System.out.println(passageData);
 
     if (passageData.containsKey("health") && passageData.get("health") instanceof Integer) {
@@ -482,7 +483,7 @@ public class PaneGenerator extends Application {
 
   private void updateInventoryBasedOnCounter(int counter) {
     SaveFileReader reader = new SaveFileReader();
-    ArrayList<String> inventory = reader.getInventoryFromCounter(filePath, counter);
+    ArrayList<String> inventory = reader.getInventoryFromCounter(saveFilePath, counter);
     game.getPlayer().setInventory(inventory);
     updatePlayerInfo();
   }
@@ -490,12 +491,12 @@ public class PaneGenerator extends Application {
 
   private void writeStatus() {
     try {
-      FileDashboard.gameSave("N:" + game.getPlayer().getName(), filePath);
-      FileDashboard.gameSave("H:" + game.getPlayer().getHealth(), filePath);
-      FileDashboard.gameSave("G:" + game.getPlayer().getGold(), filePath);
-      FileDashboard.gameSave("S:" + game.getPlayer().getScore(), filePath);
-      FileDashboard.gameSave("I:" + game.getPlayer().getInventory(), filePath);
-      FileDashboard.gameSave("\n", filePath);
+      FileDashboard.gameSave("N:" + game.getPlayer().getName(), saveFilePath);
+      FileDashboard.gameSave("H:" + game.getPlayer().getHealth(), saveFilePath);
+      FileDashboard.gameSave("G:" + game.getPlayer().getGold(), saveFilePath);
+      FileDashboard.gameSave("S:" + game.getPlayer().getScore(), saveFilePath);
+      FileDashboard.gameSave("I:" + game.getPlayer().getInventory(), saveFilePath);
+      FileDashboard.gameSave("\n", saveFilePath);
 
     } catch (IOException e) {
       throw new RuntimeException(e);

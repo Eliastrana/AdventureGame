@@ -113,7 +113,10 @@ public class StartGameFromCatalog {
             }
             String characterIcon = game.getCharacterIconPath();
 
-            gui = new PaneGenerator(gameCreated, characterIcon);
+            System.out.println("Savedata: " + saveData);
+            System.out.println("CharacterIcon: " + characterIcon);
+
+            gui = new PaneGenerator(gameCreated,saveData,characterIcon);
 
             gui.start(primaryStage);
             primaryStage.setFullScreen(true);
@@ -121,12 +124,6 @@ public class StartGameFromCatalog {
 
         }
 }
-    public static void startGameFromLoadedGame(Game gameCreated,String characterIcon) throws IOException {
-        PaneGenerator gui = new PaneGenerator(gameCreated, characterIcon);
-        // Start the game
-        gui.start(primaryStage);
-        primaryStage.setFullScreen(true);
-    }
 
 
 

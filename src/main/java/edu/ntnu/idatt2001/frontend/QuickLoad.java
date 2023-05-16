@@ -131,6 +131,11 @@ public class QuickLoad {
                         String filePath= "src/main/resources/paths/" + saveFileReader.getPath(file.getPath()) + ".paths";
                         String goalsPath = "src/main/resources/savedGoals/" + saveFileReader.getGoal(file.getPath()) + ".txt";
                         String characterIcon = saveFileReader.getImageIcon(file.getPath());
+                        String savedDataPath =  file.getPath();
+
+                        System.out.println("src/main/resources/saveData/" + filePath + ".txt");
+                        System.out.println(filePath);
+
                         System.out.println("QuickLoad:"+characterIcon);
 
                         // Create a new game and check for broken links
@@ -163,7 +168,7 @@ public class QuickLoad {
                         }
 
                         // Start the game
-                        PaneGenerator gui = new PaneGenerator(gameCreated, characterIcon);
+                        PaneGenerator gui = new PaneGenerator(gameCreated, savedDataPath,characterIcon);
                         gui.start(primaryStage);
                         primaryStage.setFullScreen(true);
 
