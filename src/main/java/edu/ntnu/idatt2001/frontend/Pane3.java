@@ -11,79 +11,87 @@ import javafx.scene.text.Text;
 
 public class Pane3 extends StackPane {
 
-    public TextField createPlayerName = new TextField();
+  public TextField createPlayerName = new TextField();
 
-    TextField setPlayerHealth = new TextField();
-    TextField setPlayerGold = new TextField();
-    TextField setPlayerScore = new TextField();
-
-
-    ComboBox<String> playerInventory = new ComboBox<>();
-
-    public Pane3() {
-
-        setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
+  TextField setPlayerHealth = new TextField();
+  TextField setPlayerGold = new TextField();
+  TextField setPlayerScore = new TextField();
 
 
-        playerInventory.setId("comboBox");
+  ComboBox<String> playerInventory = new ComboBox<>();
 
-        VBox structure = new VBox();
+  public Pane3() {
 
-        structure.getStylesheets().add("/Style.css");
-
-        createPlayerName.setId("textField");
-        setPlayerHealth.setId("textField");
-        setPlayerGold.setId("textField");
-        setPlayerScore.setId("textField");
-
-        VBox playerCreation = new VBox();
-
-        Text createPlayer = new Text("Create player:");
-        createPlayer.setId("title");
-        createPlayerName.setPromptText("Enter player name");
-        setPlayerHealth.setPromptText("Enter player health");
-        setPlayerGold.setPromptText("Enter player gold");
-        setPlayerScore.setPromptText("Enter player score");
-
-        playerInventory.setPromptText("Enter player inventory");
-        populatePlayerInventory();
-
-        Button createPlayerButton = new Button("Create player");
-        createPlayerButton.setId("confirmButton");
-        createPlayerButton.setId("mainMenuButton");
-        playerCreation.getChildren().addAll(createPlayer, createPlayerName, setPlayerHealth, setPlayerGold, setPlayerScore, playerInventory, createPlayerButton);
-        playerCreation.setSpacing(10);
-
-        createPlayerButton.setOnAction(e -> {
-
-            PlayerRegister register = new PlayerRegister();
-            String playerStats = createPlayerName.getText() +" " + setPlayerHealth.getText() + " " + setPlayerGold.getText()
-                    + " " + setPlayerScore.getText() + " " + playerInventory.getValue();
-            register.saveTextToFile(playerStats, "src/main/resources/characters/"+createPlayerName.getText()+".paths");
-
-            System.out.println(playerStats+".paths");
-            createPlayerName.clear();
-            setPlayerHealth.clear();
-            setPlayerGold.clear();
-            setPlayerScore.clear();
+    setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
 
-        });
+    playerInventory.setId("comboBox");
+
+    VBox structure = new VBox();
+
+    structure.getStylesheets().add("/Style.css");
+
+    createPlayerName.setId("textField");
+    setPlayerHealth.setId("textField");
+    setPlayerGold.setId("textField");
+    setPlayerScore.setId("textField");
+
+    Text createPlayer = new Text("Create player:");
+    createPlayer.setId("title");
+    createPlayerName.setPromptText("Enter player name");
+    setPlayerHealth.setPromptText("Enter player health");
+    setPlayerGold.setPromptText("Enter player gold");
+    setPlayerScore.setPromptText("Enter player score");
+
+    playerInventory.setPromptText("Enter player inventory");
+    populatePlayerInventory();
+
+    Button createPlayerButton = new Button("Create player");
+    createPlayerButton.setId("confirmButton");
+    createPlayerButton.setId("mainMenuButton");
+
+    VBox playerCreation = new VBox();
+    playerCreation.getChildren().addAll(createPlayer, createPlayerName,
+            setPlayerHealth, setPlayerGold,
+            setPlayerScore, playerInventory,
+            createPlayerButton);
+    playerCreation.setSpacing(10);
+
+    createPlayerButton.setOnAction(e -> {
+
+      PlayerRegister register = new PlayerRegister();
+      String playerStats = createPlayerName.getText()
+              + " " + setPlayerHealth.getText()
+              + " " + setPlayerGold.getText()
+              + " " + setPlayerScore.getText()
+              + " " + playerInventory.getValue();
+      register.saveTextToFile(playerStats, "src/main/resources/characters/"
+              + createPlayerName.getText()
+              + ".paths");
+
+      System.out.println(playerStats + ".paths");
+      createPlayerName.clear();
+      setPlayerHealth.clear();
+      setPlayerGold.clear();
+      setPlayerScore.clear();
 
 
-        Button backButton = new Button("Back");
-        backButton.setId("backNavigation");
-        backButton.setAlignment(Pos.TOP_LEFT);
-        backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
-        playerCreation.setAlignment(Pos.CENTER);
-        structure.getChildren().addAll(backButton, playerCreation);
-        structure.setSpacing(20);
-        getChildren().addAll(structure);
+    });
 
-    }
-    private void populatePlayerInventory() {
-        playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
-    }
+    Button backButton = new Button("Back");
+    backButton.setId("backNavigation");
+    backButton.setAlignment(Pos.TOP_LEFT);
+    backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
+    playerCreation.setAlignment(Pos.CENTER);
+    structure.getChildren().addAll(backButton, playerCreation);
+    structure.setSpacing(20);
+    getChildren().addAll(structure);
+
+  }
+
+  private void populatePlayerInventory() {
+    playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
+  }
 
 }
 
