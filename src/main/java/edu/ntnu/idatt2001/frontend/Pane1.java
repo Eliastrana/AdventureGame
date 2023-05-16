@@ -98,8 +98,16 @@ public class Pane1 extends StackPane {
     Button playButton = new Button("Play");
     playButton.setId("Pane1ConfirmButton");
     playButton.setOnAction(event -> {
+      if (saveName.getText().isBlank()) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.setTitle("Unavailable");
+        alert.setHeaderText("No save name");
+        alert.setContentText("Please enter a save name");
+        alert.showAndWait();
+      }
 
       String saveNameString = saveName.getText().trim() + ".txt";
+
 
       if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
 
