@@ -230,12 +230,11 @@ public class Pane1 extends StackPane {
     backButton.setId("backNavigation");
     backButton.setOnAction(e -> {
       SceneSwitcher.switchToMainMenu();
-      //getChildren().clear();
       imageViews.clear();
       comboBoxPath.getItems().clear();
       comboBoxCharacter.getItems().clear();
       saveName.clear();
-
+      comboBoxGoals.getItems().clear();
     });
     backButton.setAlignment(Pos.TOP_LEFT);
     VBox comboBoxes = new VBox();

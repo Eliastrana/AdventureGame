@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.GUI;
 
+import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
+
 import edu.ntnu.idatt2001.Action.Action;
 import edu.ntnu.idatt2001.Game;
 import edu.ntnu.idatt2001.Link;
@@ -36,7 +38,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
 public class PaneGenerator extends Application {
 
@@ -100,16 +101,16 @@ public class PaneGenerator extends Application {
             button.setId("button");
             if (brokenLinks.contains(link)) {
               button.setDisable(true);
+            } else {
+              button.setOnAction(e -> {
+                passageCounter++;
+                updateInventoryBasedOnCounter(passageCounter);
+                updatePlayerInfoBasedOnCounter(passageCounter);
+                updateGoals();
+                updateContentAndButtons(passage);
+              });
             }
-            else {
-            button.setOnAction(e -> {
-              passageCounter++;
-              updateInventoryBasedOnCounter(passageCounter);
-              updatePlayerInfoBasedOnCounter(passageCounter);
-              updateGoals();
-              updateContentAndButtons(passage);
-            });
-            };
+            ;
             buttonBox.getChildren().add(button);
           });
           updateContentAndButtons(passage);
@@ -229,13 +230,13 @@ public class PaneGenerator extends Application {
 
   public void updatePlayerInfo() {
     try {
-      playerInfo.getChildren().clear(); // remove existing child nodes
+      playerInfo.getChildren().clear();
       nameLabel.setText("Player: " + game.getPlayer().getName());
       healthLabel.setText("Health: " + game.getPlayer().getHealth());
       goldLabel.setText("Gold: " + game.getPlayer().getGold());
       scoreLabel.setText("Score: " + game.getPlayer().getScore());
 
-      HBox itemBox = new HBox(); // create HBox to hold item labels and images
+      HBox itemBox = new HBox();
       for (String item : game.getPlayer().getInventory()) {
         String imagePath = "src/main/resources/items/" + item + ".png";
         File imageFile = new File(imagePath);
@@ -356,7 +357,6 @@ public class PaneGenerator extends Application {
 
     List<Link> links = passage.getLinks();
     for (Link link : links) {
-      System.out.println(link);
       SoundPlayer.play("src/main/resources/sounds/click.wav");
 
       Button button = new Button(link.getText());
@@ -364,31 +364,31 @@ public class PaneGenerator extends Application {
       if (brokenLinks.contains(link)) {
         button.setDisable(true);
       } else {
-      button.setOnAction(event -> {
-        for (Action action : link.getActions()) {
-          action.execute(game.getPlayer());
-          updateGoals();
-        }
-
-        Passage nextPassage = game.go(link);
-        if (nextPassage != null) {
-          game.getPlayer().setLastPassage(nextPassage);
-          try {
-            passageCounter++;
-            FileDashboard.gameSave("C:"
-                    + passageCounter
-                    + "\n"
-                    + "P:"
-                    + nextPassage.getTitle(), saveFilePath);
-            writeStatus();
-          } catch (IOException e) {
-            throw new RuntimeException(e);
+        button.setOnAction(event -> {
+          for (Action action : link.getActions()) {
+            action.execute(game.getPlayer());
+            updateGoals();
           }
-          updateContentAndButtons(nextPassage);
-        }
-        playerInfo.getChildren().clear();
-        updatePlayerInfo();
-      });
+
+          Passage nextPassage = game.go(link);
+          if (nextPassage != null) {
+            game.getPlayer().setLastPassage(nextPassage);
+            try {
+              passageCounter++;
+              FileDashboard.gameSave("C:"
+                      + passageCounter
+                      + "\n"
+                      + "P:"
+                      + nextPassage.getTitle(), saveFilePath);
+              writeStatus();
+            } catch (IOException e) {
+              throw new RuntimeException(e);
+            }
+            updateContentAndButtons(nextPassage);
+          }
+          playerInfo.getChildren().clear();
+          updatePlayerInfo();
+        });
       }
       buttonBox.getChildren().add(button);
     }
@@ -397,19 +397,15 @@ public class PaneGenerator extends Application {
   private void updatePlayerInfoBasedOnCounter(int counter) {
     SaveFileReader reader = new SaveFileReader();
     HashMap<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
-    System.out.println(passageData);
 
     if (passageData.containsKey("health") && passageData.get("health") instanceof Integer) {
       game.getPlayer().setHealth((int) passageData.get("health"));
-      System.out.println("Updated health");
     }
     if (passageData.containsKey("gold") && passageData.get("gold") instanceof Integer) {
       game.getPlayer().setGold((int) passageData.get("gold"));
-      System.out.println("Updated gold");
     }
     if (passageData.containsKey("score") && passageData.get("score") instanceof Integer) {
       game.getPlayer().setScore((int) passageData.get("score"));
-      System.out.println("Updated score");
     }
     updatePlayerInfo();
   }
@@ -450,21 +446,20 @@ public class PaneGenerator extends Application {
     passageCounter--;
     SaveFileReader reader = new SaveFileReader();
     String namePassage = reader.getPassageNameFromCounter(saveFilePath, passageCounter);
-    System.out.println("Checking if " + namePassage + " exists");
+
 
     if (game.getStory().getOpeningPassage().getTitle().equals(namePassage)) {
       updateContentAndButtons(game.getStory().getOpeningPassage());
       updatePlayerInfoBasedOnCounter(passageCounter);
       updateInventoryBasedOnCounter(passageCounter);
 
-      System.out.println("Found opening passage");
+
     } else {
       for (Passage passage : game.getStory().getPassages()) {
         if (passage.getTitle().equals(namePassage)) {
           updateContentAndButtons(passage);
           updatePlayerInfoBasedOnCounter(passageCounter);
           updateInventoryBasedOnCounter(passageCounter);
-          System.out.println("Found passage: " + passage);
           break;
         }
       }

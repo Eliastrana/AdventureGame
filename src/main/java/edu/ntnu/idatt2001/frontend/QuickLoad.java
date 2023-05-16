@@ -70,13 +70,10 @@ public class QuickLoad {
     savedGames.setAlignment(Pos.CENTER);
     savedGames.setSpacing(15);
 
-    File savedGamesfolder = new File("src"
-            + File.separator
-            + "main" + File.separator
-            + "resources" + File.separator
-            + "saveData");
+    File savedGamesfolder = new File("src/main/resources/saveData/");
     File[] listOfFiles = savedGamesfolder.listFiles();
 
+    assert listOfFiles != null;
     Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
 
     int count = 0;
@@ -126,7 +123,6 @@ public class QuickLoad {
         savedGameContentStructure.getChildren().addAll(savedGameContent, savedGameImage);
         pane.getChildren().addAll(savedGameContentStructure);
 
-
         pane.setOnMouseClicked(e -> {
           try {
             String characterPath = "src/main/resources/characters/"
@@ -140,8 +136,6 @@ public class QuickLoad {
                     + ".txt";
             String characterIcon = saveFileReader.getImageIcon(file.getPath());
             String savedDataPath = file.getPath();
-
-
 
             CreateGame game = new CreateGame(filePath, characterPath, goalsPath, characterIcon);
             Game gameCreated = game.gameGenerator(characterPath);
@@ -172,7 +166,6 @@ public class QuickLoad {
                 }
               }
             }
-
             // Start the game
             PaneGenerator gui = new PaneGenerator(gameCreated, savedDataPath, characterIcon);
             gui.start(primaryStage);
@@ -187,9 +180,6 @@ public class QuickLoad {
         count++;
       }
     }
-
     return savedGames;
-
   }
-
 }
