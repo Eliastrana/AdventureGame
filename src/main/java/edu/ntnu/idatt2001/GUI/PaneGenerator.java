@@ -6,15 +6,14 @@ import edu.ntnu.idatt2001.Link;
 import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
-import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import edu.ntnu.idatt2001.goals.*;
 import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
+
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.sql.SQLOutput;
 import java.util.*;
 
 import javafx.application.Application;
@@ -34,21 +33,18 @@ import javafx.stage.Stage;
 
 import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 
-
 public class PaneGenerator extends Application {
 
   private String characterIcon;
-
   private Game game;
   private int passageCounter;
   private HBox playerInfo;
   private Label titleLabel;
   private Text contentArea;
   private HBox buttonBox;
+
   HBox topmenuOptions = new HBox();
-
   VBox topGoals = new VBox();
-
   VBox topGoalsHealth = new VBox();
   VBox topGoalsGold = new VBox();
   VBox topGoalsScore = new VBox();
@@ -83,15 +79,11 @@ public class PaneGenerator extends Application {
     contentArea.setId("contentArea");
     buttonBox = new HBox();
     buttonBox.setId("buttonBox");
-
     buttonBox = new HBox();
     buttonBox.getStylesheets().add("/Style.css");
     buttonBox.setSpacing(20);
     buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
     buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
-
-
-
 
     SaveFileReader saveFileReader = new SaveFileReader();
     if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
@@ -102,7 +94,18 @@ public class PaneGenerator extends Application {
           updateInventoryBasedOnCounter(passageCounter);
           updatePlayerInfoBasedOnCounter(passageCounter);
           updateGoals();
-
+          passage.getLinks().forEach(link -> {
+            Button button = new Button(link.getText());
+            button.setId("button");
+            button.setOnAction(e -> {
+              passageCounter++;
+              updateInventoryBasedOnCounter(passageCounter);
+              updatePlayerInfoBasedOnCounter(passageCounter);
+              updateGoals();
+              updateContentAndButtons(passage);
+            });
+            buttonBox.getChildren().add(button);
+          });
           updateContentAndButtons(passage);
         }
       }
@@ -116,26 +119,14 @@ public class PaneGenerator extends Application {
       titleLabel.setId("title");
     }
 
-
-
-
     SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
-
     sortGoals();
     displayGoals();
-
-    System.out.println(characterIcon);
     Pane characterImage = new Pane();
 
-
     if (characterIcon != null) {
-
-
-      System.out.println("Character icon: " + characterIcon);
-      Image image = new Image("/characterIcons/" + characterIcon);
-
+      Image image = new Image("/characterIcons/"+characterIcon);
       ImageView imageView = new ImageView(image);
-
       characterImage.getChildren().add(imageView);
     }
 
@@ -149,9 +140,7 @@ public class PaneGenerator extends Application {
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
-
     });
-
 
     Button quitButton = new Button("Quit");
     quitButton.setId("topMenuButton");
@@ -181,45 +170,26 @@ public class PaneGenerator extends Application {
         AlertUtil.showAlert("Content", "This is the content of the passage!", 250, 600, primaryStage);
         AlertUtil.showAlert("Navigation button", "Click these buttons to make your choice!", 250, 900, primaryStage);
         AlertUtil.showAlert("Your status!", "Here you can see your status within the categories, as well as your current inventory!", 850, 100, primaryStage);
-
-
     });
 
-
-      topmenuOptions.getChildren().addAll(helpButton, restart, backButton, quitButton);
-
+    topmenuOptions.getChildren().addAll(helpButton, restart, backButton, quitButton);
     topmenuOptions.setSpacing(20);
     VBox topInfo = new VBox();
     topInfo.setSpacing(30);
-
     playerInfo = new HBox();
     updatePlayerInfo();
     playerInfo.setSpacing(20);
     playerInfo.setAlignment(javafx.geometry.Pos.CENTER);
     playerInfo.setId("playerInfo");
-
-
-
-
-
-
-    //displayGoals();
-
-
     topGoalsHealth.setId("goalsInfo");
     topGoalsGold.setId("goalsInfo");
     topGoalsScore.setId("goalsInfo");
     topGoalsInventory.setId("goalsInfo");
-
-
     Text goalsTitle  = new Text("Goals:");
     goalsTitle.setId("goalsInfo");
 
-
     topGoals.getChildren().addAll(goalsTitle, topGoalsHealth, topGoalsGold, topGoalsScore, topGoalsInventory);
     topGoals.setSpacing(5);
-
-
 
     BorderPane root = new BorderPane();
     topInfo.getChildren().addAll(playerInfo, titleLabel);
@@ -227,19 +197,14 @@ public class PaneGenerator extends Application {
     topInfo.setAlignment(javafx.geometry.Pos.CENTER);
     topInfo.setPadding(new javafx.geometry.Insets(20, 20, 20, 20));
 
-
     root.setTop(topInfo);
-
     root.setLeft(characterImage);
     root.setRight(topGoals);
-
     root.setCenter(contentArea);
     root.setBottom(buttonBox);
 
-
     Scene scene = new Scene(root, 800, 600);
     scene.getStylesheets().add("/Style.css");
-
     stage.setScene(scene);
     stage.setTitle(game.getStory().getTitle());
     stage.show();
@@ -271,7 +236,6 @@ public class PaneGenerator extends Application {
 
       itemBox.setSpacing(10);
       itemBox.setAlignment(Pos.CENTER);
-
       playerInfo.getChildren().addAll(topmenuOptions,
               nameLabel,
               healthLabel,
@@ -284,7 +248,6 @@ public class PaneGenerator extends Application {
       System.err.println("Could not show player info: " + e.getMessage());
     }
   }
-
 
   private void restartAction() throws IOException {
     passageCounter = 0;
@@ -299,7 +262,6 @@ public class PaneGenerator extends Application {
     healthGoalTitle.setId("goalsInfo");
     Text currentHealth = new Text(game.getPlayer().getHealth() + " / ");
     currentHealth.setId("goalsInfo");
-
     HBox totalHealthGoals = new HBox();
     HBox healthGoalsHBox = new HBox();
 
@@ -315,7 +277,6 @@ public class PaneGenerator extends Application {
     }
     totalHealthGoals.getChildren().addAll(currentHealth, healthGoalsHBox);
     topGoalsHealth.getChildren().addAll(healthGoalTitle, totalHealthGoals);
-
 
     Text scoreGoalTitle = new Text("Score: " + "\n");
     scoreGoalTitle.setId("goalsInfo");
@@ -338,12 +299,10 @@ public class PaneGenerator extends Application {
     totalScoreGoals.getChildren().addAll(currentScore, scoreGoalsHBox);
     topGoalsScore.getChildren().addAll(scoreGoalTitle, totalScoreGoals);
 
-
     Text goldGoalTitle = new Text("Gold: " + "\n");
     goldGoalTitle.setId("goalsInfo");
     Text currentGold = new Text(game.getPlayer().getGold() + "/");
     currentGold.setId("goalsInfo");
-
     HBox totalGoldGoals = new HBox();
     HBox goldGoalsHBox = new HBox();
 
@@ -359,7 +318,6 @@ public class PaneGenerator extends Application {
     }
     totalGoldGoals.getChildren().addAll(currentGold, goldGoalsHBox);
     topGoalsGold.getChildren().addAll(goldGoalTitle, totalGoldGoals);
-
 
     Text inventoryGoalTitle = new Text("Inventory: " + "\n");
     inventoryGoalTitle.setId("goalsInfo");
@@ -383,13 +341,9 @@ public class PaneGenerator extends Application {
     topGoalsInventory.getChildren().addAll(inventoryGoalTitle, totalInventoryGoals);
   }
 
-
-
-
   private void sortGoals() {
 
     Comparator<Goal> comparator = Comparator.comparingInt(goal -> Integer.parseInt(goal.toString()));
-
 
     for (Goal goal : game.getGoals()) {
       if (goal instanceof ScoreGoal)  {
@@ -409,11 +363,9 @@ public class PaneGenerator extends Application {
     inventoryGoals.sort(comparator);
   }
 
-
   private void quitGame() throws IOException {
     SceneSwitcher.switchToPane1();
   }
-
 
   private void updateContentAndButtons(Passage passage) {
     if (passage == null) {
@@ -488,7 +440,6 @@ public class PaneGenerator extends Application {
     updatePlayerInfo();
   }
 
-
   private void writeStatus() {
     try {
       FileDashboard.gameSave("N:" + game.getPlayer().getName(), saveFilePath);
@@ -510,7 +461,7 @@ public class PaneGenerator extends Application {
     try {
       FileDashboard.gameSave("C:"
               + passageCounter + "\nP:"
-              + game.getStory().getOpeningPassage().getTitle(), filePath);
+              + game.getStory().getOpeningPassage().getTitle(), saveFilePath);
     writeStatus();
     } catch (IOException e) {
       e.printStackTrace();
@@ -520,7 +471,7 @@ public class PaneGenerator extends Application {
   private void backAction() {
     passageCounter--;
     SaveFileReader reader = new SaveFileReader();
-    String namePassage = reader.getPassageNameFromCounter(filePath, passageCounter);
+    String namePassage = reader.getPassageNameFromCounter(saveFilePath, passageCounter);
     System.out.println("Checking if " + namePassage + " exists");
 
     if (game.getStory().getOpeningPassage().getTitle().equals(namePassage)) {
@@ -549,4 +500,3 @@ public class PaneGenerator extends Application {
     displayGoals();
   }
 }
-

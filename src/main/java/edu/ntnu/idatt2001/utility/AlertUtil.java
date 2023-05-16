@@ -12,11 +12,7 @@ import javafx.stage.Window;
 
 public class AlertUtil {
 
-
-
     public static void showAlert(String title, String message, double x, double y, Window ownerWindow) {
-
-
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle(title);
         alert.setHeaderText(null);
@@ -28,14 +24,18 @@ public class AlertUtil {
 
         positionAlert(alert, x, y);
 
-        if (ownerWindow != null && isMacOS()) {
-            alert.initOwner(ownerWindow);
-            alert.initModality(Modality.APPLICATION_MODAL);
+        if (ownerWindow != null) {
+            if (isMacOS()) {
+                alert.initOwner(ownerWindow);
+                alert.initModality(Modality.APPLICATION_MODAL);
+            } else {
+                // Set the owner window for non-MacOS platforms
+                alert.initOwner(ownerWindow);
+            }
         }
 
         // Customize font size and color
         alert.getDialogPane().setStyle("-fx-font-size: 18px; -fx-text-fill: #000000; -fx-stroke: #FFFFFF; -fx-stroke-width: 18px;");
-
         alert.getDialogPane().setId("alertBox");
 
         alert.showAndWait();
