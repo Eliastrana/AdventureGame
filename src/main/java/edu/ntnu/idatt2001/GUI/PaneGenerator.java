@@ -40,7 +40,7 @@ public class PaneGenerator extends Application {
   private String characterIcon;
 
   private Game game;
-  private int passageCounter = 0;
+  private int passageCounter;
   private HBox playerInfo;
   private Label titleLabel;
   private Text contentArea;
@@ -73,9 +73,49 @@ public class PaneGenerator extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
-    writeFirstPassage();
-    titleLabel = new Label(game.begin().getTitle());
+
+    titleLabel = new Label();
     titleLabel.setId("title");
+    contentArea = new Text();
+    contentArea.setWrappingWidth(700);
+    contentArea.setFill(Color.WHITE); // Set fill color to white
+    contentArea.setId("contentArea");
+    buttonBox = new HBox();
+    buttonBox.setId("buttonBox");
+
+    buttonBox = new HBox();
+    buttonBox.getStylesheets().add("/Style.css");
+    buttonBox.setSpacing(20);
+    buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
+    buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
+
+
+
+
+    SaveFileReader saveFileReader = new SaveFileReader();
+    if (saveFileReader.getFirstPassageExisting(filePath)) {
+      String lastSeenPassage = saveFileReader.getLastSeenPassage(filePath);
+      for (Passage passage : game.getStory().getPassages()) {
+        if (passage.getTitle().equals(lastSeenPassage)) {
+          passageCounter = saveFileReader.getCounterFromPassageTitle(filePath, lastSeenPassage);
+          updateInventoryBasedOnCounter(passageCounter);
+          updatePlayerInfoBasedOnCounter(passageCounter);
+          updateGoals();
+
+          updateContentAndButtons(passage);
+        }
+      }
+
+    }
+    else {
+      passageCounter = 0;
+      writeFirstPassage();
+      updateContentAndButtons(game.begin());
+      titleLabel = new Label(game.begin().getTitle());
+      titleLabel.setId("title");
+    }
+
+
 
 
     SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
@@ -178,17 +218,7 @@ public class PaneGenerator extends Application {
     topGoals.getChildren().addAll(goalsTitle, topGoalsHealth, topGoalsGold, topGoalsScore, topGoalsInventory);
     topGoals.setSpacing(5);
 
-    contentArea = new Text();
-    contentArea.setWrappingWidth(700);
-    contentArea.setFill(Color.WHITE); // Set fill color to white
-    contentArea.setId("contentArea");
 
-    buttonBox = new HBox();
-    buttonBox.getStylesheets().add("/Style.css");
-    buttonBox.setSpacing(20);
-    buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
-    buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
-    updateContentAndButtons(game.begin());
 
     BorderPane root = new BorderPane();
     topInfo.getChildren().addAll(playerInfo, titleLabel);
@@ -388,6 +418,8 @@ public class PaneGenerator extends Application {
     if (passage == null) {
       throw new IllegalArgumentException("Passage cannot be null");
     }
+    System.out.println("Updating content and buttons"
+            + " for passage: " + passage.getTitle());
     game.getPlayer().setLastPassage(passage);
     titleLabel.setText(passage.getTitle());
     contentArea.setText(passage.getContent());

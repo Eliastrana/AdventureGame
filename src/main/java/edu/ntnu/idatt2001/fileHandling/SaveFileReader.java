@@ -20,6 +20,21 @@ public class SaveFileReader {
     return image;
   }
 
+  public boolean getFirstPassageExisting(String filePath) throws IOException {
+    File file = new File(filePath);
+    BufferedReader br = new BufferedReader(new FileReader(file));
+
+    boolean firstPassageExisting = false;
+    String line;
+    while ((line = br.readLine()) != null) {
+      if (line.startsWith("P:")) {
+        firstPassageExisting = true;
+      }
+    }
+    br.close();
+    return firstPassageExisting;
+  }
+
   public String getName(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
@@ -125,6 +140,29 @@ public class SaveFileReader {
     }
     return passageInventory;
   }
+
+  public int getCounterFromPassageTitle(String filePath, String passageTitle) {
+    int counter = -1;
+    try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
+      String line;
+      while ((line = reader.readLine()) != null) {
+        if (line.startsWith("C:")) {
+          // Found a counter, update the current counter
+          String counterAsString = line.substring(2).trim(); // Skip "C:"
+          counter = Integer.parseInt(counterAsString);
+        } else if (line.startsWith("P:" + passageTitle)) {
+          // Found the passage, return the last counter
+          return counter;
+        }
+      }
+    } catch (IOException e) {
+      throw new RuntimeException(e);
+    } catch (NumberFormatException e) {
+      throw new IllegalArgumentException("Counter is not a valid number", e);
+    }
+    throw new IllegalArgumentException("Passage title not found");
+  }
+
 
   public HashMap<String, Object> getPassageParameters(String filePath, int counter) {
     HashMap<String, Object> map = new HashMap<>();

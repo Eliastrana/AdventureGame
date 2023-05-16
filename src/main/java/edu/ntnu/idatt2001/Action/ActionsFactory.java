@@ -1,7 +1,17 @@
 package edu.ntnu.idatt2001.Action;
 
+/**
+ * ActionsFactory for creating different actions.
+ */
 public class ActionsFactory {
 
+  /**
+   * Creates an action from the given input.
+   * @param input String {actionType: actionValue}.
+   *
+   * @return Action the created action.
+   *
+   */
   public Action createAction(String input) {
     if (input == null || input.trim().isEmpty()) {
       return null;
