@@ -107,7 +107,9 @@ public class Pane1 extends StackPane {
         playButton.setId("Pane1ConfirmButton");
         playButton.setOnAction(event -> {
 
-            String saveNameString = saveName.getText().trim();
+            String saveNameString = saveName.getText().trim()+".txt";
+            System.out.println("The file is uniq: "+isFileNameUnique(saveNameString, "src/main/resources/saveData/"));
+
 
             if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
 
@@ -191,7 +193,6 @@ public class Pane1 extends StackPane {
             transition.play();
             imageBox.getChildren().set(0, currentImage);
 
-            // Select the current image
             selectImage(currentImageIndex[0]);
         });
 
@@ -275,8 +276,6 @@ public class Pane1 extends StackPane {
         int index = imageUrl.lastIndexOf("/") + 1;
         return imageUrl.substring(index);
     }
-
-
     private void updateSaveGameName() {
         String category1 = comboBoxCharacter.getSelectionModel().getSelectedItem();
         String category2 = comboBoxPath.getSelectionModel().getSelectedItem();
@@ -284,33 +283,12 @@ public class Pane1 extends StackPane {
 
         saveName.setText(category1 + "_" + category2 + "_" + category3 + "_save");
     }
-
-
-
     public boolean isFileNameUnique(String fileName, String directoryPath) {
-        File directory = new File(directoryPath);
-        String newFileName = fileName;
-        int count = 1;
-
-        while (new File(directory, newFileName).exists()) {
-            int indexOfDot = fileName.lastIndexOf('.');
-            if (indexOfDot == -1) {
-                newFileName = fileName + "_" + count;
-            } else {
-                String nameWithoutExtension = fileName.substring(0, indexOfDot);
-                String extension = fileName.substring(indexOfDot + 1);
-                newFileName = nameWithoutExtension + "_" + count + "." + extension;
-            }
-            count++;
-        }
-
-        if (!newFileName.equals(fileName)) {
-            return false;
-        }
-
-        return true;
+        File file = new File(directoryPath, fileName);
+        System.out.println("Checking file: " + file.getAbsolutePath());  // Print the absolute path of the file
+        boolean fileExists = file.exists() && !file.isDirectory();
+        System.out.println("File exists: " + fileExists);  // Print whether the file exists
+        return !fileExists;
     }
-
-
 }
 
