@@ -32,40 +32,37 @@ public class ActionsFactory {
               int health = Integer.parseInt(actionValue);
               return new HealthAction(health);
             } catch (NumberFormatException e) {
-              System.err.println("Invalid health value for HealthAction: " + actionValue);
+             throw new IllegalArgumentException("Invalid health value for HealthAction: " + actionValue);
             }
-            break;
 
-          // Add more action types here as needed
+
 
           case "GoldAction":
             try {
               int gold = Integer.parseInt(actionValue);
               return new GoldAction(gold);
             } catch (NumberFormatException e) {
-              System.err.println("Invalid gold value for GoldAction: " + actionValue);
+              throw new IllegalArgumentException("Invalid gold value for GoldAction: " + actionValue);
             }
-            break;
+
 
           case "ScoreAction":
             try {
               int score = Integer.parseInt(actionValue);
               return new ScoreAction(score);
             } catch (NumberFormatException e) {
-              System.err.println("Invalid score value for ScoreAction: " + actionValue);
+              throw new IllegalArgumentException("Invalid score value for ScoreAction: " + actionValue);
             }
-            break;
 
           case "InventoryAction":
             try {
               return new InventoryAction(actionValue);
             } catch (NumberFormatException e) {
-              System.err.println("Invalid inventory value for InventoryAction: " + actionValue);
+             throw new IllegalArgumentException("Invalid inventory value for InventoryAction: " + actionValue);
             }
-            break;
 
           default:
-            System.err.println("Unknown action type: " + actionType);
+            throw new IllegalArgumentException("Unknown action type: " + actionType);
         }
       }
     }

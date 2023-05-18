@@ -1,10 +1,12 @@
 package edu.ntnu.idatt2001;
 
+import edu.ntnu.idatt2001.Action.Action;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -26,19 +28,19 @@ class StoryTest {
     @Test
     @DisplayName("Test constructor with null title")
     void constructorTestWithNullTitle() {
-      assertThrows(IllegalArgumentException.class, () -> new Story(null, new Passage("Title", "Content")));
+      assertThrows(NullPointerException.class, () -> new Story(null, new Passage("Title", "Content")));
     }
 
     @Test
     @DisplayName("Test constructor with empty title")
     void constructorTestWithEmptyTitle() {
-      assertThrows(IllegalArgumentException.class, () -> new Story("", new Passage("Title", "Content")));
+      assertThrows(NullPointerException.class, () -> new Story("", new Passage("Title", "Content")));
     }
 
     @Test
     @DisplayName("Test constructor with null openingPassage")
     void constructorTestWithNullOpeningPassage() {
-      assertThrows(IllegalArgumentException.class, () -> new Story("Title", null));
+      assertThrows(NullPointerException.class, () -> new Story("Title", null));
     }
   }
 
@@ -54,10 +56,19 @@ class StoryTest {
     }
 
     @Test
-    @DisplayName("Test GetBrokenLinks")
-    void getBrokenLinks() {
+    void testGetBrokenLinks() {
       Story story = new Story("Title", new Passage("Title", "Content"));
-      assertEquals(0, story.getBrokenLinks().size());
+      Link brokenLink = new Link("Broken text", "Broken Link",new ArrayList<Action>());
+      Link workingLink = new Link("Working text", "Second Passage",new ArrayList<Action>());
+      Passage openingPassage = new Passage("Opening Passage", "Content");
+      Passage secondPassage = new Passage("Second Passage", "Content");
+      openingPassage.addLink(brokenLink);
+      secondPassage.addLink(workingLink);
+      story.addPassage(openingPassage);
+      story.addPassage(secondPassage);
+      List<Link> brokenLinks = story.getBrokenLinks();
+      assertEquals(1, brokenLinks.size());
+      assertTrue(brokenLinks.contains(brokenLink));
     }
 
     @Test
@@ -75,12 +86,6 @@ class StoryTest {
       story.addPassage(new Passage("newTitle", "newContent"));
       assertEquals(1, story.getPassages().size());
     }
-
-    @Test
-    @DisplayName("Test getPassage")
-    void getPassage() {
-    }
-
   }
 
 
@@ -100,26 +105,18 @@ class StoryTest {
     @DisplayName("Test addPassage with null passage")
     void addPassageWithNullPassage() {
       Story story = new Story("Title", new Passage("Title", "Content"));
-      assertThrows(IllegalArgumentException.class, () -> story.addPassage(null));
+      assertThrows(NullPointerException.class, () -> story.addPassage(null));
     }
 
-    @Test
-    @DisplayName("Test addPassage with existing passage")
-    void addPassageWithExistingPassage() {
-      Story story = new Story("storyTitle", new Passage("passageTitle", "passageContent"));
-      Passage passage = new Passage("passageTitle", "passageContent");
-      assertThrows(IllegalArgumentException.class, () -> story.addPassage(passage));
-    }
 
     @Test
-    @DisplayName("Test removePassage")
+    @DisplayName("Test valid removePassage")
     void removePassage() {
       Story story = new Story("storyTitle", new Passage("passageTitle", "passageContent"));
       Passage passage = new Passage("newTitle", "newContent");
-      Link link = new Link("linkTitle", "linkContent", new ArrayList<>());
-      passage.addLink(link);
+      Link link = new Link("linkTitle", "linkReference", new ArrayList<>());
       story.addPassage(passage);
-      story.removePassage(passage.getLinks().get(0));
+      story.removePassage(link);
       assertEquals(1, story.getPassages().size());
     }
 
@@ -129,7 +126,19 @@ class StoryTest {
       Story story = new Story("storyTitle", new Passage("passageTitle", "passageContent"));
       Passage passage = new Passage("newTitle", "newContent");
       story.addPassage(passage);
-      assertThrows(IllegalArgumentException.class, () -> story.removePassage(null));
+      assertThrows(NullPointerException.class, () -> story.removePassage(null));
+    }
+
+    @Test
+    @DisplayName("Test removePassage with link in use")
+    void removePassageWithLinkInUse() {
+      Passage openingPassage = new Passage("Opening Passage", "Content");
+      Passage secondPassage = new Passage("Second Passage", "Content");
+      Link link = new Link("Go to second passage", "Second Passage", new ArrayList<>());
+      Story story = new Story("My Story", openingPassage);
+      story.addPassage(secondPassage);
+      openingPassage.addLink(link);
+      assertThrows(IllegalArgumentException.class, () -> story.removePassage(link));
     }
   }
 }

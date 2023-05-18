@@ -7,6 +7,4 @@ import edu.ntnu.idatt2001.Player;
  */
 public interface Goal {
     boolean isFullfilled(Player player);
-
-
 }

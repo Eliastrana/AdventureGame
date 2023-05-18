@@ -19,10 +19,12 @@ public class Player {
 
   // required parameters only
   public Player(String name, int health) {
+
     this(name, health, 0);
   }
 
   public Player(String name, int health, int score) {
+
     this(name, health, score, 0);
   }
 
@@ -39,7 +41,25 @@ public class Player {
    * @param gold      int gold of the player
    * @param inventory ArrayList of the player's inventory
    */
-  public Player(String name, int health, int score, int gold, ArrayList<String> inventory) {
+  public Player(String name, int health,
+                int score, int gold,
+                ArrayList<String> inventory) {
+    if (name == null || name.isEmpty()) {
+      throw new NullPointerException("Name cannot be empty");
+    }
+    if (health < 0) {
+      throw new IllegalArgumentException("Health cannot be negative");
+    }
+    if (score < 0) {
+      throw new IllegalArgumentException("Score cannot be negative");
+    }
+    if (gold < 0) {
+      throw new IllegalArgumentException("Gold cannot be negative");
+    }
+    if (inventory == null) {
+      throw new NullPointerException("Inventory cannot be null");
+    }
+
     this.name = name;
     this.health = health;
     this.score = score;
@@ -61,6 +81,25 @@ public class Player {
                 int score, int gold,
                 ArrayList<String> inventory,
                 Passage lastPassage) {
+    if (name == null || name.isEmpty()) {
+      throw new NullPointerException("Name cannot be empty");
+    }
+    if (health < 0) {
+      throw new IllegalArgumentException("Health cannot be negative");
+    }
+    if (score < 0) {
+      throw new IllegalArgumentException("Score cannot be negative");
+    }
+    if (gold < 0) {
+      throw new IllegalArgumentException("Gold cannot be negative");
+    }
+    if (inventory == null) {
+      throw new NullPointerException("Inventory cannot be null");
+    }
+    if (lastPassage == null) {
+      throw new NullPointerException("Last passage cannot be null");
+    }
+
     this.name = name;
     this.health = health;
     this.score = score;
@@ -95,6 +134,9 @@ public class Player {
    * @param health int health
    */
   public void setHealth(int health) {
+    if (health < 0) {
+      throw new IllegalArgumentException("Health cannot be negative");
+    }
     this.health = health;
   }
 
@@ -105,9 +147,7 @@ public class Player {
    * @return int score
    */
 
-  public int getScore() {
-    return score;
-  }
+  public int getScore() {return score; }
 
   /**
    * Sets the score of the player.
@@ -115,6 +155,9 @@ public class Player {
    * @param score int score
    */
   public void setScore(int score) {
+    if (score < 0) {
+      throw new IllegalArgumentException("Score cannot be negative");
+    }
     this.score = score;
   }
 
@@ -136,10 +179,7 @@ public class Player {
    * @return ArrayList inventory
    */
 
-  public ArrayList<String> getInventory() {
-
-    return inventory;
-  }
+  public ArrayList<String> getInventory() { return inventory;}
 
   /**
    * Sets the inventory of the player.
@@ -193,6 +233,9 @@ public class Player {
    * @param gold int gold
    */
   public void setGold(int gold) {
+    if (gold < 0) {
+      throw new IllegalArgumentException("Gold cannot be negative");
+    }
     this.gold = gold;
   }
 
@@ -201,9 +244,7 @@ public class Player {
    *
    * @param gold int gold
    */
-  public void addGold(int gold) {
-    this.gold += gold;
-  }
+  public void addGold(int gold) {this.gold += gold; }
 
   /**
    * Adds health to the player's health.
@@ -219,12 +260,7 @@ public class Player {
    *
    * @param score int score
    */
-  public void addScore(int score) {
-    if (score < 0) {
-      throw new IllegalArgumentException("Score cannot be negative");
-    }
-    this.score += score;
-  }
+  public void addScore(int score) {this.score += score;}
 
   @Override
   public String toString() {
@@ -238,6 +274,4 @@ public class Player {
             }
             """.formatted(name, health, score, gold, inventory);
   }
-
-
 }

@@ -48,7 +48,7 @@ public class GoalFactory {
           break;
 
         default:
-          System.err.println("Unknown goal type: " + goalType);
+          throw new IllegalArgumentException("Invalid goal type: " + goalType);
       }
     }
 

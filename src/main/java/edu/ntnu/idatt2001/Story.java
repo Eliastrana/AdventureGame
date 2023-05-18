@@ -25,8 +25,14 @@ public class Story {
    */
 
   public Story(String title, Passage openingPassage) {
-    this.title = Objects.requireNonNull(title, "Title cannot be empty");
-    this.openingPassage = Objects.requireNonNull(openingPassage, "Opening passage cannot be null");
+    if (title == null || title.isEmpty()) {
+      throw new NullPointerException("Title cannot be empty");
+    }
+    if (openingPassage == null) {
+      throw new NullPointerException("Opening passage cannot be null");
+    }
+    this.title = title;
+    this.openingPassage = openingPassage;
     this.passages = new HashMap<>();
   }
 
@@ -48,18 +54,15 @@ public class Story {
     return openingPassage;
   }
 
-
-  public void setOpeningPassage(Passage openingPassage) {
-    this.openingPassage = openingPassage;
-  }
-
   /**
    * Adds a passage to the story.
    *
    * @param newPassage Passage to be added to the story
    */
   public void addPassage(Passage newPassage) {
-    Objects.requireNonNull(newPassage, "Passage cannot be null");
+    if (newPassage == null) {
+      throw new NullPointerException("Passage cannot be null");
+    }
     passages.put(newPassage.getTitle(), newPassage);
   }
 
@@ -70,7 +73,6 @@ public class Story {
    * @return Passage containing the passage that is linked to the given link
    */
   public Passage getPassage(Link link) {
-    Objects.requireNonNull(link, "Link cannot be null");
     Passage passage = passages.get(link.getReference());
     if (passage == null) {
       System.out.println("Link reference not found: " + link.getReference());
@@ -84,17 +86,16 @@ public class Story {
    * @param link Link containing the link to the passage
    */
   public void removePassage(Link link) {
-    Objects.requireNonNull(link, "Link provided cannot be null");
+    if (link == null) {
+      throw new NullPointerException("Link cannot be null");
+    }
 
     boolean isLinkInUse = passages.values()
             .stream()
-            .anyMatch(passage -> passage.getLinks().contains(link));
+            .anyMatch(passage -> passage.getLinks().contains(link)) || openingPassage.getLinks().contains(link);
 
     if (isLinkInUse) {
-      System.out.println("Link is already in use");
-      // Add debug information if needed
-      System.out.println("Link: " + link);
-      return;
+      throw new IllegalArgumentException("Link is in use");
     }
     passages.remove(link.getReference());
   }
