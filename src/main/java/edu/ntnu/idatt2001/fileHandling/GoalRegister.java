@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001.fileHandling;
 
 import edu.ntnu.idatt2001.goals.Goal;
 import edu.ntnu.idatt2001.goals.GoalFactory;
-
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;

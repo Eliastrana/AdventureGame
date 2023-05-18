@@ -10,7 +10,6 @@ public class ActionsFactory {
    * @param input String {actionType: actionValue}.
    *
    * @return Action the created action.
-   *
    */
   public Action createAction(String input) {
     if (input == null || input.trim().isEmpty()) {
@@ -32,9 +31,9 @@ public class ActionsFactory {
               int health = Integer.parseInt(actionValue);
               return new HealthAction(health);
             } catch (NumberFormatException e) {
-             throw new IllegalArgumentException("Invalid health value for HealthAction: " + actionValue);
+              throw new IllegalArgumentException("Invalid health value for HealthAction: "
+                      + actionValue);
             }
-
 
 
           case "GoldAction":
@@ -42,7 +41,8 @@ public class ActionsFactory {
               int gold = Integer.parseInt(actionValue);
               return new GoldAction(gold);
             } catch (NumberFormatException e) {
-              throw new IllegalArgumentException("Invalid gold value for GoldAction: " + actionValue);
+              throw new IllegalArgumentException("Invalid gold value for GoldAction: "
+                      + actionValue);
             }
 
 
@@ -51,18 +51,21 @@ public class ActionsFactory {
               int score = Integer.parseInt(actionValue);
               return new ScoreAction(score);
             } catch (NumberFormatException e) {
-              throw new IllegalArgumentException("Invalid score value for ScoreAction: " + actionValue);
+              throw new IllegalArgumentException("Invalid score value for ScoreAction: "
+                      + actionValue);
             }
 
           case "InventoryAction":
             try {
               return new InventoryAction(actionValue);
             } catch (NumberFormatException e) {
-             throw new IllegalArgumentException("Invalid inventory value for InventoryAction: " + actionValue);
+              throw new IllegalArgumentException("Invalid inventory value for InventoryAction: "
+                      + actionValue);
             }
 
           default:
-            throw new IllegalArgumentException("Unknown action type: " + actionType);
+            throw new IllegalArgumentException("Unknown action type: "
+                    + actionType);
         }
       }
     }

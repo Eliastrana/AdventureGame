@@ -9,7 +9,6 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 public class SaveFileReader {
-
   public String getImage(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
@@ -46,6 +45,7 @@ public class SaveFileReader {
 
     return name;
   }
+
   public String getImageIcon(String filePath) throws IOException {
     File file = new File(filePath);
     BufferedReader br = new BufferedReader(new FileReader(file));
