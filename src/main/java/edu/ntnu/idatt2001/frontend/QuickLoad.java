@@ -25,10 +25,8 @@ import javafx.scene.layout.VBox;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.text.Text;
 
-
 public class QuickLoad {
   SaveFileReader saveFileReader;
-
   String characterPath;
   String filePath;
   String goalsPath;
@@ -42,14 +40,10 @@ public class QuickLoad {
     saveFileReader = new SaveFileReader();
   }
 
-
   public String getFilePath() {
 
     return filePath;
   }
-
-
-
 
   public static HBox savedNameDisplayer(String characterPath,
                                         String filePath,
@@ -62,7 +56,6 @@ public class QuickLoad {
     return quickLoad.savedGamesContainer();
   }
 
-
   public HBox savedGamesContainer() throws IOException {
 
 
@@ -72,8 +65,6 @@ public class QuickLoad {
 
     File savedGamesfolder = new File("src/main/resources/saveData/");
     File[] listOfFiles = savedGamesfolder.listFiles();
-
-    assert listOfFiles != null;
     Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
 
     int count = 0;

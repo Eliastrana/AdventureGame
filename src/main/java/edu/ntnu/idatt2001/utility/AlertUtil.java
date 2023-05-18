@@ -1,12 +1,7 @@
 package edu.ntnu.idatt2001.utility;
 
-import javafx.application.Platform;
-import javafx.geometry.Rectangle2D;
 import javafx.scene.control.Alert;
-import javafx.scene.control.ButtonType;
-import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
-import javafx.stage.Screen;
 import javafx.stage.Stage;
 import javafx.stage.Window;
 
@@ -51,4 +46,5 @@ public class AlertUtil {
         String osName = System.getProperty("os.name").toLowerCase();
         return osName.contains("mac");
     }
+
 }

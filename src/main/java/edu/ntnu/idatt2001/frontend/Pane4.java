@@ -8,6 +8,7 @@ import java.nio.file.Path;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
@@ -21,10 +22,12 @@ public class Pane4 extends StackPane {
 
   TextField saveNameField = new TextField();
   TextArea currentGoalsArea = new TextArea();
-  TextField scoreField = new TextField();
-  TextField goldField = new TextField();
-  TextField healthField = new TextField();
-  TextField inventoryField = new TextField();
+
+  ComboBox selectGoalsCategory = new ComboBox();
+  TextField inputField = new TextField();
+
+  Button updateButton = new Button("Update");
+
 
   public Pane4() {
 
@@ -65,6 +68,7 @@ public class Pane4 extends StackPane {
       }
     });
 
+
     VBox currentGoals = new VBox();
     currentGoals.setSpacing(10);
     currentGoals.setId("playerInfo");
@@ -78,42 +82,38 @@ public class Pane4 extends StackPane {
     updateGoalsTitle.setId("mediumTitle");
     saveNameField.setPromptText("Enter save name");
     saveNameField.setId("textFieldGoals");
-    scoreField.setPromptText("Enter score goal");
-    scoreField.setId("textFieldGoals");
-    goldField.setPromptText("Enter gold goal");
-    goldField.setId("textFieldGoals");
-    healthField.setPromptText("Enter health goal");
-    healthField.setId("textFieldGoals");
-    inventoryField.setPromptText("Enter inventory goal");
-    inventoryField.setId("textFieldGoals");
 
-    Button updateButton = new Button("Update");
     updateButton.setId("confirmGoals");
 
 
+    selectGoalsCategory.getItems().addAll("HealthGoal", "ScoreGoal", "GoldGoal", "InventoryGoal");
+    selectGoalsCategory.setPromptText("Select category");
+
     updateButton.setOnAction(e -> {
-      if (!scoreField.getText().isEmpty()) {
-        saveAndClearField(scoreField, "ScoreGoal: ");
-      }
+      if (!inputField.getText().isEmpty()) {
+        saveAndClearField(selectGoalsCategory, inputField.getText());
 
-      if (!goldField.getText().isEmpty()) {
-        saveAndClearField(goldField, "GoldGoal: ");
+        // Update the TextArea with the latest file content
+        String filePath = "src/main/resources/savedGoals/" + saveNameField.getText() + ".txt";
+        try {
+          String fileContent = Files.readString(Path.of(filePath));
+          currentGoalsArea.setText(fileContent);
+        } catch (IOException ex) {
+          currentGoalsArea.setText(""); // Clear the TextArea if the file cannot be read
+        }
       }
-
-      if (!healthField.getText().isEmpty()) {
-        saveAndClearField(healthField, "HealthGoal: ");
-      }
-
-      if (!inventoryField.getText().isEmpty()) {
-        saveAndClearField(inventoryField, "InventoryGoal: ");
-      }
-
+      inputField.clear();
+      selectGoalsCategory.getItems().clear();
+      selectGoalsCategory.getItems().addAll("HealthGoal", "ScoreGoal", "GoldGoal", "InventoryGoal");
+      selectGoalsCategory.setPromptText("Select category");
+      SoundPlayer.play("src/main/resources/sounds/click.wav");
     });
 
-    updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField,
-            scoreField, goldField,
-            healthField, inventoryField);
-    goals.getChildren().addAll(currentGoals, updateGoals, updateButton);
+
+
+
+    updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, selectGoalsCategory,inputField, updateButton);
+    goals.getChildren().addAll(currentGoals, updateGoals);
     goals.setAlignment(Pos.CENTER);
     goalsPane.getChildren().addAll(goals);
     backButtonHolder.getChildren().add(backButton);
@@ -122,16 +122,20 @@ public class Pane4 extends StackPane {
     getChildren().addAll(structure);
   }
 
-  private void saveAndClearField(TextField field, String prefix) {
+  private void saveAndClearField(ComboBox<String> comboBox, String prefix) {
     try {
-      String saveName = saveNameField.getText() + ".txt";
-      String saveLocation = "src/main/resources/savedGoals/" + saveName;
-      FileDashboard.writeGoals(prefix + field.getText(), saveLocation);
+      String selectedItem = comboBox.getSelectionModel().getSelectedItem();
+      if (selectedItem != null) {
+        String saveName = saveNameField.getText() + ".txt";
+        String saveLocation = "src/main/resources/savedGoals/" + saveName;
+        FileDashboard.writeGoals(selectedItem +": "+ prefix, saveLocation);
+      }
     } catch (IOException ex) {
       throw new RuntimeException(ex);
     }
 
     SoundPlayer.play("src/main/resources/sounds/click.wav");
-    field.clear();
+    comboBox.getSelectionModel().clearSelection();
   }
+
 }

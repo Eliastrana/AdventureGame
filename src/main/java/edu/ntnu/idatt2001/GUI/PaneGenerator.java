@@ -49,6 +49,7 @@ public class PaneGenerator extends Application {
   private Text contentArea;
   private HBox buttonBox;
   HBox topmenuOptions = new HBox();
+  Pane topGoalsPane = new Pane();
   VBox topGoals = new VBox();
   VBox topGoalsHealth = new VBox();
   VBox topGoalsGold = new VBox();
@@ -87,6 +88,14 @@ public class PaneGenerator extends Application {
     buttonBox.setSpacing(20);
     buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
     buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
+
+
+
+    topGoals.setPadding(new javafx.geometry.Insets(5, 5, 5, 5));
+    topGoalsPane.getChildren().add(topGoals);
+    topGoalsPane.setId("topGoalsPane");
+    topGoalsPane.setMaxHeight(450);
+
 
     SaveFileReader saveFileReader = new SaveFileReader();
     if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
@@ -217,7 +226,7 @@ public class PaneGenerator extends Application {
     BorderPane root = new BorderPane();
     root.setTop(topInfo);
     root.setLeft(characterImage);
-    root.setRight(topGoals);
+    root.setRight(topGoalsPane);
     root.setCenter(contentArea);
     root.setBottom(buttonBox);
 
