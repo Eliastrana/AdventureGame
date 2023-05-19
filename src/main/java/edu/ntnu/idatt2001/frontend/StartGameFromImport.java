@@ -18,7 +18,7 @@ public class StartGameFromImport {
     public static void startGameFromImportMethod() throws IOException {
 
         FileChooser fileChooser = new FileChooser();
-        fileChooser.setInitialDirectory(new File(System.getProperty("user.home"), "Desktop"));
+        fileChooser.setInitialDirectory(new File(System.getProperty("user.dir")));
         fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("Paths Files", "*.paths"));
         File selectedFile = fileChooser.showOpenDialog(primaryStage);
 
