@@ -2,10 +2,14 @@ package edu.ntnu.idatt2001.frontend;
 
 import java.io.File;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -44,9 +48,9 @@ public class Pane1 extends StackPane {
 
     File characters = new File("src/main/resources/characters/");
     String[] filenames = characters.list();
-    ArrayList<String> names = new ArrayList<>(List.of());
-
+    Set<String> names = new HashSet<>();
     assert filenames != null;
+
     for (String filename : filenames) {
       String name = filename.replaceFirst("[.][^.]+$", "");
       names.add(name);
@@ -58,10 +62,10 @@ public class Pane1 extends StackPane {
 
     File paths = new File("src/main/resources/paths/");
     String[] filenames2 = paths.list();
-    ArrayList<String> names2 = new ArrayList<>(List.of());
+    Set<String> names2 = new HashSet<>();
     assert filenames2 != null;
     for (String filename : filenames2) {
-      String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
+      String name = filename.replaceFirst("[.][^.]+$", "");
       names2.add(name);
     }
     comboBoxPath.getItems().addAll(names2);
@@ -71,10 +75,10 @@ public class Pane1 extends StackPane {
 
     File goals = new File("src/main/resources/savedGoals/");
     String[] filenames3 = goals.list();
-    ArrayList<String> names3 = new ArrayList<>(List.of());
+    Set<String> names3 = new HashSet<>();
     assert filenames3 != null;
     for (String filename : filenames3) {
-      String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
+      String name = filename.replaceFirst("[.][^.]+$", "");
       names3.add(name);
     }
     comboBoxGoals.getItems().addAll(names3);
@@ -100,6 +104,8 @@ public class Pane1 extends StackPane {
     playButton.setOnAction(event -> {
       if (saveName.getText().isBlank()) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.getDialogPane().setId("alertBox");
+
         alert.setTitle("Unavailable");
         alert.setHeaderText("No save name");
         alert.setContentText("Please enter a save name");
@@ -139,6 +145,8 @@ public class Pane1 extends StackPane {
 
       } else {
         Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.getDialogPane().setId("alertBox");
+
         alert.setTitle("Unavailable");
         alert.setHeaderText("Name already in use");
         alert.setContentText("Save name already exists, please choose another name");
@@ -228,7 +236,9 @@ public class Pane1 extends StackPane {
     Button backButton = new Button("Back");
     backButton.setPadding(new Insets(10, 10, 10, 10));
     backButton.setId("backNavigation");
+
     backButton.setOnAction(e -> {
+      SoundPlayer.play("src/main/resources/sounds/click.wav");
       SceneSwitcher.switchToMainMenu();
       imageViews.clear();
       comboBoxPath.getItems().clear();

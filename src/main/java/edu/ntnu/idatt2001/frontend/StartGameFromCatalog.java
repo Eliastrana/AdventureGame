@@ -46,6 +46,8 @@ public class StartGameFromCatalog {
     if (comboBoxPath.getItems() != null) {
       if (comboBoxGoals.getValue() == null) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
+        alert.getDialogPane().setId("alertBox");
+
         alert.setTitle("Warning");
         alert.setHeaderText("No goal selected");
         alert.setContentText("Please select a goal from the dropdown menu");
@@ -62,6 +64,8 @@ public class StartGameFromCatalog {
 
       if (gameCreated.getStory().getBrokenLinks().size() != 0) {
         Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
+        alert.getDialogPane().setId("alertBox");
+
         brokenLinks.setTitle("Warning");
         brokenLinks.setHeaderText("Broken links");
         brokenLinks.setContentText("Number of broken links: " + gameCreated.getStory().getBrokenLinks().size()

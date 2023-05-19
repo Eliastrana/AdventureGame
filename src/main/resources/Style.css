@@ -1,5 +1,8 @@
 
 
+
+
+
 @font-face {
     font-family: "Brazie";
     src: url("/brazie-font/Brazie-51zLz.ttf");
@@ -20,6 +23,51 @@
 }
 
 
+#alertBox {
+    -fx-background-color: #f5f5f5;
+    -fx-border-color: #e0e0e0;
+    -fx-border-width: 2px;
+    -fx-border-radius: 5px;
+    -fx-padding: 20px;
+}
+
+#alertBox .dialog-pane {
+    -fx-background-color: #f5f5f5;
+}
+
+#alertBox .header-panel {
+    -fx-background-color: #e0e0e0;
+    -fx-padding: 10px;
+}
+
+#alertBox .header-panel .label {
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+    -fx-font-family: Brazie;
+    -fx-fill: #5e3720;
+    -fx-stroke: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,2), 50, 0, 0, 0 );
+
+}
+
+#alertBox .content-panel {
+    -fx-padding: 10px;
+}
+
+
+
+#alertBox .button-bar .button {
+    -fx-background-color: #2196f3;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-pref-width: 80px;
+    -fx-pref-height: 30px;
+    -fx-border-radius: 5px;
+}
+
+#alertBox .button-bar .button:hover {
+    -fx-background-color: #1565c0;
+}
 
 
 #playerInfo {

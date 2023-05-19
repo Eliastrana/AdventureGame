@@ -12,6 +12,8 @@ public class AlertUtil {
         alert.setTitle(title);
         alert.setHeaderText(null);
         alert.setContentText(message);
+        alert.getDialogPane().setId("alertBox");
+
 
         // Set white background
         Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();

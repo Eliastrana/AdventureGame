@@ -17,7 +17,6 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        //edu.ntnu.idatt2001.GUI.StartingPage gui = new edu.ntnu.idatt2001.GUI.StartingPage();
         MyGUI gui = new MyGUI();
         gui.start(stage);
 

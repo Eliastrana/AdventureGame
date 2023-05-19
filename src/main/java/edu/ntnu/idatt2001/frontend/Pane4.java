@@ -33,6 +33,12 @@ public class Pane4 extends StackPane {
 
     setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
+
+    selectGoalsCategory.setId("comboBox");
+
+    inputField.setId("textField");
+    inputField.setPromptText("Enter goal value");
+
     VBox structure = new VBox();
     structure.getStylesheets().add("/Style.css");
     structure.setSpacing(20);
@@ -50,7 +56,10 @@ public class Pane4 extends StackPane {
     backButton.setId("backNavigation");
     backButton.setAlignment(Pos.TOP_LEFT);
     backButtonHolder.setAlignment(Pos.TOP_LEFT);
-    backButton.setOnAction(e -> SceneSwitcher.switchToMainMenu());
+    backButton.setOnAction(e -> {
+      SoundPlayer.play("src/main/resources/sounds/click.wav");
+    SceneSwitcher.switchToMainMenu();
+    });
 
     HBox goals = new HBox();
     goals.setSpacing(20);
@@ -62,11 +71,13 @@ public class Pane4 extends StackPane {
       String filePath = "src/main/resources/savedGoals/" + newValue + ".txt";
       try {
         String fileContent = Files.readString(Path.of(filePath));
-        currentGoalsArea.setText(fileContent);
+        currentGoalsArea.setText(fileContent.isEmpty() ? "" : fileContent);
       } catch (IOException e) {
         currentGoalsArea.setText(""); // Clear the TextArea if the file cannot be read
       }
     });
+
+
 
 
     VBox currentGoals = new VBox();
@@ -108,9 +119,6 @@ public class Pane4 extends StackPane {
       selectGoalsCategory.setPromptText("Select category");
       SoundPlayer.play("src/main/resources/sounds/click.wav");
     });
-
-
-
 
     updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, selectGoalsCategory,inputField, updateButton);
     goals.getChildren().addAll(currentGoals, updateGoals);

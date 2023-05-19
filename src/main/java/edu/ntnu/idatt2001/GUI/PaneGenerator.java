@@ -5,9 +5,12 @@ import static edu.ntnu.idatt2001.frontend.SceneSwitcher.primaryStage;
 import edu.ntnu.idatt2001.Action.Action;
 import edu.ntnu.idatt2001.Game;
 import edu.ntnu.idatt2001.Link;
+import edu.ntnu.idatt2001.Main;
 import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.fileHandling.FileDashboard;
 import edu.ntnu.idatt2001.fileHandling.SaveFileReader;
+import edu.ntnu.idatt2001.frontend.MyGUI;
+import edu.ntnu.idatt2001.frontend.Pane1;
 import edu.ntnu.idatt2001.frontend.SceneSwitcher;
 import edu.ntnu.idatt2001.goals.Goal;
 import edu.ntnu.idatt2001.goals.GoldGoal;
@@ -150,6 +153,7 @@ public class PaneGenerator extends Application {
     restart.setId("topMenuButton");
     restart.setOnAction(e -> {
       try {
+        SoundPlayer.play("src/main/resources/sounds/click.wav");
         restartAction();
         updateGoals();
       } catch (IOException ex) {
@@ -161,7 +165,8 @@ public class PaneGenerator extends Application {
     quitButton.setId("topMenuButton");
     quitButton.setOnAction(e -> {
       try {
-        quitGame();
+        SoundPlayer.play("src/main/resources/sounds/click.wav");
+        quitGame(stage);
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
@@ -171,6 +176,7 @@ public class PaneGenerator extends Application {
     Button backButton = new Button("Back");
     backButton.setId("topMenuButton");
     backButton.setOnAction(e -> {
+      SoundPlayer.play("src/main/resources/sounds/click.wav");
       updateGoals();
       backAction();
     });
@@ -195,6 +201,10 @@ public class PaneGenerator extends Application {
               "Here you can see your status within the categories,"
                       + " as well as your current inventory!",
               850, 100, primaryStage);
+
+      AlertUtil.showAlert("Goals",
+              "Here you can see your goals for the game!",
+              850, 500, primaryStage);
     });
 
     topmenuOptions.getChildren().addAll(helpButton, restart, backButton, quitButton);
@@ -349,8 +359,21 @@ public class PaneGenerator extends Application {
     inventoryGoals.sort(comparator);
   }
 
-  private void quitGame() throws IOException {
-    SceneSwitcher.switchToPane1();
+  private void quitGame(Stage stage) throws IOException {
+
+    primaryStage.setFullScreen(false);
+    primaryStage.close();
+
+    //This should probably be done in a better way
+    Pane1.comboBoxPath.getItems().clear();
+    Pane1.comboBoxPath.setPromptText("Select path");
+    Pane1.comboBoxCharacter.getItems().clear();
+    Pane1.comboBoxCharacter.setPromptText("Select character");
+    Pane1.comboBoxGoals.getItems().clear();
+    Pane1.comboBoxGoals.setPromptText("Select goal");
+
+    MyGUI gui = new MyGUI();
+    gui.start(stage);
   }
 
   private void updateContentAndButtons(Passage passage) {

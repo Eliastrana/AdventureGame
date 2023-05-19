@@ -10,6 +10,8 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Arrays;
 import java.util.Comparator;
+
+import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.geometry.Pos;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -59,7 +61,9 @@ public class QuickLoad {
 
     File savedGamesFolder = new File("src/main/resources/saveData/");
     File[] listOfFiles = savedGamesFolder.listFiles();
-    Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
+
+    if (listOfFiles != null) { // Add a null check before accessing the array
+      Arrays.sort(listOfFiles, Comparator.comparingLong(File::lastModified).reversed());
 
     int count = 0;
     for (File file : listOfFiles) {
@@ -107,6 +111,7 @@ public class QuickLoad {
         pane.getChildren().addAll(savedGameContentStructure);
 
         pane.setOnMouseClicked(e -> {
+          SoundPlayer.play("src/main/resources/sounds/click.wav");
           try {
             String characterPath = "src/main/resources/characters/"
                     + saveFileReader.getName(file.getPath())
@@ -138,6 +143,7 @@ public class QuickLoad {
         count++;
       }
     }
+  }
     return savedGames;
   }
 }
