@@ -36,13 +36,9 @@ public class StartGameFromCatalog {
     return goals;
   }
 
-
   public void startGameFromCatalogMethod() throws IOException {
 
-
     FileDashboard.gameSave(processSelectedImage(), saveData);
-
-
     if (comboBoxPath.getItems() != null) {
       if (comboBoxGoals.getValue() == null) {
         Alert alert = new Alert(Alert.AlertType.WARNING);
@@ -82,9 +78,7 @@ public class StartGameFromCatalog {
         }
       }
       String characterIcon = game.getCharacterIconPath();
-
       gui = new PaneGenerator(gameCreated, saveData, characterIcon);
-
       gui.start(primaryStage);
       primaryStage.setFullScreen(true);
     }

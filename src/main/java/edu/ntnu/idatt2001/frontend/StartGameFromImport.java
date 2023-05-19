@@ -31,7 +31,7 @@ public class StartGameFromImport {
             }
             File destFile = new File(importDir, fileName);
             Files.copy(selectedFile.toPath(), destFile.toPath(), StandardCopyOption.REPLACE_EXISTING);
-            String path = destFile.getAbsolutePath().replace("\\", "/");
+            String path = destFile.getAbsolutePath().replace(File.separator, "/");
             String[] tokens = path.split("/");
             String newPath = tokens[tokens.length - 1];
 
