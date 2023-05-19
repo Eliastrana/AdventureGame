@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.FileReader;
@@ -8,18 +7,20 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import javafx.scene.control.Alert;
+
 
 public class FileDashboard {
-
+  static String endingPath = ".paths";
 
   public String read(String fileName) {
-    FileRead formatter = new FileRead("src/main/resources/paths" + fileName + ".paths");
+    FileRead formatter = new FileRead("src/main/resources/paths" + fileName + endingPath);
 
     return formatter.toString();
   }
 
   public String readCharacter(String filename) {
-    String filePath = "src/main/resources/characters/" + filename + ".paths";
+    String filePath = "src/main/resources/characters/" + filename + endingPath;
 
     StringBuilder contentBuilder = new StringBuilder();
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -28,7 +29,11 @@ public class FileDashboard {
         contentBuilder.append(line).append("\n");
       }
     } catch (IOException e) {
-      System.err.println("Error reading file: " + e.getMessage());
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("File not found");
+      alert.setContentText("The file " + filePath + " was not found.");
+      alert.showAndWait();
       return null;
     }
     return contentBuilder.toString();
@@ -48,7 +53,7 @@ public class FileDashboard {
     }
 
     try {
-      FileWrite writer = new FileWrite("src/main/resources/paths/" + fileName + ".paths");
+      FileWrite writer = new FileWrite("src/main/resources/paths/" + fileName + endingPath);
       writer.appendPathsFile(passages.toArray(new String[0]));
     } catch (IOException e) {
       e.printStackTrace();
@@ -62,7 +67,6 @@ public class FileDashboard {
     GameSave savaData = new GameSave(filePath);
     try {
       savaData.progressSaver(input, filePath);
-      //System.out.println("Data written to " + filePath + " successfully.");
     } catch (IOException e) {
       e.printStackTrace();
     }

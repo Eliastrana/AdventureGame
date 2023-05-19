@@ -1,45 +1,45 @@
 package edu.ntnu.idatt2001;
 
 import java.util.ArrayList;
-import javafx.util.Builder;
+
 
 /**
  * This class is a builder for the player class.
  */
-public class PlayerBuilder implements Builder {
+public class PlayerBuilder<T> {
   private String name;
   private int health;
   private int score;
   private int gold;
   private ArrayList<String> inventory = new ArrayList<>();
 
-  public PlayerBuilder setName(String name) {
+  public PlayerBuilder<T> setName(String name) {
     this.name = name;
     return this;
   }
 
-  public PlayerBuilder setHealth(int health) {
+  public PlayerBuilder<T> setHealth(int health) {
     this.health = health;
     return this;
   }
 
-  public PlayerBuilder setScore(int score) {
+  public PlayerBuilder<T> setScore(int score) {
     this.score = score;
     return this;
   }
 
-  public PlayerBuilder setGold(int gold) {
+  public PlayerBuilder<T> setGold(int gold) {
     this.gold = gold;
     return this;
   }
 
-  public PlayerBuilder addToInventory(String inventory) {
+  public PlayerBuilder<T> addToInventory(String inventory) {
     this.inventory.add(inventory);
     return this;
   }
 
 
-  @Override
+
   public Object build() {
     return new Player(name, health, score, gold, inventory);
   }

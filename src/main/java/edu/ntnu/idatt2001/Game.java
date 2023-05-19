@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001;
 
 import edu.ntnu.idatt2001.goals.Goal;
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,7 +12,7 @@ public class Game {
   private Player player;
   private Story story;
 
-  private ArrayList<Goal> goals;
+  private List<Goal> goals;
 
   /**
    * Creates a new game with the given player, story, and goals.
@@ -22,7 +21,7 @@ public class Game {
    * @param story  story of the game
    * @param goals  goals of the game
    */
-  public Game(Player player, Story story, ArrayList<Goal> goals) {
+  public Game(Player player, Story story, List<Goal> goals) {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null");
     }

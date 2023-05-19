@@ -2,11 +2,13 @@ package edu.ntnu.idatt2001.fileHandling;
 
 import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.PlayerBuilder;
-import java.io.BufferedReader;
+import javafx.scene.control.Alert;
 import java.io.BufferedWriter;
+import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+
 
 public class PlayerRegister {
   public void saveTextToFile(String text, String filename) {
@@ -16,8 +18,7 @@ public class PlayerRegister {
     if (filename.isBlank()) {
       throw new IllegalArgumentException("Filename is blank");
     }
-    try {
-      BufferedWriter writer = new BufferedWriter(new FileWriter(filename));
+    try (BufferedWriter writer = new BufferedWriter(new FileWriter(filename))) {
       String[] words = text.split("\\s+"); // Split the text into words
       for (int i = 0; i < words.length; i++) {
         writer.write(words[i]);
@@ -25,17 +26,18 @@ public class PlayerRegister {
           writer.write(","); // Add a comma between words
         }
       }
-      writer.close();
     } catch (IOException e) {
-      System.out.println("An error occurred while saving the file: " + e.getMessage());
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("File not found");
+      alert.setContentText("The file " + filename + " was not found.");
+      alert.showAndWait();
     }
   }
 
   public Player characterInforVariable(String filePath) {
-
-    try {
-      FileReader fileReader = new FileReader(filePath);
-      BufferedReader bufferedReader = new BufferedReader(fileReader);
+    try (FileReader fileReader = new FileReader(filePath);
+         BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
       String line = bufferedReader.readLine();
       String[] values = line.split(",");
@@ -46,16 +48,14 @@ public class PlayerRegister {
       int score = Integer.parseInt(values[3]);
       String inventory = values[4];
 
-      Player player = new PlayerBuilder()
+
+      return new PlayerBuilder()
               .setName(name)
               .setHealth(health)
               .setGold(gold)
               .setScore(score)
               .addToInventory(inventory)
               .getPlayer();
-
-
-      return player;
     } catch (Exception e) {
       e.printStackTrace();
     }

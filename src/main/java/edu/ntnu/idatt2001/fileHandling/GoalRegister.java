@@ -2,6 +2,8 @@ package edu.ntnu.idatt2001.fileHandling;
 
 import edu.ntnu.idatt2001.goals.Goal;
 import edu.ntnu.idatt2001.goals.GoalFactory;
+import javafx.scene.control.Alert;
+
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
@@ -27,7 +29,11 @@ public class GoalRegister {
         }
       }
     } catch (IOException e) {
-      System.out.println("An error occurred while reading the file: " + e.getMessage());
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("File not found");
+      alert.setContentText("The file " + filename + " was not found.");
+      alert.showAndWait();
     }
   }
 

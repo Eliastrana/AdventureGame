@@ -15,7 +15,6 @@ public class ActionsFactory {
     if (input == null || input.trim().isEmpty()) {
       return null;
     }
-
     input = input.trim();
     if (input.startsWith("{") && input.endsWith("}")) {
       String actionData = input.substring(1, input.length() - 1).trim();
@@ -34,8 +33,6 @@ public class ActionsFactory {
               throw new IllegalArgumentException("Invalid health value for HealthAction: "
                       + actionValue);
             }
-
-
           case "GoldAction":
             try {
               int gold = Integer.parseInt(actionValue);
@@ -44,8 +41,6 @@ public class ActionsFactory {
               throw new IllegalArgumentException("Invalid gold value for GoldAction: "
                       + actionValue);
             }
-
-
           case "ScoreAction":
             try {
               int score = Integer.parseInt(actionValue);
@@ -54,7 +49,6 @@ public class ActionsFactory {
               throw new IllegalArgumentException("Invalid score value for ScoreAction: "
                       + actionValue);
             }
-
           case "InventoryAction":
             try {
               return new InventoryAction(actionValue);
@@ -62,14 +56,12 @@ public class ActionsFactory {
               throw new IllegalArgumentException("Invalid inventory value for InventoryAction: "
                       + actionValue);
             }
-
           default:
             throw new IllegalArgumentException("Unknown action type: "
                     + actionType);
         }
       }
     }
-
     return null;
   }
 }

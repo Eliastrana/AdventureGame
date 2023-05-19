@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -8,11 +7,15 @@ import java.util.List;
  * A player has a name, health, score, gold, and inventory.
  */
 public class Player {
+  private final String healthException = "Health cannot be negative";
+  private final String scoreException = "Score cannot be negative";
+  private final String goldException = "Gold cannot be negative";
+  private final String inventoryException = "Inventory cannot be null";
   private String name;
   private int health;
   private int score;
   private int gold;
-  private ArrayList<String> inventory;
+  private List<String> inventory;
 
   private Passage lastPassage;
 
@@ -43,21 +46,22 @@ public class Player {
    */
   public Player(String name, int health,
                 int score, int gold,
-                ArrayList<String> inventory) {
+                List<String> inventory) {
+
     if (name == null || name.isEmpty()) {
       throw new NullPointerException("Name cannot be empty");
     }
     if (health < 0) {
-      throw new IllegalArgumentException("Health cannot be negative");
+      throw new IllegalArgumentException(healthException);
     }
     if (score < 0) {
-      throw new IllegalArgumentException("Score cannot be negative");
+      throw new IllegalArgumentException(scoreException);
     }
     if (gold < 0) {
-      throw new IllegalArgumentException("Gold cannot be negative");
+      throw new IllegalArgumentException(goldException);
     }
     if (inventory == null) {
-      throw new NullPointerException("Inventory cannot be null");
+      throw new NullPointerException(inventoryException);
     }
 
     this.name = name;
@@ -79,22 +83,22 @@ public class Player {
    */
   public Player(String name, int health,
                 int score, int gold,
-                ArrayList<String> inventory,
+                List<String> inventory,
                 Passage lastPassage) {
     if (name == null || name.isEmpty()) {
       throw new NullPointerException("Name cannot be empty");
     }
     if (health < 0) {
-      throw new IllegalArgumentException("Health cannot be negative");
+      throw new IllegalArgumentException(healthException);
     }
     if (score < 0) {
-      throw new IllegalArgumentException("Score cannot be negative");
+      throw new IllegalArgumentException(scoreException);
     }
     if (gold < 0) {
-      throw new IllegalArgumentException("Gold cannot be negative");
+      throw new IllegalArgumentException(goldException);
     }
     if (inventory == null) {
-      throw new NullPointerException("Inventory cannot be null");
+      throw new NullPointerException(inventoryException);
     }
     if (lastPassage == null) {
       throw new NullPointerException("Last passage cannot be null");
@@ -135,7 +139,7 @@ public class Player {
    */
   public void setHealth(int health) {
     if (health < 0) {
-      throw new IllegalArgumentException("Health cannot be negative");
+      throw new IllegalArgumentException(healthException);
     }
     this.health = health;
   }
@@ -156,7 +160,7 @@ public class Player {
    */
   public void setScore(int score) {
     if (score < 0) {
-      throw new IllegalArgumentException("Score cannot be negative");
+      throw new IllegalArgumentException(scoreException);
     }
     this.score = score;
   }
@@ -179,7 +183,7 @@ public class Player {
    * @return ArrayList inventory
    */
 
-  public ArrayList<String> getInventory() { return inventory;}
+  public List<String> getInventory() { return inventory;}
 
   /**
    * Sets the inventory of the player.
@@ -187,9 +191,9 @@ public class Player {
    * @param inventory ArrayList inventory
    */
 
-  public void setInventory(ArrayList<String> inventory) {
+  public void setInventory(List<String> inventory) {
     if (inventory == null) {
-      throw new IllegalArgumentException("Inventory cannot be null");
+      throw new IllegalArgumentException(inventoryException);
     }
     this.inventory = inventory;
   }
@@ -234,7 +238,7 @@ public class Player {
    */
   public void setGold(int gold) {
     if (gold < 0) {
-      throw new IllegalArgumentException("Gold cannot be negative");
+      throw new IllegalArgumentException(goldException);
     }
     this.gold = gold;
   }

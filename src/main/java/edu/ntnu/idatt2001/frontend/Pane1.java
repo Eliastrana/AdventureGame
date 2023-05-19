@@ -1,15 +1,12 @@
 package edu.ntnu.idatt2001.frontend;
 
+import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.File;
 import java.io.IOException;
-import java.net.URISyntaxException;
-import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-
-import edu.ntnu.idatt2001.utility.SoundPlayer;
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
@@ -105,21 +102,18 @@ public class Pane1 extends StackPane {
       if (saveName.getText().isBlank()) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.getDialogPane().setId("alertBox");
-
         alert.setTitle("Unavailable");
         alert.setHeaderText("No save name");
         alert.setContentText("Please enter a save name");
         alert.showAndWait();
+        return;  // exit early
       }
 
       String saveNameString = saveName.getText().trim() + ".txt";
 
-
       if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
-
         String saveData = "src/main/resources/saveData/"
-                + saveName.getText()
-                + ".txt";
+                + saveNameString;
         String pathFile = "src/main/resources/paths/"
                 + comboBoxPath.getValue()
                 + ".paths";
@@ -127,34 +121,50 @@ public class Pane1 extends StackPane {
                 + comboBoxCharacter.getValue()
                 + ".paths";
         String playerStats = comboBoxCharacter.getValue()
-                + "\n"
-                + comboBoxPath.getValue();
+                + "\n" + comboBoxPath.getValue();
         String goalsFile = "src/main/resources/savedGoals/"
                 + comboBoxGoals.getValue()
                 + ".txt";
         String characterIcon = processSelectedImage();
-
 
         StartGameFromCatalog startGameFromCatalog = new StartGameFromCatalog(saveData,
                 pathFile, characterFile, playerStats, goalsFile, characterIcon);
         try {
           startGameFromCatalog.startGameFromCatalogMethod();
         } catch (IOException e) {
-          throw new RuntimeException(e);
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.getDialogPane().setId("alertBox");
+          alert.setTitle("Error");
+          alert.setHeaderText("Could not start game");
+          alert.setContentText("An error occurred while trying to start the game. "
+                  + "Please try again.");
+          alert.showAndWait();
+        } catch (IllegalArgumentException e) {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.getDialogPane().setId("alertBox");
+          alert.setTitle("Error");
+          alert.setHeaderText("Could not start game");
+          alert.setContentText("An error occurred while trying to start the game. "
+                  + e.getMessage());
+          alert.showAndWait();
+        } catch (Exception e) {
+          Alert alert = new Alert(Alert.AlertType.ERROR);
+          alert.getDialogPane().setId("alertBox");
+          alert.setTitle("Error");
+          alert.setHeaderText("Could not start game");
+          alert.setContentText("An error occurred while trying to start the game. \n" + e.getMessage());
+          alert.showAndWait();
         }
-
       } else {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.getDialogPane().setId("alertBox");
-
         alert.setTitle("Unavailable");
         alert.setHeaderText("Name already in use");
         alert.setContentText("Save name already exists, please choose another name");
         alert.showAndWait();
       }
-
-
     });
+
 
     HBox imageBox = new HBox();
     imageBox.setAlignment(Pos.CENTER);

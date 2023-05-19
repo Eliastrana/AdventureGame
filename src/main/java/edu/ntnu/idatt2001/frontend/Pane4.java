@@ -7,10 +7,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
@@ -139,9 +136,12 @@ public class Pane4 extends StackPane {
         FileDashboard.writeGoals(selectedItem +": "+ prefix, saveLocation);
       }
     } catch (IOException ex) {
-      throw new RuntimeException(ex);
+      Alert alert = new Alert(Alert.AlertType.ERROR);
+      alert.setTitle("Error");
+      alert.setHeaderText("Could not save file");
+      alert.setContentText("Could not save file"+ ex.getMessage());
+      alert.showAndWait();
     }
-
     SoundPlayer.play("src/main/resources/sounds/click.wav");
     comboBox.getSelectionModel().clearSelection();
   }

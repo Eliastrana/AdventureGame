@@ -1,12 +1,10 @@
 package edu.ntnu.idatt2001.fileHandling;
 
-
 import edu.ntnu.idatt2001.Game;
 import edu.ntnu.idatt2001.Passage;
 import edu.ntnu.idatt2001.Player;
 import edu.ntnu.idatt2001.Story;
 import edu.ntnu.idatt2001.goals.Goal;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,10 +42,9 @@ public class CreateGame {
    * Method that launches the game.
    *
    * @return Story to launch
-   * @throws IOException IOException
    */
 
-  public Story launchGame() throws IOException {
+  public Story launchGame() {
     FileRead fileRead = new FileRead(filePath);
     List<Passage> passages = fileRead.formatPathsFile();
 
@@ -78,13 +75,12 @@ public class CreateGame {
    *
    * @param playerFilepath String filepath
    * @return Game
-   * @throws IOException IOException
    */
 
-  public Game gameGenerator(String playerFilepath) throws IOException {
+  public Game gameGenerator(String playerFilepath) {
     Player player = playerGenerator(playerFilepath);
     Story story = launchGame();
-    ArrayList<Goal> goals = goalGenerator(goalFilePath);
+    ArrayList<Goal> goals = (ArrayList<Goal>) goalGenerator(goalFilePath);
     return new Game(player, story, goals);
   }
 
@@ -106,10 +102,10 @@ public class CreateGame {
    * @return ArrayList of goals
    */
 
-  public ArrayList<Goal> goalGenerator(String goalFile) {
+  public List<Goal> goalGenerator(String goalFile) {
     GoalRegister goalRegister = new GoalRegister();
     goalRegister.loadGoalsFromFile(goalFile);
-    return (ArrayList<Goal>) goalRegister.getGoals();
+    return goalRegister.getGoals();
   }
 
 

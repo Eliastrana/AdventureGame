@@ -10,7 +10,8 @@ import java.util.Objects;
  */
 public class Passage {
 
-    private String title, content;
+    private String title;
+    private String content;
 
     private ArrayList<Link> links = new ArrayList<>();
 

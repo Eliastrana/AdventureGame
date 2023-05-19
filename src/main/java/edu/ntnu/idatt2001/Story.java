@@ -4,7 +4,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 /**
@@ -75,7 +74,7 @@ public class Story {
   public Passage getPassage(Link link) {
     Passage passage = passages.get(link.getReference());
     if (passage == null) {
-      System.out.println("Link reference not found: " + link.getReference());
+      throw new IllegalArgumentException("Link not found");
     }
     return passage;
   }

@@ -2,7 +2,6 @@ package edu.ntnu.idatt2001;
 
 
 import edu.ntnu.idatt2001.Action.Action;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -13,7 +12,7 @@ import java.util.Objects;
 public class Link {
   private String text;
   private String reference;
-  private ArrayList<Action> actions;
+  private List<Action> actions;
 
 
   /**
@@ -22,7 +21,7 @@ public class Link {
    * @param text      String text with a description of the link
    * @param reference String reference
    */
-  public Link(String text, String reference, ArrayList<Action> actions) {
+  public Link(String text, String reference, List<Action> actions) {
     if (text == null || text.isEmpty()) {
       throw new IllegalArgumentException("Text cannot be empty");
     }
