@@ -36,18 +36,35 @@ public class Game {
     this.goals = goals;
   }
 
+
+  /**
+   * Returns the player of the game.
+   * @return player of the game
+   */
   public Player getPlayer() {
     return player;
   }
 
+  /**
+   * Returns the story of the game.
+   * @return story of the game
+   */
   public Story getStory() {
     return story;
   }
 
+  /**
+   * Returns the goals of the game.
+   * @return List of the goals in the game
+   */
   public List<Goal> getGoals() {
     return goals;
   }
 
+  /**
+   * Returns the opening passage of the game.
+   * @return first Passage of the game
+   */
   public Passage begin() {
     return story.getOpeningPassage();
   }

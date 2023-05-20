@@ -29,12 +29,19 @@ import javafx.util.Duration;
 public class Pane1 extends StackPane {
   private static final List<ImageView> imageViews = new ArrayList<>();
   private static int selectedIndex = -1;
-  public static TextField saveName = new TextField();
-  public static ComboBox<String> comboBoxCharacter = new ComboBox<>();
-  public static ComboBox<String> comboBoxPath = new ComboBox<>();
-  public static ComboBox<String> comboBoxGoals = new ComboBox<>();
+  public static final TextField saveName = new TextField();
+  public static final ComboBox<String> comboBoxCharacter = new ComboBox<>();
+  public static final ComboBox<String> comboBoxPath = new ComboBox<>();
+  public static final ComboBox<String> comboBoxGoals = new ComboBox<>();
 
   public Pane1() throws IOException {
+
+    // Defining constants
+    String regex = "[.][^.]+$";
+    String alertTitle = "Error";
+    String alertBoxId = "alertBox";
+    String alertHeaderNotStarting = "Could not start game";
+    String comboBoxId = "comboBox";
 
     setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
@@ -51,13 +58,15 @@ public class Pane1 extends StackPane {
     Set<String> names = new HashSet<>();
     assert filenames != null;
 
+
     for (String filename : filenames) {
-      String name = filename.replaceFirst("[.][^.]+$", "");
+      String name = filename.replaceFirst(regex, "");
       names.add(name);
     }
+
     comboBoxCharacter.getItems().addAll(names);
     comboBoxCharacter.setPromptText("Select character");
-    comboBoxCharacter.setId("comboBox");
+    comboBoxCharacter.setId(comboBoxId);
 
 
     File paths = new File("src/main/resources/paths/");
@@ -65,12 +74,12 @@ public class Pane1 extends StackPane {
     Set<String> names2 = new HashSet<>();
     assert filenames2 != null;
     for (String filename : filenames2) {
-      String name = filename.replaceFirst("[.][^.]+$", "");
+      String name = filename.replaceFirst(regex, "");
       names2.add(name);
     }
     comboBoxPath.getItems().addAll(names2);
     comboBoxPath.setPromptText("Select path");
-    comboBoxPath.setId("comboBox");
+    comboBoxPath.setId(comboBoxId);
 
 
     File goals = new File("src/main/resources/savedGoals/");
@@ -78,12 +87,12 @@ public class Pane1 extends StackPane {
     Set<String> names3 = new HashSet<>();
     assert filenames3 != null;
     for (String filename : filenames3) {
-      String name = filename.replaceFirst("[.][^.]+$", "");
+      String name = filename.replaceFirst(regex, "");
       names3.add(name);
     }
     comboBoxGoals.getItems().addAll(names3);
     comboBoxGoals.setPromptText("Select goal");
-    comboBoxGoals.setId("comboBox");
+    comboBoxGoals.setId(comboBoxId);
 
 
     saveName.setPromptText("Enter save name");
@@ -99,12 +108,13 @@ public class Pane1 extends StackPane {
             .selectedItemProperty()
             .addListener((observable, oldValue, newValue) -> updateSaveGameName());
 
+
     Button playButton = new Button("Play");
     playButton.setId("Pane1ConfirmButton");
     playButton.setOnAction(event -> {
       if (saveName.getText().isBlank()) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId("alertBox");
+        alert.getDialogPane().setId(alertBoxId);
         alert.setTitle("Unavailable");
         alert.setHeaderText("No save name");
         alert.setContentText("Please enter a save name");
@@ -132,35 +142,37 @@ public class Pane1 extends StackPane {
 
         StartGameFromCatalog startGameFromCatalog = new StartGameFromCatalog(saveData,
                 pathFile, characterFile, playerStats, goalsFile, characterIcon);
+
+
         try {
           startGameFromCatalog.startGameFromCatalogMethod();
         } catch (IOException e) {
           Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.getDialogPane().setId("alertBox");
-          alert.setTitle("Error");
-          alert.setHeaderText("Could not start game");
+          alert.getDialogPane().setId(alertBoxId);
+          alert.setTitle(alertTitle);
+          alert.setHeaderText(alertHeaderNotStarting);
           alert.setContentText("An error occurred while trying to start the game. "
                   + "Please try again.");
           alert.showAndWait();
         } catch (IllegalArgumentException e) {
           Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.getDialogPane().setId("alertBox");
-          alert.setTitle("Error");
-          alert.setHeaderText("Could not start game");
+          alert.getDialogPane().setId(alertBoxId);
+          alert.setTitle(alertTitle);
+          alert.setHeaderText(alertHeaderNotStarting);
           alert.setContentText("An error occurred while trying to start the game. "
                   + e.getMessage());
           alert.showAndWait();
         } catch (Exception e) {
           Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.getDialogPane().setId("alertBox");
-          alert.setTitle("Error");
-          alert.setHeaderText("Could not start game");
+          alert.getDialogPane().setId(alertBoxId);
+          alert.setTitle(alertTitle);
+          alert.setHeaderText(alertHeaderNotStarting);
           alert.setContentText("An error occurred while trying to start the game. \n" + e.getMessage());
           alert.showAndWait();
         }
       } else {
         Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId("alertBox");
+        alert.getDialogPane().setId(alertBoxId);
         alert.setTitle("Unavailable");
         alert.setHeaderText("Name already in use");
         alert.setContentText("Save name already exists, please choose another name");
@@ -188,10 +200,11 @@ public class Pane1 extends StackPane {
       }
     }
 
+    String arrowButtonId = "ArrowButton";
     final int[] currentImageIndex = {0};
     imageBox.getChildren().add(imageViews.get(currentImageIndex[0]));
     Button leftButton = new Button("<");
-    leftButton.setId("ArrowButton");
+    leftButton.setId(arrowButtonId);
 
     leftButton.setOnAction(event -> {
       if (currentImageIndex[0] > 0) {
@@ -211,7 +224,7 @@ public class Pane1 extends StackPane {
     });
 
     Button rightButton = new Button(">");
-    rightButton.setId("ArrowButton");
+    rightButton.setId(arrowButtonId);
     rightButton.setOnAction(event -> {
       if (currentImageIndex[0] < imageViews.size() - 1) {
         currentImageIndex[0]++;
@@ -231,7 +244,7 @@ public class Pane1 extends StackPane {
     HBox root = new HBox(imageBox, new HBox(leftButton, rightButton));
     root.setAlignment(Pos.CENTER);
     root.setSpacing(10);
-    root.setId("ArrowButton");
+    root.setId(arrowButtonId);
 
     Button openButton = new Button("Import from desktop");
     openButton.setId("Pane1ConfirmButton");
@@ -241,7 +254,28 @@ public class Pane1 extends StackPane {
 
         GameFromImport.GameFromImportMethod();
       } catch (IOException e) {
-        throw new RuntimeException(e);
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.getDialogPane().setId(alertBoxId);
+        alert.setTitle(alertTitle);
+        alert.setHeaderText(alertHeaderNotStarting);
+        alert.setContentText("An error occurred while trying to import the game. "
+                + "Please try again.");
+        alert.showAndWait();
+      } catch (IllegalArgumentException e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.getDialogPane().setId(alertBoxId);
+        alert.setTitle(alertTitle);
+        alert.setHeaderText(alertHeaderNotStarting);
+        alert.setContentText("An error occurred while trying to import the game. "
+                + e.getMessage());
+        alert.showAndWait();
+      } catch (Exception e) {
+        Alert alert = new Alert(Alert.AlertType.ERROR);
+        alert.getDialogPane().setId(alertBoxId);
+        alert.setTitle(alertTitle);
+        alert.setHeaderText(alertHeaderNotStarting);
+        alert.setContentText("An error occurred while trying to import the game. \n" + e.getMessage());
+        alert.showAndWait();
       }
 
     });
@@ -291,7 +325,7 @@ public class Pane1 extends StackPane {
   }
 
 
-  private void selectImage(int currentIndex) {
+  private static void selectImage(int currentIndex) {
     if (selectedIndex >= 0 && selectedIndex < imageViews.size()) {
       ImageView prevSelectedImageView = imageViews.get(selectedIndex);
       prevSelectedImageView.setEffect(null);

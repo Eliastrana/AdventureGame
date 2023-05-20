@@ -146,7 +146,8 @@ public class PaneGenerator extends Application {
 
 
     Button restart = new Button("Restart");
-    restart.setId("topMenuButton");
+    String topMenuButtonId = "topMenuButton";
+    restart.setId(topMenuButtonId);
     restart.setOnAction(e -> {
       try {
         SoundPlayer.play("src/main/resources/sounds/click.wav");

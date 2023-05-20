@@ -275,6 +275,31 @@ public class Player {
     this.score += score;
   }
 
+  /**
+   * Returns whether the player is dead.
+   *
+   * @return boolean isDead
+   */
+  public boolean isDead() {
+    return health <= 0;
+  }
+
+  /**
+   * Returns whether the player is broke.
+   *
+   * @return boolean isBroke
+   */
+  public boolean isBroke() {
+    return gold <= 0;
+  }
+
+
+  /**
+   * Returns a string representation of the player.
+   *
+   * @return String representation of the player
+   */
+
   @Override
   public String toString() {
     return """
