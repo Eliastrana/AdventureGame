@@ -8,6 +8,13 @@
     src: url("/brazie-font/Brazie-51zLz.ttf");
 }
 
+
+.alert .content-label {
+    -fx-fill: white;
+}
+
+
+
 #title {
     -fx-font-size: 80px;
     -fx-text-fill: #FFFFFF;

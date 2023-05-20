@@ -1,6 +1,9 @@
 package edu.ntnu.idatt2001.utility;
 
-import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
+import javafx.scene.control.Dialog;
+import javafx.scene.control.Label;
+import javafx.scene.layout.Region;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
 import javafx.stage.Window;
@@ -8,38 +11,36 @@ import javafx.stage.Window;
 public class AlertUtil {
 
     public static void showAlert(String title, String message, double x, double y, Window ownerWindow) {
-        Alert alert = new Alert(Alert.AlertType.INFORMATION);
-        alert.setTitle(title);
-        alert.setHeaderText(null);
-        alert.setContentText(message);
-        alert.getDialogPane().setId("alertBox");
-
+        Dialog<Void> dialog = new Dialog<>();
+        dialog.setTitle(title);
+        dialog.setHeaderText(null);
 
         // Set white background
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
-        stage.getScene().getRoot().setStyle("-fx-background-color: white;");
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
+        stage.getScene().getRoot().setStyle("-fx-background-color: #D2B48C;");
 
-        positionAlert(alert, x, y);
+        positionDialog(dialog, x, y);
 
         if (ownerWindow != null) {
             if (isMacOS()) {
-                alert.initOwner(ownerWindow);
-                alert.initModality(Modality.APPLICATION_MODAL);
+                dialog.initOwner(ownerWindow);
+                dialog.initModality(Modality.APPLICATION_MODAL);
             } else {
                 // Set the owner window for non-MacOS platforms
-                alert.initOwner(ownerWindow);
+                dialog.initOwner(ownerWindow);
             }
         }
 
-        // Customize font size and color
-        alert.getDialogPane().setStyle("-fx-font-size: 18px; -fx-text-fill: #000000; -fx-stroke: #FFFFFF; -fx-stroke-width: 18px;");
-        alert.getDialogPane().setId("alertBox");
-
-        alert.showAndWait();
+        Label label = new Label(message);
+        label.setStyle("-fx-text-fill: white; -fx-font-size: 25px; -fx-effect: dropshadow(gaussian, black, 15, 0, 0, 0);");
+        dialog.getDialogPane().setContent(label);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().setMinWidth(Region.USE_PREF_SIZE);
+        dialog.showAndWait();
     }
 
-    private static void positionAlert(Alert alert, double x, double y) {
-        Stage stage = (Stage) alert.getDialogPane().getScene().getWindow();
+    private static void positionDialog(Dialog<?> dialog, double x, double y) {
+        Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
         stage.setX(x);
         stage.setY(y);
     }
@@ -48,5 +49,4 @@ public class AlertUtil {
         String osName = System.getProperty("os.name").toLowerCase();
         return osName.contains("mac");
     }
-
 }

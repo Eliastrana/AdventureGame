@@ -192,7 +192,7 @@ public class PaneGenerator extends Application {
                       + " or quit the game!", 200, 100, primaryStage);
       AlertUtil.showAlert("Title", "This is the title of the passage!",
               230, 200, primaryStage);
-      AlertUtil.showAlert("Content", "This is the content of the passage!",
+      AlertUtil.showAlert("Content", "This is the content " + "of the passage!",
               250, 600, primaryStage);
       AlertUtil.showAlert("Navigation button",
               "Click these buttons to make your choice!",
