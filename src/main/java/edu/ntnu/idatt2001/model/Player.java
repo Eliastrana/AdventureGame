@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.model;
 
-import edu.ntnu.idatt2001.model.Passage;
 
 import java.util.List;
 
@@ -9,10 +8,10 @@ import java.util.List;
  * A player has a name, health, score, gold, and inventory.
  */
 public class Player {
-  private final String healthException = "Health cannot be negative";
-  private final String scoreException = "Score cannot be negative";
-  private final String goldException = "Gold cannot be negative";
-  private final String inventoryException = "Inventory cannot be null";
+  private static final String NEGATIVE_HEALTH_EXCEPTION = "Health cannot be negative";
+  private static final String NEGATIVE_SCORE_EXCEPTION = "Score cannot be negative";
+  private static final String NEGATIVE_GOLD_EXCEPTION = "Gold cannot be negative";
+  private static final String NULL_INVENTORY_EXCEPTION = "Inventory cannot be null";
   private String name;
   private int health;
   private int score;
@@ -54,16 +53,16 @@ public class Player {
       throw new NullPointerException("Name cannot be empty");
     }
     if (health < 0) {
-      throw new IllegalArgumentException(healthException);
+      throw new IllegalArgumentException(NEGATIVE_HEALTH_EXCEPTION);
     }
     if (score < 0) {
-      throw new IllegalArgumentException(scoreException);
+      throw new IllegalArgumentException(NEGATIVE_SCORE_EXCEPTION);
     }
     if (gold < 0) {
-      throw new IllegalArgumentException(goldException);
+      throw new IllegalArgumentException(NEGATIVE_GOLD_EXCEPTION);
     }
     if (inventory == null) {
-      throw new NullPointerException(inventoryException);
+      throw new NullPointerException(NULL_INVENTORY_EXCEPTION);
     }
 
     this.name = name;
@@ -91,16 +90,16 @@ public class Player {
       throw new NullPointerException("Name cannot be empty");
     }
     if (health < 0) {
-      throw new IllegalArgumentException(healthException);
+      throw new IllegalArgumentException(NEGATIVE_HEALTH_EXCEPTION);
     }
     if (score < 0) {
-      throw new IllegalArgumentException(scoreException);
+      throw new IllegalArgumentException(NEGATIVE_SCORE_EXCEPTION);
     }
     if (gold < 0) {
-      throw new IllegalArgumentException(goldException);
+      throw new IllegalArgumentException(NEGATIVE_GOLD_EXCEPTION);
     }
     if (inventory == null) {
-      throw new NullPointerException(inventoryException);
+      throw new NullPointerException(NULL_INVENTORY_EXCEPTION);
     }
     if (lastPassage == null) {
       throw new NullPointerException("Last passage cannot be null");
@@ -141,7 +140,7 @@ public class Player {
    */
   public void setHealth(int health) {
     if (health < 0) {
-      throw new IllegalArgumentException(healthException);
+      throw new IllegalArgumentException(NEGATIVE_HEALTH_EXCEPTION);
     }
     this.health = health;
   }
@@ -153,7 +152,9 @@ public class Player {
    * @return int score
    */
 
-  public int getScore() {return score; }
+  public int getScore() {
+    return score;
+  }
 
   /**
    * Sets the score of the player.
@@ -162,7 +163,7 @@ public class Player {
    */
   public void setScore(int score) {
     if (score < 0) {
-      throw new IllegalArgumentException(scoreException);
+      throw new IllegalArgumentException(NEGATIVE_SCORE_EXCEPTION);
     }
     this.score = score;
   }
@@ -185,7 +186,9 @@ public class Player {
    * @return ArrayList inventory
    */
 
-  public List<String> getInventory() { return inventory;}
+  public List<String> getInventory() {
+    return inventory;
+  }
 
   /**
    * Sets the inventory of the player.
@@ -195,7 +198,7 @@ public class Player {
 
   public void setInventory(List<String> inventory) {
     if (inventory == null) {
-      throw new IllegalArgumentException(inventoryException);
+      throw new IllegalArgumentException(NULL_INVENTORY_EXCEPTION);
     }
     this.inventory = inventory;
   }
@@ -240,7 +243,7 @@ public class Player {
    */
   public void setGold(int gold) {
     if (gold < 0) {
-      throw new IllegalArgumentException(goldException);
+      throw new IllegalArgumentException(NEGATIVE_GOLD_EXCEPTION);
     }
     this.gold = gold;
   }
@@ -250,7 +253,9 @@ public class Player {
    *
    * @param gold int gold
    */
-  public void addGold(int gold) {this.gold += gold; }
+  public void addGold(int gold) {
+    this.gold += gold;
+  }
 
   /**
    * Adds health to the player's health.
@@ -266,7 +271,9 @@ public class Player {
    *
    * @param score int score
    */
-  public void addScore(int score) {this.score += score;}
+  public void addScore(int score) {
+    this.score += score;
+  }
 
   @Override
   public String toString() {

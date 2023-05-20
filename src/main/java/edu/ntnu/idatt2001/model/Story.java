@@ -1,13 +1,10 @@
 package edu.ntnu.idatt2001.model;
 
-import edu.ntnu.idatt2001.model.Link;
-import edu.ntnu.idatt2001.model.Passage;
-
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.stream.Collectors;
+
 
 /**
  * A Story is a collection of passages. A story has a title and an opening passage.
@@ -112,8 +109,9 @@ public class Story {
     return passages.values().stream()
             .flatMap(passage -> passage.getLinks().stream())
             .filter(link -> !passages.containsKey(link.getReference()))
-            .collect(Collectors.toList());
+            .toList();
   }
+
 
   /**
    * Returns a list with all the passages in the story.

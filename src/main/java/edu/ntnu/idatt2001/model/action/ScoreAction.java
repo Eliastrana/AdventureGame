@@ -1,16 +1,17 @@
-package edu.ntnu.idatt2001.model.Action;
+package edu.ntnu.idatt2001.model.action;
 
 import edu.ntnu.idatt2001.model.Player;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 
+
 /**
  * Action for adding gold to the player.
  */
-public class HealthAction implements Action {
-  private int health;
+public class ScoreAction implements Action {
+  private int points;
 
-  public HealthAction(int health) {
-    this.health = health;
+  public ScoreAction(int points) {
+    this.points = points;
   }
 
   /**
@@ -22,14 +23,15 @@ public class HealthAction implements Action {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null");
     }
-    player.addHealth(health);
 
-    if (health > 0) {
+    if (points > 0) {
       SoundPlayer.play("src/main/resources/sounds/positivesound.wav");
     } else {
       SoundPlayer.play("src/main/resources/sounds/negativesound.wav");
     }
+
+    player.addScore(points);
+
+
   }
-
-
 }

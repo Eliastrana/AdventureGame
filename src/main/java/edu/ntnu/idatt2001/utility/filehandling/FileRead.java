@@ -1,11 +1,11 @@
 package edu.ntnu.idatt2001.utility.filehandling;
 
-import edu.ntnu.idatt2001.model.Action.Action;
-import edu.ntnu.idatt2001.model.Action.ActionsFactory;
-import edu.ntnu.idatt2001.utility.exceptions.InvalidActionFormatException;
 import edu.ntnu.idatt2001.model.Link;
-import edu.ntnu.idatt2001.utility.exceptions.MissingLinkException;
 import edu.ntnu.idatt2001.model.Passage;
+import edu.ntnu.idatt2001.model.action.Action;
+import edu.ntnu.idatt2001.model.action.ActionsFactory;
+import edu.ntnu.idatt2001.utility.exceptions.InvalidActionFormatException;
+import edu.ntnu.idatt2001.utility.exceptions.MissingLinkException;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -16,14 +16,28 @@ import javafx.application.Platform;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 
+/**
+ * Class for reading the file.
+ */
 public class FileRead {
 
   private final String filePath;
+  private final String errorAtLine = "Error at line ";
 
+  /**
+   * Constructor for FileRead.
+   *
+   * @param filePath filePath
+   */
   public FileRead(String filePath) {
     this.filePath = filePath;
   }
 
+  /**
+   * Method for reading the file.
+   *
+   * @return list of passages
+   */
   public List<Passage> formatPathsFile() {
     List<Passage> passages = new ArrayList<>();
     int lineNumber = 0;
@@ -80,14 +94,11 @@ public class FileRead {
             links.add(new Link(textInsideBrackets, textInsideParentheses, new ArrayList<>()));
           }
         } catch (StringIndexOutOfBoundsException e) {
-          alertError("Error at line " + lineNumber + ":\n" + "String index out of bounds");
+          alertError(errorAtLine + lineNumber + ":\n" + "String index out of bounds");
           e.printStackTrace();
-        } catch (InvalidActionFormatException e) {
-          alertError("Error at line " + lineNumber + ":\n" + e.getMessage());
+        } catch (InvalidActionFormatException | MissingLinkException e) {
+          alertError(errorAtLine + lineNumber + ":\n" + e.getMessage());
           e.printStackTrace();
-        } catch (MissingLinkException e) {
-          alertError("Error at line " + lineNumber + ":\n" + e.getMessage());
-          throw new RuntimeException(e);
         }
       }
       // Add the last passage
@@ -110,6 +121,11 @@ public class FileRead {
   }
 
 
+  /**
+   * Method for alerting the user of an error.
+   *
+   * @param message message
+   */
   private void alertError(String message) {
     Platform.runLater(() -> {
       Alert alert = new Alert(AlertType.ERROR);

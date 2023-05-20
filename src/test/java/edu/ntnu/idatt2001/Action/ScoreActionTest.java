@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001.Action;
 
-import edu.ntnu.idatt2001.model.Action.ScoreAction;
+import edu.ntnu.idatt2001.model.action.ScoreAction;
 import edu.ntnu.idatt2001.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

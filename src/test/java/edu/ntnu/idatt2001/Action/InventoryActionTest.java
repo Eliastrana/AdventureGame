@@ -1,7 +1,7 @@
 package edu.ntnu.idatt2001.Action;
 
 import edu.ntnu.idatt2001.model.Player;
-import edu.ntnu.idatt2001.model.Action.InventoryAction;
+import edu.ntnu.idatt2001.model.action.InventoryAction;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

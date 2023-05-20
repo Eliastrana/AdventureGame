@@ -2,15 +2,25 @@ package edu.ntnu.idatt2001.utility.filehandling;
 
 import edu.ntnu.idatt2001.model.Player;
 import edu.ntnu.idatt2001.model.PlayerBuilder;
-import javafx.scene.control.Alert;
-import java.io.BufferedWriter;
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import javafx.scene.control.Alert;
 
 
+/**
+ * Class for saving the progress of the game.
+ */
 public class PlayerRegister {
+
+  /**
+   * Method for saving the progress of the game.
+   *
+   * @param text String to be saved
+   * @param filename path to the file
+   */
   public void saveTextToFile(String text, String filename) {
     if (text.isBlank()) {
       throw new IllegalArgumentException("Text is blank");
@@ -35,7 +45,13 @@ public class PlayerRegister {
     }
   }
 
-  public Player characterInforVariable(String filePath) {
+  /**
+   * Method for loading the progress of the game.
+   *
+   * @param filePath path to the file
+   * @return Player object
+   */
+  public Player characterInfoVariable(String filePath) {
     try (FileReader fileReader = new FileReader(filePath);
          BufferedReader bufferedReader = new BufferedReader(fileReader)) {
 
@@ -49,17 +65,16 @@ public class PlayerRegister {
       String inventory = values[4];
 
 
-      return new PlayerBuilder()
+      return new PlayerBuilder<Player>()
               .setName(name)
               .setHealth(health)
               .setGold(gold)
               .setScore(score)
               .addToInventory(inventory)
-              .getPlayer();
+              .build();
     } catch (Exception e) {
       e.printStackTrace();
     }
-
     return null;
   }
 }

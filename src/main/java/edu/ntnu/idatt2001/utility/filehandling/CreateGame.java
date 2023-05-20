@@ -92,7 +92,7 @@ public class CreateGame {
    */
   public Player playerGenerator(String playerFilepath) {
     PlayerRegister playerRegister = new PlayerRegister();
-    return playerRegister.characterInforVariable(playerFilepath);
+    return playerRegister.characterInfoVariable(playerFilepath);
   }
 
   /**

@@ -40,7 +40,7 @@ public class PlayerBuilder<T> {
 
 
 
-  public Object build() {
+  public Player build() {
     return new Player(name, health, score, gold, inventory);
   }
 
