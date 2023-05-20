@@ -1,0 +1,82 @@
+Crazy Cave
+
+::Beginnings
+You find yourself standing before a dense forest, with a narrow path leading into its depths. The air is filled with an inexplicable sense of adventure and mystery. As you follow the path, you come across an opening in the foliage, revealing a hidden cave entrance.
+[Enter the cave](The Cavernous Cavern)
+{GoldAction: 5}
+{HealthAction: -10}
+
+::The Cavernous Cavern
+You step into the darkness of the cave, your footsteps echoing softly against the walls. The cool air brushes against your face as you delve deeper into the unknown. Illuminated only by the faint glow of your trusty lantern, you notice the intricate rock formations that adorn the cavern's walls. Suddenly, you hear a distant rumbling sound echoing through the depths.
+[Investigate the sound](The Rumbling Echo)
+[Continue exploring](Deeper within)
+{InventoryAction: Lantern}
+{HealthAction: -5}
+
+::The Rumbling Echo
+Intrigued by the mysterious rumbling sound, you cautiously follow its direction. As you navigate through the winding tunnels, the sound grows louder and more distinct. Eventually, you reach a spacious chamber filled with stalactites and stalagmites. In the center, a massive boulder rests, seemingly quivering with energy.
+[Push the boulder](Hidden Passage)
+[Leave it be and continue exploring](Deeper within)
+{ScoreAction: 10}
+
+::Hidden Passage
+With all your strength, you push against the massive boulder, which gradually begins to move, revealing a hidden passage behind it. Excitement fills your heart as you step through the opening, eager to uncover the secrets that lie beyond.
+[Enter the passage](The Enigmatic Tunnel)
+{ScoreAction: 10}
+
+::The Enigmatic Tunnel
+As you venture into the mysterious passage, the air grows colder, and the walls seem to pulsate with an otherworldly glow. Strange symbols and markings adorn the cavernous walls, hinting at the ancient history that lies within. Every step forward fills you with a mix of trepidation and anticipation.
+[Follow the markings](The Ancient Chamber)
+[Proceed cautiously](Keep going)
+{InventoryAction: Map}
+{HealthAction: -10}
+
+::The Ancient Chamber
+Following the intricate markings on the walls, you find yourself in an awe-inspiring chamber filled with relics from a forgotten era. The room is bathed in an ethereal light, casting shadows that dance across the artifacts. You can sense the powerful aura emanating from these ancient objects, promising untold wisdom and perhaps even magical abilities.
+[Examine the artifacts](Lost Knowledge)
+[Press on](Keep exploring)
+{ScoreAction: 15}
+{GoldAction: 20}
+
+::Lost Knowledge
+As you carefully examine the artifacts, you discover a dusty tome nestled amongst them. Its worn pages contain secrets of long-lost spells and ancient rituals. You take a moment to absorb the knowledge, feeling a connection to the past awaken within you. With newfound wisdom, you decide to press on, eager to uncover more hidden wonders.
+[Continue exploring](Keep going)
+{InventoryAction: Dusty tome}
+
+::Keep going
+Undeterred by the unknown, you continue your journey deeper into the cave, guided by your curiosity and the flickering light of your lantern. The passage twists and turns, leading you further into the heart of the earth. With each step, you feel a sense of adventure and anticipation growing within you.
+[Keep moving forward](The Abyssal Depths)
+[Turn back](Return to the entrance)
+{ScoreAction: 5}
+
+::The Abyssal Depths
+As you venture deeper into the cave, you find yourself in a vast underground chamber—an abyss that seems to stretch into eternity. The sound of dripping water echoes throughout the space, creating an eerie symphony. You realize that you have reached the heart of this enigmatic cave, a place untouched by the world above.
+[Embrace the darkness](Unveiling Secrets)
+[Retrace your steps](Return to the entrance)
+{ScoreAction: 20}
+
+::Unveiling Secrets
+Embracing the darkness, you allow yourself to become one with the mysterious surroundings. As your eyes adjust, you notice faint glimmers of light illuminating hidden paths and passages. Guided by your intuition, you navigate the labyrinthine depths of the cave, unveiling long-forgotten secrets that have remained concealed for ages.
+[Discover the final secret](The Forgotten Sanctuary)
+{InventoryAction: Crystal shard}
+{HealthAction: -10}
+
+::The Forgotten Sanctuary
+After a perilous journey, you stumble upon a hidden sanctuary within the depths of the cave. The air feels charged with ancient energy, and the room is adorned with magnificent crystals, radiating with otherworldly hues. You sense that this is a place of great power and significance. You take a moment to absorb the breathtaking beauty that surrounds you, knowing that you have uncovered something truly extraordinary.
+[Pay your respects](Return home)
+[Claim a crystal as your own](Mystical Relic)
+{ScoreAction: 25}
+{GoldAction: 50}
+
+::Mystical Relic
+In a daring move, you carefully select a crystal from the sanctuary, feeling its energy flow through you. You know that this relic holds a fragment of the cave's magic, a token of your extraordinary adventure. With the crystal safely in your possession, you make your way back, feeling a profound sense of accomplishment and wonder.
+[Return home](The end)
+{InventoryAction: Crystal}
+
+::Return to the entrance
+Realizing that your journey through the cave has come to an end, you retrace your steps, making your way back to the entrance. The familiar sounds of nature greet you as you emerge from the darkness, carrying with you memories of a remarkable exploration.
+[The end](The end)
+{ScoreAction: 10}
+
+::The end
+Congratulations on completing your thrilling cave adventure! Thank you for playing!

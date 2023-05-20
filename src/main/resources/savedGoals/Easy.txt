@@ -1,0 +1,8 @@
+ScoreGoal: 120
+ScoreGoal: 100
+ScoreGoal: 90
+ScoreGoal: 120
+GoldGoal: 90
+HealthGoal: 100
+InventoryGoal: 3
+ScoreGoal: 40

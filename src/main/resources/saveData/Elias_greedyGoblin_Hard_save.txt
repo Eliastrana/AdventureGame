@@ -1,0 +1,77 @@
+Traveler.png
+Elias
+greedyGoblin
+Hard
+
+C:0
+P:Beginnings
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:1
+P:The Goblin's Pursuit
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:2
+P:Into the Hollow
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:3
+P:Goblin's Gold
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:3
+P:Greedy Showdown
+N:Elias
+H:90
+G:100
+S:10
+I:[Flashlight]
+
+
+C:4
+P:A Negotiated Truce
+N:Elias
+H:70
+G:100
+S:10
+I:[Flashlight]
+
+
+C:5
+P:Greedy Alliance
+N:Elias
+H:70
+G:110
+S:10
+I:[Flashlight]
+
+
+C:6
+P:Avaricious Allies
+N:Elias
+H:70
+G:130
+S:10
+I:[Flashlight]
+
+

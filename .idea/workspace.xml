@@ -4,22 +4,103 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="pushing the save data directory">
+    <list default="true" id="2f16ae5f-08bd-4cd5-9476-20bb54641d2e" name="Changes" comment="finishing touches before sorting files into correct structure">
+      <change afterPath="$PROJECT_DIR$/src/main/resources/characters/Erik&lt;3.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/paths/crazyCave.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/paths/dustyDepot.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/paths/example.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/paths/greedyGoblin.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/paths/tiltedTowers.paths" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/saveData/Elias_example_Medium_save.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/saveData/Elias_greedyGoblin_Hard_save.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/saveData/Erik&lt;3_hauntedHouseBlackboard_Medium_save.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/saveData/Vegard_greedyGoblin_Hard_save.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/saveData/Vegard_tiltedTowers_Hard_save.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/savedGoals/Easy.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/savedGoals/Hard.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/resources/savedGoals/Medium.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/NOTworking/AdventureGame.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/NOTworking/GUI.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/NOTworking/OutcommendedGUIcode.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/eliastest.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/lasttest.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/megatest.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/morgentest.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/pickFile.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/sillytest.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/testStory.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/testigjen.paths.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/testwithnew.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/thetrolllair.paths" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/trashtest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/Action.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/ActionsFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/GoldAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/HealthAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/InventoryAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Action/ScoreAction.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PaneGenerator.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/view/PaneGenerator.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/PathsFileGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/GUI/StartingPage.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/model/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/InvalidActionFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/exceptions/InvalidActionFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/InvalidFormatException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/exceptions/InvalidFormatException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Link.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/model/Link.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/MissingLinkException.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/exceptions/MissingLinkException.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PaneInfo.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Passage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/model/Passage.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Player.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/model/Player.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/PlayerBuilder.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/model/PlayerBuilder.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/Story.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/model/Story.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/CreateGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/CreateGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileDashboard.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/controller/FileDashboard.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileRead.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/FileRead.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/FileWrite.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/FileWrite.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/GameSave.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/GameSave.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/GoalRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/GoalRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/PlayerRegister.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/PlayerRegister.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/fileHandling/SaveFileReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/utility/filehandling/SaveFileReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/MainMenuPane.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/MyGUI.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane1.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane2.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane3.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/Pane4.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/QuickLoad.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/SceneSwitcher.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/StartGameFromCatalog.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/frontend/StartGameFromImport.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/goals/Goal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/goals/GoalFactory.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/goals/GoldGoal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/goals/HealthGoal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/goals/InventoryGoal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/edu/ntnu/idatt2001/goals/ScoreGoal.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/Documents/fileReadingTest" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/Fairy.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/iPhone.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/luring.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/mage.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/morendin.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/characters/warrior.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/Untitled.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/asdf.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/dfgh.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/igjentest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/test.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/test2.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/tester100.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/testerigjen.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/pathExamples/tulletest.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paths/magicalMountain.paths" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/paths/magicalMountain.paths" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/paths/pickFile.paths" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saveData/Elias_magicalMountain_savegchfdxfdx" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/saveData/Eliastirsdag.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/zeldabackground.jpeg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/ActionsFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/ActionsFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/GoldActionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/GoldActionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/HealthActionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/HealthActionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/InventoryActionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/InventoryActionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/ScoreActionTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/Action/ScoreActionTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/GameTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/GameTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/LinkTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/LinkTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/PassageTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/PassageTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/PlayerTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/PlayerTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/StoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/StoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/GoalFactoryTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/GoalFactoryTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/GoldGoalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/GoldGoalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/HealthGoalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/HealthGoalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/InventoryGoalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/InventoryGoalTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/ScoreGoalTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/edu/ntnu/idatt2001/goals/ScoreGoalTest.java" afterDir="false" />
     </list>
     <list id="9d380d4b-b99b-48ce-8e0d-c4d9c33b5354" name="Changes by eliastrana" comment="Changes by eliastrana" />
     <option name="SHOW_DIALOG" value="false" />
@@ -60,55 +141,52 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "RunOnceActivity.OpenProjectViewOnStart": "true",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "WebServerToolWindowFactoryState": "false",
-    "codeWithMe.voiceChat.enabledByDefault": "false",
-    "git-widget-placeholder": "main",
-    "last_opened_file_path": "C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT1002/idatt1002",
-    "list.type.of.created.stylesheet": "CSS",
-    "node.js.detected.package.eslint": "true",
-    "node.js.detected.package.tslint": "true",
-    "node.js.selected.package.eslint": "(autodetect)",
-    "node.js.selected.package.tslint": "(autodetect)",
-    "nodejs_package_manager_path": "npm",
-    "project.structure.last.edited": "Project",
-    "project.structure.proportion": "0.0",
-    "project.structure.side.proportion": "0.0",
-    "settings.editor.selected.configurable": "preferences.pluginManager",
-    "vue.rearranger.settings.migration": "true"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
+    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
+    &quot;codeWithMe.voiceChat.enabledByDefault&quot;: &quot;false&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;QuickLoad&quot;,
+    &quot;last_opened_file_path&quot;: &quot;C:/Users/vegar/OneDrive/Dokumenter/NTNU/Vår23/IDATT1002/idatt1002&quot;,
+    &quot;list.type.of.created.stylesheet&quot;: &quot;CSS&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Project&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.0&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.pluginManager&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/src/main/resources/sounds" />
+      <recent name="$PROJECT_DIR$/src/main/resources/items" />
       <recent name="F:\Kode\adventuregame\src\main\java\edu\ntnu\idatt2001\GUI" />
       <recent name="F:\Kode\adventuregame\src\main\java\edu\ntnu\idatt2001\NOTworking" />
       <recent name="F:\Kode\adventuregame\src\main\resources" />
     </key>
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="edu.ntnu.idatt2001" />
+    </key>
   </component>
-  <component name="RunManager" selected="Application.FileRead">
-    <configuration name="CreateGame" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.CreateGame" />
-      <module name="trollspill" />
-      <extension name="coverage">
-        <pattern>
-          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
-          <option name="ENABLED" value="true" />
-        </pattern>
-      </extension>
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  <component name="RunAnythingCache">
+    <option name="myCommands">
+      <command value="mvn javafx:run" />
+    </option>
+  </component>
+  <component name="RunManager" selected="Application.GUIStarter">
     <configuration name="FileRead" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.fileHandling.FileRead" />
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.filehandling.FileRead" />
       <module name="trollspill" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ntnu.idatt2001.fileHandling.*" />
+          <option name="PATTERN" value="edu.ntnu.idatt2001.controller.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -116,12 +194,25 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="PaneGenerator" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
-      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.GUI.PaneGenerator" />
+    <configuration name="GUIStarter" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.GUIStarter" />
       <module name="trollspill" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ntnu.idatt2001.GUI.*" />
+          <option name="PATTERN" value="edu.ntnu.idatt2001.exceptions.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Main" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="edu.ntnu.idatt2001.Main" />
+      <module name="trollspill" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="edu.ntnu.idatt2001.exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -133,7 +224,7 @@
       <module name="trollspill" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ntnu.idatt2001.*" />
+          <option name="PATTERN" value="edu.ntnu.idatt2001.exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -148,7 +239,7 @@
       <module name="trollspill" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="edu.ntnu.idatt2001.*" />
+          <option name="PATTERN" value="edu.ntnu.idatt2001.exceptions.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
@@ -161,9 +252,9 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.GUIStarter" />
+        <item itemvalue="Application.Main" />
         <item itemvalue="Application.FileRead" />
-        <item itemvalue="Application.CreateGame" />
-        <item itemvalue="Application.PaneGenerator" />
         <item itemvalue="JUnit.StoryConstructorTest" />
         <item itemvalue="JUnit.PassageConstructorTest" />
       </list>
@@ -186,6 +277,22 @@
       <workItem from="1679997565720" duration="26299000" />
       <workItem from="1680169869015" duration="19963000" />
       <workItem from="1682840549138" duration="14699000" />
+      <workItem from="1683108819128" duration="1450000" />
+      <workItem from="1683111300061" duration="10030000" />
+      <workItem from="1683211685133" duration="11408000" />
+      <workItem from="1683288124078" duration="38000" />
+      <workItem from="1683288195373" duration="8585000" />
+      <workItem from="1683309541291" duration="2589000" />
+      <workItem from="1683630664633" duration="66000" />
+      <workItem from="1683876367345" duration="199000" />
+      <workItem from="1683876950906" duration="77053000" />
+      <workItem from="1684228262046" duration="36668000" />
+      <workItem from="1684509500206" duration="87000" />
+      <workItem from="1684509798599" duration="2585000" />
+      <workItem from="1684514397865" duration="2614000" />
+      <workItem from="1684518531304" duration="3165000" />
+      <workItem from="1684576130008" duration="77000" />
+      <workItem from="1684576210208" duration="6133000" />
     </task>
     <task id="LOCAL-00001" summary="adding the functional files such as pom">
       <created>1678182107521</created>
@@ -281,18 +388,202 @@
       <option name="presentableId" value="LOCAL−00015" />
       <updated>1683032766323</updated>
     </task>
-    <option name="localTasksCounter" value="16" />
+    <task id="LOCAL-00016" summary="deleting useless code from the structure">
+      <created>1683108984475</created>
+      <option name="number" value="00016" />
+      <option name="presentableId" value="LOCAL-00016" />
+      <option name="project" value="LOCAL" />
+      <updated>1683108984475</updated>
+    </task>
+    <task id="LOCAL-00017" summary="stylised the load game buttons and made them only show the 3 newest.">
+      <created>1683115317686</created>
+      <option name="number" value="00017" />
+      <option name="presentableId" value="LOCAL-00017" />
+      <option name="project" value="LOCAL" />
+      <updated>1683115317686</updated>
+    </task>
+    <task id="LOCAL-00018" summary="made sure buttons are included on the updater of the topmenu">
+      <created>1683116798260</created>
+      <option name="number" value="00018" />
+      <option name="presentableId" value="LOCAL-00018" />
+      <option name="project" value="LOCAL" />
+      <updated>1683116798260</updated>
+    </task>
+    <task id="LOCAL-00019" summary="Added images into the topmenu and made them react to the users actions.">
+      <created>1683290967110</created>
+      <option name="number" value="00019" />
+      <option name="presentableId" value="LOCAL-00019" />
+      <option name="project" value="LOCAL" />
+      <updated>1683290967110</updated>
+    </task>
+    <task id="LOCAL-00020" summary="Changes by vegard, same as last push (used code with me)">
+      <created>1683291003045</created>
+      <option name="number" value="00020" />
+      <option name="presentableId" value="LOCAL-00020" />
+      <option name="project" value="LOCAL" />
+      <updated>1683291003045</updated>
+    </task>
+    <task id="LOCAL-00021" summary="a story and a negative sound, got missed in last push">
+      <created>1683291175536</created>
+      <option name="number" value="00021" />
+      <option name="presentableId" value="LOCAL-00021" />
+      <option name="project" value="LOCAL" />
+      <updated>1683291175536</updated>
+    </task>
+    <task id="LOCAL-00022" summary="added soundeffects to the values in the top playerinfo, based on positive or negative value.">
+      <created>1683314460258</created>
+      <option name="number" value="00022" />
+      <option name="presentableId" value="LOCAL-00022" />
+      <option name="project" value="LOCAL" />
+      <updated>1683314460258</updated>
+    </task>
+    <task id="LOCAL-00023" summary="worked on implementing the quick load feature that lets the user open a previous game, as well as making the writer more solid.">
+      <created>1683896533791</created>
+      <option name="number" value="00023" />
+      <option name="presentableId" value="LOCAL-00023" />
+      <option name="project" value="LOCAL" />
+      <updated>1683896533791</updated>
+    </task>
+    <task id="LOCAL-00024" summary="Changes by vegard, same as last push (used code with me)">
+      <created>1683897863680</created>
+      <option name="number" value="00024" />
+      <option name="presentableId" value="LOCAL-00024" />
+      <option name="project" value="LOCAL" />
+      <updated>1683897863680</updated>
+    </task>
+    <task id="LOCAL-00025" summary="modifications to pane generator">
+      <created>1683898487866</created>
+      <option name="number" value="00025" />
+      <option name="presentableId" value="LOCAL-00025" />
+      <option name="project" value="LOCAL" />
+      <updated>1683898487866</updated>
+    </task>
+    <task id="LOCAL-00026" summary="Added functionalities for back-button, fixed characterloader and import file from desktop">
+      <created>1684002285383</created>
+      <option name="number" value="00026" />
+      <option name="presentableId" value="LOCAL-00026" />
+      <option name="project" value="LOCAL" />
+      <updated>1684002285383</updated>
+    </task>
+    <task id="LOCAL-00027" summary="Vegard added more functionalities to back-button">
+      <created>1684002325894</created>
+      <option name="number" value="00027" />
+      <option name="presentableId" value="LOCAL-00027" />
+      <option name="project" value="LOCAL" />
+      <updated>1684002325894</updated>
+    </task>
+    <task id="LOCAL-00028" summary="implemented a method that makes sure that if a file exits, you can not save it with the same name. Also made the savename field autofill with name to allow for easier use. Added wallpapers on all panes">
+      <created>1684013171717</created>
+      <option name="number" value="00028" />
+      <option name="presentableId" value="LOCAL-00028" />
+      <option name="project" value="LOCAL" />
+      <updated>1684013171717</updated>
+    </task>
+    <task id="LOCAL-00029" summary="Fixed the import game so that it adds it into the list instead of opening directly. Cleaned up code and finished design on the goals pane. No goals backend.">
+      <created>1684068817875</created>
+      <option name="number" value="00029" />
+      <option name="presentableId" value="LOCAL-00029" />
+      <option name="project" value="LOCAL" />
+      <updated>1684068817875</updated>
+    </task>
+    <task id="LOCAL-00030" summary="Fixed more styling and modified buttons size.">
+      <created>1684074174563</created>
+      <option name="number" value="00030" />
+      <option name="presentableId" value="LOCAL-00030" />
+      <option name="project" value="LOCAL" />
+      <updated>1684074174563</updated>
+    </task>
+    <task id="LOCAL-00031" summary="added help guide, but no matter what, the color will not change on the font, and it will not change the background to white.">
+      <created>1684143207249</created>
+      <option name="number" value="00031" />
+      <option name="presentableId" value="LOCAL-00031" />
+      <option name="project" value="LOCAL" />
+      <updated>1684143207249</updated>
+    </task>
+    <task id="LOCAL-00032" summary="added help guide, but no matter what, the color will not change on the font, and it will not change the background to white.">
+      <created>1684144839500</created>
+      <option name="number" value="00032" />
+      <option name="presentableId" value="LOCAL-00032" />
+      <option name="project" value="LOCAL" />
+      <updated>1684144839500</updated>
+    </task>
+    <task id="LOCAL-00033" summary="implemented saving of goals">
+      <created>1684147900206</created>
+      <option name="number" value="00033" />
+      <option name="presentableId" value="LOCAL-00033" />
+      <option name="project" value="LOCAL" />
+      <updated>1684147900206</updated>
+    </task>
+    <task id="LOCAL-00034" summary="implemented combobox for goals in load game pane">
+      <created>1684148579953</created>
+      <option name="number" value="00034" />
+      <option name="presentableId" value="LOCAL-00034" />
+      <option name="project" value="LOCAL" />
+      <updated>1684148579953</updated>
+    </task>
+    <task id="LOCAL-00035" summary="added the goals into the gui">
+      <created>1684151566966</created>
+      <option name="number" value="00035" />
+      <option name="presentableId" value="LOCAL-00035" />
+      <option name="project" value="LOCAL" />
+      <updated>1684151566966</updated>
+    </task>
+    <task id="LOCAL-00036" summary="made goals reactive and sorted, aswell as pretty.">
+      <created>1684164363212</created>
+      <option name="number" value="00036" />
+      <option name="presentableId" value="LOCAL-00036" />
+      <option name="project" value="LOCAL" />
+      <updated>1684164363212</updated>
+    </task>
+    <task id="LOCAL-00037" summary="fixed positioning and color outline of the goals vbox">
+      <created>1684169058363</created>
+      <option name="number" value="00037" />
+      <option name="presentableId" value="LOCAL-00037" />
+      <option name="project" value="LOCAL" />
+      <updated>1684169058363</updated>
+    </task>
+    <task id="LOCAL-00038" summary="changed how goals are created by the user, and implemented other stylings">
+      <created>1684409202461</created>
+      <option name="number" value="00038" />
+      <option name="presentableId" value="LOCAL-00038" />
+      <option name="project" value="LOCAL" />
+      <updated>1684409202462</updated>
+    </task>
+    <task id="LOCAL-00039" summary="fixed a stronger reader, a better pom file, as well as adding sound everywhere, added custom classes for alerts and">
+      <created>1684500943815</created>
+      <option name="number" value="00039" />
+      <option name="presentableId" value="LOCAL-00039" />
+      <option name="project" value="LOCAL" />
+      <updated>1684500943816</updated>
+    </task>
+    <task id="LOCAL-00040" summary="fixed file import for winwows">
+      <created>1684502200723</created>
+      <option name="number" value="00040" />
+      <option name="presentableId" value="LOCAL-00040" />
+      <option name="project" value="LOCAL" />
+      <updated>1684502200723</updated>
+    </task>
+    <task id="LOCAL-00041" summary="made the importer universal, this time it probably works">
+      <created>1684502613882</created>
+      <option name="number" value="00041" />
+      <option name="presentableId" value="LOCAL-00041" />
+      <option name="project" value="LOCAL" />
+      <updated>1684502613882</updated>
+    </task>
+    <task id="LOCAL-00042" summary="finishing touches before sorting files into correct structure">
+      <created>1684573865322</created>
+      <option name="number" value="00042" />
+      <option name="presentableId" value="LOCAL-00042" />
+      <option name="project" value="LOCAL" />
+      <updated>1684573865322</updated>
+    </task>
+    <option name="localTasksCounter" value="43" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
-    <option name="OPEN_GENERIC_TABS">
-      <map>
-        <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337" value="TOOL_WINDOW" />
-      </map>
-    </option>
     <option name="TAB_STATES">
       <map>
         <entry key="07dd08d3-5c03-462f-9dc1-f2f1f6166337">
@@ -313,7 +604,7 @@
                   <entry key="branch">
                     <value>
                       <list>
-                        <option value="remote/main" />
+                        <option value="origin/QuickLoad" />
                       </list>
                     </value>
                   </entry>
@@ -327,22 +618,32 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
-    <MESSAGE value="adding the functional files such as pom" />
-    <MESSAGE value="added empty classes for all the classes and interfaces, as well as adding empty testclasses" />
-    <MESSAGE value="filled in the testclasses that are within action and goals" />
-    <MESSAGE value="filled all the classes except for the GUI class. completed the communication within the backend of the project" />
-    <MESSAGE value="Implemented tests for main classes" />
-    <MESSAGE value="Made som changes to Story" />
-    <MESSAGE value="made the welcome page&#10;program can read the file&#10;it can take the first passage and show it" />
-    <MESSAGE value="Fixed all of the communication between link, passage and fileread." />
-    <MESSAGE value="Implemented a well-functioning gamelauncher" />
-    <MESSAGE value="Edited the HauntedHouse.paths story" />
-    <MESSAGE value="Added more to HauntedHouse.paths" />
-    <MESSAGE value="Rewrote HautedHouse.paths" />
-    <MESSAGE value="Added backend for the restart game function" />
-    <MESSAGE value="Added a restart button and implemented inventory" />
-    <MESSAGE value="Changes by eliastrana" />
-    <option name="LAST_COMMIT_MESSAGE" value="Changes by eliastrana" />
+    <MESSAGE value="deleting useless code from the structure" />
+    <MESSAGE value="stylised the load game buttons and made them only show the 3 newest." />
+    <MESSAGE value="made sure buttons are included on the updater of the topmenu" />
+    <MESSAGE value="Added images into the topmenu and made them react to the users actions." />
+    <MESSAGE value="a story and a negative sound, got missed in last push" />
+    <MESSAGE value="added soundeffects to the values in the top playerinfo, based on positive or negative value." />
+    <MESSAGE value="worked on implementing the quick load feature that lets the user open a previous game, as well as making the writer more solid." />
+    <MESSAGE value="Changes by vegard, same as last push (used code with me)" />
+    <MESSAGE value="modifications to pane generator" />
+    <MESSAGE value="Added functionalities for back-button, fixed characterloader and import file from desktop" />
+    <MESSAGE value="Vegard added more functionalities to back-button" />
+    <MESSAGE value="implemented a method that makes sure that if a file exits, you can not save it with the same name. Also made the savename field autofill with name to allow for easier use. Added wallpapers on all panes" />
+    <MESSAGE value="Fixed the import game so that it adds it into the list instead of opening directly. Cleaned up code and finished design on the goals pane. No goals backend." />
+    <MESSAGE value="Fixed more styling and modified buttons size." />
+    <MESSAGE value="added help guide, but no matter what, the color will not change on the font, and it will not change the background to white." />
+    <MESSAGE value="implemented saving of goals" />
+    <MESSAGE value="implemented combobox for goals in load game pane" />
+    <MESSAGE value="added the goals into the gui" />
+    <MESSAGE value="made goals reactive and sorted, aswell as pretty." />
+    <MESSAGE value="fixed positioning and color outline of the goals vbox" />
+    <MESSAGE value="changed how goals are created by the user, and implemented other stylings" />
+    <MESSAGE value="fixed a stronger reader, a better pom file, as well as adding sound everywhere, added custom classes for alerts and" />
+    <MESSAGE value="fixed file import for winwows" />
+    <MESSAGE value="made the importer universal, this time it probably works" />
+    <MESSAGE value="finishing touches before sorting files into correct structure" />
+    <option name="LAST_COMMIT_MESSAGE" value="finishing touches before sorting files into correct structure" />
   </component>
   <component name="XSLT-Support.FileAssociations.UIState">
     <expand />

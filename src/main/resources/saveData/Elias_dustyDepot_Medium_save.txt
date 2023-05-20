@@ -1,0 +1,113 @@
+Fairy.png
+Elias
+dustyDepot
+Medium
+
+C:0
+P:Beginnings
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:1
+P:Dusty Discoveries
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:2
+P:Rusty's Trail
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:3
+P:Rusty's Emporium
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:4
+P:Elixir of Vitality
+N:Elias
+H:100
+G:90
+S:10
+I:[Flashlight]
+
+
+C:4
+P:Elixir of Vitality
+N:Elias
+H:100
+G:90
+S:10
+I:[Flashlight, Health Potion]
+
+
+C:4
+P:Elixir of Vitality
+N:Elias
+H:100
+G:90
+S:10
+I:[Flashlight, Health Potion]
+
+
+C:3
+P:Rusty's Emporium
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:4
+P:Elixir of Vitality
+N:Elias
+H:100
+G:90
+S:10
+I:[Flashlight, Health Potion]
+
+
+C:5
+P:Forged Destiny
+N:Elias
+H:100
+G:90
+S:10
+I:[Flashlight, Health Potion]
+
+
+C:4
+P:Blades of Glory
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+
+C:5
+P:Forged Destiny
+N:Elias
+H:100
+G:100
+S:10
+I:[Flashlight]
+
+

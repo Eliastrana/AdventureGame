@@ -1,0 +1,248 @@
+::Beginnings
+As you drop from the Battle Bus and parachute down onto the island, you find yourself landing near the familiar location of Dusty Depot. The once bustling industrial site now stands abandoned, with rusted shipping containers and forgotten crates scattered around. A sense of mystery and adventure fills the air as you take your first steps towards exploration.
+
+[Investigate the area](Dusty Discoveries)
+[Search for clues](Hidden History)
+{ScoreAction: -5}
+
+::Dusty Discoveries
+Curiosity piques your interest, and you decide to explore the abandoned Dusty Depot. As you traverse the site, you come across an intriguing character—a mischievous scavenger named Rusty. With a sly grin, Rusty beckons you to follow, hinting at the hidden treasures within Dusty Depot.
+
+[Follow Rusty](Rusty's Trail)
+[Proceed alone](Lone Explorer)
+{ScoreAction: -5}
+
+::Hidden History
+Drawn to the mystery surrounding Dusty Depot, you search for clues that may shed light on its past. As you examine the crates and buildings, you stumble upon a worn-out journal, its pages filled with the forgotten stories of Dusty Depot. Determined to uncover the secrets, you delve deeper into the area.
+
+[Continue investigating](The Forgotten Legacy)
+[Decipher the journal](Echoes of the Past)
+{ScoreAction: -5}
+
+::Rusty's Trail
+Eager to discover the hidden treasures promised by Rusty, you follow the mischievous scavenger. Rusty leads you through a maze of crates and abandoned structures, dropping hints and sharing tales of legendary loot. At last, you arrive at Rusty's hidden shop—an oasis of possibilities amidst the desolate Dusty Depot.
+
+[Enter Rusty's shop](Rusty's Emporium)
+[Decline and explore on your own](Independent Pursuit)
+{ScoreAction: -5}
+
+::Lone Explorer
+Preferring to explore Dusty Depot on your own terms, you wander through the abandoned structures and crates, relying on your instincts and keen eyes to uncover any hidden treasures. With every step, you become more entwined in the forgotten stories of this forsaken place.
+
+[Continue your solitary exploration](Lost Relics)
+[Seek out a guide](Guiding Shadows)
+{ScoreAction: 5}
+
+::The Forgotten Legacy
+Driven by the desire to unravel Dusty Depot's past, you continue investigating the area. The worn-out journal provides glimpses into the lives of the workers who once inhabited this place. It speaks of secret tunnels, lost artifacts, and valuable resources hidden beneath the surface. Determined, you follow in their footsteps.
+
+[Descend into the tunnels](Subterranean Secrets)
+[Search for the lost artifacts](Ancient Treasures)
+{ScoreAction: 5}
+
+::Echoes of the Past
+With the journal in hand, you decipher its cryptic writings and unveil the forgotten history of Dusty Depot. The stories within reveal tales of hidden caches, mysterious rituals, and legendary weapons lost to time. Armed with this knowledge, you embark on a quest to uncover the truth behind the faded memories.
+
+[Pursue the hidden caches](Cache Conquest)
+[Unlock the secrets of the rituals](Ritual of the Ancients)
+{ScoreAction: 5}
+
+::Rusty's Emporium
+Curiosity piqued, you step into Rusty's shop—a small, dimly lit space filled with shelves brimming with wondrous items. The air is heavy with the scent of adventure. Rusty, the eccentric shopkeeper, welcomes you with a wide grin and offers a selection of items to aid you on your journey, each requiring gold to purchase.
+
+[Buy a weapon](Blades of Glory)
+[Purchase a health potion](Elixir of Vitality)
+{InventoryAction: Health Potion}
+{GoldAction: -10}
+
+::Independent Pursuit
+Preferring to explore Dusty Depot on your own terms, you wander through the abandoned structures and crates, relying on your instincts and keen eyes to uncover any hidden treasures. With every step, you become more entwined in the forgotten stories of this forsaken place.
+
+[Continue your solitary exploration](Lost Relics)
+[Seek out a guide](Guiding Shadows)
+{ScoreAction: 5}
+
+::Lost Relics
+With each crate you open and every building you explore, you uncover relics from a bygone era. Dusty Depot holds the remnants of battles long past, and you can't help but feel a connection to the history etched into these artifacts. You gather the relics, hoping they will provide insight into the island's past.
+
+[Investigate the relics](Fragmented Memories)
+[Assemble the pieces](The Mosaic Mystery)
+{ScoreAction: 5}
+
+::Guiding Shadows
+Realizing the vastness of Dusty Depot, you seek guidance from the shadows that linger among the abandoned structures. The spirits of the workers who once toiled here manifest before you, whispering stories of the past and offering guidance to those who listen.
+
+[Follow the guiding spirits](Spectral Journey)
+[Ask for advice](Whispers of Wisdom)
+{ScoreAction: 5}
+
+::Subterranean Secrets
+Drawn by the allure of hidden tunnels beneath Dusty Depot, you descend into the depths. The tunnels twist and turn, revealing secret chambers and forgotten corridors. Illuminated by your trusty flashlight, you discover valuable resources and mysterious artifacts that have been buried for ages.
+
+[Collect the resources](Buried Riches)
+[Inspect the artifacts](Ancient Enigmas)
+{ScoreAction: 5}
+
+::Ancient Treasures
+Determined to recover the lost artifacts mentioned in the journal, you scour the area, following the clues left behind by the workers of Dusty Depot. With each discovery, you come closer to unraveling the secrets and unearthing the treasures hidden within this forgotten place.
+
+[Follow the clues](Trail of Secrets)
+[Search deeper](Hidden Chambers)
+{ScoreAction: 5}
+
+::Cache Conquest
+In pursuit of the hidden caches mentioned in the journal, you navigate the abandoned structures with newfound determination. Each cache represents a piece of the past, and you are determined to claim them as your own. The thrill of discovery fuels your search as you venture deeper into Dusty Depot.
+
+[Discover the first cache](The Forgotten Vault)
+[Uncover the second cache](The Lost Reliquary)
+{ScoreAction: 5}
+
+::Ritual of the Ancients
+Intrigued by the rituals alluded to in the journal, you seek out the remnants of the ancient ceremonies within Dusty Depot. As you follow the clues, you stumble upon a hidden altar, its purpose shrouded in mystery. Will you proceed with caution or embrace the unknown?
+
+[Perform the ritual](Ritual's Revelation)
+[Observe from a distance](Veiled Secrets)
+{ScoreAction: 5}
+
+::Blades of Glory
+Eager to enhance your arsenal, you purchase a powerful weapon from Rusty's shop. The blade glistens in the dim light, promising strength and prowess in battle. With your new acquisition, you feel ready to face any challenge that lies ahead.
+
+[Continue your adventure](Forged Destiny)
+[Challenge a formidable opponent](Trial by Combat)
+{GoldAction: -10}
+
+::Elixir of Vitality
+Concerned about the perils that await you in Dusty Depot, you decide to purchase a health potion from Rusty's shop. The elixir glows with restorative power, ensuring that you can withstand the dangers that lie ahead.
+[Continue your adventure](Forged Destiny)
+[Confront a formidable adversary](Trial by Combat)
+{GoldAction: -10}
+
+
+::Fragmented Memories
+As you investigate the relics scattered throughout Dusty Depot, fragments of memories begin to surface. Images of battles fought, friendships forged, and sacrifices made flood your mind. With each relic you examine, the story becomes clearer, revealing the history of Dusty Depot.
+
+[Piece together the memories](Reconstructed Past)
+[Reflect on the past](Echoes of Battle)
+{ScoreAction: 5}
+
+::The Mosaic Mystery
+The relics you gather form a fragmented mosaic, a puzzle that holds the key to Dusty Depot's past. With determination, you arrange the pieces, forming a picture that tells a tale of bravery, betrayal, and triumph. As the last piece falls into place, the true history of this place is revealed.
+
+[Unveil the completed mosaic](Legacy Uncovered)
+[Study the mosaic](Eyes of Insight)
+{ScoreAction: 5}
+
+::Spectral Journey
+Trusting the spirits to guide you, you follow their ethereal forms through Dusty Depot. They lead you to forgotten corners and hidden paths, revealing the secrets that lie within the area. As you traverse the ghostly landscape, the spirits' whispers become louder, hinting at the treasures awaiting your discovery.
+
+[Embrace the spectral journey](Enlightened Spirits)
+[Listen to their guidance](Whispers of Fortune)
+{ScoreAction: 5}
+
+::Whispers of Wisdom
+With open ears and an inquisitive mind, you seek advice from the spirits that haunt Dusty Depot. Their whispers guide you through the area, offering invaluable knowledge and insights. The spirits' wisdom becomes your beacon, illuminating the path to discovery.
+
+[Heed their advice](Guided Enlightenment)
+[Ask for further guidance](Veiled Revelations)
+{ScoreAction: 5}
+
+::Buried Riches
+As you gather the valuable resources hidden beneath Dusty Depot, you realize their significance. The workers who once operated in this area depended on these resources for their livelihood. You continue collecting the riches, hoping to honor their legacy.
+
+[Secure the resources](Treasure Trove)
+[Uncover their purpose](Industrial Secrets)
+{ScoreAction: 5}
+
+::Ancient Enigmas
+With each artifact you inspect, you encounter mysterious enigmas. Symbols and markings etched into the ancient relics puzzle you, hinting at the existence of hidden knowledge. Determined to unlock their secrets, you delve deeper into the mysteries concealed within Dusty Depot.
+
+[Decipher the enigmas](Cryptic Riddles)
+[Seek guidance](Mystic Revelations)
+{ScoreAction: 5}
+
+::Trail of Secrets
+Following the clues left behind by the workers of Dusty Depot, you embark on a thrilling treasure hunt. The path takes you through hidden passages, forgotten corners, and precarious ledges. With each clue, you come closer to uncovering the first hidden cache.
+
+[Discover the cache](The Forgotten Vault)
+[Follow the trail](The Vanishing Marks)
+{ScoreAction: 5}
+
+::Hidden Chambers
+Driven by your desire for adventure, you venture deeper into Dusty Depot, searching for hidden chambers rumored to hold ancient treasures. As you navigate the treacherous passageways, you encounter traps and obstacles that test your skills and courage.
+
+[Overcome the challenges](Trials of Valor)
+[Uncover the secrets within](Chamber of Riches)
+{ScoreAction: 5}
+
+::Ritual's Revelation
+Intrigued by the ancient ritual, you decide to perform it, following the steps outlined in the journal. As you carry out each gesture, an otherworldly energy fills the air, causing the ground to tremble. The ritual's purpose slowly unravels, revealing a truth that holds the potential to change everything.
+
+[Embrace the revelation](Awakened Power)
+[Withdraw from the ritual](Fading Shadows)
+{ScoreAction: 5}
+
+::Veiled Secrets
+Aware of the risks involved, you choose to observe the ritual from a distance. As you watch, the air crackles with mystic energy, and the ritual's purpose becomes clearer. The veil of secrecy surrounding Dusty Depot starts to lift, exposing glimpses of ancient power and untold possibilities.
+
+[Contemplate the revelations](Enlightened Reflection)
+[Explore further](Uncharted Depths)
+{ScoreAction: 5}
+
+::Forged Destiny
+Armed with your new weapon or health potion, you continue your adventure through Dusty Depot. The challenges and mysteries that await you become part of your destiny. With determination and the tools at your disposal, you forge your path and strive to leave your mark on this forgotten place.
+
+[Embrace your destiny](Enduring Legacy)
+[Face the ultimate challenge](Trial of Champions)
+{ScoreAction: 5}
+
+::Enduring Legacy
+Embracing your destiny, you venture forth, ready to leave a lasting legacy in Dusty Depot. The relics, artifacts, and knowledge you have acquired become the foundation upon which you build your story. With every step, you strive to honor the history of this forsaken place and create a new chapter that will be remembered for ages to come.
+
+[Explore the depths of Dusty Depot](Forgotten Depths)
+[Uncover the final secret](Legacy Unveiled)
+{ScoreAction: 5}
+
+::Trial of Champions
+Filled with determination, you decide to face the ultimate challenge in Dusty Depot. Legends speak of a trial that only the most courageous can undertake. Armed with your acquired skills and the tools at your disposal, you set out to conquer the Trial of Champions and prove yourself as a true hero.
+
+[Conquer the Trial of Champions](Triumph or Defeat)
+[Prepare for the ultimate battle](Champion's Preparations)
+{ScoreAction: 5}
+
+::Forgotten Depths
+Driven by your thirst for exploration, you venture into the deep recesses of Dusty Depot. The hidden passages, long-forgotten chambers, and uncharted depths become your playground. In the darkness, you uncover untold mysteries and encounter challenges that test your mettle.
+
+[Conquer the depths](Subterranean Odyssey)
+[Uncover the final secret](Legacy Unveiled)
+{ScoreAction: 5}
+
+::Legacy Unveiled
+Driven by an insatiable curiosity, you dedicate yourself to unraveling the final secret of Dusty Depot. Your relentless pursuit leads you to a hidden chamber, where the ultimate truth lies concealed. As you step into the chamber, the mystery unfolds before your eyes, forever changing your understanding of Dusty Depot.
+
+[Embrace the revelation](Eternal Knowledge)
+[Guard the secret](Silent Guardian)
+{ScoreAction: 5}
+
+::Triumph or Defeat
+With determination in your heart, you face the grueling Trial of Champions. The trial challenges your skills, courage, and resilience. As you navigate through its treacherous obstacles, you face adversaries that push you to your limits. Triumph awaits those who can conquer the trial, but defeat is also a possibility.
+
+[Overcome the challenges and triumph](Victory's Path)
+[Accept defeat and learn from it](Lessons of Resilience)
+{ScoreAction: 5}
+
+::Champion's Preparations
+Recognizing the gravity of the Trial of Champions, you decide to prepare yourself before facing the ultimate battle. You hone your skills, acquire powerful equipment, and seek guidance from experienced mentors. Armed with newfound knowledge and strength, you step onto the path of the champions, ready to face whatever lies ahead.
+
+[Train and sharpen your skills](Path of Mastery)
+[Seek guidance from the champions](Wisdom of Legends)
+{ScoreAction: 5}
+
+::Subterranean Odyssey
+Driven by your thirst for adventure, you embark on a grand subterranean odyssey through Dusty Depot's hidden depths. The tunnels and chambers become your labyrinth, and each step reveals new challenges and discoveries. The journey itself becomes an epic tale, and your determination keeps you pushing forward.
+
+[Conquer the depths](The Abyss Beckons)
+[Uncover the final secret](Legacy Unveiled)
+{ScoreAction: 5}
+
+::Eternal Knowledge
+Embracing the revelation that lies within the hidden chamber, you become the guardian of eternal knowledge. The secrets you uncover in Dusty Depot hold the key to unlocking the island's past and shaping its future. With the wisdom you have gained, you embark on a new journey, forever connected to the legacy of Dusty Depot.

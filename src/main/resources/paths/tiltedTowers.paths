@@ -1,0 +1,80 @@
+Tilted Towers: Shadows of the Past
+
+::Beginnings
+You find yourself standing at the edge of a sprawling cityscape known as Tilted Towers. Tall skyscrapers and neon-lit signs tower above you, casting long shadows on the streets below. A sense of mystery and foreboding hangs in the air.
+[Explore the dark alley](The Dark Alley)
+{InventoryAction: Flashlight}
+{HealthAction: -10}
+
+::The Dark Alley
+Curiosity compels you to venture into the dark alley, your flashlight cutting through the gloom. As you make your way deeper, you hear distant whispers and see fleeting glimpses of shadowy figures.
+[Investigate the whispers](Whispering Shadows)
+[Exit the alley](Main Street)
+{ScoreAction: 5}
+
+::Whispering Shadows
+You follow the whispers, your heart pounding in your chest. The shadows seem to dance and morph before your eyes, as if teasing you with their secrets. Suddenly, they converge into a humanoid shape and a ghostly figure emerges.
+[Engage in conversation](Ghostly Encounter)
+[Escape the alley](Main Street)
+{HealthAction: -20}
+
+::Ghostly Encounter
+As you approach the ghostly figure, it reveals itself as a spirit trapped in Tilted Towers. It speaks of a tragic event from the city's past, an unsolved mystery that haunts its ethereal existence. The spirit implores you to uncover the truth and set it free.
+[Accept the quest](The Investigation)
+[Decline and leave](Main Street)
+{ScoreAction: 10}
+
+::The Investigation
+Determined to help the trapped spirit, you delve into the dark history of Tilted Towers. You uncover forgotten records, interview witnesses, and solve puzzles, gradually piecing together the puzzle of the city's past.
+[Visit the abandoned library](Library Secrets)
+[Explore the ruined mansion](Mansion's Legacy)
+{ScoreAction: 15}
+
+::Library Secrets
+Inside the abandoned library, you discover a hidden chamber filled with ancient tomes. Each book holds fragments of the city's history, but they are scattered and disorganized. It's up to you to decipher the clues and arrange the books in the correct order.
+[Solve the book puzzle](Lost Knowledge)
+[Leave the library](Main Street)
+{InventoryAction: Book fragment}
+
+::Mansion's Legacy
+You enter the decaying remains of a once-grand mansion, its halls echoing with the whispers of the past. As you explore its rooms, you unravel the tragic tale of a wealthy family torn apart by greed and betrayal. Uncovering their secrets is key to understanding the city's lingering curse.
+[Uncover the family secrets](Family's Demise)
+[Exit the mansion](Main Street)
+{ScoreAction: 20}
+
+::Lost Knowledge
+By successfully arranging the books in the correct order, you unlock a hidden passage within the library. It leads you to a forgotten chamber filled with ancient artifacts and forbidden knowledge. Here, you gain insight into the curse that has befallen Tilted Towers and the steps needed to break it.
+Unleash the ancient power
+[Leave the chamber](Main Street)
+{InventoryAction: Ancient artifact}
+
+::Family's Demise
+You delve deeper into the mansion, discovering hidden passages and uncovering the truth behind the family's demise. As you confront their restless spirits, you must make choices that will determine their ultimate fate and the resolution of the city's curse.
+Resolve the family's destiny
+[Exit the mansion](Main Street)
+{HealthAction: -10}
+
+::Confrontation
+Armed with newfound knowledge or a sense of closure, you face the source of the curse that has plagued Tilted Towers for so long. A climactic battle or confrontation awaits, testing your resolve and determination.
+[Defeat the ancient evil](Victorious Triumph)
+[Solve the final puzzle](Curse's End)
+{ScoreAction: 30}
+
+::Victorious Triumph
+You emerge victorious, the curse lifted and the trapped spirits finally finding peace. Tilted Towers begins to regain its former glory, and the city's residents are grateful for your bravery and perseverance.
+[Return to Main Street](Main Street)
+{ScoreAction: 35}
+
+::Curse's End
+By solving the final puzzle, you unlock the ancient secret that binds Tilted Towers. The curse dissipates, and a wave of relief washes over the city. As gratitude fills the air, the residents celebrate your success, and Tilted Towers transforms into a thriving, vibrant place once more.
+[Return to Main Street](Main Street)
+{ScoreAction: 35}
+
+::Main Street
+Having explored the dark corners and secrets of Tilted Towers, you stand in the heart of the city, transformed by your journey. The shadows of the past have been unveiled, and the future holds new promise. As you bid farewell to Tilted Towers, you carry the memories of your adventure forever.
+[The end](The end)
+{ScoreAction: 40}
+
+::The end
+Congratulations on completing your journey through Tilted Towers! Thank you for playing!
+

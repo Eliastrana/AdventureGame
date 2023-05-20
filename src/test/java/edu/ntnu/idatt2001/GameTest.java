@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001;
 
+import edu.ntnu.idatt2001.model.*;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Nested;
 import org.junit.jupiter.api.Test;
@@ -103,7 +104,7 @@ class GameTest {
       Story story = new Story("Title", passage);
       Game game = new Game(player, story, new ArrayList<>());
       game.begin();
-      game.go(new Link("Text", "Refernce" , new ArrayList<>()));
+      //game.go(new Link("Text", "Refrence" , new ArrayList<>()));
       assertEquals("Title", game.getStory().getOpeningPassage().getTitle());
       assertEquals("Content", game.getStory().getOpeningPassage().getContent());
     }

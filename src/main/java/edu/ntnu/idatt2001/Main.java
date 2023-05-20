@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001;
 
-import edu.ntnu.idatt2001.frontend.MyGUI;
+import edu.ntnu.idatt2001.view.MyGUI;
 import javafx.application.Application;
 
 import javafx.stage.Stage;

@@ -1,0 +1,199 @@
+Greedy Goblin
+
+::Beginnings
+In a mystical forest filled with ancient trees and shimmering streams, you stumble upon a hidden glen. The air is tinged with a sense of mischief and trepidation. As you cautiously make your way through the dense foliage, you catch a glimpse of a mischievous creature darting between the trees—an elusive and greedy goblin.
+[Chase after the goblin](The Goblin's Pursuit)
+[Observe from a distance](Watcher in the Woods)
+{GoldAction: -5}
+{ScoreAction: -5}
+
+::The Goblin's Pursuit
+Driven by curiosity and a sense of adventure, you decide to chase after the mischievous goblin. It leads you deeper into the forest, laughing and taunting you as it scampers through the underbrush. Determined not to let it escape, you pick up your pace, ready to discover the secrets it guards.
+[Keep up the chase](Into the Hollow)
+[Slow down and be cautious](Hidden Dangers)
+{ScoreAction: -5}
+
+::Watcher in the Woods
+Preferring a more observant approach, you choose to stay still and quietly watch the goblin from a distance. It moves swiftly, its greedy eyes scanning the forest floor for hidden treasures. As you watch, you can't help but wonder what the goblin is searching for and where it will lead you.
+[Follow stealthily](Glimpses of Fortune)
+[Remain a silent observer](Secrets Unveiled)
+{GoldAction: 5}
+
+::Into the Hollow
+You chase the goblin deep into a secluded hollow within the forest. The air becomes heavy with anticipation as you catch up to the creature. It stops abruptly, glancing at you with a mixture of fear and defiance. In front of you lies a hidden entrance to an underground cavern—the goblin's secret lair.
+[Enter the cavern](Goblin's Gold)
+[Confront the goblin](Greedy Showdown)
+{HealthAction: -10}
+
+::Hidden Dangers
+Cautiously navigating the forest, you stay aware of the hidden dangers that may lie in your path. The goblin leads you to a clearing filled with traps and snares, evidence of its cunning nature. You must carefully navigate this treacherous terrain to uncover what the goblin is guarding.
+[Disarm the traps](Treasure Unveiled)
+[Find another route](Evasive Maneuvers)
+{ScoreAction: -5}
+
+::Glimpses of Fortune
+Silently tailing the goblin, you catch glimpses of the treasures it seeks. The creature's greed is evident as it discovers small caches of gold and jewels hidden within the forest. You decide to follow the trail of riches, hoping it will lead you to an even greater prize.
+[Continue following the goblin](Avarice's Path)
+[Strike when it's distracted](Opportunistic Theft)
+{GoldAction: 10}
+
+::Secrets Unveiled
+As you quietly observe the goblin's activities, you notice it stumbling upon a hidden grove. Within the grove, a magnificent tree stands, its branches laden with shimmering orbs of light—the essence of the forest's magic. The goblin seems entranced by these ethereal treasures, and you ponder whether to intervene or simply witness the enchantment.
+[Reach for the orbs](Magical Abundance)
+[Remain an observer](Nature's Sanctuary)
+{ScoreAction: 5}
+
+::Goblin's Gold
+Braving the depths of the underground cavern, you step into the goblin's lair. The space is filled with glittering treasures—piles of gold coins, precious gemstones, and ancient artifacts. Your eyes widen with a mix of awe and greed as you realize the magnitude of the goblin's hoard.
+[Claim a share of the treasure](A Wealthy Victory)
+[Search for hidden secrets](Goblin's Gambit)
+{GoldAction: 50}
+
+::Greedy Showdown
+Confronting the goblin, you demand answers and challenge it to a duel. The creature, filled with a mixture of fear and greed, brandishes its weapon and prepares to defend its ill-gotten treasures. It's a battle of wits and skill as you face off against the greedy goblin.
+[Engage in combat](The Goblin's Downfall)
+[Offer a compromise](A Negotiated Truce)
+{HealthAction: -20}
+
+::Treasure Unveiled
+Carefully navigating the treacherous traps, you manage to disarm them one by one. As the path clears, you are rewarded with the sight of a hidden treasure trove—an assortment of valuable artifacts and precious metals. Your persistence and caution have paid off.
+[Collect the treasure](Fortunate Bounty)
+[Leave it untouched](Guardian's Blessing)
+{GoldAction: 20}
+
+::Evasive Maneuvers
+Deciding to avoid the traps, you take a detour through the dense undergrowth. The path may be longer, but it keeps you safe from harm. As you make your way around the dangerous traps, you stumble upon a hidden alcove, shimmering with magical energy.
+[Investigate the alcove](Hidden Enchantment)
+[Continue on your original path](Trickster's Trail)
+{ScoreAction: 10}
+
+::Avarice's Path
+Following the goblin's trail of riches, you enter a magnificent clearing. In the center, a massive chest awaits—overflowing with gold, jewels, and untold wealth. The goblin's greed has led you to this grand prize, but you must decide how to claim it.
+[Open the chest](Greed's Reward)
+[Proceed with caution](Cautious Claim)
+{GoldAction: 100}
+
+::Opportunistic Theft
+Seizing a moment of distraction, you make your move. Swiftly and silently, you snatch a handful of treasures from the goblin's hoard, carefully concealing them away. The goblin remains unaware of its loss as you slip away with your ill-gotten gains.
+[Make your escape](Unseen Triumph)
+{GoldAction: 30}
+
+::Magical Abundance
+Drawn by the allure of the shimmering orbs, you reach out and pluck one from the magical tree. Instantly, you are imbued with a surge of mystical energy, feeling the forest's magic flow through your veins. The goblin watches with envy and fear as you become the chosen vessel of the forest's power.
+[Harness the magic](Enchanted Dominion)
+[Share the magic](Harmony Restored)
+{ScoreAction: 15}
+
+::Nature's Sanctuary
+Respecting the sanctuary of nature, you refrain from disturbing the orbs and choose to witness their beauty without interference. The goblin, unaware of your presence, revels in the magic-filled grove. You quietly retreat, leaving the enchantment undisturbed.
+[Continue your journey](The end)
+{ScoreAction: 10}
+
+::The Goblin's Downfall
+In a fierce battle, you overpower the greedy goblin, forcing it to surrender. As the creature cowers before you, you demand it to reveal the secrets it holds. With the goblin defeated, you stand victorious, ready to claim the treasures it had guarded so jealously.
+[Claim the spoils](Triumphant Conquest)
+{GoldAction: 30}
+
+::A Negotiated Truce
+Realizing that neither of you desires unnecessary bloodshed, you propose a truce. The goblin reluctantly agrees, eager to keep its precious hoard. In exchange for its secrets and a share of the treasure, the goblin promises to abandon its thieving ways.
+[Strike a deal](Greedy Alliance)
+{GoldAction: 10}
+
+::Fortunate Bounty
+Overwhelmed by the riches before you, you gather the treasure into your bag. The weight of gold and jewels fills you with a sense of triumph and prosperity. Your adventure has been rewarded, and you depart from the goblin's lair with newfound wealth.
+[Return home](The end)
+{GoldAction: 50}
+
+::Guardian's Blessing
+Respecting the sanctity of the goblin's hoard, you leave the treasure untouched. As you turn to leave, a feeling of gratitude washes over you, and you sense that the forest itself has bestowed its blessings upon you. You carry the memory of this encounter as a reminder of the forest's generosity.
+[Continue your journey](The end)
+{ScoreAction: 10}
+
+::Hidden Enchantment
+Intrigued by the magical alcove, you cautiously step inside. The air crackles with energy as you're surrounded by an array of enchanted objects. Each item holds its own power and potential, waiting for someone with the knowledge to unlock it.
+[Experiment with the objects](Arcane Discovery)
+[Leave the alcove](Wary Departure)
+{ScoreAction: 10}
+
+::Trickster's Trail
+Following the alternative path, you encounter a mischievous sprite who guides you through the forest. It leads you to a hidden cache of treasures—a small cache compared to the goblin's hoard, but valuable nonetheless. The sprite chuckles and disappears, leaving you with your newfound spoils.
+[Collect the cache](Sly Acquisition)
+{GoldAction: 15}
+
+::Greed's Reward
+As you open the chest, the dazzling sight of riches fills your vision. Gold coins spill over the edges, and gemstones sparkle in the light. Your heart races with anticipation as you realize the extent of the goblin's greed, and now it is yours to claim.
+[Revel in your wealth](Goblin's Plunder)
+{GoldAction: 100}
+
+::Cautious Claim
+Aware of potential traps, you carefully approach the chest. With every step, you examine for any signs of danger. Your caution pays off, as you successfully unlock the chest without triggering any traps. You stand before a trove of treasures, ready to claim your reward.
+[Take what is rightfully yours](Cautious Victory)
+{GoldAction: 75}
+
+::Unseen Triumph
+With your stolen treasures concealed, you slip away undetected. The goblin remains oblivious to your cunning heist. As you make your escape, a smile creeps onto your face, knowing that your nimble fingers have secured a prosperous future.
+[Continue your journey](The end)
+{GoldAction: 30}
+
+::Enchanted Dominion
+Embracing the magic flowing through you, you become the conduit for the forest's enchantment. The power of the orbs amplifies your abilities and grants you a connection to nature's forces. With newfound magic at your disposal, you set forth to protect the forest from those who would exploit it.
+[Embrace your role as protector](Guardian's Call)
+{ScoreAction: 20}
+
+::Harmony Restored
+Understanding the significance of the magical orbs, you share their power with the forest itself. The goblin watches in awe as you restore the balance and harmony within the grove. The enchantment spreads, bringing new life and vitality to the once-neglected part of the forest.
+[Continue your journey](The end)
+{ScoreAction: 15}
+
+::Triumphant Conquest
+Having bested the greedy goblin, you claim the spoils of your victory. The treasures that once belonged to the goblin are now yours to keep. As you gather the riches, you can't help but revel in the satisfaction of outsmarting the cunning creature.
+[Return home](The end)
+{GoldAction: 30}
+
+::Greedy Alliance
+Finding common ground, you strike a deal with the goblin. You agree to split the treasure, sharing the wealth between you. The goblin reluctantly accepts the arrangement, realizing that cooperation can be more profitable than confrontation.
+[Share the spoils](Avaricious Allies)
+{GoldAction: 20}
+
+::Arcane Discovery
+Intrigued by the enchanted objects, you begin to experiment with them. Each interaction unveils a new spell or hidden ability, expanding your knowledge of the mystical arts. The alcove becomes a classroom, and you a willing student, eager to unlock the secrets of the objects.
+[Master the enchantments](Mystic Mastery)
+{ScoreAction: 15}
+
+::Wary Departure
+Satisfied with the knowledge that the alcove holds untapped magic, you choose not to meddle with its secrets. Leaving the enchanted objects undisturbed, you step away, carrying the curiosity of their potential within you.
+[Continue your journey](The end)
+{ScoreAction: 10}
+
+::Sly Acquisition
+Collecting the hidden cache, you revel in the satisfaction of a well-earned find. The items within may not rival the goblin's hoard, but they hold their own worth. You tuck the cache away, knowing that even small treasures can lead to great adventures.
+[Continue your journey](The end)
+{GoldAction: 20}
+
+::Goblin's Plunder
+In a frenzy of greed, you bask in the wealth before you. Coins spill from your hands as you revel in the goblin's plunder. You have claimed what was once its, and now it belongs to you—a fitting reward for your relentless pursuit of fortune.
+[Return home](The end)
+{GoldAction: 150}
+
+::Cautious Victory
+With careful selection, you take only what you deem fair and just. Your measured approach ensures that you claim your share without overreaching. As you secure your spoils, you feel a sense of accomplishment and satisfaction for your cautious victory.
+[Continue your journey](The end)
+{GoldAction: 100}
+
+::Guardian's Call
+Embracing your role as the protector of the forest, you become one with nature. The magical connection strengthens, granting you the ability to commune with animals, manipulate the elements, and safeguard the balance of the forest. You embark on a quest to ensure the preservation of the enchanted woods.
+[Embark on your mission](Nature's Champion)
+{ScoreAction: 25}
+
+::Avaricious Allies
+Together with the goblin, you divide the spoils, each walking away with a substantial share of the treasure. The goblin, no longer driven by pure greed, agrees to assist you in future endeavors, recognizing the value of cooperation and shared profits.
+[Forge a partnership](The Greedy Duo)
+{GoldAction: 25}
+
+::Mystic Mastery
+Dedicating yourself to unlocking the true potential of the enchanted objects, you spend hours studying and experimenting. Slowly, you unravel their hidden depths and master their magic. With each spell learned, you become a more formidable force in the realm of mysticism.
+[Embark on a magical journey](The Arcane Sage)
+{ScoreAction: 20}
+
+::The end
+You have reached the end

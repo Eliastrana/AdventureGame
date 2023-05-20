@@ -1,11 +1,12 @@
 package edu.ntnu.idatt2001.Action;
 
+import edu.ntnu.idatt2001.model.Action.GoldAction;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
 
-import edu.ntnu.idatt2001.Player;
+import edu.ntnu.idatt2001.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 
 import java.util.ArrayList;

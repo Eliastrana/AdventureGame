@@ -1,8 +1,0 @@
-Character: Vegard
-Path: pickFile
-
-Another room
-Room inspection
-Whisper investigation
-Larger room
-Second floor

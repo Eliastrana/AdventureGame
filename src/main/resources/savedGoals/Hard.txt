@@ -1,0 +1,4 @@
+ScoreGoal: 300
+GoldGoal: 160
+HealthGoal: 150
+InventoryGoal: 8

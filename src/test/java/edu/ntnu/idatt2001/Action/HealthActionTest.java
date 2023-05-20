@@ -1,7 +1,7 @@
 package edu.ntnu.idatt2001.Action;
 
-import edu.ntnu.idatt2001.Action.HealthAction;
-import edu.ntnu.idatt2001.Player;
+import edu.ntnu.idatt2001.model.Action.HealthAction;
+import edu.ntnu.idatt2001.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

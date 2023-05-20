@@ -4,6 +4,7 @@ Magical Mountain
 You find yourself at the base of a towering mountain, shrouded in mist. A narrow path leads up to the summit.
 [Begin the ascent](The Climb)
 {GoldAction: 10}
+{HealthAction: -100}
 
 ::The Climb
 You start to climb up the steep path, taking care with each step. As you ascend, you notice that the mist is beginning to clear, revealing a stunning vista of rolling hills and forests below. Suddenly, you hear a rustling sound from behind a nearby boulder.
