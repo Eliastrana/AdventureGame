@@ -27,6 +27,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -40,6 +41,7 @@ import javafx.stage.Stage;
 
 public class PaneGenerator extends Application {
 
+  int initialValue;
   private String characterIcon;
   private Game game;
   private int passageCounter;
@@ -58,6 +60,8 @@ public class PaneGenerator extends Application {
   Label healthLabel = new Label();
   Label goldLabel = new Label();
   Label scoreLabel = new Label();
+  ProgressBar healthBar = new ProgressBar();
+
   ArrayList<Goal> scoreGoals = new ArrayList<>();
   ArrayList<Goal> healthGoals = new ArrayList<>();
   ArrayList<Goal> goldGoals = new ArrayList<>();
@@ -72,6 +76,9 @@ public class PaneGenerator extends Application {
 
   @Override
   public void start(Stage stage) throws IOException {
+
+    healthBar.setMinWidth(200);
+
 
     List<Link> brokenLinks = game.getStory().getBrokenLinks();
     titleLabel = new Label();
@@ -252,6 +259,8 @@ public class PaneGenerator extends Application {
       goldLabel.setText("Gold: " + game.getPlayer().getGold());
       scoreLabel.setText("Score: " + game.getPlayer().getScore());
 
+      healthBar.setProgress(progressBar());
+
       HBox itemBox = new HBox();
       for (String item : game.getPlayer().getInventory()) {
         String imagePath = "src/main/resources/items/" + item + ".png";
@@ -272,7 +281,7 @@ public class PaneGenerator extends Application {
       itemBox.setAlignment(Pos.CENTER);
       playerInfo.getChildren().addAll(topmenuOptions,
               nameLabel,
-              healthLabel,
+              healthBar,
               goldLabel,
               scoreLabel,
               new Label("Inventory: "),
@@ -424,6 +433,9 @@ public class PaneGenerator extends Application {
   }
 
   private void updatePlayerInfoBasedOnCounter(int counter) {
+
+    healthBar.setProgress(progressBar());
+
     SaveFileReader reader = new SaveFileReader();
     HashMap<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
 
@@ -501,5 +513,26 @@ public class PaneGenerator extends Application {
     topGoalsScore.getChildren().clear();
     topGoalsInventory.getChildren().clear();
     displayGoals();
+  }
+
+  private double progressBar() {
+
+    if (initialValue == 0) {
+      initialValue = game.getPlayer().getHealth();
+    }
+
+    int currentValue = game.getPlayer().getHealth();
+
+    double fillPercentage = (double) currentValue / initialValue; // Multiply by 100
+
+    if (fillPercentage < 0.3) {
+      healthBar.setStyle("-fx-accent: #ef3232;");
+    } else if (fillPercentage < 0.6) {
+      healthBar.setStyle("-fx-accent: #e6b800;");
+    } else {
+      healthBar.setStyle("-fx-accent: #00b300;");
+    }
+
+    return fillPercentage;
   }
 }
