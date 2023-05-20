@@ -1,6 +1,6 @@
 package edu.ntnu.idatt2001;
 
-import edu.ntnu.idatt2001.view.MyGUI;
+import edu.ntnu.idatt2001.view.MasterPane;
 import javafx.application.Application;
 
 import javafx.stage.Stage;
@@ -14,7 +14,7 @@ public class Main extends Application {
     @Override
     public void start(Stage stage) throws Exception {
 
-        MyGUI gui = new MyGUI();
+        MasterPane gui = new MasterPane();
         gui.start(stage);
 
     }

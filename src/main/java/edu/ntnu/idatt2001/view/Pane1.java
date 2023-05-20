@@ -53,46 +53,44 @@ public class Pane1 extends StackPane {
     content.setAlignment(Pos.CENTER);
     content.setSpacing(5);
 
-    File characters = new File("src/main/resources/characters/");
-    String[] filenames = characters.list();
-    Set<String> names = new HashSet<>();
-    assert filenames != null;
-
-
-    for (String filename : filenames) {
+    File charactersDirectory = new File("src/main/resources/characters/");
+    String[] characterFilenames = charactersDirectory.list();
+    Set<String> characterNames = new HashSet<>();
+    assert characterFilenames != null;
+    for (String filename : characterFilenames) {
       String name = filename.replaceFirst(regex, "");
-      names.add(name);
+      characterNames.add(name);
     }
-
-    comboBoxCharacter.getItems().addAll(names);
+    comboBoxCharacter.getItems().addAll(characterNames);
     comboBoxCharacter.setPromptText("Select character");
     comboBoxCharacter.setId(comboBoxId);
 
 
-    File paths = new File("src/main/resources/paths/");
-    String[] filenames2 = paths.list();
-    Set<String> names2 = new HashSet<>();
-    assert filenames2 != null;
-    for (String filename : filenames2) {
+    File pathsDirectory = new File("src/main/resources/paths/");
+    String[] pathFilenames = pathsDirectory.list();
+    Set<String> pathNames = new HashSet<>();
+    assert pathFilenames != null;
+    for (String filename : pathFilenames) {
       String name = filename.replaceFirst(regex, "");
-      names2.add(name);
+      pathNames.add(name);
     }
-    comboBoxPath.getItems().addAll(names2);
+    comboBoxPath.getItems().addAll(pathNames);
     comboBoxPath.setPromptText("Select path");
     comboBoxPath.setId(comboBoxId);
 
 
-    File goals = new File("src/main/resources/savedGoals/");
-    String[] filenames3 = goals.list();
-    Set<String> names3 = new HashSet<>();
-    assert filenames3 != null;
-    for (String filename : filenames3) {
+    File goalsDirectory = new File("src/main/resources/savedGoals/");
+    String[] goalFilenames = goalsDirectory.list();
+    Set<String> goalNames = new HashSet<>();
+    assert goalFilenames != null;
+    for (String filename : goalFilenames) {
       String name = filename.replaceFirst(regex, "");
-      names3.add(name);
+      goalNames.add(name);
     }
-    comboBoxGoals.getItems().addAll(names3);
+    comboBoxGoals.getItems().addAll(goalNames);
     comboBoxGoals.setPromptText("Select goal");
     comboBoxGoals.setId(comboBoxId);
+
 
 
     saveName.setPromptText("Enter save name");

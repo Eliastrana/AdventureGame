@@ -21,11 +21,14 @@ public class Pane4 extends StackPane {
   TextField saveNameField = new TextField();
   TextArea currentGoalsArea = new TextArea();
 
-  ComboBox selectGoalsCategory = new ComboBox();
+  ComboBox<String> selectGoalsCategory = new ComboBox<>();
   TextField inputField = new TextField();
 
   Button updateButton = new Button("Update");
 
+  String clickSound = "src/main/resources/sounds/click.wav";
+
+  String pathToSavedGoals = "src/main/resources/savedGoals/";
 
   public Pane4() {
 
@@ -55,7 +58,7 @@ public class Pane4 extends StackPane {
     backButton.setAlignment(Pos.TOP_LEFT);
     backButtonHolder.setAlignment(Pos.TOP_LEFT);
     backButton.setOnAction(e -> {
-      SoundPlayer.play("src/main/resources/sounds/click.wav");
+      SoundPlayer.play(clickSound);
     SceneSwitcher.switchToMainMenu();
     });
 
@@ -63,10 +66,10 @@ public class Pane4 extends StackPane {
     goals.setSpacing(20);
     currentGoalsArea.setPrefSize(200, 200);
     currentGoalsArea.setEditable(false);
-    currentGoalsArea.setText("src/main/resources/savedGoals/" + saveNameField.getText() + ".txt");
+    currentGoalsArea.setText(pathToSavedGoals + saveNameField.getText() + ".txt");
 
     saveNameField.textProperty().addListener((observable, oldValue, newValue) -> {
-      String filePath = "src/main/resources/savedGoals/" + newValue + ".txt";
+      String filePath = pathToSavedGoals + newValue + ".txt";
       try {
         String fileContent = Files.readString(Path.of(filePath));
         currentGoalsArea.setText(fileContent.isEmpty() ? "" : fileContent);
@@ -103,7 +106,7 @@ public class Pane4 extends StackPane {
         saveAndClearField(selectGoalsCategory, inputField.getText());
 
         // Update the TextArea with the latest file content
-        String filePath = "src/main/resources/savedGoals/" + saveNameField.getText() + ".txt";
+        String filePath = pathToSavedGoals + saveNameField.getText() + ".txt";
         try {
           String fileContent = Files.readString(Path.of(filePath));
           currentGoalsArea.setText(fileContent);
@@ -115,7 +118,7 @@ public class Pane4 extends StackPane {
       selectGoalsCategory.getItems().clear();
       selectGoalsCategory.getItems().addAll("HealthGoal", "ScoreGoal", "GoldGoal", "InventoryGoal");
       selectGoalsCategory.setPromptText("Select category");
-      SoundPlayer.play("src/main/resources/sounds/click.wav");
+      SoundPlayer.play(clickSound);
     });
 
     updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, selectGoalsCategory,inputField, updateButton);
@@ -133,7 +136,7 @@ public class Pane4 extends StackPane {
       String selectedItem = comboBox.getSelectionModel().getSelectedItem();
       if (selectedItem != null) {
         String saveName = saveNameField.getText() + ".txt";
-        String saveLocation = "src/main/resources/savedGoals/" + saveName;
+        String saveLocation = pathToSavedGoals + saveName;
         FileDashboard.writeGoals(selectedItem +": "+ prefix, saveLocation);
       }
     } catch (IOException ex) {
@@ -143,7 +146,7 @@ public class Pane4 extends StackPane {
       alert.setContentText("Could not save file"+ ex.getMessage());
       alert.showAndWait();
     }
-    SoundPlayer.play("src/main/resources/sounds/click.wav");
+    SoundPlayer.play(clickSound);
     comboBox.getSelectionModel().clearSelection();
   }
 

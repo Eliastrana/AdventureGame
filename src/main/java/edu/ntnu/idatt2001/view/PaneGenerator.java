@@ -38,7 +38,6 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-
 public class PaneGenerator extends Application {
 
   int initialValue;
@@ -378,7 +377,7 @@ public class PaneGenerator extends Application {
     Pane1.comboBoxGoals.getItems().clear();
     Pane1.comboBoxGoals.setPromptText("Select goal");
 
-    MyGUI gui = new MyGUI();
+    MasterPane gui = new MasterPane();
     gui.start(stage);
   }
 

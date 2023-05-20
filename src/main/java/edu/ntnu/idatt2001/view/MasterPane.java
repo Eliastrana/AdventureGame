@@ -9,7 +9,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 
-public class MyGUI extends Application {
+public class MasterPane extends Application {
 
   private Scene mainScene;
   private SceneSwitcher sceneSwitcher;

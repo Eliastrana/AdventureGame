@@ -29,12 +29,10 @@ public class Pane2 extends StackPane {
     structure.getStylesheets().add("Style.css");
     structure.setSpacing(10);
 
-
     VBox gameCreation = new VBox();
     gameCreation.setAlignment(Pos.CENTER);
     gameCreation.setSpacing(10);
     gameCreation.getStylesheets().add("Style.css");
-
     TextField writeGameSaveName = new TextField();
     writeGameSaveName.setPromptText("Write game save name");
 

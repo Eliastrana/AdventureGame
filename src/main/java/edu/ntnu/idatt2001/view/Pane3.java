@@ -1,5 +1,6 @@
 package edu.ntnu.idatt2001.view;
 
+import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
 import edu.ntnu.idatt2001.utility.filehandling.PlayerRegister;
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
@@ -14,7 +15,7 @@ import javafx.scene.text.Text;
 
 public class Pane3 extends StackPane {
 
-  public TextField createPlayerName = new TextField();
+  TextField createPlayerName = new TextField();
   TextField setPlayerHealth = new TextField();
   TextField setPlayerGold = new TextField();
   TextField setPlayerScore = new TextField();
@@ -28,10 +29,12 @@ public class Pane3 extends StackPane {
     VBox structure = new VBox();
     structure.getStylesheets().add("/Style.css");
 
-    createPlayerName.setId("textField");
-    setPlayerHealth.setId("textField");
-    setPlayerGold.setId("textField");
-    setPlayerScore.setId("textField");
+    String textFieldId = "textField";
+
+    createPlayerName.setId(textFieldId);
+    setPlayerHealth.setId(textFieldId);
+    setPlayerGold.setId(textFieldId);
+    setPlayerScore.setId(textFieldId);
 
     Text createPlayer = new Text("Create player:");
     createPlayer.setId("title");
@@ -63,9 +66,9 @@ public class Pane3 extends StackPane {
 
         if (createPlayerName.getText().isEmpty() || setPlayerHealth.getText().isEmpty()
                 || setPlayerGold.getText().isEmpty() || setPlayerScore.getText().isEmpty()) {
-          throw new Exception("Empty fields");
+          throw new InvalidFormatException("Empty fields");
         } else if (playerHealth < 0 || playerGold < 0 || playerScore < 0) {
-          throw new Exception("Invalid input");
+          throw new InvalidFormatException("Invalid input");
         } else {
           Alert alert = new Alert(Alert.AlertType.INFORMATION);
           alert.getDialogPane().setId("alertBox");
@@ -85,7 +88,6 @@ public class Pane3 extends StackPane {
                 + createPlayerName.getText()
                 + ".paths");
 
-        System.out.println(playerStats + ".paths");
         createPlayerName.clear();
         setPlayerHealth.clear();
         setPlayerGold.clear();
