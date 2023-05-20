@@ -100,13 +100,15 @@ class GameTest {
     @DisplayName("Test go")
     void go() {
       Player player = new Player("Name",10,10,10, new ArrayList<>());
-      Passage passage = new Passage("Title", "Content");
-      Story story = new Story("Title", passage);
+      Passage passage1 = new Passage("Passage1", "This is passage 1");
+      Passage passage2 = new Passage("Passage2", "This is passage 2");
+      Link link = new Link("Go to passage2", "Passage2", new ArrayList<>());
+      Story story = new Story("Title", passage1);
+      story.addPassage(passage2);
       Game game = new Game(player, story, new ArrayList<>());
-      game.begin();
-      //game.go(new Link("Text", "Refrence" , new ArrayList<>()));
-      assertEquals("Title", game.getStory().getOpeningPassage().getTitle());
-      assertEquals("Content", game.getStory().getOpeningPassage().getContent());
+      game.go(link);
+      assertEquals("Passage2", game.go(link).getTitle());
+      assertEquals("This is passage 2", game.go(link).getContent());
     }
   }
 }
