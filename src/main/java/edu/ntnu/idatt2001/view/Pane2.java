@@ -165,22 +165,14 @@ public class Pane2 extends StackPane {
       alert.setTitle("Help");
       alert.setHeaderText("How to create a game");
       String textBlock = """
-              <html>
-                  <body>
-                      <p>
-                      Write a name for your game save, a title for your 
-                      game field, the content of your game field 
-                      and the text and target of the buttons. <br/>
-                      If you only want one button, leave the other 
-                      button text and target blank. <br/>
-                      When you are done, press the Write game 
-                      button and your game will be saved in 
-                      the path selector in Load Game. <br/>
-                      As long as the save name is the same, 
-                      it will save your passage in the same place
-                      </p>
-                  </body>
-              </html>""";
+        Write a name for your game save, a title for your game field, the content of your game field
+        and the text and target of the buttons.
+        If you only want one button, leave the other button text and target blank.
+        When you are done, press the Write game button and your game will be saved in
+        the path selector in Load Game.
+        As long as the save name is the same, it will save your passage in the same place.
+        """;
+
 
       alert.setContentText(textBlock);
       alert.showAndWait();
