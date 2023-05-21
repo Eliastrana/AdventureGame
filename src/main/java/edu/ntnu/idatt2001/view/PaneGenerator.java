@@ -82,6 +82,9 @@ public class PaneGenerator extends Application {
   ArrayList<Goal> inventoryGoals = new ArrayList<>();
   String saveFilePath;
 
+  Pane characterImage = new Pane();
+
+
 
   /**
    * Constructor for PaneGenerator.
@@ -166,7 +169,6 @@ public class PaneGenerator extends Application {
     SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
     sortGoals();
     displayGoals();
-    Pane characterImage = new Pane();
 
     if (characterIcon != null) {
       Image image = new Image("/characterIcons/" + characterIcon);
@@ -176,8 +178,18 @@ public class PaneGenerator extends Application {
 
 
     String topMenuButtonId = "topMenuButton";
-    Button info = new Button("Info");
-    info.setId("topMenuButton");
+    Image infoIcon = new Image(getClass().getResourceAsStream("/iconography/Info.png"));
+
+    ImageView imageViewInfo = new ImageView(infoIcon);
+    imageViewInfo.setPreserveRatio(true);
+    imageViewInfo.setFitWidth(20); // Set the maximum width for the icon
+    imageViewInfo.setFitHeight(20); // Set the maximum height for the icon
+
+    Button info = new Button();
+    info.setGraphic(imageViewInfo);
+    info.setId(topMenuButtonId);
+
+
     info.setOnAction(e -> {
       SoundPlayer.play(CLICK_SOUND);
 
@@ -222,8 +234,18 @@ public class PaneGenerator extends Application {
     });
 
 
-    Button restart = new Button("Restart");
+
+    Image restartIcon = new Image(getClass().getResourceAsStream("/iconography/Restart.png"));
+
+    ImageView imageViewRestart = new ImageView(restartIcon);
+    imageViewRestart.setPreserveRatio(true);
+    imageViewRestart.setFitWidth(20); // Set the maximum width for the icon
+    imageViewRestart.setFitHeight(20); // Set the maximum height for the icon
+
+    Button restart = new Button();
+    restart.setGraphic(imageViewRestart);
     restart.setId(topMenuButtonId);
+
 
     restart.setOnAction(e -> {
       updateGoals();
@@ -231,8 +253,18 @@ public class PaneGenerator extends Application {
       healthBar.setProgress(progressBar());
     });
 
-    Button quitButton = new Button("Quit");
+
+    Image quitIcon = new Image(getClass().getResourceAsStream("/iconography/Quit.png"));
+
+    ImageView imageViewQuit = new ImageView(quitIcon);
+    imageViewQuit.setPreserveRatio(true);
+    imageViewQuit.setFitWidth(20); // Set the maximum width for the icon
+    imageViewQuit.setFitHeight(20); // Set the maximum height for the icon
+
+    Button quitButton = new Button();
+    quitButton.setGraphic(imageViewQuit);
     quitButton.setId(topMenuButtonId);
+
     quitButton.setOnAction(e -> {
       try {
         SoundPlayer.play(CLICK_SOUND);
@@ -243,8 +275,17 @@ public class PaneGenerator extends Application {
       }
     });
 
-    Button backButton = new Button("Back");
+    Image backIcon = new Image(getClass().getResourceAsStream("/iconography/Back.png"));
+
+    ImageView imageViewBack = new ImageView(backIcon);
+    imageViewBack.setPreserveRatio(true);
+    imageViewBack.setFitWidth(20); // Set the maximum width for the icon
+    imageViewBack.setFitHeight(20); // Set the maximum height for the icon
+
+    Button backButton = new Button();
+    backButton.setGraphic(imageViewBack);
     backButton.setId(topMenuButtonId);
+
     backButton.setOnAction(e -> {
       SoundPlayer.play(CLICK_SOUND);
       updateGoals();
@@ -256,8 +297,18 @@ public class PaneGenerator extends Application {
       healthBar.setProgress(progressBar());
     });
 
-    Button helpButton = new Button("Help");
+
+    Image helpIcon = new Image(getClass().getResourceAsStream("/iconography/Help.png"));
+
+    ImageView imageViewHelp = new ImageView(helpIcon);
+    imageViewHelp.setPreserveRatio(true);
+    imageViewHelp.setFitWidth(20); // Set the maximum width for the icon
+    imageViewHelp.setFitHeight(20); // Set the maximum height for the icon
+
+    Button helpButton = new Button();
+    helpButton.setGraphic(imageViewHelp);
     helpButton.setId(topMenuButtonId);
+
     helpButton.setOnAction(e -> {
       SoundPlayer.play(CLICK_SOUND);
 
@@ -282,7 +333,7 @@ public class PaneGenerator extends Application {
               850, 500, primaryStage);
     });
 
-    topmenuOptions.getChildren().addAll(info, helpButton, restart, backButton, quitButton);
+    topmenuOptions.getChildren().addAll(quitButton, helpButton, info, restart, backButton);
     topmenuOptions.setSpacing(20);
     VBox topInfo = new VBox();
     topInfo.setSpacing(30);
@@ -297,6 +348,7 @@ public class PaneGenerator extends Application {
     topGoalsInventory.setId(GOALS_INFO);
     Text goalsTitle = new Text("Goals:");
     goalsTitle.setId(GOALS_INFO);
+
 
     topGoals.getChildren().addAll(goalsTitle, topGoalsHealth,
             topGoalsGold, topGoalsScore, topGoalsInventory);
@@ -516,6 +568,13 @@ public class PaneGenerator extends Application {
     contentArea.setText(passage.getContent());
     buttonBox.getChildren().clear();
 
+    characterImage.getChildren().clear();
+    Image image = new Image("/characterIcons/" + characterIcon);
+    ImageView imageView = new ImageView(image);
+
+    characterImage.getChildren().add(imageView);
+
+
 
     // Loop through all links and create buttons for them
     for (Link link : passage.getLinks()) {
@@ -537,6 +596,15 @@ public class PaneGenerator extends Application {
       if (game.getPlayer().isDead()) {
         game.getPlayer().setHealth(0);
         button.setDisable(true);
+
+        characterImage.getChildren().clear();
+
+         image = new Image("items/Gravestone.png");
+         imageView = new ImageView(image);
+        characterImage.getChildren().add(imageView);
+        characterImage.setMaxHeight(300);
+        characterImage.setMaxWidth(300);
+
         titleLabel.setText("You are dead!");
         contentArea.setText("You have died. Go back to choose another path.");
       }

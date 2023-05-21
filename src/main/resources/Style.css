@@ -129,8 +129,8 @@
 #topMenuButton {
     -fx-background-color: #5b2c07;
     -fx-text-fill: white;
-    -fx-max-height: 30;
-    -fx-max-width: 100;
+    -fx-max-height: 22;
+    -fx-max-width: 22;
     -fx-font-family: Brazie;
     -fx-font-size: 12px;
     -fx-border-radius: 5px;

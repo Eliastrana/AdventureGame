@@ -9,6 +9,8 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
@@ -113,6 +115,15 @@ public class Pane3 extends StackPane {
     Button backButton = new Button("Back");
     backButton.setId("backNavigation");
     backButton.setAlignment(Pos.TOP_LEFT);
+
+    Image backIcon = new Image(getClass().getResourceAsStream("/iconography/Back.png"));
+
+    ImageView imageViewBack = new ImageView(backIcon);
+    imageViewBack.setPreserveRatio(true);
+    imageViewBack.setFitWidth(20); // Set the maximum width for the icon
+    imageViewBack.setFitHeight(20); // Set the maximum height for the icon
+
+    backButton.setGraphic(imageViewBack);
     backButton.setOnAction(e ->  {
       SoundPlayer.play("src/main/resources/sounds/click.wav");
       SceneSwitcher.switchToMainMenu();

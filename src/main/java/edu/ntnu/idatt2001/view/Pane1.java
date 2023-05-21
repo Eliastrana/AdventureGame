@@ -287,6 +287,15 @@ public class Pane1 extends StackPane {
     backButtonBox.setPadding(new Insets(10, 10, 10, 10));
     backButtonBox.setAlignment(Pos.TOP_LEFT);
 
+    Image backIcon = new Image(getClass().getResourceAsStream("/iconography/Back.png"));
+
+    ImageView imageViewBack = new ImageView(backIcon);
+    imageViewBack.setPreserveRatio(true);
+    imageViewBack.setFitWidth(20); // Set the maximum width for the icon
+    imageViewBack.setFitHeight(20); // Set the maximum height for the icon
+
+    backButton.setGraphic(imageViewBack);
+
     backButton.setOnAction(e -> {
       SoundPlayer.play("src/main/resources/sounds/click.wav");
       SceneSwitcher.switchToMainMenu();
