@@ -25,9 +25,7 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
-import javafx.scene.control.Label;
-import javafx.scene.control.ProgressBar;
+import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -145,6 +143,7 @@ public class PaneGenerator extends Application {
                 updateContentAndButtons(passage);
               });
             }
+            ;
             buttonBox.getChildren().add(button);
           });
           updateContentAndButtons(passage);
@@ -172,6 +171,43 @@ public class PaneGenerator extends Application {
 
 
     String topMenuButtonId = "topMenuButton";
+    Button info = new Button("Info");
+    info.setId("topMenuButton");
+    info.setOnAction(e -> {
+      SoundPlayer.play("src/main/resources/sounds/click.wav");
+
+      String fullPath = "Path: " + game.getStory().getTitle();
+
+      String allPassages = "";
+      for (Passage passage : game.getStory().getPassages()) {
+        allPassages += "\n" + passage.getTitle();
+      }
+
+      String allBrokenLinks = "";
+      for (Link link : game.getStory().getBrokenLinks()) {
+        allBrokenLinks += "\n" + link.getText();
+      }
+
+      String allInfo =  "All passages: " + allPassages + "\n\n" + "All broken links: " + allBrokenLinks;
+
+      TextArea textArea = new TextArea(allInfo);
+      textArea.setEditable(false);
+      textArea.setWrapText(true);
+
+      ScrollPane scrollPane = new ScrollPane(textArea);
+      scrollPane.setFitToWidth(true);
+      scrollPane.setPrefHeight(200);
+      scrollPane.setPrefWidth(550);
+
+      Alert alert = new Alert(Alert.AlertType.INFORMATION);
+      alert.setHeaderText("Info" +"\n\n"+ fullPath);
+      alert.getDialogPane().setContent(scrollPane);
+      alert.initOwner(primaryStage);
+
+      alert.showAndWait();
+    });
+
+
     Button restart = new Button("Restart");
     restart.setId(topMenuButtonId);
 
@@ -229,7 +265,7 @@ public class PaneGenerator extends Application {
               850, 500, primaryStage);
     });
 
-    topmenuOptions.getChildren().addAll(helpButton, restart, backButton, quitButton);
+    topmenuOptions.getChildren().addAll(info, helpButton, restart, backButton, quitButton);
     topmenuOptions.setSpacing(20);
     VBox topInfo = new VBox();
     topInfo.setSpacing(30);
@@ -265,7 +301,7 @@ public class PaneGenerator extends Application {
     Scene scene = new Scene(root, 800, 600);
     scene.getStylesheets().add("/Style.css");
     stage.setScene(scene);
-    stage.setTitle(game.getStory().getTitle());
+    stage.setTitle("Adventure Game");
     stage.show();
   }
 
@@ -526,7 +562,7 @@ public class PaneGenerator extends Application {
       FileDashboard.gameSave("\n", saveFilePath);
 
     } catch (IOException e) {
-      AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
+      //AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage); THIS IS THE BROWN ERROR MESSAGE
 
     }
   }

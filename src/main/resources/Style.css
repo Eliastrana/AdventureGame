@@ -84,8 +84,21 @@
     -fx-padding: 10px;
 }
 
+/*.root {*/
+/*    -fx-background-image: url("mainmenubackground.jpg");*/
+/*    -fx-background-repeat: no-repeat;*/
+/*    -fx-background-size: cover;*/
+/*}*/
+
+/*.MainMenuPane {*/
+/*    -fx-background-image: url("mainmenubackground.jpg");*/
+/*    -fx-background-repeat: no-repeat;*/
+/*    -fx-background-size: cover;*/
+/*}*/
+
+
 .root {
-    -fx-background-image: url("mainmenubackground.jpg");
+    -fx-background-image: url("backgroundimageBlurry.png");
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
@@ -95,7 +108,6 @@
     -fx-background-repeat: no-repeat;
     -fx-background-size: cover;
 }
-
 
 
 #mainMenuButton {
