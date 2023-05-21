@@ -601,28 +601,31 @@ public class PaneGenerator extends Application {
    * Updates the passageCounter and sends the player to the previous passage.
    */
   private void backAction() throws InvalidFormatException {
-    passageCounter--;
-    updatePlayerInfoBasedOnCounter(passageCounter);
-    updateInventoryBasedOnCounter(passageCounter);
-    updatePlayerInfo();
-    updateGoals();
+    if (passageCounter != 0) {
+      passageCounter--;
+      updatePlayerInfoBasedOnCounter(passageCounter);
+      updateInventoryBasedOnCounter(passageCounter);
+      updatePlayerInfo();
+      updateGoals();
 
-    SaveFileReader reader = new SaveFileReader();
-    String namePassage = reader.getPassageNameFromCounter(saveFilePath, passageCounter);
-
-
-    if (game.getStory().getOpeningPassage().getTitle().equals(namePassage)) {
-      updateContentAndButtons(game.getStory().getOpeningPassage());
+      SaveFileReader reader = new SaveFileReader();
+      String namePassage = reader.getPassageNameFromCounter(saveFilePath, passageCounter);
 
 
-    } else {
-      for (Passage passage : game.getStory().getPassages()) {
-        if (passage.getTitle().equals(namePassage)) {
-          updateContentAndButtons(passage);
-          break;
+      if (game.getStory().getOpeningPassage().getTitle().equals(namePassage)) {
+        updateContentAndButtons(game.getStory().getOpeningPassage());
+
+
+      } else {
+        for (Passage passage : game.getStory().getPassages()) {
+          if (passage.getTitle().equals(namePassage)) {
+            updateContentAndButtons(passage);
+            break;
+          }
         }
       }
     }
+
   }
 
   /**
