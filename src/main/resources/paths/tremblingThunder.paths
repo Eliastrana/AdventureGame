@@ -1,0 +1,109 @@
+::Trembling thunder
+You are running outside, it is raining with thunder and lightning, you have to find the way to the end without dying.
+[Start sprinting] (First obstacle)
+
+::First obstacle
+The first obstacle is a large puddle. How will you avoid the puddle?
+[Jump over it] (Jump over it)
+{HealthAction: -10}
+[Run though it] (Run though it)
+{HealthAction: -5}
+
+::Jump over it
+You jump over the puddle. When you land you hurt your ankle a little bit. You lose 10 health, but gain 10 score-points.
+[Continue] (Second obstacle)
+{ScoreAction: 10}
+
+::Run though it
+You run through the puddle. This makes you wet, you do not like being wet. You lose 5 health, but gain 20 score-points.
+[Continue] (Second obstacle)
+{ScoreAction: 20}
+
+::Second obstacle
+The second obstacle is a large gap in the road. How will you avoid the gap?
+[Run around it] (Running around)
+{ScoreAction: 10}
+[Walk across thin plank] (Walking across)
+{ScoreAction: 20}
+{HealthAction: -10}
+
+::Running around
+You run around the gap. You lose some time but you are safe.
+[Continue] (Third obstacle)
+
+::Walking across
+You walk across the thin plank. This is very dangerous, you could fall down. You lose 10 health.
+[Continue](Third obstacle)
+
+::Third obstacle
+A man tries to sell you stuff. How will you react? He tells you to either buy a stick or a flashlight. This man i selling some weird stuff.
+[Buy a stick 10g] (Buying a stick)
+{GoldAction: -10}
+{ScoreAction: 10}
+{InventoryAction: Stick}
+[Buy a flashlight 20g] (Buying a flashlight)
+{ScoreAction: 20}
+{GoldAction: -20}
+{InventoryAction: Flashlight}
+
+
+::Buying a stick
+You buy a stick. This was the cheapest. You lose 10 gold, but gain 20 score-points. You have good money management skills!
+[Continue] (Fourth obstacle)
+
+::Buying a flashlight
+You buy a flashlight. This was the most expensive. You lose 20 gold, but gain 10 score-points. You think to yourself: "Why did you purchase a flashlight from a man in the middle of the road, it probably doesnt even work."
+[Continue] (Fourth obstacle)
+
+::Fourth obstacle
+You are running through a forest. You see a bear. What do you do?
+[Flirt with the bear] (Flirting with the bear)
+{ScoreAction: -10}
+{HealthAction: -10}
+[Run away] (Running away from the bear)
+{GoldAction: -40}
+{ScoreAction: 20}
+
+::Flirting with the bear
+You flirt with the bear. The bear does not like this. The bear attacks you. You lose 10 health.
+[Continue] (Fifth obstacle)
+
+::Running away from the bear
+You run away from the bear. The bear thinks you are a coward and steals some of your gold while you are running away. You lose 40 gold.
+[Continue] (Fifth obstacle)
+
+::Fifth obstacle
+You are running through a swamp. You see a crocodile. What do you do?
+[Flirt with the crocodile] (Flirting with the crocodile)
+{ScoreAction: -10}
+{HealthAction: -20}
+{InventoryAction: Alzheimers-Medication}
+[Run away] (Running away from the crocodile)
+{GoldAction: -40}
+{ScoreAction: 20}
+{InventoryAction: Rock}
+
+::Flirting with the crocodile
+You flirt with the crocodile. The crocodile does not like it, you are being a creep. You lose 20 health. You also lose 10 score-points. You also get medication for possible alzheimers.
+[Continue] (Sixth obstacle)
+
+::Running away from the crocodile
+You run away from the crocodile. The crocodile chases you and forces you to purchase a shiny rock from him. You lose 40 gold.
+[Continue] (Sixth obstacle)
+
+::Sixth obstacle
+The rock that the crocodile gave you made you feel very dizzy, you attempt to go into your bed.
+[Go to bed] (Going to bed)
+{ScoreAction: 100}
+[Miss the bed] (Missing the bed)
+{ScoreAction: -100}
+
+::Going to bed
+You go to bed. You win the game. You gain 50 score-points.
+
+::Missing the bed
+You miss the bed. You lose the game. You lose 50 score-points.
+
+
+
+

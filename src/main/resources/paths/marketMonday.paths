@@ -1,0 +1,103 @@
+:: Market day
+You wake up to the sound of the rooster crowing. You get up and get dressed. You go downstairs and eat breakfast. You go outside and see the market is open. You go to the market and see a lot of people there. You see a lot of people selling things. You see a lot of people buying things.
+[Walk to the market] (The market)
+
+:: The market
+As you approach the market you two different stores. One sells som old stuff, the other is a bakery.
+[Go to the old store] (The old store)
+[Go to the bakery] (The Bakery)
+
+
+
+:: The Bakery
+In the bakery you see that they are selling a lot of different baked goods. You think to yourself that you should buy something.
+[Buy a cake 10g] (The Bakery)
+{InventoryAction: Cake}
+{GoldAction: -10}
+{ScoreAction: +10}
+[Buy a pie 15g] (The Bakery)
+{InventoryAction: Pie}
+{GoldAction: -15}
+{ScoreAction: +15}
+[Buy a cookie 5g] (The Bakery)
+{InventoryAction: Cookie}
+{GoldAction: -5}
+{ScoreAction: +5}
+[Leave the bakery] (Walking away)
+
+
+:: The old store
+In the old store you find a really old sword. You find a really old rock. You find a really old stick. It is difficult to decide what you want.
+[Buy the sword 30g] (The old store)
+{GoldAction: -30}
+{ScoreAction: +30}
+{InventoryAction: Sword}
+[Buy the rock 10g] (The old store)
+{GoldAction: -10}
+{ScoreAction: +10}
+{InventoryAction: Rock}
+[Buy the Stick 15g] (The old store)
+{GoldAction: -15}
+{ScoreAction: +15}
+{InventoryAction: Stick}
+[Leave the store] (Walking away)
+
+
+
+
+:: Walking away
+As you walk away with your new technology, you think about what you wish to use it for.
+[Go home] (Home)
+{ScoreAction: 10}
+[Go to the old store] (The old store)
+[Go to the bakery] (The Bakery)
+
+:: Home
+You go home and go to sleep. You wake up the next day, eager to explore the world.
+[Wake up] (A new day)
+{InventoryAction: Rock}
+{ScoreAction: 10}
+[Continue sleeping] (Home)
+
+:: A new day
+You walk the normal path around the lake that you usually do. On the ground you find a beautiful looking rock.
+[Continue walking] (The strange man)
+{ScoreAction: 10}
+
+:: The strange man
+A strange man approaches you. He says that he is really hungry and asks if you have any food.
+[Give him all your food](The aggressive man)
+{InventoryAction: -3}
+{HealthAction: -30}
+[Tell him you will not give him anything] (You get stabbed)
+{HealthAction: -70}
+
+:: The aggressive man
+Even though you gave him all your food, he still wants more. He punches you in the face. You pass out.
+[Pass out on the ground] (Passed out)
+
+:: You get stabbed
+He gets angry and stabs you in the stomach. You pass out. He takes all your baked goods, and your rock.
+[Pass out on the ground] (Passed out)
+{InventoryAction: -Cake}
+{InventoryAction: -Rock}
+{HealthAction: -20}
+
+:: Passed out
+You are passed out on the ground for many hours. When you wake up, it is dark outside. On the ground you find a coin that the man left there because he felt bad about what he did to you.
+[Pick up the coin](Home walk)
+{GoldAction: 20}
+[Waddle home](Home walk)
+{ScoreAction: 10}
+
+:: Home walk
+You walk home. You go to sleep. You wake up the next day, less eager to explore the world.
+
+
+
+
+
+
+
+
+
