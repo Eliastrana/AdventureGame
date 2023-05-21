@@ -1,9 +1,9 @@
 package edu.ntnu.idatt2001.view;
 
-import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
-import edu.ntnu.idatt2001.utility.filehandling.PlayerRegister;
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
+import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
+import edu.ntnu.idatt2001.utility.filehandling.PlayerRegister;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -13,6 +13,9 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
+/**
+ * Frontend Class for creating a player.
+ */
 public class Pane3 extends StackPane {
 
   TextField createPlayerName = new TextField();
@@ -21,6 +24,9 @@ public class Pane3 extends StackPane {
   TextField setPlayerScore = new TextField();
   ComboBox<String> playerInventory = new ComboBox<>();
 
+  /**
+   * Constructor for Pane3.
+   */
   public Pane3() {
 
     setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
@@ -93,9 +99,13 @@ public class Pane3 extends StackPane {
         setPlayerGold.clear();
         setPlayerScore.clear();
       } catch (NumberFormatException ex) {
-        showAlert("Invalid input", "You have entered an invalid input", "Please enter a valid input");
+        showAlert("Invalid input",
+                "You have entered an invalid input",
+                "Please enter a valid input");
       } catch (Exception ex) {
-        showAlert("Empty fields", "You have not filled out all the fields", "Please fill out all the fields");
+        showAlert("Empty fields",
+                "You have not filled out all the fields",
+                "Please fill out all the fields");
       }
     });
 
@@ -114,6 +124,7 @@ public class Pane3 extends StackPane {
   }
 
   private void populatePlayerInventory() {
+
     playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
   }
 

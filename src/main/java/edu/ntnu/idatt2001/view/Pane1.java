@@ -250,7 +250,7 @@ public class Pane1 extends StackPane {
 
       try {
 
-        GameFromImport.GameFromImportMethod();
+        GameFromImport.gameFromImportMethod();
       } catch (IOException e) {
         Alert alert = new Alert(Alert.AlertType.ERROR);
         alert.getDialogPane().setId(alertBoxId);

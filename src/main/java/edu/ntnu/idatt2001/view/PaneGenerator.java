@@ -25,7 +25,12 @@ import java.util.List;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.ProgressBar;
+import javafx.scene.control.ScrollPane;
+import javafx.scene.control.TextArea;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
@@ -35,6 +40,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
 
 /**
  * Class for generating panes.
@@ -121,7 +127,6 @@ public class PaneGenerator extends Application {
 
     SaveFileReader saveFileReader = new SaveFileReader();
     if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
-      System.out.println("First passage existing");
       String lastSeenPassage = saveFileReader.getLastSeenPassage(saveFilePath);
       for (Passage passage : game.getStory().getPassages()) {
         if (passage.getTitle().equals(lastSeenPassage)) {
@@ -143,7 +148,6 @@ public class PaneGenerator extends Application {
                 updateContentAndButtons(passage);
               });
             }
-            ;
             buttonBox.getChildren().add(button);
           });
           updateContentAndButtons(passage);
@@ -174,23 +178,31 @@ public class PaneGenerator extends Application {
     Button info = new Button("Info");
     info.setId("topMenuButton");
     info.setOnAction(e -> {
-      SoundPlayer.play("src/main/resources/sounds/click.wav");
+      SoundPlayer.play(CLICKSOUND);
 
-      String fullPath = "Path: " + game.getStory().getTitle();
 
-      String allPassages = "";
+
+      StringBuilder allPassages = new StringBuilder();
       for (Passage passage : game.getStory().getPassages()) {
-        allPassages += "\n" + passage.getTitle();
+        allPassages.append("\n").append(passage.getTitle());
       }
 
-      String allBrokenLinks = "";
+      StringBuilder allBrokenLinks = new StringBuilder();
       for (Link link : game.getStory().getBrokenLinks()) {
-        allBrokenLinks += "\n" + link.getText();
+        allBrokenLinks.append("\n").append(link.getText());
       }
 
-      String allInfo =  "All passages: " + allPassages + "\n\n" + "All broken links: " + allBrokenLinks;
+      StringBuilder allInfo = new StringBuilder();
+      allInfo.append("All passages: ")
+              .append(allPassages)
+              .append("\n\n")
+              .append("All broken links: ")
+              .append(allBrokenLinks);
 
-      TextArea textArea = new TextArea(allInfo);
+      String displayBrokenLinks = allInfo.toString();
+
+
+      TextArea textArea = new TextArea(displayBrokenLinks);
       textArea.setEditable(false);
       textArea.setWrapText(true);
 
@@ -199,8 +211,9 @@ public class PaneGenerator extends Application {
       scrollPane.setPrefHeight(200);
       scrollPane.setPrefWidth(550);
 
+      String fullPath = "Path: " + game.getStory().getTitle();
       Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setHeaderText("Info" +"\n\n"+ fullPath);
+      alert.setHeaderText("Info" + "\n\n" + fullPath);
       alert.getDialogPane().setContent(scrollPane);
       alert.initOwner(primaryStage);
 
@@ -562,7 +575,7 @@ public class PaneGenerator extends Application {
       FileDashboard.gameSave("\n", saveFilePath);
 
     } catch (IOException e) {
-      //AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage); THIS IS THE BROWN ERROR MESSAGE
+      AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
 
     }
   }

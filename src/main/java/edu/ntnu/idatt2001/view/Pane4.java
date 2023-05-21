@@ -8,14 +8,20 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.*;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
+import javafx.scene.control.TextArea;
+import javafx.scene.control.TextField;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 
-
+/**
+ * Frontend Class for creating goals.
+ */
 public class Pane4 extends StackPane {
 
   TextField saveNameField = new TextField();
@@ -30,6 +36,9 @@ public class Pane4 extends StackPane {
 
   String pathToSavedGoals = "src/main/resources/savedGoals/";
 
+  /**
+   * Constructor for Pane4.
+   */
   public Pane4() {
 
     setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
@@ -59,7 +68,7 @@ public class Pane4 extends StackPane {
     backButtonHolder.setAlignment(Pos.TOP_LEFT);
     backButton.setOnAction(e -> {
       SoundPlayer.play(clickSound);
-    SceneSwitcher.switchToMainMenu();
+      SceneSwitcher.switchToMainMenu();
     });
 
     HBox goals = new HBox();
@@ -121,7 +130,9 @@ public class Pane4 extends StackPane {
       SoundPlayer.play(clickSound);
     });
 
-    updateGoals.getChildren().addAll(updateGoalsTitle, saveNameField, selectGoalsCategory,inputField, updateButton);
+    updateGoals.getChildren().addAll(updateGoalsTitle,
+            saveNameField, selectGoalsCategory, inputField,
+            updateButton);
     goals.getChildren().addAll(currentGoals, updateGoals);
     goals.setAlignment(Pos.CENTER);
     goalsPane.getChildren().addAll(goals);
@@ -137,13 +148,13 @@ public class Pane4 extends StackPane {
       if (selectedItem != null) {
         String saveName = saveNameField.getText() + ".txt";
         String saveLocation = pathToSavedGoals + saveName;
-        FileDashboard.writeGoals(selectedItem +": "+ prefix, saveLocation);
+        FileDashboard.writeGoals(selectedItem + ": " + prefix, saveLocation);
       }
     } catch (IOException ex) {
       Alert alert = new Alert(Alert.AlertType.ERROR);
       alert.setTitle("Error");
       alert.setHeaderText("Could not save file");
-      alert.setContentText("Could not save file"+ ex.getMessage());
+      alert.setContentText("Could not save file" + ex.getMessage());
       alert.showAndWait();
     }
     SoundPlayer.play(clickSound);

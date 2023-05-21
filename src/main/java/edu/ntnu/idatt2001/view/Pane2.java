@@ -145,8 +145,8 @@ public class Pane2 extends StackPane {
             writeGameFieldTitle, writeGameContent, gameButton1,
             gameButton2, actionButtonHbox, writeGameButton);
 
-    VBox vBox = new VBox();
-    vBox.getChildren().addAll(gameCreation);
+    VBox createGameVbox = new VBox();
+    createGameVbox.getChildren().addAll(gameCreation);
 
 
     Button backButton = new Button("Back");
@@ -168,10 +168,13 @@ public class Pane2 extends StackPane {
               <html>
                   <body>
                       <p>
-                      Write a name for your game save, a title for your game field, 
-                      the content of your game field and the text and target of the buttons. <br/>
-                      If you only want one button, leave the other button text and target blank. <br/>
-                      When you are done, press the Write game button and your game will be saved in 
+                      Write a name for your game save, a title for your 
+                      game field, the content of your game field 
+                      and the text and target of the buttons. <br/>
+                      If you only want one button, leave the other 
+                      button text and target blank. <br/>
+                      When you are done, press the Write game 
+                      button and your game will be saved in 
                       the path selector in Load Game. <br/>
                       As long as the save name is the same, 
                       it will save your passage in the same place
@@ -190,7 +193,7 @@ public class Pane2 extends StackPane {
     topBar.setSpacing(15);
     topBar.setPadding(new javafx.geometry.Insets(10, 10, 10, 10));
 
-    structure.getChildren().addAll(topBar, vBox);
+    structure.getChildren().addAll(topBar, createGameVbox);
 
     getChildren().addAll(structure);
   }
