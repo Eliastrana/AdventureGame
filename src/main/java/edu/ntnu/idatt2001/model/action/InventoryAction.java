@@ -24,6 +24,11 @@ public class InventoryAction implements Action {
     if (player == null) {
       throw new IllegalArgumentException("Player cannot be null");
     }
+    if (item.startsWith("-")) {
+      item = item.substring(1);
+      player.removeFromInventory(item);
+      return;
+    }
 
     int initialInventorySize = player.getInventory().size();
     player.addToInventory(item);

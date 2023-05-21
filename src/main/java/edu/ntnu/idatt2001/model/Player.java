@@ -1,6 +1,7 @@
 package edu.ntnu.idatt2001.model;
 
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -113,6 +114,23 @@ public class Player {
     this.lastPassage = lastPassage;
   }
 
+  /**
+   * Creates a deep copy of the given player.
+   *
+   * @param original Player to copy
+   */
+  public Player(Player original) {
+    if (original == null) {
+      throw new IllegalArgumentException("Original cannot be null");
+    }
+    this.name = original.name;
+    this.health = original.health;
+    this.score = original.score;
+    this.gold = original.gold;
+    this.inventory = new ArrayList<>(original.inventory);
+    this.lastPassage = original.lastPassage;
+  }
+
 
   /**
    * Returns the name of the player.
@@ -188,6 +206,22 @@ public class Player {
 
   public List<String> getInventory() {
     return inventory;
+  }
+
+  /**
+   * Removes an item from the player's inventory.
+   *
+   * @param item String item
+   */
+
+  public void removeFromInventory(String item) {
+    if (item == null || item.isBlank()) {
+      throw new IllegalArgumentException("Item cannot be empty");
+    }
+    if (!inventory.contains(item)) {
+      throw new IllegalArgumentException("Item is not in inventory");
+    }
+    inventory.remove(item);
   }
 
   /**
@@ -291,6 +325,15 @@ public class Player {
    */
   public boolean isBroke() {
     return gold <= 0;
+  }
+
+  /**
+   * Returns whether the player is loose.
+   *
+   * @return boolean isLoose
+   */
+  public boolean isScoreNegative() {
+    return score <= 0;
   }
 
 

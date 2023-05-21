@@ -330,12 +330,19 @@ public class PaneGenerator extends Application {
     try {
       playerInfo.getChildren().clear();
       nameLabel.setText("Player: " + game.getPlayer().getName());
-      if (game.getPlayer().isBroke()) {
-        game.getPlayer().setGold(0);
+      goldLabel.setText("Gold: " + game.getPlayer().getGold());
+
+      if (game.getPlayer().isDead()) {
+        game.getPlayer().setHealth(0);
       }
       healthLabel.setText("Health: " + game.getPlayer().getHealth());
-      goldLabel.setText("Gold: " + game.getPlayer().getGold());
+
+
+      if (game.getPlayer().isScoreNegative()) {
+        game.getPlayer().setScore(0);
+      }
       scoreLabel.setText("Score: " + game.getPlayer().getScore());
+
 
       healthBar.setProgress(progressBar());
 
@@ -381,7 +388,6 @@ public class PaneGenerator extends Application {
     updatePlayerInfo();
     updateGoals();
     updateContentAndButtons(game.begin());
-
   }
 
   /**
@@ -398,6 +404,9 @@ public class PaneGenerator extends Application {
 
     Text scoreGoalTitle = new Text("Score: " + "\n");
     scoreGoalTitle.setId(GOALS_INFO);
+    if (game.getPlayer().isScoreNegative()) {
+      game.getPlayer().setScore(0);
+    }
     Text currentScore = new Text(game.getPlayer().getScore() + "/");
     goalDescription(scoreGoalTitle, currentScore, scoreGoals, topGoalsScore);
 
@@ -501,56 +510,63 @@ public class PaneGenerator extends Application {
     if (passage == null) {
       throw new IllegalArgumentException("Passage cannot be null");
     }
-    if (game.getPlayer().isBroke()) {
-      game.getPlayer().setHealth(0);
-      AlertUtil.showAlert("You are broke!", "You have no money left, "
-              + "and you can't afford to live anymore. You die.", 200, 100, primaryStage);
-    }
 
     game.getPlayer().setLastPassage(passage);
     titleLabel.setText(passage.getTitle());
     contentArea.setText(passage.getContent());
     buttonBox.getChildren().clear();
-    List<Link> links = passage.getLinks();
-    for (Link link : links) {
+
+
+    // Loop through all links and create buttons for them
+    for (Link link : passage.getLinks()) {
       SoundPlayer.play(CLICK_SOUND);
       Button button = new Button(link.getText());
       button.setId("inGameChoiceButton");
+
+      // Disable button if player can't afford it
+      if (!game.canPlayerAfford(link)) {
+        button.setDisable(true);
+      }
+
+      // Disable button if link is broken
       if (brokenLinks.contains(link)) {
         button.setDisable(true);
-      } else if (game.getPlayer().isDead()) {
+      }
+
+      // Disable button if player is dead
+      if (game.getPlayer().isDead()) {
         game.getPlayer().setHealth(0);
         button.setDisable(true);
         titleLabel.setText("You are dead!");
         contentArea.setText("You have died. Go back to choose another path.");
       }
-      else {
-        button.setOnAction(event -> {
-          for (Action action : link.getActions()) {
-            action.execute(game.getPlayer());
-            updateGoals();
-          }
-          Passage nextPassage = game.go(link);
-          if (nextPassage != null) {
-            game.getPlayer().setLastPassage(nextPassage);
-            try {
-              passageCounter++;
-              FileDashboard.gameSave("C:"
-                      + passageCounter
-                      + "\n"
-                      + "P:"
-                      + nextPassage.getTitle(), saveFilePath);
-              writeStatus();
-            } catch (IOException e) {
-              AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
 
-            }
-            updateContentAndButtons(nextPassage);
+      button.setOnAction(event -> {
+        for (Action action : link.getActions()) {
+          action.execute(game.getPlayer());
+          updateGoals();
+        }
+        Passage nextPassage = game.go(link);
+        if (nextPassage != null) {
+          game.getPlayer().setLastPassage(nextPassage);
+          try {
+            passageCounter++;
+            FileDashboard.gameSave("C:"
+                    + passageCounter
+                    + "\n"
+                    + "P:"
+                    + nextPassage.getTitle(), saveFilePath);
+            writeStatus();
+          } catch (IOException e) {
+            AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
+
           }
-          playerInfo.getChildren().clear();
-          updatePlayerInfo();
-        });
-      }
+          updateContentAndButtons(nextPassage);
+        }
+        playerInfo.getChildren().clear();
+        updatePlayerInfo();
+      });
+
       buttonBox.getChildren().add(button);
     }
   }

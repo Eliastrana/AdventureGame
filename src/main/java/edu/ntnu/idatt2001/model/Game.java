@@ -1,5 +1,7 @@
 package edu.ntnu.idatt2001.model;
 
+import edu.ntnu.idatt2001.model.action.Action;
+import edu.ntnu.idatt2001.model.action.GoldAction;
 import edu.ntnu.idatt2001.model.goals.Goal;
 import java.util.List;
 
@@ -86,5 +88,20 @@ public class Game {
     return story.getPassage(link);
   }
 
+
+  /**
+   * Returns true if the player can afford the action.
+   *
+   * @return true/false if the player can afford the action
+   */
+  public boolean canPlayerAfford(Link link) {
+    Player deepCopy = new Player(player);
+    return link.getActions().stream()
+        .filter(GoldAction.class::isInstance)
+        .allMatch(action -> {
+          action.execute(deepCopy);
+          return deepCopy.getGold() >= 0;
+        });
+  }
 }
 
