@@ -91,7 +91,8 @@ public class Story {
 
     boolean isLinkInUse = passages.values()
             .stream()
-            .anyMatch(passage -> passage.getLinks().contains(link)) || openingPassage.getLinks().contains(link);
+            .anyMatch(passage -> passage.getLinks().contains(link))
+            || openingPassage.getLinks().contains(link);
 
     if (isLinkInUse) {
       throw new IllegalArgumentException("Link is in use");

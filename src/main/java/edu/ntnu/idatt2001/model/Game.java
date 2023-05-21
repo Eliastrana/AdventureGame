@@ -39,6 +39,7 @@ public class Game {
 
   /**
    * Returns the player of the game.
+   *
    * @return player of the game
    */
   public Player getPlayer() {
@@ -47,6 +48,7 @@ public class Game {
 
   /**
    * Returns the story of the game.
+   *
    * @return story of the game
    */
   public Story getStory() {
@@ -55,6 +57,7 @@ public class Game {
 
   /**
    * Returns the goals of the game.
+   *
    * @return List of the goals in the game
    */
   public List<Goal> getGoals() {
@@ -63,6 +66,7 @@ public class Game {
 
   /**
    * Returns the opening passage of the game.
+   *
    * @return first Passage of the game
    */
   public Passage begin() {
