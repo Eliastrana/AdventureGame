@@ -19,8 +19,10 @@ import edu.ntnu.idatt2001.utility.filehandling.SaveFileReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.*;
-
+import java.util.ArrayList;
+import java.util.Comparator;
+import java.util.List;
+import java.util.Map;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -46,7 +48,7 @@ import javafx.stage.Stage;
  */
 
 public class PaneGenerator extends Application {
-  static final String CLICKSOUND = "src/main/resources/sounds/click.wav";
+  static final String CLICK_SOUND = "src/main/resources/sounds/click.wav";
   static final String ERROR_TITLE = "Error";
 
 
@@ -177,7 +179,7 @@ public class PaneGenerator extends Application {
     Button info = new Button("Info");
     info.setId("topMenuButton");
     info.setOnAction(e -> {
-      SoundPlayer.play(CLICKSOUND);
+      SoundPlayer.play(CLICK_SOUND);
 
 
 
@@ -233,7 +235,7 @@ public class PaneGenerator extends Application {
     quitButton.setId(topMenuButtonId);
     quitButton.setOnAction(e -> {
       try {
-        SoundPlayer.play(CLICKSOUND);
+        SoundPlayer.play(CLICK_SOUND);
         quitGame(stage);
 
       } catch (IOException ex) {
@@ -244,7 +246,7 @@ public class PaneGenerator extends Application {
     Button backButton = new Button("Back");
     backButton.setId(topMenuButtonId);
     backButton.setOnAction(e -> {
-      SoundPlayer.play(CLICKSOUND);
+      SoundPlayer.play(CLICK_SOUND);
       updateGoals();
       try {
         backAction();
@@ -257,7 +259,7 @@ public class PaneGenerator extends Application {
     Button helpButton = new Button("Help");
     helpButton.setId(topMenuButtonId);
     helpButton.setOnAction(e -> {
-      SoundPlayer.play(CLICKSOUND);
+      SoundPlayer.play(CLICK_SOUND);
 
       AlertUtil.showAlert("Top Menu Button",
               "These buttons allow you to navigate back to the start,"
@@ -497,7 +499,7 @@ public class PaneGenerator extends Application {
     buttonBox.getChildren().clear();
     List<Link> links = passage.getLinks();
     for (Link link : links) {
-      SoundPlayer.play(CLICKSOUND);
+      SoundPlayer.play(CLICK_SOUND);
       Button button = new Button(link.getText());
       button.setId("inGameChoiceButton");
       if (brokenLinks.contains(link) || game.getPlayer().isDead()) {
