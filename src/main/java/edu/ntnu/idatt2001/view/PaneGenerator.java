@@ -95,6 +95,7 @@ public class PaneGenerator extends Application {
   @Override
   public void start(Stage stage) throws IOException {
 
+
     healthBar.setMinWidth(200);
 
 
