@@ -330,6 +330,9 @@ public class PaneGenerator extends Application {
     try {
       playerInfo.getChildren().clear();
       nameLabel.setText("Player: " + game.getPlayer().getName());
+      if (game.getPlayer().isBroke()) {
+        game.getPlayer().setGold(0);
+      }
       healthLabel.setText("Health: " + game.getPlayer().getHealth());
       goldLabel.setText("Gold: " + game.getPlayer().getGold());
       scoreLabel.setText("Score: " + game.getPlayer().getScore());
@@ -387,6 +390,9 @@ public class PaneGenerator extends Application {
   private void displayGoals() {
     Text healthGoalTitle = new Text("Health: ");
     healthGoalTitle.setId(GOALS_INFO);
+    if (game.getPlayer().isDead()) {
+      game.getPlayer().setHealth(0);
+    }
     Text currentHealth = new Text(game.getPlayer().getHealth() + " / ");
     goalDescription(healthGoalTitle, currentHealth, healthGoals, topGoalsHealth);
 
@@ -397,6 +403,9 @@ public class PaneGenerator extends Application {
 
     Text goldGoalTitle = new Text("Gold: " + "\n");
     goldGoalTitle.setId(GOALS_INFO);
+    if (game.getPlayer().isBroke()) {
+      game.getPlayer().setGold(0);
+    }
     Text currentGold = new Text(game.getPlayer().getGold() + "/");
     goalDescription(goldGoalTitle, currentGold, goldGoals, topGoalsGold);
 
@@ -492,6 +501,11 @@ public class PaneGenerator extends Application {
     if (passage == null) {
       throw new IllegalArgumentException("Passage cannot be null");
     }
+    if (game.getPlayer().isBroke()) {
+      game.getPlayer().setHealth(0);
+      AlertUtil.showAlert("You are broke!", "You have no money left, "
+              + "and you can't afford to live anymore. You die.", 200, 100, primaryStage);
+    }
 
     game.getPlayer().setLastPassage(passage);
     titleLabel.setText(passage.getTitle());
@@ -502,9 +516,15 @@ public class PaneGenerator extends Application {
       SoundPlayer.play(CLICK_SOUND);
       Button button = new Button(link.getText());
       button.setId("inGameChoiceButton");
-      if (brokenLinks.contains(link) || game.getPlayer().isDead()) {
+      if (brokenLinks.contains(link)) {
         button.setDisable(true);
-      } else {
+      } else if (game.getPlayer().isDead()) {
+        game.getPlayer().setHealth(0);
+        button.setDisable(true);
+        titleLabel.setText("You are dead!");
+        contentArea.setText("You have died. Go back to choose another path.");
+      }
+      else {
         button.setOnAction(event -> {
           for (Action action : link.getActions()) {
             action.execute(game.getPlayer());
