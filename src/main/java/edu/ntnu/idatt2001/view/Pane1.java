@@ -278,9 +278,14 @@ public class Pane1 extends StackPane {
 
     });
 
+    VBox backButtonBox = new VBox();
     Button backButton = new Button("Back");
-    backButton.setPadding(new Insets(10, 10, 10, 10));
+    backButton.setAlignment(Pos.TOP_LEFT);
     backButton.setId("backNavigation");
+    backButtonBox.getChildren().add(backButton);
+    backButtonBox.setSpacing(10);
+    backButtonBox.setPadding(new Insets(10, 10, 10, 10));
+    backButtonBox.setAlignment(Pos.TOP_LEFT);
 
     backButton.setOnAction(e -> {
       SoundPlayer.play("src/main/resources/sounds/click.wav");
@@ -317,7 +322,7 @@ public class Pane1 extends StackPane {
     inputFields.setPadding(new Insets(100, 100, 100, 0));
 
     content.getChildren().addAll(characterImageAndButtons, inputFields);
-    structure.getChildren().addAll(backButton, content);
+    structure.getChildren().addAll(backButtonBox, content);
     structure.setSpacing(20);
     getChildren().addAll(structure);
   }

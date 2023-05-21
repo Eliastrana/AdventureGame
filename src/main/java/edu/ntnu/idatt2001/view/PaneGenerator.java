@@ -14,14 +14,13 @@ import edu.ntnu.idatt2001.model.goals.InventoryGoal;
 import edu.ntnu.idatt2001.model.goals.ScoreGoal;
 import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
+import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
 import edu.ntnu.idatt2001.utility.filehandling.SaveFileReader;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Comparator;
-import java.util.HashMap;
-import java.util.List;
+import java.util.*;
+
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -225,7 +224,6 @@ public class PaneGenerator extends Application {
     restart.setId(topMenuButtonId);
 
     restart.setOnAction(e -> {
-      SoundPlayer.play(CLICKSOUND);
       updateGoals();
       restartAction();
       healthBar.setProgress(progressBar());
@@ -248,7 +246,11 @@ public class PaneGenerator extends Application {
     backButton.setOnAction(e -> {
       SoundPlayer.play(CLICKSOUND);
       updateGoals();
-      backAction();
+      try {
+        backAction();
+      } catch (InvalidFormatException ex) {
+        throw new RuntimeException(ex);
+      }
       healthBar.setProgress(progressBar());
     });
 
@@ -541,7 +543,7 @@ public class PaneGenerator extends Application {
     healthBar.setProgress(progressBar());
 
     SaveFileReader reader = new SaveFileReader();
-    HashMap<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
+    Map<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
 
     if (passageData.containsKey(HEALTH) && passageData.get(HEALTH) instanceof Integer) {
       game.getPlayer().setHealth((int) passageData.get(HEALTH));
@@ -557,7 +559,7 @@ public class PaneGenerator extends Application {
 
   private void updateInventoryBasedOnCounter(int counter) {
     SaveFileReader reader = new SaveFileReader();
-    ArrayList<String> inventory = reader.getInventoryFromCounter(saveFilePath, counter);
+    List<String> inventory = reader.getInventoryFromCounter(saveFilePath, counter);
     game.getPlayer().setInventory(inventory);
     updatePlayerInfo();
   }
@@ -598,7 +600,7 @@ public class PaneGenerator extends Application {
   /**
    * Updates the passageCounter and sends the player to the previous passage.
    */
-  private void backAction() {
+  private void backAction() throws InvalidFormatException {
     passageCounter--;
     updatePlayerInfoBasedOnCounter(passageCounter);
     updateInventoryBasedOnCounter(passageCounter);

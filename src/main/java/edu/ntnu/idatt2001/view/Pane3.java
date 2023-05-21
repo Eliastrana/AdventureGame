@@ -109,6 +109,7 @@ public class Pane3 extends StackPane {
       }
     });
 
+    VBox backButtonBox = new VBox();
     Button backButton = new Button("Back");
     backButton.setId("backNavigation");
     backButton.setAlignment(Pos.TOP_LEFT);
@@ -116,9 +117,13 @@ public class Pane3 extends StackPane {
       SoundPlayer.play("src/main/resources/sounds/click.wav");
       SceneSwitcher.switchToMainMenu();
     });
+    backButtonBox.getChildren().add(backButton);
+    backButtonBox.setAlignment(Pos.TOP_LEFT);
+    backButtonBox.setSpacing(10);
+    backButtonBox.setPadding(new javafx.geometry.Insets(10, 10, 10, 10));
 
     playerCreation.setAlignment(Pos.CENTER);
-    structure.getChildren().addAll(backButton, playerCreation);
+    structure.getChildren().addAll(backButtonBox, playerCreation);
     structure.setSpacing(20);
     getChildren().addAll(structure);
   }

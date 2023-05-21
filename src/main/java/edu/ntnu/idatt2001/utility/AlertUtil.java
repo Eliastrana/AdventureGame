@@ -17,7 +17,7 @@ public class AlertUtil {
 
         // Set white background
         Stage stage = (Stage) dialog.getDialogPane().getScene().getWindow();
-        stage.getScene().getRoot().setStyle("-fx-background-color: #D2B48C;");
+        stage.getScene().getRoot().setStyle("-fx-background-color: #ffffff;");
 
         positionDialog(dialog, x, y);
 

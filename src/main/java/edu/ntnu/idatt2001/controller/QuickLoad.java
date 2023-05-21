@@ -122,7 +122,7 @@ public class QuickLoad {
             String goalsPath = "src/main/resources/savedGoals/"
                     + saveFileReader.getGoal(file.getPath())
                     + ".txt";
-            String characterIcon = saveFileReader.getImageIcon(file.getPath());
+            String characterIcon = saveFileReader.getImage(file.getPath());
             String savedDataPath = file.getPath();
 
             CreateGame game = new CreateGame(filePath, characterPath, goalsPath, characterIcon);

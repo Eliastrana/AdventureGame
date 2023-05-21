@@ -22,7 +22,7 @@ import javafx.scene.control.Alert.AlertType;
 public class FileRead {
 
   private final String filePath;
-  private final String errorAtLine = "Error at line ";
+  private static final String ErrorAtLine = "Error at line ";
 
   /**
    * Constructor for FileRead.
@@ -94,10 +94,10 @@ public class FileRead {
             links.add(new Link(textInsideBrackets, textInsideParentheses, new ArrayList<>()));
           }
         } catch (StringIndexOutOfBoundsException e) {
-          alertError(errorAtLine + lineNumber + ":\n" + "String index out of bounds");
+          alertError(ErrorAtLine + lineNumber + ":\n" + "String index out of bounds");
           e.printStackTrace();
         } catch (InvalidActionFormatException | MissingLinkException e) {
-          alertError(errorAtLine + lineNumber + ":\n" + e.getMessage());
+          alertError(ErrorAtLine + lineNumber + ":\n" + e.getMessage());
           e.printStackTrace();
         }
       }
