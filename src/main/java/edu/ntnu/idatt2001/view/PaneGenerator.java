@@ -38,6 +38,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
+/**
+ * Class for generating panes.
+ */
+
 public class PaneGenerator extends Application {
   static final String CLICKSOUND = "src/main/resources/sounds/click.wav";
   static final String ERROR_TITLE = "Error";
@@ -50,7 +54,7 @@ public class PaneGenerator extends Application {
   private final String characterIcon;
   private final Game game;
   private int passageCounter;
-  private HBox playerInfo;
+  private HBox playerInfo = new HBox();
   private Label titleLabel;
   private Text contentArea;
   private HBox buttonBox;
@@ -93,9 +97,6 @@ public class PaneGenerator extends Application {
 
     healthBar.setMinWidth(200);
 
-/**
- * Class for generating the panes.
- */
 
     List<Link> brokenLinks = game.getStory().getBrokenLinks();
     titleLabel = new Label();
@@ -113,7 +114,6 @@ public class PaneGenerator extends Application {
     buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
 
 
-
     topGoals.setPadding(new javafx.geometry.Insets(5, 5, 5, 5));
     topGoalsPane.getChildren().add(topGoals);
     topGoalsPane.setId("topGoalsPane");
@@ -122,9 +122,11 @@ public class PaneGenerator extends Application {
 
     SaveFileReader saveFileReader = new SaveFileReader();
     if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
+      System.out.println("First passage existing");
       String lastSeenPassage = saveFileReader.getLastSeenPassage(saveFilePath);
       for (Passage passage : game.getStory().getPassages()) {
         if (passage.getTitle().equals(lastSeenPassage)) {
+
           passageCounter = saveFileReader.getCounterFromPassageTitle(saveFilePath, lastSeenPassage);
           updateInventoryBasedOnCounter(passageCounter);
           updatePlayerInfoBasedOnCounter(passageCounter);
@@ -133,9 +135,7 @@ public class PaneGenerator extends Application {
             button.setId("button");
             if (brokenLinks.contains(link) || game.getPlayer().isDead()) {
               button.setDisable(true);
-            }
-
-             else {
+            } else {
               button.setOnAction(e -> {
                 passageCounter++;
                 updateInventoryBasedOnCounter(passageCounter);
@@ -176,8 +176,8 @@ public class PaneGenerator extends Application {
 
     restart.setOnAction(e -> {
       SoundPlayer.play(CLICKSOUND);
-      restartAction();
       updateGoals();
+      restartAction();
       healthBar.setProgress(progressBar());
     });
 
@@ -273,7 +273,6 @@ public class PaneGenerator extends Application {
    */
 
   public void updatePlayerInfo() {
-
     try {
       playerInfo.getChildren().clear();
       nameLabel.setText("Player: " + game.getPlayer().getName());
@@ -309,30 +308,28 @@ public class PaneGenerator extends Application {
               new Label("Inventory: "),
               itemBox);
 
-
-      if (game.getPlayer().isDead()) {
-        game.getPlayer().setHealth(0);
-        titleLabel.setText("You died!");
-        contentArea.setText("");
-      } else if (game.getPlayer().isBroke()) {
-        game.getPlayer().setGold(0);
-        contentArea.setText("You are broke!");
-      }
-
     } catch (Exception e) {
-      AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
-
+      AlertUtil.showAlert(ERROR_TITLE, "Could not update player info: "
+              + e.getMessage(), 200, 100, primaryStage);
     }
   }
+  /**
+   * Sets passageCounter to 0 and restarts the player info.
+   */
 
   private void restartAction() {
     passageCounter = 0;
-    updateContentAndButtons(game.begin());
     updatePlayerInfoBasedOnCounter(passageCounter);
     updateInventoryBasedOnCounter(passageCounter);
+    updatePlayerInfo();
+    updateGoals();
+    updateContentAndButtons(game.begin());
 
   }
 
+  /**
+   * Updates the goals and the progress.
+   */
   private void displayGoals() {
     Text healthGoalTitle = new Text("Health: ");
     healthGoalTitle.setId(GOALS_INFO);
@@ -355,6 +352,13 @@ public class PaneGenerator extends Application {
     goalDescription(inventoryGoalTitle, currentInventory, inventoryGoals, topGoalsInventory);
   }
 
+  /**
+   * Change the color of the goals based on if they are fulfilled or not.
+   *
+   * @param goldGoalTitle Text of the title of the goal
+   * @param currentGold Text of the current gold
+   * @param goldGoals ArrayList with the gold goals
+   */
   private void goalDescription(Text goldGoalTitle, Text currentGold,
                                ArrayList<Goal> goldGoals, VBox topGoalsGold) {
     currentGold.setId(GOALS_INFO);
@@ -374,6 +378,10 @@ public class PaneGenerator extends Application {
     totalGoldGoals.getChildren().addAll(currentGold, goldGoalsHbox);
     topGoalsGold.getChildren().addAll(goldGoalTitle, totalGoldGoals);
   }
+
+  /**
+   * Sorts the goals into instances of the different goal types.
+   */
 
   private void sortGoals() {
 
@@ -398,6 +406,11 @@ public class PaneGenerator extends Application {
     inventoryGoals.sort(comparator);
   }
 
+  /**
+   * Quits the game and returns to the main menu.
+   *
+   * @param stage the stage
+   */
   private void quitGame(Stage stage) throws IOException {
 
     primaryStage.setFullScreen(false);
@@ -415,6 +428,11 @@ public class PaneGenerator extends Application {
     gui.start(stage);
   }
 
+  /**
+   * Updates the buttons based on the passage's Links.
+   *
+   * @param passage the next passage
+   */
   private void updateContentAndButtons(Passage passage) {
     List<Link> brokenLinks = game.getStory().getBrokenLinks();
     if (passage == null) {
@@ -463,6 +481,11 @@ public class PaneGenerator extends Application {
     }
   }
 
+  /**
+   * Updates the player info based on the counter.
+   *
+   * @param counter int with the number of passages
+   */
   private void updatePlayerInfoBasedOnCounter(int counter) {
 
     healthBar.setProgress(progressBar());
@@ -489,6 +512,9 @@ public class PaneGenerator extends Application {
     updatePlayerInfo();
   }
 
+  /**
+   * Writes the progress of the game to the save file.
+   */
   private void writeStatus() {
     try {
       FileDashboard.gameSave("N:" + game.getPlayer().getName(), saveFilePath);
@@ -504,6 +530,9 @@ public class PaneGenerator extends Application {
     }
   }
 
+  /**
+   * Writes the opening passage to the save file.
+   */
   private void writeFirstPassage() {
     try {
       FileDashboard.gameSave("C:"
@@ -516,6 +545,9 @@ public class PaneGenerator extends Application {
     }
   }
 
+  /**
+   * Updates the passageCounter and sends the player to the previous passage.
+   */
   private void backAction() {
     passageCounter--;
     updatePlayerInfoBasedOnCounter(passageCounter);
@@ -541,6 +573,9 @@ public class PaneGenerator extends Application {
     }
   }
 
+  /**
+   * Clears the goals and updates them.
+   */
   private void updateGoals() {
     topGoalsHealth.getChildren().clear();
     topGoalsGold.getChildren().clear();
@@ -548,6 +583,12 @@ public class PaneGenerator extends Application {
     topGoalsInventory.getChildren().clear();
     displayGoals();
   }
+
+  /**
+   * Fills the progressbar based on the player's health.
+   *
+   * @return double with the percentage of the health
+   */
 
   private double progressBar() {
 
