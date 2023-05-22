@@ -3,7 +3,7 @@ You wake up to the sound of the rooster crowing. You get up and get dressed. You
 [Walk to the market] (The market)
 
 :: The market
-As you approach the market you two different stores. One sells som old stuff, the other is a bakery.
+As you approach the market you two different stores. One sells some old stuff, the other is a bakery.
 [Go to the old store] (The old store)
 [Go to the bakery] (The Bakery)
 
@@ -66,14 +66,14 @@ You walk the normal path around the lake that you usually do. On the ground you 
 
 :: The strange man
 A strange man approaches you. He says that he is really hungry and asks if you have any food.
-[Give him all your food](The aggressive man)
-{InventoryAction: -3}
+[Give him your cake](The aggressive man)
+{InventoryAction: -Cake}
 {HealthAction: -30}
 [Tell him you will not give him anything] (You get stabbed)
 {HealthAction: -70}
 
 :: The aggressive man
-Even though you gave him all your food, he still wants more. He punches you in the face. You pass out.
+Even though you gave him your cake, he still wants more. He punches you in the face. You pass out.
 [Pass out on the ground] (Passed out)
 
 :: You get stabbed
