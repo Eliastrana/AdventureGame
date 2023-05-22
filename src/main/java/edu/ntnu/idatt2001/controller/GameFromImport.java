@@ -53,7 +53,7 @@ public class GameFromImport {
       ArrayList<String> names2 = new ArrayList<>(Arrays.asList());
       for (String filename : filenames2) {
         if (filename.endsWith(".paths")) {
-          String name = filename.replaceFirst("[.][^.]+$", ""); // remove file extension
+          String name = filename.replaceFirst("[.][^.]+$", "");
           names2.add(name);
         }
       }

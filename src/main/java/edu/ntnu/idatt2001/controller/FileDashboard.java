@@ -84,7 +84,7 @@ public class FileDashboard {
   public static void writeGoals(String input, String saveLocation) throws IOException {
     try (BufferedWriter writer = new BufferedWriter(new FileWriter(saveLocation, true))) {
       writer.write(input);
-      writer.newLine(); // Add a new line after the appended content
+      writer.newLine();
     }
   }
 

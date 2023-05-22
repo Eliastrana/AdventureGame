@@ -1,6 +1,5 @@
 package edu.ntnu.idatt2001.utility;
 
-
 import javax.sound.sampled.AudioSystem;
 import javax.sound.sampled.Clip;
 import java.io.File;

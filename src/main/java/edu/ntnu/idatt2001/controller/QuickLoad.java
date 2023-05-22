@@ -132,7 +132,6 @@ public class QuickLoad {
           pane.getChildren().addAll(savedGameContentStructure);
 
           pane.setOnMouseClicked(e -> {
-            SoundPlayer.play("src/main/resources/sounds/click.wav");
             try {
               characterPath = "src/main/resources/characters/"
                       + saveFileReader.getName(file.getPath())

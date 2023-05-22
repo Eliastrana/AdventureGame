@@ -48,10 +48,9 @@ import javafx.stage.Stage;
  */
 
 public class PaneGenerator extends Application {
+
   static final String CLICK_SOUND = "src/main/resources/sounds/click.wav";
   static final String ERROR_TITLE = "Error";
-
-
   static final String GOALS_INFO = "goalsInfo";
   static final String HEALTH = "health";
   static final String SCORE = "score";
@@ -65,6 +64,7 @@ public class PaneGenerator extends Application {
   private HBox buttonBox;
   HBox topmenuOptions = new HBox();
   Pane topGoalsPane = new Pane();
+  Pane characterImage = new Pane();
   VBox topGoals = new VBox();
   VBox topGoalsHealth = new VBox();
   VBox topGoalsGold = new VBox();
@@ -82,7 +82,6 @@ public class PaneGenerator extends Application {
   ArrayList<Goal> inventoryGoals = new ArrayList<>();
   String saveFilePath;
 
-  Pane characterImage = new Pane();
 
 
 
@@ -122,12 +121,10 @@ public class PaneGenerator extends Application {
     buttonBox.setAlignment(javafx.geometry.Pos.CENTER);
     buttonBox.setPadding(new javafx.geometry.Insets(20, 40, 40, 20));
 
-
     topGoals.setPadding(new javafx.geometry.Insets(5, 5, 5, 5));
     topGoalsPane.getChildren().add(topGoals);
     topGoalsPane.setId("topGoalsPane");
     topGoalsPane.setMaxHeight(450);
-
 
     SaveFileReader saveFileReader = new SaveFileReader();
     if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
@@ -182,8 +179,8 @@ public class PaneGenerator extends Application {
 
     ImageView imageViewInfo = new ImageView(infoIcon);
     imageViewInfo.setPreserveRatio(true);
-    imageViewInfo.setFitWidth(20); // Set the maximum width for the icon
-    imageViewInfo.setFitHeight(20); // Set the maximum height for the icon
+    imageViewInfo.setFitWidth(20);
+    imageViewInfo.setFitHeight(20);
 
     Button info = new Button();
     info.setGraphic(imageViewInfo);
@@ -239,8 +236,8 @@ public class PaneGenerator extends Application {
 
     ImageView imageViewRestart = new ImageView(restartIcon);
     imageViewRestart.setPreserveRatio(true);
-    imageViewRestart.setFitWidth(20); // Set the maximum width for the icon
-    imageViewRestart.setFitHeight(20); // Set the maximum height for the icon
+    imageViewRestart.setFitWidth(20);
+    imageViewRestart.setFitHeight(20);
 
     Button restart = new Button();
     restart.setGraphic(imageViewRestart);
@@ -258,8 +255,8 @@ public class PaneGenerator extends Application {
 
     ImageView imageViewQuit = new ImageView(quitIcon);
     imageViewQuit.setPreserveRatio(true);
-    imageViewQuit.setFitWidth(20); // Set the maximum width for the icon
-    imageViewQuit.setFitHeight(20); // Set the maximum height for the icon
+    imageViewQuit.setFitWidth(20);
+    imageViewQuit.setFitHeight(20);
 
     Button quitButton = new Button();
     quitButton.setGraphic(imageViewQuit);
@@ -279,15 +276,16 @@ public class PaneGenerator extends Application {
 
     ImageView imageViewBack = new ImageView(backIcon);
     imageViewBack.setPreserveRatio(true);
-    imageViewBack.setFitWidth(20); // Set the maximum width for the icon
-    imageViewBack.setFitHeight(20); // Set the maximum height for the icon
+    imageViewBack.setFitWidth(20);
+    imageViewBack.setFitHeight(20);
 
     Button backButton = new Button();
     backButton.setGraphic(imageViewBack);
     backButton.setId(topMenuButtonId);
 
+
+
     backButton.setOnAction(e -> {
-      SoundPlayer.play(CLICK_SOUND);
       updateGoals();
       try {
         backAction();
@@ -302,8 +300,8 @@ public class PaneGenerator extends Application {
 
     ImageView imageViewHelp = new ImageView(helpIcon);
     imageViewHelp.setPreserveRatio(true);
-    imageViewHelp.setFitWidth(20); // Set the maximum width for the icon
-    imageViewHelp.setFitHeight(20); // Set the maximum height for the icon
+    imageViewHelp.setFitWidth(20);
+    imageViewHelp.setFitHeight(20);
 
     Button helpButton = new Button();
     helpButton.setGraphic(imageViewHelp);
@@ -573,7 +571,6 @@ public class PaneGenerator extends Application {
     ImageView imageView = new ImageView(image);
 
     characterImage.getChildren().add(imageView);
-
 
 
     // Loop through all links and create buttons for them

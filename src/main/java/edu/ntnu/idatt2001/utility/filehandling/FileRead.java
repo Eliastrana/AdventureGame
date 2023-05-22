@@ -66,6 +66,7 @@ public class FileRead {
             ActionsFactory actionsFactory = new ActionsFactory();
             Action action = actionsFactory.createAction(line);
             if (action != null) {
+
               // Add action to the last link
               if (!links.isEmpty()) {
                 links.get(links.size() - 1).addAction(action);
