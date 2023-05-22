@@ -27,4 +27,8 @@ The program is navigated using the mouse. You click on the buttons to choose you
 
 
 ## Acknowledgements
-All art is painted by hand by our personal artist designer, Frid.
+All art is painted by hand by our personal artist, Frid.
+
+All sound is collected from: https://freesound.org/
+
+
