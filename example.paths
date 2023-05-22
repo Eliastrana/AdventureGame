@@ -1,9 +1,0 @@
-:: Passage 1
-This is the content of passage 1.
-[Go to passage 2 (Passage 2)
-
-:: Passage 2
-This is the content of passage 2.
-[Go to passage 1](passage)
-
-

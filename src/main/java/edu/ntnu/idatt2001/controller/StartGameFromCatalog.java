@@ -59,7 +59,7 @@ public class StartGameFromCatalog {
       PaneGenerator gui;
       Game gameCreated = game.gameGenerator(characterFile);
 
-      if (gameCreated.getStory().getBrokenLinks().size() != 0) {
+      if (!gameCreated.getStory().getBrokenLinks().isEmpty()) {
         Alert brokenLinks = new Alert(Alert.AlertType.WARNING);
         alert.getDialogPane().setId("alertBox");
 

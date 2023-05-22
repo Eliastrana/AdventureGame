@@ -45,6 +45,7 @@ public class CreateGame {
    */
 
   public Story launchGame() {
+    try {
     FileRead fileRead = new FileRead(filePath);
     List<Passage> passages = fileRead.formatPathsFile();
 
@@ -62,7 +63,16 @@ public class CreateGame {
     }
 
     return story;
+    } catch (Exception e) {
+      throw new IllegalArgumentException("Invalid file" + e.getMessage());
+    }
   }
+
+  /**
+   * Method that returns character filepath.
+   *
+   * @return String filepath
+   */
 
   public String getCharacterIconPath() {
     return characterIconPath;

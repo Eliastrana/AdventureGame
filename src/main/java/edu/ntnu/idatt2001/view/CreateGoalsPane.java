@@ -2,10 +2,13 @@ package edu.ntnu.idatt2001.view;
 
 import edu.ntnu.idatt2001.controller.FileDashboard;
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
+import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Objects;
+
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
@@ -69,7 +72,8 @@ public class CreateGoalsPane extends StackPane {
     backButton.setAlignment(Pos.TOP_LEFT);
     backButtonHolder.setAlignment(Pos.TOP_LEFT);
 
-    Image backIcon = new Image(getClass().getResourceAsStream("/iconography/Back.png"));
+    Image backIcon = new Image(Objects.requireNonNull(getClass()
+            .getResourceAsStream("/iconography/Back.png")));
 
     ImageView imageViewBack = new ImageView(backIcon);
     imageViewBack.setPreserveRatio(true);
@@ -95,6 +99,7 @@ public class CreateGoalsPane extends StackPane {
         currentGoalsArea.setText(fileContent.isEmpty() ? "" : fileContent);
       } catch (IOException e) {
         currentGoalsArea.setText(""); // Clear the TextArea if the file cannot be read
+        AlertUtil.showAlertBoxError("Error", "Could not read file", e.getMessage());
       }
     });
 
@@ -132,6 +137,7 @@ public class CreateGoalsPane extends StackPane {
           currentGoalsArea.setText(fileContent);
         } catch (IOException ex) {
           currentGoalsArea.setText(""); // Clear the TextArea if the file cannot be read
+          AlertUtil.showAlertBoxError("Error", "Could not read file", ex.getMessage());
         }
       }
       inputField.clear();
@@ -162,11 +168,7 @@ public class CreateGoalsPane extends StackPane {
         FileDashboard.writeGoals(selectedItem + ": " + prefix, saveLocation);
       }
     } catch (IOException ex) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Error");
-      alert.setHeaderText("Could not save file");
-      alert.setContentText("Could not save file" + ex.getMessage());
-      alert.showAndWait();
+      AlertUtil.showAlertBoxError("Error", "Could not save file", ex.getMessage());
     }
     SoundPlayer.play(clickSound);
     comboBox.getSelectionModel().clearSelection();

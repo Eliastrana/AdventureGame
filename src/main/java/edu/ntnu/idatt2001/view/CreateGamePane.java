@@ -2,7 +2,9 @@ package edu.ntnu.idatt2001.view;
 
 import edu.ntnu.idatt2001.controller.FileDashboard;
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
+import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
+import java.util.Objects;
 import javafx.geometry.Pos;
 import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
@@ -14,6 +16,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+
 
 
 /**
@@ -98,8 +101,7 @@ public class CreateGamePane extends StackPane {
       String fileName = writeGameSaveName.getText(); // add .paths extension to filename
 
       if (fileName.isBlank()) {
-        showAlert("Error", "Empty save name", "Please enter a valid save name");
-        return;
+        AlertUtil.showAlertBoxInfo("Info", "No filename", "Please write a filename");
       }
 
 
@@ -126,21 +128,23 @@ public class CreateGamePane extends StackPane {
       String gameContent = titleAndText + buttonAndLink + "\n" + actions;
 
 
-      FileDashboard.write(gameContent, fileName);
+      try {
+        FileDashboard.write(gameContent, fileName);
+        writeGameSaveName.setText("");
+        writeGameFieldTitle.setText("");
+        writeGameContent.setText("");
+        writeGameButtonText1.setText("");
+        writeGameButtonTarget1.setText("");
+        writeGameButtonText2.setText("");
+        writeGameButtonTarget2.setText("");
+        writeActionTarget.setText("");
+        actionComboBox.setValue(null);
 
-      writeGameSaveName.setText("");
-      writeGameFieldTitle.setText("");
-      writeGameContent.setText("");
-      writeGameButtonText1.setText("");
-      writeGameButtonTarget1.setText("");
-      writeGameButtonText2.setText("");
-      writeGameButtonTarget2.setText("");
-      writeActionTarget.setText("");
-      actionComboBox.setValue(null);
-
-      showAlert("Success", "Game created!",
-              "You can find your game in the path selector in Load Game");
-
+        AlertUtil.showAlertBoxInfo("Info", "Game created!",
+                "You can find your game in the path selector in Load Game");
+      } catch (Exception ex) {
+        AlertUtil.showAlertBoxError("Error", "Error writing to file", ex.getMessage());
+      }
     });
 
     gameCreation.getChildren().addAll(writeGameSaveName,
@@ -155,7 +159,8 @@ public class CreateGamePane extends StackPane {
     backButton.setId("backNavigation");
     backButton.setAlignment(Pos.TOP_LEFT);
 
-    Image backIcon = new Image(getClass().getResourceAsStream("/iconography/Back.png"));
+    Image backIcon = new Image(Objects.requireNonNull(getClass()
+            .getResourceAsStream("/iconography/Back.png")));
 
     ImageView imageViewBack = new ImageView(backIcon);
     imageViewBack.setPreserveRatio(true);
@@ -177,14 +182,15 @@ public class CreateGamePane extends StackPane {
       alert.setTitle("Help");
       alert.setHeaderText("How to create a game");
       String textBlock = """
-        Write a name for your game save, a title for your game field, the content of your game field
-        and the text and target of the buttons.
-        If you only want one button, leave the other button text and target blank.
-        When you are done, press the Write game button and your game will be saved in
-        the path selector in Load Game.
-        As long as the save name is the same, it will save your passage in the same place.
-        """;
-
+              Write a name for your game save
+              , a title for your game field, the content of your game field
+              and the text and target of the buttons.
+              If you only want one button
+              , leave the other button text and target blank.
+              When you are done, press the Write game button and your game will be saved in
+              the path selector in Load Game.
+              As long as the save name is the same, it will save your passage in the same place.
+              """;
 
       alert.setContentText(textBlock);
       alert.showAndWait();
@@ -202,12 +208,4 @@ public class CreateGamePane extends StackPane {
     getChildren().addAll(structure);
   }
 
-  private void showAlert(String title, String headerText, String contentText) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.getDialogPane().setId("alertBox");
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(contentText);
-    alert.showAndWait();
-  }
 }

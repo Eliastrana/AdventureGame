@@ -18,6 +18,7 @@ import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
 import edu.ntnu.idatt2001.utility.filehandling.SaveFileReader;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Comparator;
@@ -26,7 +27,6 @@ import java.util.Map;
 import javafx.application.Application;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.ProgressBar;
@@ -41,7 +41,6 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 
 /**
  * Class for generating panes.
@@ -83,8 +82,6 @@ public class PaneGenerator extends Application {
   String saveFilePath;
 
 
-
-
   /**
    * Constructor for PaneGenerator.
    *
@@ -102,10 +99,7 @@ public class PaneGenerator extends Application {
   @Override
   public void start(Stage stage) throws IOException {
 
-
     healthBar.setMinWidth(200);
-
-
     List<Link> brokenLinks = game.getStory().getBrokenLinks();
     titleLabel = new Label();
     titleLabel.setId("title");
@@ -127,43 +121,54 @@ public class PaneGenerator extends Application {
     topGoalsPane.setMaxHeight(450);
 
     SaveFileReader saveFileReader = new SaveFileReader();
-    if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
-      String lastSeenPassage = saveFileReader.getLastSeenPassage(saveFilePath);
-      for (Passage passage : game.getStory().getPassages()) {
-        if (passage.getTitle().equals(lastSeenPassage)) {
+    try {
+      if (saveFileReader.getFirstPassageExisting(saveFilePath)) {
+        String lastSeenPassage = saveFileReader.getLastSeenPassage(saveFilePath);
+        for (Passage passage : game.getStory().getPassages()) {
+          if (passage.getTitle().equals(lastSeenPassage)) {
 
-          passageCounter = saveFileReader.getCounterFromPassageTitle(saveFilePath, lastSeenPassage);
-          updateInventoryBasedOnCounter(passageCounter);
-          updatePlayerInfoBasedOnCounter(passageCounter);
-          passage.getLinks().forEach(link -> {
-            Button button = new Button(link.getText());
-            button.setId("button");
-            if (brokenLinks.contains(link) || game.getPlayer().isDead()) {
-              button.setDisable(true);
-            } else {
-              button.setOnAction(e -> {
-                passageCounter++;
-                updateInventoryBasedOnCounter(passageCounter);
-                updatePlayerInfoBasedOnCounter(passageCounter);
-                updateGoals();
-                updateContentAndButtons(passage);
-              });
-            }
-            buttonBox.getChildren().add(button);
-          });
-          updateContentAndButtons(passage);
+            passageCounter = saveFileReader
+                    .getCounterFromPassageTitle(saveFilePath, lastSeenPassage);
+            updateInventoryBasedOnCounter(passageCounter);
+            updatePlayerInfoBasedOnCounter(passageCounter);
+            passage.getLinks().forEach(link -> {
+              Button button = new Button(link.getText());
+              button.setId("button");
+              if (brokenLinks.contains(link) || game.getPlayer().isDead()) {
+                button.setDisable(true);
+              } else {
+                button.setOnAction(e -> {
+                  passageCounter++;
+                  updateInventoryBasedOnCounter(passageCounter);
+                  updatePlayerInfoBasedOnCounter(passageCounter);
+                  updateGoals();
+                  updateContentAndButtons(passage);
+                });
+              }
+              buttonBox.getChildren().add(button);
+            });
+            updateContentAndButtons(passage);
+          }
         }
-      }
 
-    } else {
-      passageCounter = 0;
-      writeFirstPassage();
-      updateContentAndButtons(game.begin());
-      titleLabel = new Label(game.begin().getTitle());
-      titleLabel.setId("title");
+      } else {
+        passageCounter = 0;
+        writeFirstPassage();
+        updateContentAndButtons(game.begin());
+        titleLabel = new Label(game.begin().getTitle());
+        titleLabel.setId("title");
+      }
+    } catch (Exception e) {
+      AlertUtil.showAlert("Error reading file", "Could not read file. + \n" + e.getMessage(),
+              250, 600, stage);
     }
 
-    SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
+    try {
+      SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
+    } catch (Exception e) {
+      AlertUtil.showAlert("Audio error", "Could not play sound. + \n" + e.getMessage(),
+              250, 600, primaryStage);
+    }
     sortGoals();
     displayGoals();
 
@@ -174,7 +179,7 @@ public class PaneGenerator extends Application {
     }
 
 
-    String topMenuButtonId = "topMenuButton";
+
     Image infoIcon = new Image(getClass().getResourceAsStream("/iconography/Info.png"));
 
     ImageView imageViewInfo = new ImageView(infoIcon);
@@ -182,54 +187,52 @@ public class PaneGenerator extends Application {
     imageViewInfo.setFitWidth(20);
     imageViewInfo.setFitHeight(20);
 
+    // Info button
     Button info = new Button();
     info.setGraphic(imageViewInfo);
+    String topMenuButtonId = "topMenuButton";
     info.setId(topMenuButtonId);
-
-
     info.setOnAction(e -> {
-      SoundPlayer.play(CLICK_SOUND);
+      try {
+        SoundPlayer.play(CLICK_SOUND);
+        StringBuilder allPassages = new StringBuilder();
+        for (Passage passage : game.getStory().getPassages()) {
+          allPassages.append("\n").append(passage.getTitle());
+        }
+        StringBuilder allBrokenLinks = new StringBuilder();
+        for (Link link : game.getStory().getBrokenLinks()) {
+          allBrokenLinks.append("\n").append(link.getText());
+        }
+
+        StringBuilder allInfo = new StringBuilder();
+        allInfo.append("All passages: ")
+                .append(allPassages)
+                .append("\n\n")
+                .append("All broken links: ")
+                .append(allBrokenLinks);
+
+        String displayBrokenLinks = allInfo.toString();
 
 
+        TextArea textArea = new TextArea(displayBrokenLinks);
+        textArea.setEditable(false);
+        textArea.setWrapText(true);
 
-      StringBuilder allPassages = new StringBuilder();
-      for (Passage passage : game.getStory().getPassages()) {
-        allPassages.append("\n").append(passage.getTitle());
+        ScrollPane scrollPane = new ScrollPane(textArea);
+        scrollPane.setFitToWidth(true);
+        scrollPane.setPrefHeight(200);
+        scrollPane.setPrefWidth(550);
+
+        String fullPath = "Path: " + game.getStory().getTitle();
+
+        AlertUtil.showAlert("Info ",
+                fullPath,
+                250, 600, primaryStage);
+      } catch (Exception ex) {
+        AlertUtil.showAlert("Error reading file", "Could not display info. + \n" + ex.getMessage(),
+                250, 600, primaryStage);
       }
-
-      StringBuilder allBrokenLinks = new StringBuilder();
-      for (Link link : game.getStory().getBrokenLinks()) {
-        allBrokenLinks.append("\n").append(link.getText());
-      }
-
-      StringBuilder allInfo = new StringBuilder();
-      allInfo.append("All passages: ")
-              .append(allPassages)
-              .append("\n\n")
-              .append("All broken links: ")
-              .append(allBrokenLinks);
-
-      String displayBrokenLinks = allInfo.toString();
-
-
-      TextArea textArea = new TextArea(displayBrokenLinks);
-      textArea.setEditable(false);
-      textArea.setWrapText(true);
-
-      ScrollPane scrollPane = new ScrollPane(textArea);
-      scrollPane.setFitToWidth(true);
-      scrollPane.setPrefHeight(200);
-      scrollPane.setPrefWidth(550);
-
-      String fullPath = "Path: " + game.getStory().getTitle();
-      Alert alert = new Alert(Alert.AlertType.INFORMATION);
-      alert.setHeaderText("Info" + "\n\n" + fullPath);
-      alert.getDialogPane().setContent(scrollPane);
-      alert.initOwner(primaryStage);
-
-      alert.showAndWait();
     });
-
 
 
     Image restartIcon = new Image(getClass().getResourceAsStream("/iconography/Restart.png"));
@@ -239,15 +242,20 @@ public class PaneGenerator extends Application {
     imageViewRestart.setFitWidth(20);
     imageViewRestart.setFitHeight(20);
 
+
+    // Restart button
     Button restart = new Button();
     restart.setGraphic(imageViewRestart);
     restart.setId(topMenuButtonId);
-
-
     restart.setOnAction(e -> {
-      updateGoals();
-      restartAction();
-      healthBar.setProgress(progressBar());
+      try {
+        updateGoals();
+        restartAction();
+        healthBar.setProgress(progressBar());
+      } catch (Exception ex) {
+        AlertUtil.showAlert("Error reading file", "Could not restart game. + \n" + ex.getMessage(),
+                250, 600, primaryStage);
+      }
     });
 
 
@@ -279,20 +287,19 @@ public class PaneGenerator extends Application {
     imageViewBack.setFitWidth(20);
     imageViewBack.setFitHeight(20);
 
+    // Back button
     Button backButton = new Button();
     backButton.setGraphic(imageViewBack);
     backButton.setId(topMenuButtonId);
-
-
-
     backButton.setOnAction(e -> {
-      updateGoals();
       try {
+        updateGoals();
         backAction();
-      } catch (InvalidFormatException ex) {
-        throw new RuntimeException(ex);
+        healthBar.setProgress(progressBar());
+      } catch (Exception ex) {
+        AlertUtil.showAlert("Error reading file", "Could not go back. + \n" + ex.getMessage(),
+                250, 600, primaryStage);
       }
-      healthBar.setProgress(progressBar());
     });
 
 
@@ -306,7 +313,6 @@ public class PaneGenerator extends Application {
     Button helpButton = new Button();
     helpButton.setGraphic(imageViewHelp);
     helpButton.setId(topMenuButtonId);
-
     helpButton.setOnAction(e -> {
       SoundPlayer.play(CLICK_SOUND);
 
@@ -421,12 +427,13 @@ public class PaneGenerator extends Application {
               scoreLabel,
               new Label("Inventory: "),
               itemBox);
-
-    } catch (Exception e) {
-      AlertUtil.showAlert(ERROR_TITLE, "Could not update player info: "
-              + e.getMessage(), 200, 100, primaryStage);
+    } catch (FileNotFoundException e) {
+      AlertUtil.showAlert("Error reading file", "Could not read file. + \n" + e.getMessage(),
+              250, 600, primaryStage);
     }
   }
+
+
   /**
    * Sets passageCounter to 0 and restarts the player info.
    */
@@ -439,6 +446,7 @@ public class PaneGenerator extends Application {
     updateGoals();
     updateContentAndButtons(game.begin());
   }
+
 
   /**
    * Updates the goals and the progress.
@@ -478,8 +486,8 @@ public class PaneGenerator extends Application {
    * Change the color of the goals based on if they are fulfilled or not.
    *
    * @param goldGoalTitle Text of the title of the goal
-   * @param currentGold Text of the current gold
-   * @param goldGoals ArrayList with the gold goals
+   * @param currentGold   Text of the current gold
+   * @param goldGoals     ArrayList with the gold goals
    */
   private void goalDescription(Text goldGoalTitle, Text currentGold,
                                ArrayList<Goal> goldGoals, VBox topGoalsGold) {
@@ -596,8 +604,8 @@ public class PaneGenerator extends Application {
 
         characterImage.getChildren().clear();
 
-         image = new Image("items/Gravestone.png");
-         imageView = new ImageView(image);
+        image = new Image("items/Gravestone.png");
+        imageView = new ImageView(image);
         characterImage.getChildren().add(imageView);
         characterImage.setMaxHeight(300);
         characterImage.setMaxWidth(300);
@@ -614,8 +622,8 @@ public class PaneGenerator extends Application {
         Passage nextPassage = game.go(link);
         if (nextPassage != null) {
           game.getPlayer().setLastPassage(nextPassage);
+          passageCounter++;
           try {
-            passageCounter++;
             FileDashboard.gameSave("C:"
                     + passageCounter
                     + "\n"
@@ -623,17 +631,17 @@ public class PaneGenerator extends Application {
                     + nextPassage.getTitle(), saveFilePath);
             writeStatus();
           } catch (IOException e) {
-            AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
-
+            AlertUtil.showAlert("Error saving game", e.getMessage(), 250, 600, primaryStage);
           }
-          updateContentAndButtons(nextPassage);
         }
+        updateContentAndButtons(nextPassage);
         playerInfo.getChildren().clear();
         updatePlayerInfo();
       });
 
       buttonBox.getChildren().add(button);
     }
+
   }
 
   /**
@@ -646,25 +654,34 @@ public class PaneGenerator extends Application {
     healthBar.setProgress(progressBar());
 
     SaveFileReader reader = new SaveFileReader();
-    Map<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
+    try {
+      Map<String, Object> passageData = reader.getPassageParameters(saveFilePath, counter);
+      if (passageData.containsKey(HEALTH) && passageData.get(HEALTH) instanceof Integer) {
+        game.getPlayer().setHealth((int) passageData.get(HEALTH));
+      }
+      if (passageData.containsKey("gold") && passageData.get("gold") instanceof Integer) {
+        game.getPlayer().setGold((int) passageData.get("gold"));
+      }
+      if (passageData.containsKey(SCORE) && passageData.get(SCORE) instanceof Integer) {
+        game.getPlayer().setScore((int) passageData.get(SCORE));
+      }
+      updatePlayerInfo();
+    } catch (IOException e) {
+      AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
+    }
 
-    if (passageData.containsKey(HEALTH) && passageData.get(HEALTH) instanceof Integer) {
-      game.getPlayer().setHealth((int) passageData.get(HEALTH));
-    }
-    if (passageData.containsKey("gold") && passageData.get("gold") instanceof Integer) {
-      game.getPlayer().setGold((int) passageData.get("gold"));
-    }
-    if (passageData.containsKey(SCORE) && passageData.get(SCORE) instanceof Integer) {
-      game.getPlayer().setScore((int) passageData.get(SCORE));
-    }
-    updatePlayerInfo();
+
   }
 
   private void updateInventoryBasedOnCounter(int counter) {
-    SaveFileReader reader = new SaveFileReader();
-    List<String> inventory = reader.getInventoryFromCounter(saveFilePath, counter);
-    game.getPlayer().setInventory(inventory);
-    updatePlayerInfo();
+    try {
+      SaveFileReader reader = new SaveFileReader();
+      List<String> inventory = reader.getInventoryFromCounter(saveFilePath, counter);
+      game.getPlayer().setInventory(inventory);
+      updatePlayerInfo();
+    } catch (IOException e) {
+      AlertUtil.showAlert(ERROR_TITLE, e.getMessage(), 250, 600, primaryStage);
+    }
   }
 
   /**

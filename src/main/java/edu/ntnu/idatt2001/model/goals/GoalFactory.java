@@ -1,7 +1,16 @@
 package edu.ntnu.idatt2001.model.goals;
 
+/**
+ * GoalFactory for creating goals.
+ */
 public class GoalFactory {
 
+  /**
+   * Creates a goal from a string.
+   *
+   * @param input the string to create a goal from.
+   * @return the created goal.
+   */
   public Goal createGoal(String input) {
     if (input == null || input.trim().isEmpty()) {
       return null;

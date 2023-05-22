@@ -3,8 +3,11 @@ package edu.ntnu.idatt2001.view;
 
 import edu.ntnu.idatt2001.controller.QuickLoad;
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
+import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
 import java.io.IOException;
+
+import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
 import javafx.geometry.Pos;
 import javafx.scene.control.Button;
 import javafx.scene.layout.HBox;
@@ -13,13 +16,26 @@ import javafx.scene.text.Text;
 
 
 
+/**
+ * A class that represents the main menu pane.
+ */
 public class MainMenuPane extends VBox {
 
   String clickSound = "src/main/resources/sounds/click.wav";
 
-  public MainMenuPane() throws IOException {
 
-    SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
+  /**
+   * Constructor for the main menu pane.
+   * Displays the title and the buttons,
+   * as well as the quickLoad panes if there are any
+   */
+  public MainMenuPane() {
+
+    try {
+      SoundPlayer.playOnLoop("src/main/resources/sounds/ambiance.wav");
+    } catch (Exception e) {
+      AlertUtil.showAlertBoxError("Audio error","Error playing sound" , e.getMessage());
+    }
     setStyle("-fx-background-image: url('mainmenubackgroundsmall.jpeg')");
 
     VBox structure = new VBox();
@@ -46,22 +62,26 @@ public class MainMenuPane extends VBox {
     button4.setId(mainMenuButton);
     menuButtons.getChildren().addAll(button1, button2, button3, button4);
 
-    HBox hBox = QuickLoad.savedNameDisplayer("characterPath",
-            "filePath",
-            "goalsPath",
-            "characterIcon");
-    structure.getChildren().addAll(titleText, menuButtons, hBox);
-    structure.setAlignment(Pos.CENTER);
-    getChildren().addAll(structure);
+    try {
+      HBox hBox = QuickLoad.savedNameDisplayer("characterPath",
+              "filePath",
+              "goalsPath",
+              "characterIcon");
+      structure.getChildren().addAll(titleText, menuButtons, hBox);
+      structure.setAlignment(Pos.CENTER);
+      getChildren().addAll(structure);
+      setAlignment(Pos.CENTER);
+    } catch (IOException | InvalidFormatException e) {
+      AlertUtil.showAlertBoxError("Error","Error displaying name" , e.getMessage());
+    }
 
-    setAlignment(Pos.CENTER);
 
     button1.setOnAction(e -> {
       try {
         SceneSwitcher.switchToPane(new LoadGamePane());
         SoundPlayer.play(clickSound);
       } catch (IOException ex) {
-        throw new RuntimeException(ex);
+        AlertUtil.showAlertBoxError("Error","Error playing sound","No sound:(");
       }
     });
     button2.setOnAction(e -> {

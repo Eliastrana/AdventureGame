@@ -3,20 +3,17 @@ package edu.ntnu.idatt2001.view;
 import edu.ntnu.idatt2001.controller.GameFromImport;
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
 import edu.ntnu.idatt2001.controller.StartGameFromCatalog;
+import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
+
 import java.io.File;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
+
 import javafx.animation.TranslateTransition;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.effect.DropShadow;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -26,6 +23,9 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.util.Duration;
 
+/**
+ * Frontend Class for loading games.
+ */
 public class LoadGamePane extends StackPane {
   private static final List<ImageView> imageViews = new ArrayList<>();
   private static int selectedIndex = -1;
@@ -34,6 +34,12 @@ public class LoadGamePane extends StackPane {
   public static final ComboBox<String> comboBoxPath = new ComboBox<>();
   public static final ComboBox<String> comboBoxGoals = new ComboBox<>();
 
+  /**
+   * Constructor for LoadGamePane.
+   * Lets the user pick a path, character, character-image and goal.
+   * Then play it.
+   * Also allows for imports of own .paths files.
+   */
   public LoadGamePane() throws IOException {
 
     // Defining constants
@@ -92,7 +98,6 @@ public class LoadGamePane extends StackPane {
     comboBoxGoals.setId(comboBoxId);
 
 
-
     saveName.setPromptText("Enter save name");
     saveName.setId("textField");
 
@@ -107,75 +112,11 @@ public class LoadGamePane extends StackPane {
             .addListener((observable, oldValue, newValue) -> updateSaveGameName());
 
 
+    // Defining a play button
     Button playButton = new Button("Play");
     playButton.setId("Pane1ConfirmButton");
     playButton.setOnAction(event -> {
-      if (saveName.getText().isBlank()) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId(alertBoxId);
-        alert.setTitle("Unavailable");
-        alert.setHeaderText("No save name");
-        alert.setContentText("Please enter a save name");
-        alert.showAndWait();
-        return;  // exit early
-      }
-
-      String saveNameString = saveName.getText().trim() + ".txt";
-
-      if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
-        String saveData = "src/main/resources/saveData/"
-                + saveNameString;
-        String pathFile = "src/main/resources/paths/"
-                + comboBoxPath.getValue()
-                + ".paths";
-        String characterFile = "src/main/resources/characters/"
-                + comboBoxCharacter.getValue()
-                + ".paths";
-        String playerStats = comboBoxCharacter.getValue()
-                + "\n" + comboBoxPath.getValue();
-        String goalsFile = "src/main/resources/savedGoals/"
-                + comboBoxGoals.getValue()
-                + ".txt";
-        String characterIcon = processSelectedImage();
-
-        StartGameFromCatalog startGameFromCatalog = new StartGameFromCatalog(saveData,
-                pathFile, characterFile, playerStats, goalsFile, characterIcon);
-
-
-        try {
-          startGameFromCatalog.startGameFromCatalogMethod();
-        } catch (IOException e) {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.getDialogPane().setId(alertBoxId);
-          alert.setTitle(alertTitle);
-          alert.setHeaderText(alertHeaderNotStarting);
-          alert.setContentText("An error occurred while trying to start the game. "
-                  + "Please try again.");
-          alert.showAndWait();
-        } catch (IllegalArgumentException e) {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.getDialogPane().setId(alertBoxId);
-          alert.setTitle(alertTitle);
-          alert.setHeaderText(alertHeaderNotStarting);
-          alert.setContentText("An error occurred while trying to start the game. "
-                  + e.getMessage());
-          alert.showAndWait();
-        } catch (Exception e) {
-          Alert alert = new Alert(Alert.AlertType.ERROR);
-          alert.getDialogPane().setId(alertBoxId);
-          alert.setTitle(alertTitle);
-          alert.setHeaderText(alertHeaderNotStarting);
-          alert.setContentText("An error occurred while trying to start the game. \n" + e.getMessage());
-          alert.showAndWait();
-        }
-      } else {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId(alertBoxId);
-        alert.setTitle("Unavailable");
-        alert.setHeaderText("Name already in use");
-        alert.setContentText("Save name already exists, please choose another name");
-        alert.showAndWait();
-      }
+      saveGameAction();
     });
 
 
@@ -217,7 +158,6 @@ public class LoadGamePane extends StackPane {
       transition.play();
       imageBox.getChildren().set(0, currentImage);
 
-
       selectImage(currentImageIndex[0]);
     });
 
@@ -251,29 +191,10 @@ public class LoadGamePane extends StackPane {
       try {
 
         GameFromImport.gameFromImportMethod();
-      } catch (IOException e) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId(alertBoxId);
-        alert.setTitle(alertTitle);
-        alert.setHeaderText(alertHeaderNotStarting);
-        alert.setContentText("An error occurred while trying to import the game. "
-                + "Please try again.");
-        alert.showAndWait();
-      } catch (IllegalArgumentException e) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId(alertBoxId);
-        alert.setTitle(alertTitle);
-        alert.setHeaderText(alertHeaderNotStarting);
-        alert.setContentText("An error occurred while trying to import the game. "
-                + e.getMessage());
-        alert.showAndWait();
       } catch (Exception e) {
-        Alert alert = new Alert(Alert.AlertType.ERROR);
-        alert.getDialogPane().setId(alertBoxId);
-        alert.setTitle(alertTitle);
-        alert.setHeaderText(alertHeaderNotStarting);
-        alert.setContentText("An error occurred while trying to import the game. \n" + e.getMessage());
-        alert.showAndWait();
+        AlertUtil.showAlertBoxConfirmation("Error", "Could not import game",
+                "An error occurred while trying to import the game. "
+                        + e.getMessage());
       }
 
     });
@@ -337,6 +258,11 @@ public class LoadGamePane extends StackPane {
   }
 
 
+  /**
+   * Selects the image at the given index and deselects the previously selected image.
+   *
+   * @param currentIndex The index of the image to select.
+   */
   private static void selectImage(int currentIndex) {
     if (selectedIndex >= 0 && selectedIndex < imageViews.size()) {
       ImageView prevSelectedImageView = imageViews.get(selectedIndex);
@@ -347,6 +273,12 @@ public class LoadGamePane extends StackPane {
     selectedImageView.setEffect(new DropShadow(20, Color.BLACK));
   }
 
+
+  /**
+   * Processes the selected image and returns the file name of the selected image.
+   *
+   * @return The file name of the selected image.
+   */
   public static String processSelectedImage() {
     if (selectedIndex < 0 || selectedIndex >= imageViews.size()) {
       // Select the first image by default
@@ -358,6 +290,9 @@ public class LoadGamePane extends StackPane {
     return imageUrl.substring(index);
   }
 
+  /**
+   * Updates the save game name based on the selected categories.
+   */
   private void updateSaveGameName() {
     String category1 = comboBoxCharacter.getSelectionModel().getSelectedItem();
     String category2 = comboBoxPath.getSelectionModel().getSelectedItem();
@@ -366,10 +301,52 @@ public class LoadGamePane extends StackPane {
     saveName.setText(category1 + "_" + category2 + "_" + category3 + "_save");
   }
 
+  /**
+   * Checks if the given file name is unique in the given directory.
+   *
+   * @param fileName
+   * @param directoryPath
+   * @return
+   */
   public boolean isFileNameUnique(String fileName, String directoryPath) {
     File file = new File(directoryPath, fileName);
     boolean fileExists = file.exists() && !file.isDirectory();
     return !fileExists;
   }
+
+  private void saveGameAction() {
+    if (saveName.getText().isBlank()) {
+      AlertUtil.showAlertBoxError("Empty save filename", "No save filename",
+              "Please enter a save name.");
+      return;
+    }
+
+    String saveNameString = saveName.getText().trim() + ".txt";
+
+    if (isFileNameUnique(saveNameString, "src/main/resources/saveData/")) {
+      String saveData = "src/main/resources/saveData/" + saveNameString;
+      String pathFile = "src/main/resources/paths/" + comboBoxPath.getValue() + ".paths";
+      String characterFile = "src/main/resources/characters/" + comboBoxCharacter.getValue() + ".paths";
+      String playerStats = comboBoxCharacter.getValue() + "\n" + comboBoxPath.getValue();
+      String goalsFile = "src/main/resources/savedGoals/" + comboBoxGoals.getValue() + ".txt";
+      String characterIcon = processSelectedImage();
+
+      try {
+        StartGameFromCatalog startGameFromCatalog = new StartGameFromCatalog(saveData,
+                pathFile, characterFile, playerStats, goalsFile, characterIcon);
+        startGameFromCatalog.startGameFromCatalogMethod();
+      } catch (Exception e) {
+        AlertUtil.showAlertBoxError("Error", "Could not start game",
+                "An error occurred while trying to start the game. " + e.getMessage());
+
+      }
+
+    } else {
+      AlertUtil.showAlertBoxError("Error", "Could not start game",
+              "A save file with this name already exists. Please enter a different name.");
+    }
+  }
+
+
 }
 

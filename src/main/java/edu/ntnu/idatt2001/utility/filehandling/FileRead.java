@@ -94,12 +94,8 @@ public class FileRead {
 
             links.add(new Link(textInsideBrackets, textInsideParentheses, new ArrayList<>()));
           }
-        } catch (StringIndexOutOfBoundsException e) {
-          alertError(ErrorAtLine + lineNumber + ":\n" + "String index out of bounds");
-          e.printStackTrace();
-        } catch (InvalidActionFormatException | MissingLinkException e) {
-          alertError(ErrorAtLine + lineNumber + ":\n" + e.getMessage());
-          e.printStackTrace();
+        } catch (StringIndexOutOfBoundsException | InvalidActionFormatException | MissingLinkException e) {
+          throw new InvalidActionFormatException(ErrorAtLine + lineNumber + ":\n" + e.getMessage());
         }
       }
       // Add the last passage
@@ -109,35 +105,13 @@ public class FileRead {
         passages.add(passage);
       }
 
-    } catch (FileNotFoundException e) {
-      alertError("File not found: " + filePath + "\n" + e.getMessage());
-    } catch (IOException e) {
-      alertError("Error reading file:" + "\n" + filePath + "\n" + e.getMessage());
     } catch (Exception e) {
-      alertError("An unexpected error occurred while reading the file: " + e.getMessage());
-      e.printStackTrace();
+      throw new IllegalArgumentException(ErrorAtLine + lineNumber + ":\n" + e.getMessage());
     }
 
     return passages;
   }
 
-
-  /**
-   * Method for alerting the user of an error.
-   *
-   * @param message message
-   */
-  private void alertError(String message) {
-    Platform.runLater(() -> {
-      Alert alert = new Alert(AlertType.ERROR);
-      alert.getDialogPane().setId("alertBox");
-
-      alert.setTitle("Invalid Format Structure");
-      alert.setHeaderText("Something went wrong opening the file");
-      alert.setContentText(message);
-      alert.showAndWait();
-    });
-  }
 
 
   @Override

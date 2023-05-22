@@ -1,27 +1,46 @@
 package edu.ntnu.idatt2001.utility.filehandling;
 
 import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
-import javafx.scene.control.Alert;
-
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
 import java.util.*;
 
+/**
+ * A class that reads the game file.
+ */
 public class SaveFileReader {
-  public String getImage(String filePath) throws IOException {
+
+  /**
+   * Reads the file and returns the character image path.
+   *
+   * @param filePath String path to the file
+   * @return String path to the character image
+   * @throws InvalidFormatException if the file is not found
+   */
+  public String getImage(String filePath) throws InvalidFormatException {
     File file = new File(filePath);
     String image;
     try(BufferedReader br = new BufferedReader(new FileReader(file))) {
 
       image = br.readLine();
-
+    }
+    catch (IOException e) {
+      throw new InvalidFormatException(e.getMessage());
     }
 
     return image;
+
   }
 
+  /**
+   * Reads the file and return if the first passage exists.
+   *
+   * @param filePath String path to the file
+   * @return boolean if the first passage exists
+   * @throws IOException if the file is not found
+   */
   public boolean getFirstPassageExisting(String filePath) throws IOException {
     File file = new File(filePath);
 
@@ -37,6 +56,13 @@ public class SaveFileReader {
     return false;
   }
 
+  /**
+   * Reads the file and returns the name of the game.
+   *
+   * @param filePath String path to the file
+   * @return String name of the game
+   * @throws IOException if the file is not found
+   */
 
   public String getName(String filePath) throws IOException {
     File file = new File(filePath);
@@ -49,11 +75,17 @@ public class SaveFileReader {
   }
 
 
+  /**
+   * Reads the file and returns the path to the character.
+   *
+   * @param filePath String path to the file
+   * @return String path to the character
+   * @throws IOException if the file is not found
+   */
   public String getPath(String filePath) throws IOException {
     File file = new File(filePath);
     String path;
     try(BufferedReader br = new BufferedReader(new FileReader(file))) {
-
       br.readLine();
       br.readLine();
       path = br.readLine();
@@ -61,6 +93,14 @@ public class SaveFileReader {
     }
     return path;
   }
+
+  /**
+   * Reads the file and return the path to the goal file.
+   *
+   * @param filePath String path to the file
+   * @return String path to the goal file
+   * @throws IOException if the file is not found
+   */
 
   public String getGoal(String filePath) throws IOException {
     File file = new File(filePath);
@@ -76,6 +116,13 @@ public class SaveFileReader {
     return goal;
   }
 
+  /**
+   * Reads the file and returns the last passage played.
+   *
+   * @param filePath String path to the file
+   * @return String last passage played
+   * @throws IOException if the file is not found
+   */
   public String getLastSeenPassage(String filePath) throws IOException {
     String lastSeenPassage = "";
     String line;
@@ -88,10 +135,17 @@ public class SaveFileReader {
         }
       }
     }
-
     return lastSeenPassage;
-
   }
+
+  /**
+   * Reads the file and returns the passage name with the given counter.
+   *
+   * @param filePath String path to the file
+   * @param counter int counter of the passage
+   * @return String passage name
+   * @throws InvalidFormatException if file is on invalid format
+   */
 
   public String getPassageNameFromCounter(String filePath, int counter) throws InvalidFormatException {
     String passageName = "";
@@ -114,7 +168,15 @@ public class SaveFileReader {
     return passageName;
   }
 
-  public List<String> getInventoryFromCounter(String filePath, int counter) {
+  /**
+   * Reads the file and returns the inventory based on the counter.
+   *
+   * @param filePath String path to the file
+   * @param counter int counter of the passage
+   * @return List of String inventory
+   * @throws IOException if the file is not found
+   */
+  public List<String> getInventoryFromCounter(String filePath, int counter) throws IOException {
     List<String> passageInventory = new ArrayList<>();
     boolean isMatchingCounter = false;
 
@@ -133,12 +195,21 @@ public class SaveFileReader {
         }
       }
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new IOException(e.getMessage());
     }
     return passageInventory;
   }
 
-  public int getCounterFromPassageTitle(String filePath, String passageTitle) {
+  /**
+   * Reads the file and returns the counter of the passage with the given title.
+   *
+   * @param filePath String path to the file
+   * @param passageTitle String title of the passage
+   * @return int counter of the passage
+   * @throws IOException if the file is not found
+   * @throws IllegalArgumentException if the counter is not a valid number
+   */
+  public int getCounterFromPassageTitle(String filePath, String passageTitle) throws IOException {
     int counter = -1;
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
       String line;
@@ -153,7 +224,7 @@ public class SaveFileReader {
         }
       }
     } catch (IOException e) {
-      throw new RuntimeException(e);
+      throw new IOException(e.getMessage());
     } catch (NumberFormatException e) {
       throw new IllegalArgumentException("Counter is not a valid number", e);
     }
@@ -161,7 +232,15 @@ public class SaveFileReader {
   }
 
 
-  public Map<String, Object> getPassageParameters(String filePath, int counter) {
+  /**
+   * Reads the file and returns the passage parameters based on the counter.
+   *
+   * @param filePath String path to the file
+   * @param counter int counter of the passage
+   * @return Map of String and Object passage parameters
+   * @throws IOException if the file is not found
+   */
+  public Map<String, Object> getPassageParameters(String filePath, int counter) throws IOException {
     HashMap<String, Object> map = new HashMap<>();
 
     try (BufferedReader reader = new BufferedReader(new FileReader(filePath))) {
@@ -186,14 +265,8 @@ public class SaveFileReader {
         }
       }
     } catch (IOException e) {
-      Alert alert = new Alert(Alert.AlertType.ERROR);
-      alert.setTitle("Error");
-      alert.setHeaderText("Error reading file");
-      alert.setContentText("There was an error reading the file. Please try again.");
-      alert.showAndWait();
-
+      throw new IOException(e.getMessage());
     }
-
     return map;
   }
 }

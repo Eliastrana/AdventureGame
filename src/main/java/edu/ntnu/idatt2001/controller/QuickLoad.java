@@ -3,7 +3,8 @@ package edu.ntnu.idatt2001.controller;
 import static edu.ntnu.idatt2001.controller.SceneSwitcher.primaryStage;
 
 import edu.ntnu.idatt2001.model.Game;
-import edu.ntnu.idatt2001.utility.SoundPlayer;
+import edu.ntnu.idatt2001.utility.AlertUtil;
+import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
 import edu.ntnu.idatt2001.utility.filehandling.CreateGame;
 import edu.ntnu.idatt2001.utility.filehandling.SaveFileReader;
 import edu.ntnu.idatt2001.view.PaneGenerator;
@@ -62,7 +63,8 @@ public class QuickLoad {
   public static HBox savedNameDisplayer(String characterPath,
                                         String filePath,
                                         String goalsPath,
-                                        String characterIcon) throws IOException {
+                                        String characterIcon)
+          throws IOException, InvalidFormatException {
     QuickLoad quickLoad = new QuickLoad(characterPath,
             filePath,
             goalsPath,
@@ -76,7 +78,7 @@ public class QuickLoad {
    * @return HBox with the saved game information
    * @throws IOException if the file is not found
    */
-  public HBox savedGamesContainer() throws IOException {
+  public HBox savedGamesContainer() throws IOException, InvalidFormatException {
     HBox savedGames = new HBox();
     savedGames.setAlignment(Pos.CENTER);
     savedGames.setSpacing(15);
@@ -155,7 +157,7 @@ public class QuickLoad {
               primaryStage.setFullScreen(true);
 
             } catch (Exception exception) {
-              exception.printStackTrace();
+              AlertUtil.showAlertBoxError("Error", "Error", exception.getMessage());
             }
           });
           pane.getChildren().addAll(background, savedGameContent);

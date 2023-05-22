@@ -1,11 +1,11 @@
 package edu.ntnu.idatt2001.view;
 
 import edu.ntnu.idatt2001.controller.SceneSwitcher;
+import edu.ntnu.idatt2001.utility.AlertUtil;
 import edu.ntnu.idatt2001.utility.SoundPlayer;
-import edu.ntnu.idatt2001.utility.exceptions.InvalidFormatException;
 import edu.ntnu.idatt2001.utility.filehandling.PlayerRegister;
+import java.util.Objects;
 import javafx.geometry.Pos;
-import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.TextField;
@@ -14,6 +14,8 @@ import javafx.scene.image.ImageView;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+
+
 
 /**
  * Frontend Class for creating a player.
@@ -52,7 +54,7 @@ public class CreateCharacterPane extends StackPane {
     setPlayerScore.setPromptText("Enter player score");
 
     playerInventory.setPromptText("Enter player inventory");
-    populatePlayerInventory();
+    playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
 
     Button createPlayerButton = new Button("Create player");
     createPlayerButton.setId("confirmButton");
@@ -74,16 +76,17 @@ public class CreateCharacterPane extends StackPane {
 
         if (createPlayerName.getText().isEmpty() || setPlayerHealth.getText().isEmpty()
                 || setPlayerGold.getText().isEmpty() || setPlayerScore.getText().isEmpty()) {
-          throw new InvalidFormatException("Empty fields");
+          AlertUtil.showAlertBoxInfo("Empty fields",
+                  "You have not filled out all the fields",
+                  "Please fill out all the fields");
         } else if (playerHealth < 0 || playerGold < 0 || playerScore < 0) {
-          throw new InvalidFormatException("Invalid input");
+          AlertUtil.showAlertBoxInfo("Invalid input",
+                  "You have entered an invalid input",
+                  "The input must be a positive number");
         } else {
-          Alert alert = new Alert(Alert.AlertType.INFORMATION);
-          alert.getDialogPane().setId("alertBox");
-          alert.setTitle("Player created");
-          alert.setHeaderText("You have created a player");
-          alert.setContentText("You have created a player");
-          alert.showAndWait();
+          AlertUtil.showAlertBoxInfo("Player created",
+                  "Player " + createPlayerName.getText() + " created",
+                  "You will find the player in the character menu");
         }
 
         PlayerRegister register = new PlayerRegister();
@@ -100,23 +103,20 @@ public class CreateCharacterPane extends StackPane {
         setPlayerHealth.clear();
         setPlayerGold.clear();
         setPlayerScore.clear();
-      } catch (NumberFormatException ex) {
-        showAlert("Invalid input",
+      } catch (NumberFormatException exception) {
+        AlertUtil.showAlertBoxInfo("Invalid input",
                 "You have entered an invalid input",
-                "Please enter a valid input");
-      } catch (Exception ex) {
-        showAlert("Empty fields",
-                "You have not filled out all the fields",
-                "Please fill out all the fields");
+                "The input must be a positive number");
       }
     });
 
-    VBox backButtonBox = new VBox();
+
     Button backButton = new Button("Back");
     backButton.setId("backNavigation");
     backButton.setAlignment(Pos.TOP_LEFT);
 
-    Image backIcon = new Image(getClass().getResourceAsStream("/iconography/Back.png"));
+    Image backIcon = new Image(Objects.requireNonNull(getClass()
+            .getResourceAsStream("/iconography/Back.png")));
 
     ImageView imageViewBack = new ImageView(backIcon);
     imageViewBack.setPreserveRatio(true);
@@ -124,10 +124,12 @@ public class CreateCharacterPane extends StackPane {
     imageViewBack.setFitHeight(20); // Set the maximum height for the icon
 
     backButton.setGraphic(imageViewBack);
-    backButton.setOnAction(e ->  {
+    backButton.setOnAction(e -> {
       SoundPlayer.play("src/main/resources/sounds/click.wav");
       SceneSwitcher.switchToMainMenu();
+
     });
+    VBox backButtonBox = new VBox();
     backButtonBox.getChildren().add(backButton);
     backButtonBox.setAlignment(Pos.TOP_LEFT);
     backButtonBox.setSpacing(10);
@@ -138,18 +140,7 @@ public class CreateCharacterPane extends StackPane {
     structure.setSpacing(20);
     getChildren().addAll(structure);
   }
-
-  private void populatePlayerInventory() {
-
-    playerInventory.getItems().addAll("Sword", "Rock", "Stick", "Flashlight");
-  }
-
-  private void showAlert(String title, String headerText, String contentText) {
-    Alert alert = new Alert(Alert.AlertType.INFORMATION);
-    alert.getDialogPane().setId("alertBox");
-    alert.setTitle(title);
-    alert.setHeaderText(headerText);
-    alert.setContentText(contentText);
-    alert.showAndWait();
-  }
 }
+
+
+

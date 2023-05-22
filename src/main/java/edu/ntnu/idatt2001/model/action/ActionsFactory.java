@@ -7,6 +7,7 @@ public class ActionsFactory {
 
   /**
    * Creates an action from the given input.
+   *
    * @param input String {actionType: actionValue}.
    *
    * @return Action the created action.

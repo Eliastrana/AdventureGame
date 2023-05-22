@@ -73,8 +73,7 @@ public class PlayerRegister {
               .addToInventory(inventory)
               .build();
     } catch (Exception e) {
-      e.printStackTrace();
+      throw new IllegalArgumentException("File not found");
     }
-    return null;
   }
 }

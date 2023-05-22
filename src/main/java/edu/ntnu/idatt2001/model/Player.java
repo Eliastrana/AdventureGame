@@ -218,10 +218,9 @@ public class Player {
     if (item == null || item.isBlank()) {
       throw new IllegalArgumentException("Item cannot be empty");
     }
-    if (!inventory.contains(item)) {
-      throw new IllegalArgumentException("Item is not in inventory");
+    if (inventory.contains(item)) {
+      inventory.remove(item);
     }
-    inventory.remove(item);
   }
 
   /**
