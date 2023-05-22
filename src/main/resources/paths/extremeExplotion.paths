@@ -5,16 +5,19 @@ A massive explosion destroys all the windows in your house. You need to get out 
 ::The living room
 You are in the living room. You see your bowl of infinite rocks.
 [Keep running](The kitchen)
+{ScoreAction: 10}
 [Pick up a rock form the bowl](The living room)
 {InventoryAction: rock}
-{ScoreAction: 10}
+{HealthAction: -20}
 
 ::The kitchen
 You are in the kitchen. You see your sword that you use to cut your bread.
 [Keep running](The bathroom)
+{ScoreAction: 10}
 [Pick up the sword](The bathroom)
 {InventoryAction: sword}
-{ScoreAction: 10}
+{HealthAction: -20}
+
 
 ::The bathroom
 You are in the bathroom. You see your toothbrush.
@@ -22,20 +25,24 @@ You are in the bathroom. You see your toothbrush.
 [Pick up the toothbrush](The bedroom)
 {InventoryAction: toothbrush}
 {ScoreAction: 10}
+{HealthAction: -20}
+
 
 ::The bedroom
 You are in the bedroom. You see your bed. On the bed you find your favorite stick
 [Keep running](The front door)
-[Pick up the stick](The front door)
-{InventoryAction: stick}
 {ScoreAction: 10}
+[Pick up the stick](The front door)
+{HealthAction: -20}
+{InventoryAction: stick}
 
 ::The front door
 You are at the front door. You see your shoes.
 [Keep running](Running away)
+{ScoreAction: 10}
 [Pick up the shoes](Running away)
 {InventoryAction: shoes}
-{ScoreAction: 10}
+{HealthAction: -20}
 
 ::Running away
 You are running away from your house with all your favorite items. You are now safe.

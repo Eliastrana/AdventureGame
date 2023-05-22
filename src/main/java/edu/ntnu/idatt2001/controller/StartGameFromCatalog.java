@@ -11,9 +11,9 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonBar;
 import javafx.scene.control.ButtonType;
 
-import static edu.ntnu.idatt2001.view.Pane1.comboBoxGoals;
-import static edu.ntnu.idatt2001.view.Pane1.comboBoxPath;
-import static edu.ntnu.idatt2001.view.Pane1.processSelectedImage;
+import static edu.ntnu.idatt2001.view.LoadGamePane.comboBoxGoals;
+import static edu.ntnu.idatt2001.view.LoadGamePane.comboBoxPath;
+import static edu.ntnu.idatt2001.view.LoadGamePane.processSelectedImage;
 import static edu.ntnu.idatt2001.controller.SceneSwitcher.primaryStage;
 
 public class StartGameFromCatalog {

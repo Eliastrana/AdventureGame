@@ -539,12 +539,12 @@ public class PaneGenerator extends Application {
     primaryStage.close();
 
     //This should probably be done in a better way
-    Pane1.comboBoxPath.getItems().clear();
-    Pane1.comboBoxPath.setPromptText("Select path");
-    Pane1.comboBoxCharacter.getItems().clear();
-    Pane1.comboBoxCharacter.setPromptText("Select character");
-    Pane1.comboBoxGoals.getItems().clear();
-    Pane1.comboBoxGoals.setPromptText("Select goal");
+    LoadGamePane.comboBoxPath.getItems().clear();
+    LoadGamePane.comboBoxPath.setPromptText("Select path");
+    LoadGamePane.comboBoxCharacter.getItems().clear();
+    LoadGamePane.comboBoxCharacter.setPromptText("Select character");
+    LoadGamePane.comboBoxGoals.getItems().clear();
+    LoadGamePane.comboBoxGoals.setPromptText("Select goal");
 
     MasterPane gui = new MasterPane();
     gui.start(stage);

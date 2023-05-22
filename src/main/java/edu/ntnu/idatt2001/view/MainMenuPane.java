@@ -58,22 +58,22 @@ public class MainMenuPane extends VBox {
 
     button1.setOnAction(e -> {
       try {
-        SceneSwitcher.switchToPane(new Pane1());
+        SceneSwitcher.switchToPane(new LoadGamePane());
         SoundPlayer.play(clickSound);
       } catch (IOException ex) {
         throw new RuntimeException(ex);
       }
     });
     button2.setOnAction(e -> {
-      SceneSwitcher.switchToPane(new Pane2());
+      SceneSwitcher.switchToPane(new CreateGamePane());
       SoundPlayer.play(clickSound);
     });
     button3.setOnAction(e -> {
-      SceneSwitcher.switchToPane(new Pane3());
+      SceneSwitcher.switchToPane(new CreateCharacterPane());
       SoundPlayer.play(clickSound);
     });
     button4.setOnAction(e -> {
-      SceneSwitcher.switchToPane(new Pane4());
+      SceneSwitcher.switchToPane(new CreateGoalsPane());
       SoundPlayer.play(clickSound);
     });
 

@@ -1,7 +1,7 @@
 package edu.ntnu.idatt2001.controller;
 
 import static edu.ntnu.idatt2001.controller.SceneSwitcher.primaryStage;
-import static edu.ntnu.idatt2001.view.Pane1.comboBoxPath;
+import static edu.ntnu.idatt2001.view.LoadGamePane.comboBoxPath;
 
 import java.io.File;
 import java.io.IOException;

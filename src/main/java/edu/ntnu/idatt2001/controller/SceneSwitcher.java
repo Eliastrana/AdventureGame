@@ -1,7 +1,6 @@
 package edu.ntnu.idatt2001.controller;
 
 import edu.ntnu.idatt2001.view.MainMenuPane;
-import edu.ntnu.idatt2001.view.Pane1;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.StackPane;

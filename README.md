@@ -23,8 +23,8 @@ The program is navigated using the mouse. You click on the buttons to choose you
 ![Main Menu](src/main/resources/readmeFiles/Screenshot 2023-05-21 at 14.43.40.png)
 
 ### Game
-![Game](src/main/resources/readmeFiles/Screenshot 2023-05-21 at 14.46.37.png)
+![Game](src/main/resources/readmeFiles/Screenshot 2023-05-22 at 12.26.00.png)
 
 
 ## Acknowledgements
-All art is painted by hand by our personal graphic designer, [Frid](https://www.instagram.com//).
+All art is painted by hand by our personal artist designer, Frid.
